@@ -1,6 +1,6 @@
 extends Spatial
 
-onready var game = $Game
+onready var game = $OnlineLobby
 onready var ui_layer: UILayer = $UILayer
 onready var ready_screen = $UILayer/Screens/ReadyScreen
 
@@ -23,6 +23,28 @@ func _ready() -> void:
 #			var webrtc_peer = OnlineMatch._webrtc_peers[session_id]
 #			webrtc_peer.close()
 
+####### UNSERES
+# OnlineMatch.get_session_id(player_id)
+# set_network_master(peer_id)
+# OnlineMatchPlayer.start_playing()
+# Extremely naive position and animation sync'ing.
+#
+# This will work locally, and under ideal network conditions, but likely won't 
+# be acceptable over the live internet for a large percentage of users.
+#
+# You'll need to replace this with more efficient sync'ing mechanism, which
+# could include input prediction, rollback, limiting how often sync'ing happens
+# or any other number of techniques.
+#
+# In addition to that, you'll also need to expand the number of things that are
+# sync'd, depending on the needs of your game.
+#puppet func update_remote_player(_position: Vector2, is_attacking: bool) -> void:
+#	global_position = _position
+#
+#	if is_attacking and not animation_player.is_playing():
+#		animation_player.play("Attack")
+
+
 #####
 # UI callbacks
 #####
@@ -37,9 +59,6 @@ func _on_TitleScreen_play_local() -> void:
 
 func _on_TitleScreen_play_online() -> void:
 	Game.online_play = true
-	
-	# Show the game map in the background because we have nothing better.
-	game.reload_map()
 	
 	ui_layer.show_screen("ConnectionScreen")
 
@@ -179,3 +198,15 @@ remotesync func show_winner(name: String, session_id: String = '', score: int = 
 	else:
 		restart_game()
 
+
+
+func _on_OnlineLobby_game_over(player_id) -> void:
+	pass # Replace with function body.
+
+
+func _on_OnlineLobby_game_started() -> void:
+	pass # Replace with function body.
+
+
+func _on_OnlineLobby_player_dead(player_id) -> void:
+	pass # Replace with function body.

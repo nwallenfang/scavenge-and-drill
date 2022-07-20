@@ -8,13 +8,10 @@
 [ext_resource path="res://UI/Connection/screens/TitleScreen.tscn" type="PackedScene" id=6]
 [ext_resource path="res://UI/Connection/screens/MatchScreen.tscn" type="PackedScene" id=7]
 [ext_resource path="res://UI/Connection/screens/ReadyScreen.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Networking/ExampleProject/Game.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Logic/OnlineLobby.tscn" type="PackedScene" id=9]
 
 [node name="Main" type="Spatial"]
 script = ExtResource( 1 )
-
-[node name="Game" parent="." instance=ExtResource( 9 )]
-visible = false
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 pause_mode = 2
@@ -72,9 +69,8 @@ __meta__ = {
 
 [node name="Level" parent="." instance=ExtResource( 4 )]
 
-[connection signal="game_over" from="Game" to="." method="_on_Game_game_over"]
-[connection signal="game_started" from="Game" to="." method="_on_Game_game_started"]
-[connection signal="player_dead" from="Game" to="." method="_on_Game_player_dead"]
+[node name="OnlineLobby" parent="." instance=ExtResource( 9 )]
+
 [connection signal="play_local" from="UILayer/Screens/TitleScreen" to="." method="_on_TitleScreen_play_local"]
 [connection signal="play_online" from="UILayer/Screens/TitleScreen" to="." method="_on_TitleScreen_play_online"]
 [connection signal="ready_pressed" from="UILayer/Screens/ReadyScreen" to="." method="_on_ReadyScreen_ready_pressed"]
