@@ -1,4 +1,4 @@
-extends "res://Networking/ExampleProject/main/Screen.gd"
+extends "res://UI/Connection/Screen.gd"
 
 onready var matchmaker_player_count_control := $PanelContainer/VBoxContainer/MatchPanel/SpinBox
 onready var join_match_id_control := $PanelContainer/VBoxContainer/JoinPanel/LineEdit

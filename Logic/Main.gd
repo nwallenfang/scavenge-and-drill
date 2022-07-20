@@ -1,4 +1,4 @@
-extends Node2D
+extends Spatial
 
 onready var game = $Game
 onready var ui_layer: UILayer = $UILayer
@@ -28,7 +28,7 @@ func _ready() -> void:
 #####
 
 func _on_TitleScreen_play_local() -> void:
-	GameState.online_play = false
+	Game.online_play = false
 	
 	ui_layer.hide_screen()
 	ui_layer.show_back_button()
@@ -36,7 +36,7 @@ func _on_TitleScreen_play_local() -> void:
 	start_game()
 
 func _on_TitleScreen_play_online() -> void:
-	GameState.online_play = true
+	Game.online_play = true
 	
 	# Show the game map in the background because we have nothing better.
 	game.reload_map()
@@ -56,7 +56,7 @@ func _on_UILayer_back_button() -> void:
 	
 	if ui_layer.current_screen_name in ['ConnectionScreen', 'MatchScreen']:
 		ui_layer.show_screen("TitleScreen")
-	elif not GameState.online_play:
+	elif not Game.online_play:
 		ui_layer.show_screen("TitleScreen")
 	else:
 		ui_layer.show_screen("MatchScreen")
@@ -108,7 +108,7 @@ remotesync func player_ready(session_id: String) -> void:
 			start_game()
 
 func start_game() -> void:
-	if GameState.online_play:
+	if Game.online_play:
 		players = OnlineMatch.get_player_names_by_peer_id()
 	else:
 		players = {
@@ -137,7 +137,7 @@ func _on_Game_game_started() -> void:
 	ui_layer.show_back_button()
 
 func _on_Game_player_dead(player_id: int) -> void:
-	if GameState.online_play:
+	if Game.online_play:
 		var my_id = get_tree().get_network_unique_id()
 		if player_id == my_id:
 			ui_layer.show_message("You lose!")
@@ -145,7 +145,7 @@ func _on_Game_player_dead(player_id: int) -> void:
 func _on_Game_game_over(player_id: int) -> void:
 	players_ready.clear()
 	
-	if not GameState.online_play:
+	if not Game.online_play:
 		show_winner(players[player_id])
 	elif get_tree().is_network_server():
 		if not players_score.has(player_id):
@@ -167,7 +167,7 @@ remotesync func show_winner(name: String, session_id: String = '', score: int = 
 	if not game.game_started:
 		return
 	
-	if GameState.online_play:
+	if Game.online_play:
 		if is_match:
 			stop_game()
 			ui_layer.show_screen("MatchScreen")

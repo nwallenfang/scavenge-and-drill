@@ -14,4 +14,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.19186 )
 [node name="TopdownCamera" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 0.555411, 0.831576, 0, -0.831576, 0.555411, 0, 6.61508, 3.75768 )
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
+[node name="Player1" parent="." instance=ExtResource( 2 )]

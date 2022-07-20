@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Networking/ExampleProject/main/screens/PeerStatus.gd" type="Script" id=1]
+[ext_resource path="res://UI/Connection/screens/PeerStatus.gd" type="Script" id=1]
 [ext_resource path="res://Networking/ExampleProject/assets/theme.tres" type="Theme" id=2]
 
 [node name="PeerStatus" type="HBoxContainer"]

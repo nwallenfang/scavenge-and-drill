@@ -1,4 +1,4 @@
-extends "res://Networking/ExampleProject/main/Screen.gd"
+extends "res://UI/Connection/Screen.gd"
 
 onready var tab_container := $TabContainer
 onready var login_email_field := $TabContainer/Login/GridContainer/Email

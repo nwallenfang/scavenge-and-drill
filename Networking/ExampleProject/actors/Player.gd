@@ -22,7 +22,7 @@ func attack() -> void:
 			body.hurt()
 
 func hurt() -> void:
-	if not GameState.online_play:
+	if not Game.online_play:
 		die()
 	elif is_network_master():
 		rpc("die")
@@ -44,7 +44,7 @@ func _physics_process(delta: float) -> void:
 		if is_attacking:
 			animation_player.play("Attack")
 		
-		if GameState.online_play:
+		if Game.online_play:
 			rpc("update_remote_player", global_position, is_attacking)
 
 # Extremely naive position and animation sync'ing.

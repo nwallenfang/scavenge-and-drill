@@ -19,7 +19,7 @@ signal player_dead (player_id)
 signal game_over (player_id)
 
 func game_start(players: Dictionary) -> void:
-	if GameState.online_play:
+	if Game.online_play:
 		rpc("_do_game_setup", players)
 	else:
 		_do_game_setup(players)
@@ -48,13 +48,13 @@ remotesync func _do_game_setup(players: Dictionary) -> void:
 		other_player.position = map.get_node("PlayerStartPositions/Player" + str(player_index)).position
 		other_player.connect("player_dead", self, "_on_player_dead", [peer_id])
 		
-		if not GameState.online_play:
+		if not Game.online_play:
 			other_player.player_controlled = true
 			other_player.input_prefix = "player" + str(player_index) + "_"
 		
 		player_index += 1
 	
-	if GameState.online_play:
+	if Game.online_play:
 		var my_id := get_tree().get_network_unique_id()
 		var my_player := players_node.get_node(str(my_id))
 		my_player.player_controlled = true
@@ -67,6 +67,7 @@ remotesync func _do_game_setup(players: Dictionary) -> void:
 # Records when each player has finished setup so we know when all players are ready.
 mastersync func _finished_game_setup(player_id: int) -> void:
 	players_setup[player_id] = players_alive[player_id]
+	print(players_setup)
 	if players_setup.size() == players_alive.size():
 		# Once all clients have finished setup, tell them to start the game.
 		rpc("_do_game_start")

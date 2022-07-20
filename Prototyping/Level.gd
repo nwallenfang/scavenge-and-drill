@@ -1,4 +1,4 @@
 extends Spatial
 
 func _ready():
-	$TopdownCamera.initialize($Player)
+	$TopdownCamera.initialize($Player1)

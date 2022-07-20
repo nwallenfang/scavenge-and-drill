@@ -87,7 +87,7 @@ _global_script_classes=[ {
 "base": "CanvasLayer",
 "class": "UILayer",
 "language": "GDScript",
-"path": "res://Networking/ExampleProject/main/UILayer.gd"
+"path": "res://UI/Connection/UILayer.gd"
 } ]
 _global_script_class_icons={
 "GroundedPhysicsMover3D": "",
@@ -111,16 +111,15 @@ _global_script_class_icons={
 [application]
 
 config/name="Multiplayer Template"
-run/main_scene="res://Networking/ExampleProject/Main.tscn"
+run/main_scene="res://Logic/Main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Online="*res://Networking/autoload/Online.gd"
-GameState="*res://Networking/autoload/GameState.gd"
-Build="*res://Networking/autoload/Build.gd"
+Online="*res://Logic/Online.gd"
 Nakama="*res://addons/com.heroiclabs.nakama/Nakama.gd"
 OnlineMatch="*res://addons/nakama-webrtc/OnlineMatch.gd"
+Game="*res://Logic/Game.tscn"
 
 [debug]
 

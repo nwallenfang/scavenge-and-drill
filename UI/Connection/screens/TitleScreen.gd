@@ -1,4 +1,4 @@
-extends "res://Networking/ExampleProject/main/Screen.gd"
+extends "res://UI/Connection/Screen.gd"
 
 signal play_local
 signal play_online
