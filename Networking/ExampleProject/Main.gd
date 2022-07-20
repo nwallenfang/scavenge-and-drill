@@ -62,6 +62,7 @@ func _on_UILayer_back_button() -> void:
 		ui_layer.show_screen("MatchScreen")
 
 func _on_ReadyScreen_ready_pressed() -> void:
+	print("pressed")
 	rpc("player_ready", OnlineMatch.get_my_session_id())
 
 #####
