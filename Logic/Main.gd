@@ -1,6 +1,6 @@
 extends Spatial
 
-onready var game = $OnlineLobby
+onready var game = $Level
 onready var ui_layer: UILayer = $UILayer
 onready var ready_screen = $UILayer/Screens/ReadyScreen
 
@@ -129,12 +129,11 @@ remotesync func player_ready(session_id: String) -> void:
 func start_game() -> void:
 	if Game.online_play:
 		players = OnlineMatch.get_player_names_by_peer_id()
-	else:
-		players = {
-			1: "Player1",
-			2: "Player2",
-		}
-	
+#	else:
+#		players = {
+#			1: "Player1",
+#			2: "Player2",
+#		}
 	game.game_start(players)
 
 func stop_game() -> void:
@@ -154,6 +153,7 @@ func _on_Game_game_started() -> void:
 	ui_layer.hide_screen()
 	ui_layer.hide_all()
 	ui_layer.show_back_button()
+	Game.game_started = true
 
 func _on_Game_player_dead(player_id: int) -> void:
 	if Game.online_play:
@@ -209,4 +209,8 @@ func _on_OnlineLobby_game_started() -> void:
 
 
 func _on_OnlineLobby_player_dead(player_id) -> void:
+	pass # Replace with function body.
+
+
+func _on_Level_game_started():
 	pass # Replace with function body.

@@ -12,6 +12,11 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.19186 )
 
 [node name="TopdownCamera" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 0.555411, 0.831576, 0, -0.831576, 0.555411, 0, 6.61508, 3.75768 )
+transform = Transform( 1, 0, 0, 0, 0.555411, 0.831576, 0, -0.831576, 0.555411, -2, 6.615, 3.758 )
+fov = 78.7642
 
 [node name="Player1" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0 )
+
+[node name="Player2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0 )

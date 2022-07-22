@@ -4,7 +4,6 @@ extends Node
 
 var game_started := false
 var game_over := false
-var players_alive := {}
 var players_setup := {}
 
 signal game_started ()
@@ -24,9 +23,8 @@ remotesync func _do_game_setup(players: Dictionary) -> void:
 	
 	game_started = true
 	game_over = false
-	players_alive = players
 	
-	var player_index := 1
+#	var player_index := 1
 #	for peer_id in players:
 ##		var other_player = Player.instance()
 #		other_player.name = str(peer_id)
@@ -51,7 +49,6 @@ remotesync func _do_game_setup(players: Dictionary) -> void:
 
 # Records when each player has finished setup so we know when all players are ready.
 mastersync func _finished_game_setup(player_id: int) -> void:
-	players_setup[player_id] = players_alive[player_id]
 	if players_setup.size() == players_alive.size():
 		# Once all clients have finished setup, tell them to start the game.
 		rpc("_do_game_start")

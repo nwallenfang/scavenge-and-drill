@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Logic/Main.gd" type="Script" id=1]
 [ext_resource path="res://UI/Connection/UILayer.gd" type="Script" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://UI/Connection/screens/TitleScreen.tscn" type="PackedScene" id=6]
 [ext_resource path="res://UI/Connection/screens/MatchScreen.tscn" type="PackedScene" id=7]
 [ext_resource path="res://UI/Connection/screens/ReadyScreen.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Logic/OnlineLobby.tscn" type="PackedScene" id=9]
 
 [node name="Main" type="Spatial"]
 script = ExtResource( 1 )
@@ -69,9 +68,8 @@ __meta__ = {
 
 [node name="Level" parent="." instance=ExtResource( 4 )]
 
-[node name="OnlineLobby" parent="." instance=ExtResource( 9 )]
-
 [connection signal="play_local" from="UILayer/Screens/TitleScreen" to="." method="_on_TitleScreen_play_local"]
 [connection signal="play_online" from="UILayer/Screens/TitleScreen" to="." method="_on_TitleScreen_play_online"]
 [connection signal="ready_pressed" from="UILayer/Screens/ReadyScreen" to="." method="_on_ReadyScreen_ready_pressed"]
 [connection signal="pressed" from="UILayer/Overlay/BackButton" to="UILayer" method="_on_BackButton_pressed"]
+[connection signal="game_started" from="Level" to="." method="_on_Game_game_started"]
