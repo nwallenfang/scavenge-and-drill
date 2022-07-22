@@ -10,6 +10,11 @@ var players_ready := {}
 var players_score := {}
 
 func _ready() -> void:
+	var args = OS.get_cmdline_args()
+	if len(args) >= 1:
+		if args[0] == 'debug':
+			Game.debug = true
+
 	OnlineMatch.connect("error", self, "_on_OnlineMatch_error")
 	OnlineMatch.connect("disconnected", self, "_on_OnlineMatch_disconnected")
 	OnlineMatch.connect("player_status_changed", self, "_on_OnlineMatch_player_status_changed")

@@ -1,6 +1,8 @@
 extends Node
 
 var online_play := false
+# debug mode set from command line -> skip cutscenes, main menu, etc.
+var debug := false
 
 var own_player
 var other_player
