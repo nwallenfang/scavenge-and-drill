@@ -66,6 +66,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label" type="Label" parent="UILayer"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "HALLO
+"
+
 [node name="Level" parent="." instance=ExtResource( 4 )]
 
 [connection signal="play_local" from="UILayer/Screens/TitleScreen" to="." method="_on_TitleScreen_play_local"]

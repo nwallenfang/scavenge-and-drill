@@ -10,7 +10,8 @@ var players_ready := {}
 var players_score := {}
 
 func _ready() -> void:
-	var args = OS.get_cmdline_args()
+	var args = Array(OS.get_cmdline_args())
+	print(args)
 	if len(args) >= 1:
 		if args[0] == 'debug':
 			Game.debug = true
@@ -19,6 +20,9 @@ func _ready() -> void:
 	OnlineMatch.connect("disconnected", self, "_on_OnlineMatch_disconnected")
 	OnlineMatch.connect("player_status_changed", self, "_on_OnlineMatch_player_status_changed")
 	OnlineMatch.connect("player_left", self, "_on_OnlineMatch_player_left")
+	
+	if Game.debug:
+		connect_to_matchmaking()
 
 #func _unhandled_input(event: InputEvent) -> void:
 #	# Trigger debugging action!
@@ -49,6 +53,43 @@ func _ready() -> void:
 #	if is_attacking and not animation_player.is_playing():
 #		animation_player.play("Attack")
 
+
+# copied from MatchScreen and ConnectionScreen
+func connect_to_matchmaking():
+	# first off authenticate with Nakama
+	# TODO device ID not available on Web, need to find an alternative!
+	var device_id = OS.get_unique_id()
+	var username = 'Wilhelm'  # let player choose their name?
+	var nakama_session = yield(Online.nakama_client.authenticate_device_async(device_id, username, true, null), "completed")
+	
+	if nakama_session.is_exception():
+		visible = true
+		ui_layer.show_message("Login failed!")
+		
+		# We always set Online.nakama_session in case something is yielding
+		# on the "session_changed" signal.
+		Online.nakama_session = null
+	else:
+		print("success!")
+		Online.nakama_session = nakama_session
+	
+	# Connect socket to realtime Nakama API if not connected.
+	if not Online.is_nakama_socket_connected():
+		Online.connect_nakama_socket()
+		yield(Online, "socket_connected")
+		
+	ui_layer.hide_screen()
+	ui_layer.show_message("Looking for match...")
+	
+	var data = {
+		min_count = 2,
+		string_properties = {
+			game = "test_game",
+		},
+		query = "+properties.game:test_game",
+	}
+	
+	OnlineMatch.start_matchmaking(Online.nakama_socket, data)
 
 #####
 # UI callbacks

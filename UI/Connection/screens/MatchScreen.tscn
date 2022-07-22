@@ -28,14 +28,14 @@ margin_bottom = -50.0
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 917.0
-margin_bottom = 533.0
+margin_bottom = 493.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
 
 [node name="MatchPanel" type="Panel" parent="PanelContainer/VBoxContainer"]
 margin_right = 910.0
-margin_bottom = 168.0
+margin_bottom = 155.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -78,9 +78,9 @@ __meta__ = {
 }
 
 [node name="CreatePanel" type="Panel" parent="PanelContainer/VBoxContainer"]
-margin_top = 178.0
+margin_top = 165.0
 margin_right = 910.0
-margin_bottom = 347.0
+margin_bottom = 320.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -109,9 +109,9 @@ __meta__ = {
 }
 
 [node name="JoinPanel" type="Panel" parent="PanelContainer/VBoxContainer"]
-margin_top = 357.0
+margin_top = 330.0
 margin_right = 910.0
-margin_bottom = 526.0
+margin_bottom = 486.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -157,4 +157,5 @@ text = "Join"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="pressed" from="PanelContainer/VBoxContainer/JoinPanel/PasteButton" to="." method="_on_PasteButton_pressed"]
