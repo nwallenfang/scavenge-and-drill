@@ -85,7 +85,7 @@ _global_script_classes=[ {
 "path": "res://addons/com.heroiclabs.nakama/api/NakamaWriteStorageObject.gd"
 }, {
 "base": "GroundedPhysicsMover3D",
-"class": "Player22",
+"class": "Player",
 "language": "GDScript",
 "path": "res://Actors/Player.gd"
 }, {
@@ -110,7 +110,7 @@ _global_script_class_icons={
 "NakamaSocketAdapter": "",
 "NakamaStorageObjectId": "",
 "NakamaWriteStorageObject": "",
-"Player22": "",
+"Player": "",
 "UILayer": ""
 }
 

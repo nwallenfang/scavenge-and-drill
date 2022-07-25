@@ -39,8 +39,10 @@ func _show_screen(info: Dictionary = {}) -> void:
 	ready_button.grab_focus()
 	
 	if Game.debug:
-		yield(get_tree().create_timer(0.1), "timeout")
+#		yield(get_tree().create_timer(0.1), "timeout")
 		
+#		emit_signal("ready_pressed")
+		yield(get_tree().create_timer(0.2), "timeout")
 		emit_signal("ready_pressed")
 
 func clear_players() -> void:

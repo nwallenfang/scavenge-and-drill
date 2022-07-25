@@ -1,6 +1,6 @@
 extends GroundedPhysicsMover3D
 
-class_name Player22
+class_name Player
 
 var facing_direction := Vector3.RIGHT
 

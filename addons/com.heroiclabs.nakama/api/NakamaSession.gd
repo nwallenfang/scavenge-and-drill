@@ -24,6 +24,7 @@ func is_valid():
 func _init(p_token = null, p_created : bool = false, p_exception = null).(p_exception):
 	if p_token:
 		var unpacked = _jwt_unpack(p_token)
+
 		var decoded = {}
 		if not validate_json(unpacked):
 			decoded = parse_json(unpacked)

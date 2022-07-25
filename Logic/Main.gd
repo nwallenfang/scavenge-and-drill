@@ -34,35 +34,6 @@ func _ready() -> void:
 			yield(get_tree().create_timer(0.2), "timeout")
 		connect_to_matchmaking()
 
-#func _unhandled_input(event: InputEvent) -> void:
-#	# Trigger debugging action!
-#	if event.is_action_pressed("player_debug"):
-#		# Close all our peers to force a reconnect (to make sure it works).
-#		for session_id in OnlineMatch.webrtc_peers:
-#			var webrtc_peer = OnlineMatch._webrtc_peers[session_id]
-#			webrtc_peer.close()
-
-####### UNSERES
-# OnlineMatch.get_session_id(player_id)
-# set_network_master(peer_id)
-# OnlineMatchPlayer.start_playing()
-# Extremely naive position and animation sync'ing.
-#
-# This will work locally, and under ideal network conditions, but likely won't 
-# be acceptable over the live internet for a large percentage of users.
-#
-# You'll need to replace this with more efficient sync'ing mechanism, which
-# could include input prediction, rollback, limiting how often sync'ing happens
-# or any other number of techniques.
-#
-# In addition to that, you'll also need to expand the number of things that are
-# sync'd, depending on the needs of your game.
-#puppet func update_remote_player(_position: Vector2, is_attacking: bool) -> void:
-#	global_position = _position
-#
-#	if is_attacking and not animation_player.is_playing():
-#		animation_player.play("Attack")
-
 
 # copied from MatchScreen and ConnectionScreen
 func connect_to_matchmaking():
@@ -182,11 +153,7 @@ remotesync func player_ready(session_id: String) -> void:
 func start_game() -> void:
 	if Game.online_play:
 		players = OnlineMatch.get_player_names_by_peer_id()
-#	else:
-#		players = {
-#			1: "Player1",
-#			2: "Player2",
-#		}
+
 	game.game_start(players)
 
 func stop_game() -> void:
@@ -250,20 +217,3 @@ remotesync func show_winner(name: String, session_id: String = '', score: int = 
 			ui_layer.show_screen("ReadyScreen")
 	else:
 		restart_game()
-
-
-
-func _on_OnlineLobby_game_over(player_id) -> void:
-	pass # Replace with function body.
-
-
-func _on_OnlineLobby_game_started() -> void:
-	pass # Replace with function body.
-
-
-func _on_OnlineLobby_player_dead(player_id) -> void:
-	pass # Replace with function body.
-
-
-func _on_Level_game_started():
-	pass # Replace with function body.
