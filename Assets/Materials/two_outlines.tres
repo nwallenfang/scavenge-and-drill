@@ -1,0 +1,18 @@
+[gd_resource type="SpatialMaterial" load_steps=2 format=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+flags_do_not_receive_shadows = true
+params_cull_mode = 1
+params_grow = true
+params_grow_amount = 0.19
+albedo_color = Color( 1, 0.211765, 0.376471, 1 )
+
+[resource]
+next_pass = SubResource( 1 )
+flags_unshaded = true
+flags_do_not_receive_shadows = true
+params_cull_mode = 1
+params_grow = true
+params_grow_amount = 0.1
+albedo_color = Color( 0.160784, 0.647059, 1, 1 )

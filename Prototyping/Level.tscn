@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Prototyping/Level.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Logic/TopdownCamera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Objects/Cube.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Objects/PickUpBall.tscn" type="PackedScene" id=5]
 
 [node name="Level" type="Spatial"]
 script = ExtResource( 1 )
@@ -22,3 +23,21 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0 )
 
 [node name="Player2" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0 )
+
+[node name="PickUpBall" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6882, 0, 8.75872 )
+
+[node name="PickUpBall2" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58343, 0, 11.2631 )
+
+[node name="PickUpBall3" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.40944, 0, 11.7027 )
+
+[node name="PickUpBall4" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.42225, 0, 13.1774 )
+
+[node name="PickUpBall5" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.585, 0, 8.87311 )
+
+[node name="PickUpBall6" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.75642, 0, 9.08898 )
