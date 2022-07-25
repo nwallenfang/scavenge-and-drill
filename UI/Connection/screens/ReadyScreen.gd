@@ -17,6 +17,7 @@ func _ready() -> void:
 	OnlineMatch.connect("player_status_changed", self, "_on_OnlineMatch_player_status_changed")
 	OnlineMatch.connect("match_ready", self, "_on_OnlineMatch_match_ready")
 	OnlineMatch.connect("match_not_ready", self, "_on_OnlineMatch_match_not_ready")
+	
 
 func _show_screen(info: Dictionary = {}) -> void:
 	var players: Dictionary = info.get("players", {})
@@ -36,6 +37,11 @@ func _show_screen(info: Dictionary = {}) -> void:
 		match_id_container.visible = false
 	
 	ready_button.grab_focus()
+	
+	if Game.debug:
+		yield(get_tree().create_timer(0.1), "timeout")
+		
+		emit_signal("ready_pressed")
 
 func clear_players() -> void:
 	for child in status_container.get_children():

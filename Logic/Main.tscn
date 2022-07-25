@@ -69,8 +69,6 @@ __meta__ = {
 [node name="Label" type="Label" parent="UILayer"]
 margin_right = 40.0
 margin_bottom = 14.0
-text = "HALLO
-"
 
 [node name="Level" parent="." instance=ExtResource( 4 )]
 

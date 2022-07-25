@@ -74,7 +74,7 @@ signal player_status_changed (player, status)
 signal match_ready (players)
 signal match_not_ready ()
 
-class Player:
+class NetworkPlayer:
 	var session_id: String
 	var peer_id: int
 	var username: String
@@ -84,11 +84,11 @@ class Player:
 		username = _username
 		peer_id = _peer_id
 	
-	static func from_presence(presence: NakamaRTAPI.UserPresence, _peer_id: int) -> Player:
-		return Player.new(presence.session_id, presence.username, _peer_id)
+	static func from_presence(presence: NakamaRTAPI.UserPresence, _peer_id: int) -> NetworkPlayer:
+		return NetworkPlayer.new(presence.session_id, presence.username, _peer_id)
 	
-	static func from_dict(data: Dictionary) -> Player:
-		return Player.new(data['session_id'], data['username'], int(data['peer_id']))
+	static func from_dict(data: Dictionary) -> NetworkPlayer:
+		return NetworkPlayer.new(data['session_id'], data['username'], int(data['peer_id']))
 	
 	func to_dict() -> Dictionary:
 		return {
@@ -106,7 +106,7 @@ static func serialize_players(_players: Dictionary) -> Dictionary:
 static func unserialize_players(_players: Dictionary) -> Dictionary:
 	var result := {}
 	for key in _players:
-		result[key] = Player.from_dict(_players[key])
+		result[key] = NetworkPlayer.from_dict(_players[key])
 	return result
 
 func _set_readonly_variable(_value) -> void:
@@ -282,7 +282,7 @@ func _on_nakama_closed() -> void:
 func _on_nakama_match_created(data: NakamaRTAPI.Match) -> void:
 	match_id = data.match_id
 	my_session_id = data.self_user.session_id
-	var my_player = Player.from_presence(data.self_user, 1)
+	var my_player = NetworkPlayer.from_presence(data.self_user, 1)
 	players[my_session_id] = my_player
 	_next_peer_id = 2
 	
@@ -307,7 +307,7 @@ func _on_nakama_match_presence(data: NakamaRTAPI.MatchPresenceEvent) -> void:
 				}))
 			
 			if players.size() < max_players:
-				var new_player = Player.from_presence(u, _next_peer_id)
+				var new_player = NetworkPlayer.from_presence(u, _next_peer_id)
 				_next_peer_id += 1
 				players[u.session_id] = new_player
 				emit_signal("player_joined", new_player)
@@ -381,7 +381,7 @@ func _on_nakama_matchmaker_matched(data: NakamaRTAPI.MatchmakerMatched) -> void:
 	
 	# Use the list of users to assign peer ids.
 	for u in data.users:
-		players[u.presence.session_id] = Player.from_presence(u.presence, 0)
+		players[u.presence.session_id] = NetworkPlayer.from_presence(u.presence, 0)
 	var session_ids = players.keys();
 	session_ids.sort()
 	for session_id in session_ids:
@@ -451,7 +451,7 @@ func _on_nakama_match_state(data: NakamaRTAPI.MatchData) -> void:
 			emit_signal("error", content['reason'])
 			return
 
-func _webrtc_connect_peer(player: Player) -> void:
+func _webrtc_connect_peer(player: NetworkPlayer) -> void:
 	# Don't add the same peer twice!
 	if _webrtc_peers.has(player.session_id):
 		return
@@ -482,13 +482,13 @@ func _webrtc_connect_peer(player: Player) -> void:
 		if result != OK:
 			emit_signal("error", "Unable to create WebRTC offer")
 
-func _webrtc_disconnect_peer(player: Player) -> void:
+func _webrtc_disconnect_peer(player: NetworkPlayer) -> void:
 	var webrtc_peer = _webrtc_peers[player.session_id]
 	webrtc_peer.close()
 	_webrtc_peers.erase(player.session_id)
 	_webrtc_peers_connected.erase(player.session_id)
 
-func _webrtc_reconnect_peer(player: Player) -> void:
+func _webrtc_reconnect_peer(player: NetworkPlayer) -> void:
 	var old_webrtc_peer = _webrtc_peers[player.session_id]
 	if old_webrtc_peer:
 		old_webrtc_peer.close()

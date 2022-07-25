@@ -11,10 +11,16 @@ var players_score := {}
 
 func _ready() -> void:
 	var args = Array(OS.get_cmdline_args())
-	print(args)
+	
+	# is the multi-run instance that has connection to the debug console
+	# this instance should be the server for easier debugging
+	var is_player1 = (len(args) >= 2 and args[1] == 'player1')
 	if len(args) >= 1:
 		if args[0] == 'debug':
 			Game.debug = true
+			$UILayer/Label.text = "host" if is_player1 else "client"
+	
+
 
 	OnlineMatch.connect("error", self, "_on_OnlineMatch_error")
 	OnlineMatch.connect("disconnected", self, "_on_OnlineMatch_disconnected")
@@ -22,6 +28,10 @@ func _ready() -> void:
 	OnlineMatch.connect("player_left", self, "_on_OnlineMatch_player_left")
 	
 	if Game.debug:
+		# other instance should wait a little because the first instance 
+		# becomes the server
+		if not is_player1:
+			yield(get_tree().create_timer(0.2), "timeout")
 		connect_to_matchmaking()
 
 #func _unhandled_input(event: InputEvent) -> void:
@@ -70,7 +80,6 @@ func connect_to_matchmaking():
 		# on the "session_changed" signal.
 		Online.nakama_session = null
 	else:
-		print("success!")
 		Online.nakama_session = nakama_session
 	
 	# Connect socket to realtime Nakama API if not connected.
@@ -127,7 +136,6 @@ func _on_UILayer_back_button() -> void:
 		ui_layer.show_screen("MatchScreen")
 
 func _on_ReadyScreen_ready_pressed() -> void:
-	print("pressed")
 	rpc("player_ready", OnlineMatch.get_my_session_id())
 
 #####
@@ -146,8 +154,7 @@ func _on_OnlineMatch_disconnected():
 func _on_OnlineMatch_player_left(player) -> void:
 	ui_layer.show_message(player.username + " has left")
 	
-	game.kill_player(player.peer_id)
-	
+#	game.kill_player(player.peer_id)
 	players.erase(player.peer_id)
 	players_ready.erase(player.peer_id)
 
@@ -164,7 +171,7 @@ func _on_OnlineMatch_player_status_changed(player, status) -> void:
 
 remotesync func player_ready(session_id: String) -> void:
 	ready_screen.set_status(session_id, "READY!")
-	
+
 	if get_tree().is_network_server() and not players_ready.has(session_id):
 		players_ready[session_id] = true
 		if players_ready.size() == OnlineMatch.players.size():
