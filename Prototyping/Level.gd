@@ -18,7 +18,6 @@ signal game_started ()
 signal game_over (player_id)
 
 func game_start(players: Dictionary) -> void:
-	Network.start()
 	if Game.online_play:
 		rpc("_do_game_setup", players)
 	else:
@@ -27,6 +26,8 @@ func game_start(players: Dictionary) -> void:
 # Initializes the game so that it is ready to really start.
 remotesync func _do_game_setup(players: Dictionary) -> void:
 	Game.ui = $UI
+	Network.start()
+	
 	if game_started:
 		game_stop()
 	
