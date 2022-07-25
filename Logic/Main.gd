@@ -11,15 +11,7 @@ var players_score := {}
 
 func _ready() -> void:
 	var args = Array(OS.get_cmdline_args())
-	
-	# is the multi-run instance that has connection to the debug console
-	# this instance should be the server for easier debugging
 	var is_player1 = (len(args) >= 2 and args[1] == 'player1')
-	if len(args) >= 1:
-		if args[0] == 'debug':
-			Game.debug = true
-			$UILayer/Label.text = "host" if is_player1 else "client"
-	
 
 
 	OnlineMatch.connect("error", self, "_on_OnlineMatch_error")

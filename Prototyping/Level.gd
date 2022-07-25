@@ -26,7 +26,7 @@ func game_start(players: Dictionary) -> void:
 
 # Initializes the game so that it is ready to really start.
 remotesync func _do_game_setup(players: Dictionary) -> void:
-	
+	Game.ui = $UI
 	if game_started:
 		game_stop()
 	
