@@ -1,7 +1,7 @@
 extends Spatial
 
 func _ready():
-	$TopdownCamera.initialize($Player1)
+	$TopdownCamera.set_physics_process(false)
 
 var game_started := false
 var game_over := false
@@ -35,12 +35,16 @@ remotesync func _do_game_setup(players: Dictionary) -> void:
 		Game.own_player = $Player2
 		Game.other_player = $Player1
 		$Player1.set_network_master(id_other_player)
+		$TopdownCamera.initialize($Player2)
 	else:
 		$Player1.set_network_master(get_tree().get_network_unique_id())
 		$Player1.controlled = true
 		Game.own_player = $Player1
 		Game.other_player = $Player2
 		$Player2.set_network_master(id_other_player)
+		$TopdownCamera.initialize($Player1)
+
+	$TopdownCamera.set_physics_process(true)
 
 	if Game.online_play:
 		var my_id := get_tree().get_network_unique_id()
