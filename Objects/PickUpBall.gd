@@ -1,5 +1,9 @@
 extends Spatial
 
+const OUTLINE_BLUE = preload("res://Assets/Materials/outline_blue.tres")
+const OUTLINE_RED = preload("res://Assets/Materials/outline_red.tres")
+const OUTLINE_BOTH = preload("res://Assets/Materials/two_outlines.tres")
+
 var hovering_actor_names = []
 func set_hover_state(active: bool, actor_name):
 	if active:
@@ -25,11 +29,11 @@ func update_hover_outline():
 	if len(hovering_actor_names) == 0:
 		$MeshInstance.get_surface_material(0).next_pass = null
 	elif len(hovering_actor_names) == 2:
-		$MeshInstance.get_surface_material(0).next_pass = load("res://Assets/Materials/two_outlines.tres")
+		$MeshInstance.get_surface_material(0).next_pass = OUTLINE_BOTH
 	elif "1" in hovering_actor_names[0]:
-		$MeshInstance.get_surface_material(0).next_pass = load("res://Assets/Materials/outline_blue.tres")
+		$MeshInstance.get_surface_material(0).next_pass = OUTLINE_BLUE
 	else:
-		$MeshInstance.get_surface_material(0).next_pass = load("res://Assets/Materials/outline_red.tres")
+		$MeshInstance.get_surface_material(0).next_pass = OUTLINE_RED
 
 func on_interact(actor):
 	pass
