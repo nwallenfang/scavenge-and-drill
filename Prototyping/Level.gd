@@ -1,7 +1,14 @@
 extends Spatial
 
+export var player1_color: Color
+export var player2_color: Color
+
 func _ready():
 	$TopdownCamera.set_physics_process(false)
+	$TopdownCamera.set_process(false)
+	
+	$Player1.set_color(player1_color)
+	$Player2.set_color(player2_color)
 
 var game_started := false
 var game_over := false
@@ -45,6 +52,7 @@ remotesync func _do_game_setup(players: Dictionary) -> void:
 		$TopdownCamera.initialize($Player1)
 
 	$TopdownCamera.set_physics_process(true)
+	$TopdownCamera.set_process(true)
 
 	if Game.online_play:
 		var my_id := get_tree().get_network_unique_id()

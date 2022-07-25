@@ -29,3 +29,9 @@ func _physics_process(delta):
 
 puppet func set_puppet_position(pos):
 	puppet_position = pos
+
+
+func set_color(color):
+	var mat: Material = $Model/MeshInstance.get_surface_material(0).duplicate()
+	mat.albedo_color = color
+	$Model/MeshInstance.set_surface_material(0, mat)

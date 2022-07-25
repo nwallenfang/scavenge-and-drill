@@ -129,6 +129,7 @@ Game="*res://Logic/Game.tscn"
 
 [debug]
 
+settings/fps/force_fps=144
 gdscript/warnings/unused_variable=false
 gdscript/warnings/unused_argument=false
 gdscript/warnings/unused_signal=false
@@ -138,6 +139,10 @@ multirun/window_distance=1270
 multirun/add_custom_args=true
 multirun/first_window_args="debug player1"
 multirun/other_window_args="debug"
+
+[display]
+
+window/vsync/use_vsync=false
 
 [editor_plugins]
 

@@ -7,6 +7,8 @@
 
 [node name="Level" type="Spatial"]
 script = ExtResource( 1 )
+player1_color = Color( 0.152941, 0.27451, 0.745098, 1 )
+player2_color = Color( 0.843137, 0.215686, 0.215686, 1 )
 
 [node name="Cube" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.19186 )
