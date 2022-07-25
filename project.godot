@@ -126,6 +126,7 @@ Online="*res://Logic/Online.gd"
 Nakama="*res://addons/com.heroiclabs.nakama/Nakama.gd"
 OnlineMatch="*res://addons/nakama-webrtc/OnlineMatch.gd"
 Game="*res://Logic/Game.tscn"
+Network="*res://Logic/Network.tscn"
 
 [debug]
 

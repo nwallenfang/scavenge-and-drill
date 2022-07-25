@@ -14,7 +14,7 @@ points = PoolVector3Array( -0.972729, 0.170391, -0.632762, 0.991375, 0.00714278,
 height = 4.24622
 radius = 4.10198
 
-[node name="Player" type="KinematicBody"]
+[node name="Player" type="KinematicBody" groups=["networked"]]
 collision_layer = 0
 script = ExtResource( 1 )
 ACC = 140.0

@@ -18,6 +18,7 @@ signal game_started ()
 signal game_over (player_id)
 
 func game_start(players: Dictionary) -> void:
+	Network.start()
 	if Game.online_play:
 		rpc("_do_game_setup", players)
 	else:

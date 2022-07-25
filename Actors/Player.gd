@@ -22,10 +22,8 @@ func _physics_process(delta):
 
 		add_acceleration(ACC * move_direction_normalized)
 		execute_movement(delta)
-		
-		rpc("set_puppet_position", global_transform.origin)
 	else:
-		global_transform.origin = puppet_position
+		global_transform.origin = lerp(global_transform.origin, puppet_position, 0.3)
 
 puppet func set_puppet_position(pos):
 	puppet_position = pos
@@ -35,3 +33,7 @@ func set_color(color):
 	var mat: Material = $Model/MeshInstance.get_surface_material(0).duplicate()
 	mat.albedo_color = color
 	$Model/MeshInstance.set_surface_material(0, mat)
+	
+	
+func _network_process(_delta):
+	rpc("set_puppet_position", global_transform.origin)
