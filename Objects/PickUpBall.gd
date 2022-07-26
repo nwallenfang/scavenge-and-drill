@@ -4,6 +4,10 @@ const OUTLINE_BLUE = preload("res://Assets/Materials/outline_blue.tres")
 const OUTLINE_RED = preload("res://Assets/Materials/outline_red.tres")
 const OUTLINE_BOTH = preload("res://Assets/Materials/two_outlines.tres")
 
+func disable():
+	$Area.queue_free()
+	remove_from_group("networked")
+
 var hovering_actor_names = []
 func set_hover_state(active: bool, actor_name):
 	if active:
@@ -36,4 +40,9 @@ func update_hover_outline():
 		$MeshInstance.get_surface_material(0).next_pass = OUTLINE_RED
 
 func on_interact(actor):
-	pass
+	actor.inventory_ball_count += 1
+	actor.update_ball_count()
+	rpc("remote_delete")
+
+remotesync func remote_delete():
+	queue_free()

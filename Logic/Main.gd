@@ -32,13 +32,14 @@ func connect_to_matchmaking():
 	# first off authenticate with Nakama
 	# TODO device ID not available on Web, need to find an alternative!
 	var device_id = OS.get_unique_id()
-	var username = 'Wilhelm'  # let player choose their name?
+	var username = 'Milhelm'  # let player choose their name?
 	var nakama_session = yield(Online.nakama_client.authenticate_device_async(device_id, username, true, null), "completed")
 	
 	if nakama_session.is_exception():
 		visible = true
 		ui_layer.show_message("Login failed!")
-		
+		print("Login failed!")
+		print(nakama_session.get_exception())
 		# We always set Online.nakama_session in case something is yielding
 		# on the "session_changed" signal.
 		Online.nakama_session = null

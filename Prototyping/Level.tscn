@@ -3,11 +3,11 @@
 [ext_resource path="res://Prototyping/Level.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Logic/TopdownCamera.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Objects/Cube.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Objects/PickUpBall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Objects/ButtonPlate.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Objects/Door.tscn" type="PackedScene" id=8]
+[ext_resource path="res://default_env.tres" type="Environment" id=9]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.713726, 0.717647, 0.576471, 1 )
@@ -19,9 +19,6 @@ albedo_color = Color( 0.717647, 0.639216, 0.576471, 1 )
 script = ExtResource( 1 )
 player1_color = Color( 0.152941, 0.27451, 0.745098, 1 )
 player2_color = Color( 0.843137, 0.215686, 0.215686, 1 )
-
-[node name="Cube" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.477, 0, -21.0323 )
 
 [node name="TopdownCamera" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 0.555411, 0.831576, 0, -0.831576, 0.555411, -2, 6.615, 3.758 )
@@ -35,7 +32,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0 )
 
 [node name="UI" parent="." instance=ExtResource( 6 )]
 
-[node name="CSGLayout" type="Node" parent="."]
+[node name="CSGLayout" type="Spatial" parent="."]
 
 [node name="Ground" type="CSGBox" parent="CSGLayout"]
 transform = Transform( 24.2766, 0, 0, 0, 1, 0, 0, 0, 24.2766, 0, -1.03167, 0 )
@@ -70,7 +67,7 @@ transform = Transform( -2.09736e-08, 0, -0.722208, 0, 1, 0, 1, 0, -6.57929e-08, 
 use_collision = true
 depth = 32.2174
 
-[node name="Objects" type="Node" parent="."]
+[node name="Objects" type="Spatial" parent="."]
 
 [node name="PickUpBall" parent="Objects" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6882, 0, 8.75872 )
@@ -97,6 +94,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.76027, 0, -20.4439 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.96723, 0, -20.4439 )
 
 [node name="Door" parent="Objects" instance=ExtResource( 8 )]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 9 )
 
 [connection signal="player_entered" from="Objects/ButtonPlate1" to="Objects/Door" method="_on_ButtonPlate1_player_entered"]
 [connection signal="player_left" from="Objects/ButtonPlate1" to="Objects/Door" method="_on_ButtonPlate1_player_left"]

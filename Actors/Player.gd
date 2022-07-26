@@ -10,6 +10,8 @@ var puppet_position: Vector3
 
 var current_hover_object: Spatial
 
+var inventory_ball_count := 0
+
 func _physics_process(delta):
 	if not Game.game_started:
 		return
@@ -42,6 +44,8 @@ func _physics_process(delta):
 		else:
 			if is_instance_valid(current_hover_object):
 				current_hover_object.set_hover_state(false, self.name)
+		if Input.is_action_just_pressed("interact"):
+			current_hover_object.on_interact(self)
 	else:
 		global_transform.origin = lerp(global_transform.origin, puppet_position, 0.3)
 
@@ -54,8 +58,23 @@ func set_color(c):
 	var mat: Material = $Model/MeshInstance.get_surface_material(0).duplicate()
 	mat.albedo_color = color
 	$Model/MeshInstance.set_surface_material(0, mat)
-	
-	
+
+const PICKUP_BALL = preload("res://Objects/PickUpBall.tscn")
+func update_ball_count():
+	if $BallInventory.get_child_count() != inventory_ball_count:
+		for b in $BallInventory.get_children():
+			b.queue_free()
+		for i in range(inventory_ball_count):
+			var ball = PICKUP_BALL.instance()
+			ball.disable()
+			$BallInventory.add_child(ball)
+			ball.translation.y = i * .3
+
+puppet func set_puppet_ball_count(ball_count):
+	inventory_ball_count = ball_count
+	update_ball_count()
+
 func _network_process(_delta):
 	if controlled:
 		rpc_unreliable("set_puppet_position", global_transform.origin)
+		rpc_unreliable("set_puppet_ball_count", inventory_ball_count)
