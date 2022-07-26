@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Logic/Main.gd" type="Script" id=1]
 [ext_resource path="res://UI/Connection/UILayer.gd" type="Script" id=2]
-[ext_resource path="res://Networking/ExampleProject/assets/fonts/monogram.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Prototyping/Level.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/Connection/screens/ConnectionScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UI/Connection/screens/TitleScreen.tscn" type="PackedScene" id=6]
@@ -40,29 +39,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Message" type="Label" parent="UILayer/Overlay"]
-visible = false
-anchor_right = 1.0
-margin_top = 40.0
-margin_bottom = 48.0
-custom_fonts/font = ExtResource( 3 )
-text = "Waiting for players..."
-align = 1
-
-[node name="BackButton" type="Button" parent="UILayer/Overlay"]
-visible = false
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -40.0
-margin_top = 5.0
-margin_right = -5.0
-margin_bottom = 54.0
-custom_fonts/font = ExtResource( 3 )
-text = "X"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Label" type="Label" parent="UILayer"]
 margin_right = 40.0
 margin_bottom = 14.0
@@ -72,5 +48,4 @@ margin_bottom = 14.0
 [connection signal="play_local" from="UILayer/Screens/TitleScreen" to="." method="_on_TitleScreen_play_local"]
 [connection signal="play_online" from="UILayer/Screens/TitleScreen" to="." method="_on_TitleScreen_play_online"]
 [connection signal="ready_pressed" from="UILayer/Screens/ReadyScreen" to="." method="_on_ReadyScreen_ready_pressed"]
-[connection signal="pressed" from="UILayer/Overlay/BackButton" to="UILayer" method="_on_BackButton_pressed"]
 [connection signal="game_started" from="Level" to="." method="_on_Game_game_started"]

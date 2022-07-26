@@ -164,7 +164,6 @@ func restart_game() -> void:
 func _on_Game_game_started() -> void:
 	ui_layer.hide_screen()
 	ui_layer.hide_all()
-	ui_layer.show_back_button()
 	Game.game_started = true
 
 func _on_Game_player_dead(player_id: int) -> void:

@@ -6,55 +6,51 @@
 [node name="UI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -359, -172 )
 script = ExtResource( 1 )
 
-[node name="Control" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 1
-
-[node name="DevContainer" type="HBoxContainer" parent="Control"]
+[node name="DevContainer" type="HBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 alignment = 2
 
-[node name="DeveloperInfo" type="VBoxContainer" parent="Control/DevContainer"]
+[node name="DeveloperInfo" type="VBoxContainer" parent="DevContainer"]
 margin_left = 907.0
 margin_right = 1024.0
 margin_bottom = 95.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="FPSCounter" type="Label" parent="Control/DevContainer/DeveloperInfo"]
+[node name="FPSCounter" type="Label" parent="DevContainer/DeveloperInfo"]
 margin_right = 117.0
 margin_bottom = 21.0
 text = "FPS"
 
-[node name="HostOrClient" type="Label" parent="Control/DevContainer/DeveloperInfo"]
+[node name="HostOrClient" type="Label" parent="DevContainer/DeveloperInfo"]
 margin_top = 25.0
 margin_right = 117.0
 margin_bottom = 46.0
 text = "HostOrClients"
 
-[node name="DebugLog" type="Label" parent="Control/DevContainer/DeveloperInfo"]
+[node name="DebugLog" type="Label" parent="DevContainer/DeveloperInfo"]
 margin_top = 50.0
 margin_right = 117.0
 margin_bottom = 95.0
 text = "Log
 "
 
-[node name="PausePanel" type="Panel" parent="Control"]
+[node name="PausePanel" type="Panel" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="InnerPanel" type="Panel" parent="Control/PausePanel"]
+[node name="InnerPanel" type="Panel" parent="PausePanel"]
 anchor_left = 0.2
 anchor_top = 0.2
 anchor_right = 0.8
 anchor_bottom = 0.8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/PausePanel/InnerPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PausePanel/InnerPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
@@ -62,60 +58,64 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="Control/PausePanel/InnerPanel/VBoxContainer"]
+[node name="Label" type="Label" parent="PausePanel/InnerPanel/VBoxContainer"]
 margin_right = 614.0
 margin_bottom = 61.0
 custom_fonts/font = ExtResource( 2 )
 text = "PAUSED"
 align = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/PausePanel/InnerPanel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PausePanel/InnerPanel/VBoxContainer"]
 margin_top = 65.0
 margin_right = 614.0
 margin_bottom = 111.0
 alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="Control/PausePanel/InnerPanel/VBoxContainer/HBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="PausePanel/InnerPanel/VBoxContainer/HBoxContainer"]
 margin_right = 113.0
 margin_bottom = 46.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.3
 
-[node name="GridContainer" type="GridContainer" parent="Control/PausePanel/InnerPanel/VBoxContainer/HBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="PausePanel/InnerPanel/VBoxContainer/HBoxContainer"]
 margin_left = 117.0
 margin_right = 496.0
 margin_bottom = 46.0
 size_flags_horizontal = 3
 columns = 2
 
-[node name="MusicVolumeLabel" type="Label" parent="Control/PausePanel/InnerPanel/VBoxContainer/HBoxContainer/GridContainer"]
+[node name="MusicVolumeLabel" type="Label" parent="PausePanel/InnerPanel/VBoxContainer/HBoxContainer/GridContainer"]
 margin_right = 180.0
 margin_bottom = 21.0
 text = "Music Volume:"
 align = 2
 
-[node name="MusicSlider" type="HSlider" parent="Control/PausePanel/InnerPanel/VBoxContainer/HBoxContainer/GridContainer"]
+[node name="MusicSlider" type="HSlider" parent="PausePanel/InnerPanel/VBoxContainer/HBoxContainer/GridContainer"]
 margin_left = 184.0
 margin_right = 379.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 
-[node name="MusicVolumeLabel2" type="Label" parent="Control/PausePanel/InnerPanel/VBoxContainer/HBoxContainer/GridContainer"]
+[node name="MusicVolumeLabel2" type="Label" parent="PausePanel/InnerPanel/VBoxContainer/HBoxContainer/GridContainer"]
 margin_top = 25.0
 margin_right = 180.0
 margin_bottom = 46.0
 text = "Sound Effect Volume:"
 
-[node name="SoundSlider" type="HSlider" parent="Control/PausePanel/InnerPanel/VBoxContainer/HBoxContainer/GridContainer"]
+[node name="SoundSlider" type="HSlider" parent="PausePanel/InnerPanel/VBoxContainer/HBoxContainer/GridContainer"]
 margin_left = 184.0
 margin_top = 25.0
 margin_right = 379.0
 margin_bottom = 41.0
 
-[node name="CenterContainer2" type="CenterContainer" parent="Control/PausePanel/InnerPanel/VBoxContainer/HBoxContainer"]
+[node name="CenterContainer2" type="CenterContainer" parent="PausePanel/InnerPanel/VBoxContainer/HBoxContainer"]
 margin_left = 500.0
 margin_right = 614.0
 margin_bottom = 46.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.3
+
+[node name="Message" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 21.0
