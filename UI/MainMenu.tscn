@@ -1,0 +1,102 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Fonts/TitleFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Fonts/PausedFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://UI/MainMenu.gd" type="Script" id=3]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 106.0
+custom_fonts/font = ExtResource( 1 )
+text = "Multiplayer Game"
+align = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+margin_top = 110.0
+margin_right = 1024.0
+margin_bottom = 171.0
+custom_fonts/font = ExtResource( 2 )
+text = "online!"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 175.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LeftMenu" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+margin_right = 506.0
+margin_bottom = 425.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/LeftMenu"]
+margin_right = 506.0
+margin_bottom = 21.0
+text = "Random Matchmaking"
+
+[node name="EnterRandomMatchmaking" type="Button" parent="VBoxContainer/HBoxContainer/LeftMenu"]
+margin_top = 25.0
+margin_right = 506.0
+margin_bottom = 52.0
+text = "Enter matchmaking"
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
+margin_left = 510.0
+margin_right = 514.0
+margin_bottom = 425.0
+
+[node name="RightMenu" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 518.0
+margin_right = 1024.0
+margin_bottom = 425.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/RightMenu"]
+margin_right = 506.0
+margin_bottom = 21.0
+text = "Play with a friend"
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/RightMenu"]
+margin_top = 25.0
+margin_right = 506.0
+margin_bottom = 70.0
+text = "one Player presses Generate A Code, the other pastes
+the code"
+
+[node name="GenerateCode" type="Button" parent="VBoxContainer/HBoxContainer/RightMenu"]
+margin_top = 74.0
+margin_right = 506.0
+margin_bottom = 101.0
+text = "Generate a Code"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/RightMenu"]
+margin_top = 105.0
+margin_right = 506.0
+margin_bottom = 132.0
+
+[node name="CodeText" type="TextEdit" parent="VBoxContainer/HBoxContainer/RightMenu/HBoxContainer"]
+margin_right = 387.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+
+[node name="C" type="TextureButton" parent="VBoxContainer/HBoxContainer/RightMenu/HBoxContainer"]
+margin_left = 391.0
+margin_right = 391.0
+margin_bottom = 27.0
+
+[node name="SubmitCode" type="Button" parent="VBoxContainer/HBoxContainer/RightMenu/HBoxContainer"]
+margin_left = 395.0
+margin_right = 506.0
+margin_bottom = 27.0
+text = "Submit Code"

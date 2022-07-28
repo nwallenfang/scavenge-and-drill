@@ -154,8 +154,5 @@ margin_top = -40.0
 margin_right = -15.0
 margin_bottom = 39.0
 text = "Join"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/JoinPanel/PasteButton" to="." method="_on_PasteButton_pressed"]

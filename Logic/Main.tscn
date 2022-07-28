@@ -6,7 +6,7 @@
 [ext_resource path="res://UI/Connection/screens/ConnectionScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UI/Connection/screens/TitleScreen.tscn" type="PackedScene" id=6]
 [ext_resource path="res://UI/Connection/screens/MatchScreen.tscn" type="PackedScene" id=7]
-[ext_resource path="res://UI/Connection/screens/ReadyScreen.tscn" type="PackedScene" id=8]
+[ext_resource path="res://UI/ReadyScreen.tscn" type="PackedScene" id=8]
 
 [node name="Main" type="Spatial"]
 script = ExtResource( 1 )
