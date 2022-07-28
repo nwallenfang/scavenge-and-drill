@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Shader/ViewportSideview.gdshader" type="Shader" id=1]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/screen_size = Vector2( 1024, 600 )
+shader_param/sideview_direction = Vector2( 0.201, -0.153 )
+shader_param/sideview_active = 0.0
+shader_param/sideview_visible = 0.0
+shader_param/sideview_size = 200.0
+shader_param/sideview_near = 0.9
+shader_param/sideview_far = 2.0
+shader_param/border_color = Color( 1, 0, 0, 1 )
+shader_param/border_width = 9.919

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Prototyping/Level.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Logic/TopdownCamera.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Logic/DualSideviewCamera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Objects/PickUpBall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Objects/ButtonPlate.tscn" type="PackedScene" id=7]
@@ -19,10 +19,6 @@ albedo_color = Color( 0.717647, 0.639216, 0.576471, 1 )
 script = ExtResource( 1 )
 player1_color = Color( 0.152941, 0.27451, 0.745098, 1 )
 player2_color = Color( 0.843137, 0.215686, 0.215686, 1 )
-
-[node name="TopdownCamera" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 0.555411, 0.831576, 0, -0.831576, 0.555411, -2, 6.615, 3.758 )
-fov = 78.7642
 
 [node name="Player1" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0 )
@@ -97,6 +93,22 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.96723, 0, -20.4439 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 9 )
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 1024, 600 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="DualSideviewCamera" parent="Viewport" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 0, 6, 3 )
+
+[node name="ViewportPartner" type="Viewport" parent="."]
+size = Vector2( 1024, 600 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="DualSideviewCamera" parent="ViewportPartner" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 0, 6, 3 )
 
 [connection signal="player_entered" from="Objects/ButtonPlate1" to="Objects/Door" method="_on_ButtonPlate1_player_entered"]
 [connection signal="player_left" from="Objects/ButtonPlate1" to="Objects/Door" method="_on_ButtonPlate1_player_left"]

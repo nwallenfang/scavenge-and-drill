@@ -10,6 +10,8 @@ var players_ready := {}
 var players_score := {}
 
 func _ready() -> void:
+	Game.viewport_sprite = $Sprite
+	
 	var args = Array(OS.get_cmdline_args())
 	var is_player1 = (len(args) >= 2 and args[1] == 'player1')
 
