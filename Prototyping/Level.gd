@@ -36,6 +36,7 @@ remotesync func _do_game_setup(players: Dictionary) -> void:
 	var id_other_player = 1 if get_tree().get_network_unique_id() == 2 else 2
 
 	Game.main_cam = $Viewport/DualSideviewCamera
+	Game.main_cam.boss = true
 	Game.viewport_sprite.material.set_shader_param("ViewportTexture1", $Viewport.get_texture())
 	Game.viewport_sprite.material.set_shader_param("ViewportTexture2", $ViewportPartner.get_texture())
 	#print(Game.viewport_sprite.material.get("shader_param/ViewportTexture2"))

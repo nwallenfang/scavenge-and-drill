@@ -14,9 +14,10 @@ var shader_direction:= Vector2.RIGHT
 var shader_active := 0.0
 var shader_visible := 0.0
 
+export var boss := false
 export var bind_distance := 7.0
 export var full_active_extra_distance := 2.0
-export var lerp_speed_without_delta := .995
+export var lerp_speed_without_delta := .9995
 
 func initialize(_target: Spatial, _partner):
 	target = _target
@@ -44,8 +45,8 @@ func set_sideview_active(a):
 	$Tween.stop_all()
 	$Tween.remove_all()
 	if sideview_avtive:
-		$Tween.interpolate_property(self, "shader_active", 1.0, 0.0, 1.0)
-		$Tween.interpolate_property(self, "shader_visible", 1.0, 0.0, 1.0)
+		$Tween.interpolate_property(self, "shader_active", 1.0, 0.0, 1.0, Tween.TRANS_CUBIC , Tween.EASE_IN)
+		$Tween.interpolate_property(self, "shader_visible", 1.0, 0.0, .6)
 		$Tween.interpolate_property(self, "target_weight", 1.0, 0.0, 1.0)
 		$Tween.start()
 	else:
@@ -59,13 +60,13 @@ func _physics_process(delta):
 		return
 	own_target_pos = target.global_transform.origin + offset
 	var distance_to_partner := own_target_pos.distance_to(partner.own_target_pos)
+	group_target = lerp(own_target_pos, partner.own_target_pos, 0.0 if boss else 1.0)
 	if distance_to_partner < bind_distance:
 		set_sideview_active(false)
-		group_target = lerp(own_target_pos, partner.own_target_pos, .5)
 		#shader_visible = lerp(shader_visible, 1.0, 1.0-pow(1.0-.995, delta))
 	else:
 		set_sideview_active(true)
-		shader_direction = Vector2.UP.rotated(get_viewport_angle_to_pos(partner.global_transform.origin))
+		shader_direction = Vector2.UP.rotated(get_viewport_angle_to_pos(partner.own_target_pos))
 		#var extra_distance = max(distance_to_partner - bind_distance, 0.0)
 		#shader_active = 1.0 - min(extra_distance / full_active_extra_distance, 1.0)
 		#shader_visible = lerp(shader_visible, 0.0, 1.0-pow(1.0-.995, delta))
