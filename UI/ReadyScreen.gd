@@ -24,6 +24,8 @@ func _show_screen(info: Dictionary = {}) -> void:
 	var match_id: String = info.get("match_id", '')
 	var clear: bool = info.get("clear", false)
 	
+	self.visible = true
+	
 	if players.size() > 0 or clear:
 		clear_players()
 	

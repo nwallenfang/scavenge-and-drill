@@ -27,6 +27,6 @@ func _process(delta: float) -> void:
 
 
 func log(msg: String):
-	if ui == null:
-		return
-	ui.add_to_log(msg)
+	print(msg)
+	if ui != null:
+		ui.add_to_log(msg)

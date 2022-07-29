@@ -1,8 +1,8 @@
 extends Spatial
 
 #onready var game = $Level
-onready var ui_layer: UILayer = $UILayer
-onready var ready_screen = $UILayer/ReadyScreen
+#onready var ui_layer: UILayer = $UILayer
+onready var ready_screen = $ReadyScreen
 
 var players := {}
 
@@ -36,71 +36,29 @@ func _ready() -> void:
 		# becomes the server
 		if not is_player1:
 			yield(get_tree().create_timer(0.34), "timeout")
-		connect_to_matchmaking()
+		$MainMenu.visible = false
+		Network.connect_to_matchmaking()
 
 
 func _on_OnlineMatch_matchmaker_matched(_players: Dictionary):
-	ui_layer.hide_message()
+	print("helloooo")
 #	ui_layer.show_screen("ReadyScreen", { players = _players })
-	$UILayer/ReadyScreen._show_screen({ players = _players })
-
-# copied from MatchScreen and ConnectionScreen
-func connect_to_matchmaking():
-	# first off authenticate with Nakama
-	# TODO device ID not available on Web, need to find an alternative!
-	$MainMenu.visible = false
-	
-	var device_id = OS.get_unique_id()
-	var username = 'Milhelm'  # let player choose their name?
-	var nakama_session = yield(Network.nakama_client.authenticate_device_async(device_id, username, true, null), "completed")
-	
-	if nakama_session.is_exception():
-		visible = true
-		ui_layer.show_message("Login failed!")
-		print("Login failed!")
-		print(nakama_session.get_exception())
-		# We always set Online.nakama_session in case something is yielding
-		# on the "session_changed" signal.
-		Network.nakama_session = null
-	else:
-		Network.nakama_session = nakama_session
-	
-	# Connect socket to realtime Nakama API if not connected.
-	if not Network.is_nakama_socket_connected():
-		Network.connect_nakama_socket()
-		yield(Network, "socket_connected")
-		
-	ui_layer.hide_screen()
-	ui_layer.show_message("Looking for match...")
-	
-	var data = {
-		min_count = 2,
-		string_properties = {
-			game = "test_game",
-		},
-		query = "+properties.game:test_game",
-	}
-	
-	OnlineMatch.start_matchmaking(Network.nakama_socket, data)
+	$ReadyScreen._show_screen({ players = _players })
 
 #####
 # OnlineMatch callbacks
 #####
 
 func _on_OnlineMatch_error(message: String):
-	if message != '':
-		ui_layer.show_message(message)
-	ui_layer.show_screen("MatchScreen")
+	print("Match error ", message)
+	Game.log("Match error: " + message)
 
 func _on_OnlineMatch_disconnected():
-	#_on_OnlineMatch_error("Disconnected from host")
-	_on_OnlineMatch_error('')
+	_on_OnlineMatch_error("Disconnected from host")
 
 func _on_OnlineMatch_player_left(player) -> void:
-	# Replace with our version of show_message :)
-	ui_layer.show_message(player.username + " has left")
+	Game.log(player.username + " has left")
 	
-#	game.kill_player(player.peer_id)
 	players.erase(player.peer_id)
 	players_ready.erase(player.peer_id)
 
@@ -114,7 +72,6 @@ func _on_OnlineMatch_player_status_changed(player, status) -> void:
 #####
 # Gameplay methods and callbacks
 #####
-
 remotesync func player_ready(session_id: String) -> void:
 	ready_screen.set_status(session_id, "READY!")
 	if get_tree().is_network_server() and not players_ready.has(session_id):
@@ -177,8 +134,7 @@ mastersync func _finished_game_setup(player_id: int) -> void:
 # Actually start the game on this client.
 remotesync func _do_game_start() -> void:
 #	emit_signal("game_started")
-	ui_layer.hide_screen()  # TODO should be removable
-	ui_layer.hide_all()
+	$ReadyScreen.visible = false
 	Game.game_started = true
 	get_tree().set_pause(false)
 

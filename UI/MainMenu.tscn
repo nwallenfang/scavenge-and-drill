@@ -74,11 +74,11 @@ margin_bottom = 70.0
 text = "one Player presses Generate A Code, the other pastes
 the code"
 
-[node name="GenerateCode" type="Button" parent="VBoxContainer/HBoxContainer/RightMenu"]
+[node name="CreateLobby" type="Button" parent="VBoxContainer/HBoxContainer/RightMenu"]
 margin_top = 74.0
 margin_right = 506.0
 margin_bottom = 101.0
-text = "Generate a Code"
+text = "Create Lobby"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/RightMenu"]
 margin_top = 105.0
@@ -86,17 +86,21 @@ margin_right = 506.0
 margin_bottom = 132.0
 
 [node name="CodeText" type="TextEdit" parent="VBoxContainer/HBoxContainer/RightMenu/HBoxContainer"]
-margin_right = 387.0
+margin_right = 396.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
 
-[node name="C" type="TextureButton" parent="VBoxContainer/HBoxContainer/RightMenu/HBoxContainer"]
-margin_left = 391.0
-margin_right = 391.0
+[node name="PasteButtonTODO" type="TextureButton" parent="VBoxContainer/HBoxContainer/RightMenu/HBoxContainer"]
+margin_left = 400.0
+margin_right = 400.0
 margin_bottom = 27.0
 
-[node name="SubmitCode" type="Button" parent="VBoxContainer/HBoxContainer/RightMenu/HBoxContainer"]
-margin_left = 395.0
+[node name="JoinLobby" type="Button" parent="VBoxContainer/HBoxContainer/RightMenu/HBoxContainer"]
+margin_left = 404.0
 margin_right = 506.0
 margin_bottom = 27.0
-text = "Submit Code"
+text = "Join Lobby"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/LeftMenu/EnterRandomMatchmaking" to="." method="_on_EnterRandomMatchmaking_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/RightMenu/CreateLobby" to="." method="_on_CreateLobby_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/RightMenu/HBoxContainer/JoinLobby" to="." method="_on_JoinLobby_pressed"]

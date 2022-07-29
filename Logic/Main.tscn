@@ -26,13 +26,13 @@ script = ExtResource( 2 )
 margin_right = 40.0
 margin_bottom = 14.0
 
-[node name="ReadyScreen" parent="UILayer" instance=ExtResource( 8 )]
-visible = false
-
 [node name="Screens" type="Control" parent="UILayer"]
 margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="MainMenu" parent="." instance=ExtResource( 4 )]
 
-[connection signal="ready_pressed" from="UILayer/ReadyScreen" to="." method="_on_ReadyScreen_ready_pressed"]
+[node name="ReadyScreen" parent="." instance=ExtResource( 8 )]
+visible = false
+
+[connection signal="ready_pressed" from="ReadyScreen" to="." method="_on_ReadyScreen_ready_pressed"]

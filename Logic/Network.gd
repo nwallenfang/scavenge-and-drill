@@ -74,6 +74,42 @@ func connect_nakama_socket() -> void:
 func is_nakama_socket_connected() -> bool:
 	   return nakama_socket != null && nakama_socket.is_connected_to_host()
 	
+# copied from MatchScreen and ConnectionScreen
+func connect_to_matchmaking():
+	# first off authenticate with Nakama
+	# TODO device ID not available on Web, need to find an alternative!
+	
+	var device_id = OS.get_unique_id()
+	var username = 'Milhelm'  # let player choose their name?
+	nakama_session = yield(Network.nakama_client.authenticate_device_async(device_id, username, true, null), "completed")
+	
+	if nakama_session.is_exception():
+		print("Login failed!")
+		print(nakama_session.get_exception())
+#		ui_layer.show_message("Login failed!")
+
+		# We always set Online.nakama_session in case something is yielding
+		# on the "session_changed" signal.
+		nakama_session = null
+	
+	# Connect socket to realtime Nakama API if not connected.
+	if not Network.is_nakama_socket_connected():
+		connect_nakama_socket()
+		yield(Network, "socket_connected")
+		
+#	ui_layer.hide_screen()
+#	ui_layer.show_message("Looking for match...")
+	
+	var data = {
+		min_count = 2,
+		string_properties = {
+			game = "test_game",
+		},
+		query = "+properties.game:test_game",
+	}
+	
+	OnlineMatch.start_matchmaking(Network.nakama_socket, data)
+	
 
 func start():
 	$Timer.start()
