@@ -1,6 +1,6 @@
-extends "res://UI/Connection/Screen.gd"
+extends Control
 
-var PeerStatus = preload("res://UI/Connection/screens/PeerStatus.tscn");
+var PeerStatus = preload("res://UI/PeerStatus.tscn");
 
 onready var ready_button := $Panel/ReadyButton
 onready var match_id_container := $Panel/MatchIDContainer

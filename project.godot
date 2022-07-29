@@ -93,11 +93,6 @@ _global_script_classes=[ {
 "class": "UI",
 "language": "GDScript",
 "path": "res://UI/UI.gd"
-}, {
-"base": "CanvasLayer",
-"class": "UILayer",
-"language": "GDScript",
-"path": "res://UI/Connection/UILayer.gd"
 } ]
 _global_script_class_icons={
 "GroundedPhysicsMover3D": "",
@@ -116,8 +111,7 @@ _global_script_class_icons={
 "NakamaStorageObjectId": "",
 "NakamaWriteStorageObject": "",
 "Player": "",
-"UI": "",
-"UILayer": ""
+"UI": ""
 }
 
 [application]

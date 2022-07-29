@@ -18,15 +18,6 @@ func _ready() -> void:
 #####
 # UI callbacks
 #####
-
-func _on_TitleScreen_play_local() -> void:
-	Game.online_play = false
-	
-	ui_layer.hide_screen()
-	ui_layer.show_back_button()
-	
-	start_game()
-
 func _on_TitleScreen_play_online() -> void:
 	Game.online_play = true
 	

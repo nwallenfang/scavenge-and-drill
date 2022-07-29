@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Logic/Main.gd" type="Script" id=1]
-[ext_resource path="res://UI/Connection/UILayer.gd" type="Script" id=2]
 [ext_resource path="res://Test/ViewportTest.tres" type="Material" id=3]
 [ext_resource path="res://UI/MainMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/ReadyScreen.tscn" type="PackedScene" id=8]
@@ -17,18 +16,6 @@ visible = false
 material = ExtResource( 3 )
 texture = SubResource( 1 )
 centered = false
-
-[node name="UILayer" type="CanvasLayer" parent="."]
-pause_mode = 2
-script = ExtResource( 2 )
-
-[node name="Label" type="Label" parent="UILayer"]
-margin_right = 40.0
-margin_bottom = 14.0
-
-[node name="Screens" type="Control" parent="UILayer"]
-margin_right = 40.0
-margin_bottom = 40.0
 
 [node name="MainMenu" parent="." instance=ExtResource( 4 )]
 
