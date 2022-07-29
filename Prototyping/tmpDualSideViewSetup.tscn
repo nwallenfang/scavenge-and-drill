@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Logic/DualSideviewCamera.tscn" type="PackedScene" id=1]
+[ext_resource path="res://UI/Connection/screens/MatchScreen.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/Connection/screens/ConnectionScreen.tscn" type="PackedScene" id=3]
+[ext_resource path="res://UI/Connection/screens/TitleScreen.tscn" type="PackedScene" id=4]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 1024, 600 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="DualSideviewCamera" parent="Viewport" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 0, 6, 3 )
+
+[node name="ViewportPartner" type="Viewport" parent="."]
+size = Vector2( 1024, 600 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="DualSideviewCamera" parent="ViewportPartner" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 0, 6, 3 )
+
+[node name="Screens" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TitleScreen" parent="Screens" instance=ExtResource( 4 )]
+visible = false
+
+[node name="ConnectionScreen" parent="Screens" instance=ExtResource( 3 )]
+visible = false
+
+[node name="MatchScreen" parent="Screens" instance=ExtResource( 2 )]
+visible = false

@@ -1,5 +1,7 @@
 extends Camera
 
+export var sideview_activated = false
+
 var target: Spatial
 var partner
 var offset

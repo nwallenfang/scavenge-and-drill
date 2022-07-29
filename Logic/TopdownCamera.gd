@@ -5,10 +5,14 @@ var offset
 
 export var lerp_speed_without_delta := .999
 
+func _ready() -> void:
+	self.set_physics_process(false)
+
 func initialize(_target: Spatial):
 	target = _target
 	self.global_transform.origin.x = target.global_transform.origin.x
 	offset = self.global_transform.origin - target.global_transform.origin
+	self.set_physics_process(true)
 
 func _physics_process(delta):
 	var new_position = target.global_transform.origin + offset

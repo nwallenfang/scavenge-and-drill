@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Prototyping/Level.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Logic/DualSideviewCamera.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Logic/TopdownCamera.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Objects/PickUpBall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Objects/ButtonPlate.tscn" type="PackedScene" id=7]
@@ -94,21 +94,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.96723, 0, -20.4439 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 9 )
 
-[node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 1024, 600 )
-handle_input_locally = false
-render_target_update_mode = 3
+[node name="Pivot" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0 )
+__meta__ = {
+"_editor_description_": "Tracks the controlled player on the ground"
+}
 
-[node name="DualSideviewCamera" parent="Viewport" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 0, 6, 3 )
-
-[node name="ViewportPartner" type="Viewport" parent="."]
-size = Vector2( 1024, 600 )
-handle_input_locally = false
-render_target_update_mode = 3
-
-[node name="DualSideviewCamera" parent="ViewportPartner" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 0, 6, 3 )
+[node name="TopdownCamera" parent="Pivot" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 10, 0 )
 
 [connection signal="player_entered" from="Objects/ButtonPlate1" to="Objects/Door" method="_on_ButtonPlate1_player_entered"]
 [connection signal="player_left" from="Objects/ButtonPlate1" to="Objects/Door" method="_on_ButtonPlate1_player_left"]

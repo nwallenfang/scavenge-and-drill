@@ -15,11 +15,11 @@ func _set_readonly_variable(_value) -> void:
 	pass
 
 func _ready() -> void:
-	for screen in screens.get_children():
-		if screen.has_method('_setup_screen'):
-			screen._setup_screen(self)
+#	for screen in screens.get_children():
+#		if screen.has_method('_setup_screen'):
+#			screen._setup_screen(self)
 	
-	show_screen("TitleScreen")
+#	show_screen("TitleScreen")
 	_is_ready = true
 
 func get_current_screen_name() -> String:

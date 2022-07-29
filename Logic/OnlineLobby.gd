@@ -5,6 +5,7 @@ extends Node
 var game_started := false
 var game_over := false
 var players_setup := {}
+const lobby_size := 2
 
 signal game_started ()
 signal game_over (player_id)
@@ -49,7 +50,7 @@ remotesync func _do_game_setup(players: Dictionary) -> void:
 
 # Records when each player has finished setup so we know when all players are ready.
 mastersync func _finished_game_setup(player_id: int) -> void:
-	if players_setup.size() == players_alive.size():
+	if players_setup.size() == lobby_size:
 		# Once all clients have finished setup, tell them to start the game.
 		rpc("_do_game_start")
 

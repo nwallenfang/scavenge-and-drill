@@ -36,6 +36,5 @@ func _on_PressArea_body_entered(body: Node) -> void:
 
 
 func _on_PressArea_body_exited(body: Node) -> void:
-	print("leave")
 	if body is Player:
 		rpc("player_area_leave", get_tree().get_network_unique_id())
