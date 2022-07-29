@@ -48,9 +48,11 @@ func _on_OnlineMatch_matchmaker_matched(_players: Dictionary):
 func connect_to_matchmaking():
 	# first off authenticate with Nakama
 	# TODO device ID not available on Web, need to find an alternative!
+	$MainMenu.visible = false
+	
 	var device_id = OS.get_unique_id()
 	var username = 'Milhelm'  # let player choose their name?
-	var nakama_session = yield(Online.nakama_client.authenticate_device_async(device_id, username, true, null), "completed")
+	var nakama_session = yield(Network.nakama_client.authenticate_device_async(device_id, username, true, null), "completed")
 	
 	if nakama_session.is_exception():
 		visible = true
@@ -59,14 +61,14 @@ func connect_to_matchmaking():
 		print(nakama_session.get_exception())
 		# We always set Online.nakama_session in case something is yielding
 		# on the "session_changed" signal.
-		Online.nakama_session = null
+		Network.nakama_session = null
 	else:
-		Online.nakama_session = nakama_session
+		Network.nakama_session = nakama_session
 	
 	# Connect socket to realtime Nakama API if not connected.
-	if not Online.is_nakama_socket_connected():
-		Online.connect_nakama_socket()
-		yield(Online, "socket_connected")
+	if not Network.is_nakama_socket_connected():
+		Network.connect_nakama_socket()
+		yield(Network, "socket_connected")
 		
 	ui_layer.hide_screen()
 	ui_layer.show_message("Looking for match...")
@@ -79,7 +81,7 @@ func connect_to_matchmaking():
 		query = "+properties.game:test_game",
 	}
 	
-	OnlineMatch.start_matchmaking(Online.nakama_socket, data)
+	OnlineMatch.start_matchmaking(Network.nakama_socket, data)
 
 #####
 # OnlineMatch callbacks
