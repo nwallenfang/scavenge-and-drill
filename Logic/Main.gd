@@ -41,7 +41,6 @@ func _ready() -> void:
 
 
 func _on_OnlineMatch_matchmaker_matched(_players: Dictionary):
-	print("helloooo")
 #	ui_layer.show_screen("ReadyScreen", { players = _players })
 	$ReadyScreen._show_screen({ players = _players })
 
@@ -79,7 +78,6 @@ remotesync func player_ready(session_id: String) -> void:
 		if players_ready.size() == OnlineMatch.players.size():
 			if OnlineMatch.match_state != OnlineMatch.MatchState.PLAYING:
 				OnlineMatch.start_playing()
-			print("START GAME")
 			start_game()
 
 # TODO unify methods with game_start 

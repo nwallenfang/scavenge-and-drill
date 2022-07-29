@@ -6,8 +6,6 @@ var is_pressed = false
 signal player_entered(id)
 signal player_left(id)
 
-func _ready() -> void:
-	Game.log(str(get_network_master()))
 
 remotesync func player_area_enter(id):
 	if is_pressed:
