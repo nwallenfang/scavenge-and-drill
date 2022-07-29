@@ -80,7 +80,6 @@ remotesync func player_ready(session_id: String) -> void:
 				OnlineMatch.start_playing()
 			start_game()
 
-# TODO unify methods with game_start 
 func start_game() -> void:
 	if Game.online_play:
 		players = OnlineMatch.get_player_names_by_peer_id()
@@ -90,7 +89,6 @@ func start_game() -> void:
 	else:
 		_do_game_setup(players)
 
-# TODO unify methods with game_stop
 func stop_game() -> void:
 	OnlineMatch.leave()
 	
