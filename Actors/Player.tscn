@@ -2,14 +2,14 @@
 
 [ext_resource path="res://Actors/Player.gd" type="Script" id=1]
 
-[sub_resource type="CapsuleMesh" id=1]
+[sub_resource type="CapsuleMesh" id=8]
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=9]
 albedo_color = Color( 0, 0.345098, 1, 1 )
 
-[sub_resource type="CapsuleShape" id=5]
+[sub_resource type="CapsuleShape" id=10]
 
-[sub_resource type="CylinderShape" id=3]
+[sub_resource type="CylinderShape" id=11]
 height = 4.24622
 radius = 4.10198
 
@@ -21,12 +21,12 @@ ACC = 140.0
 
 [node name="MeshInstance" type="MeshInstance" parent="Model"]
 transform = Transform( 0.645386, 0, 0, 0, -2.82107e-08, 0.645386, 0, -0.645386, -2.82107e-08, 0, 0.883563, 0 )
-mesh = SubResource( 1 )
-material/0 = SubResource( 4 )
+mesh = SubResource( 8 )
+material/0 = SubResource( 9 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 0.645386, 0, 0, 0, -2.82107e-08, 0.645386, 0, -0.645386, -2.82107e-08, 0, 0.883563, 0 )
-shape = SubResource( 5 )
+shape = SubResource( 10 )
 
 [node name="Area" type="Area" parent="."]
 collision_layer = 0
@@ -34,7 +34,7 @@ collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00012, 0 )
-shape = SubResource( 3 )
+shape = SubResource( 11 )
 
 [node name="BallInventory" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.03552, 0 )
