@@ -9,3 +9,5 @@ number_of_segments = 3
 [node name="Joints" type="Node" parent="."]
 
 [node name="Segments" type="Node" parent="."]
+
+[node name="ImmediateGeometry" type="ImmediateGeometry" parent="."]
