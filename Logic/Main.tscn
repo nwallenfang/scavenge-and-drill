@@ -23,6 +23,7 @@ visible = false
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 script = ExtResource( 3 )
 
 [node name="Viewport" type="Viewport" parent="ViewportContainer"]
@@ -31,5 +32,6 @@ handle_input_locally = false
 render_target_update_mode = 0
 
 [node name="ShopUI" parent="." instance=ExtResource( 2 )]
+visible = false
 
 [connection signal="ready_pressed" from="ReadyScreen" to="." method="_on_ReadyScreen_ready_pressed"]

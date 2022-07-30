@@ -143,6 +143,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 510.0
 margin_bottom = 203.0
+upgrade_attribute = "chain_longer"
 
 [node name="ShopEntry2" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
 anchor_right = 0.0
@@ -150,6 +151,7 @@ anchor_bottom = 0.0
 margin_left = 514.0
 margin_right = 1024.0
 margin_bottom = 203.0
+upgrade_attribute = "chain_longer"
 
 [node name="ShopEntry3" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
 anchor_right = 0.0
@@ -157,6 +159,7 @@ anchor_bottom = 0.0
 margin_top = 207.0
 margin_right = 510.0
 margin_bottom = 410.0
+upgrade_attribute = "chain_longer"
 
 [node name="ShopEntry4" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
 anchor_right = 0.0
@@ -165,9 +168,20 @@ margin_left = 514.0
 margin_top = 207.0
 margin_right = 1024.0
 margin_bottom = 410.0
+upgrade_attribute = "chain_longer"
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="DoneShoppingButton" type="Button" parent="VBoxContainer"]
 margin_top = 573.0
 margin_right = 1024.0
 margin_bottom = 600.0
 text = "Enter the Ocean again"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.321569, 0.321569, 0.321569, 1 )
+
+[connection signal="pressed" from="VBoxContainer/DoneShoppingButton" to="." method="_on_Button_pressed"]

@@ -95,6 +95,11 @@ _global_script_classes=[ {
 "path": "res://Objects/RopeSegment.gd"
 }, {
 "base": "Control",
+"class": "ShopEntry",
+"language": "GDScript",
+"path": "res://UI/ShopEntry.gd"
+}, {
+"base": "Control",
 "class": "UI",
 "language": "GDScript",
 "path": "res://UI/UI.gd"
@@ -117,6 +122,7 @@ _global_script_class_icons={
 "NakamaWriteStorageObject": "",
 "Player": "",
 "RopeSegment": "",
+"ShopEntry": "",
 "UI": ""
 }
 

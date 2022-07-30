@@ -30,7 +30,7 @@ var treasure_3 = 0
 class Upgrades:
 	var chain_longer := false
 
-var upgrades: Upgrades
+var upgrades: Upgrades = Upgrades.new()
 
 func _process(delta: float) -> void:
 #	if is_instance_valid(viewport_sprite) and is_instance_valid(main_cam):
@@ -81,9 +81,9 @@ func set_treasures(amount: int, type: int):
 func set_gold(amount: int):
 	pass
 	
-remotesync func set_upgrade():
+remotesync func set_upgrade(name):
 	# only set Upgrades with this method so that it's nice and synced
-	pass
+	Game.log("setting upgrade " + name)
 
 
 func log(msg: String):

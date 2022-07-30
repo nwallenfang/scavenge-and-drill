@@ -47,9 +47,9 @@ func set_treasure(treasures: int, treasure_type: int):
 	# tween treasure interface in
 	match treasure_type:
 		1:
-			$"%GearAmount".text = "%02d" % treasures
-		2:
 			$"%GoldAmount".text = "%02d" % treasures
+		2:
+			$"%GearAmount".text = "%02d" % treasures
 		3:
 			printerr("Treasure type 3 not implemented!")
 			

@@ -1,5 +1,7 @@
 extends Control
+class_name ShopEntry
 
+signal upgrade_clicked
 export var upgrade_attribute: String
 
 func _ready() -> void:
@@ -7,5 +9,5 @@ func _ready() -> void:
 
 
 func _on_TextureButton_pressed() -> void:
-	Game.log("BUTTON PRESSED")
+	emit_signal("upgrade_clicked", upgrade_attribute)
 
