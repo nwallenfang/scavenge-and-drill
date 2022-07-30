@@ -1,4 +1,4 @@
-extends Spatial
+extends Control
 
 #onready var game = $Level
 #onready var ui_layer: UILayer = $UILayer
@@ -35,7 +35,7 @@ func _ready() -> void:
 		# other instance should wait a little because the first instance 
 		# becomes the server
 		if not is_player1:
-			yield(get_tree().create_timer(0.34), "timeout")
+			yield(get_tree().create_timer(.4), "timeout")
 		$MainMenu.visible = false
 		Network.connect_to_matchmaking()
 
@@ -112,8 +112,10 @@ remotesync func _do_game_setup(playerss: Dictionary) -> void:
 	game_over = false
 	
 	var level = LEVEL_SCENE.instance()
-	add_child(level)
-	$Level.do_game_setup(playerss)
+	$ViewportContainer/Viewport.add_child(level)
+	level.do_game_setup(playerss)
+	
+	$ViewportContainer.visible = true
 
 	if Game.online_play:
 		var my_id := get_tree().get_network_unique_id()
