@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform sampler2D texture_resource;
+
+void fragment(){
+	COLOR = texture(texture_resource, UV);
+}"
+
+[sub_resource type="StreamTexture" id=2]
+flags = 4
+load_path = "res://.import/gear.png-2583097dcad136b33cb185abc6c23b22.stex"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/texture_resource = SubResource( 2 )

@@ -1,0 +1,15 @@
+Hey, wanna give a short overview of the game we're planning for the jam:
+- It will be a 2 player coop game where one player controlls a humanoid, the other a robot-character
+- The game takes place on the ocean floor
+- The robot-character acts as the oxygen-store for the player
+- Human and robot need to stay close together for the O2-connection (maybe visualised by a rope)
+- The game will consist of multiple "dives" where the players walk on the ocean floor until the oxygen is depleted
+- The players collect smaller treasures during their dives
+- after each dive attempt the players return to their base
+- there they can access a "shop" where they can spend their small treasures for upgrades (for example more oxygen)
+- The goal is to reach a special treasure that is hidden far away (only accessible with upgrades from the shop)
+- The level contains obstacles that can be destructed with skills
+- skills are specific to the human/robot and might need to be unlocked in the shop
+- The robot needs energy crystals for skills that are harvested in the level by the human
+- The atmosphere will be mysterious, it's an exploratory game. The players should be curious what to expect next. But the game won't intend to be scary or horror-like. The graphics will be simple and cartoony and not going for realism.
+- Now that I've written it all down it sounds like quite a lot, we'll see :p

@@ -1,3 +1,9 @@
 - Treasure icon
   - https://thenounproject.com/icon/treasures-1071021/
   - James Smith
+- Gear icon
+  - https://thenounproject.com/icon/gear-5023282/
+  - Nur Faizah
+- Gold icon
+  - https://thenounproject.com/icon/gold-4514062/
+  - Mas Dhimas
