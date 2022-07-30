@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Prototyping/Level.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=2]
@@ -9,6 +9,11 @@
 [ext_resource path="res://Objects/ButtonPlate.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Objects/Door.tscn" type="PackedScene" id=8]
 [ext_resource path="res://default_env.tres" type="Environment" id=9]
+[ext_resource path="res://Test/Cable.tscn" type="PackedScene" id=10]
+
+[sub_resource type="SphereMesh" id=3]
+
+[sub_resource type="SphereMesh" id=4]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.713726, 0.717647, 0.576471, 1 )
@@ -21,11 +26,27 @@ script = ExtResource( 1 )
 player1_color = Color( 0.152941, 0.27451, 0.745098, 1 )
 player2_color = Color( 0.843137, 0.215686, 0.215686, 1 )
 
+[node name="Cable" parent="." instance=ExtResource( 10 )]
+
 [node name="Player1" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0 )
 
+[node name="Handle" type="Spatial" parent="Player1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Player1/Handle"]
+transform = Transform( 0.20187, 0, 0, 0, 0.20187, 0, 0, 0, 0.20187, 0, 0, 0 )
+mesh = SubResource( 3 )
+
 [node name="Player2" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0 )
+
+[node name="Handle" type="Spatial" parent="Player2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Player2/Handle"]
+transform = Transform( 0.188611, 0, 0, 0, 0.188611, 0, 0, 0, 0.188611, 0, 0, 0 )
+mesh = SubResource( 4 )
 
 [node name="UI" parent="." instance=ExtResource( 6 )]
 

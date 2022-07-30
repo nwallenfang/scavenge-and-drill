@@ -9,7 +9,7 @@ export var player2_color: Color
 func _ready():
 	$Player1.set_color(player1_color)
 	$Player2.set_color(player2_color)
-	
+	$Cable.create_cable($Player1/Handle, $Player2/Handle)
 	Game.connect("oxygen_depleted", self, "server_oxy_depleted")
 
 

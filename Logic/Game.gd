@@ -47,7 +47,8 @@ func set_o2(value: float):
 		emit_signal("oxygen_depleted")
 	
 	o2 = value
-	ui.set_o2(value)
+	if ui != null:
+		ui.set_o2(value)
 
 
 remotesync func sync_treasures(amount):
