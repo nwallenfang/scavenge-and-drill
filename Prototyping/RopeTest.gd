@@ -7,5 +7,5 @@ func _ready() -> void:
 	
 	
 func _physics_process(delta: float) -> void:
-	pass
+	$MovingBlock.apply_central_impulse(0.05 * Vector3.LEFT)
 	

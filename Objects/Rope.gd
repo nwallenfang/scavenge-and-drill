@@ -24,10 +24,10 @@ func _ready() -> void:
 	for i in range(number_of_segments):
 		segment = ROPE_SEGMENT.instance()
 		joint = HingeJoint.new()
-		joint.rotate_x(deg2rad(90.0))
+#		joint.rotate_x(deg2rad(90.0))
 		$Joints.add_child(joint)
 		$Segments.add_child(segment)
-		segment.global_translation = start_pos + i/number_of_segments * (end_pos - start_pos)
+		segment.global_translation = start_pos + float(i+1)/number_of_segments * (end_pos - start_pos)
 		
 		prev_joint.set("nodes/node_b", segment.get_path())
 		joint.set("nodes/node_a", segment.get_path())
@@ -36,3 +36,17 @@ func _ready() -> void:
 
 
 	joint.set("nodes/node_b", end)
+
+func _physics_process(delta: float) -> void:
+	$ImmediateGeometry.clear()
+	$ImmediateGeometry.begin(Mesh.PRIMITIVE_LINES)
+	
+	$ImmediateGeometry.add_vertex($ImmediateGeometry.to_local(get_node(start).global_translation))
+	
+	for segment in $Segments.get_children():
+		var pos = $ImmediateGeometry.to_local(segment.global_translation)
+		$ImmediateGeometry.add_vertex(pos)
+		$ImmediateGeometry.add_vertex(pos)
+	
+	$ImmediateGeometry.add_vertex($ImmediateGeometry.to_local(get_node(end).global_translation))
+	$ImmediateGeometry.end()

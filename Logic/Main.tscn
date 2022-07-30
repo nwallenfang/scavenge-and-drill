@@ -22,4 +22,6 @@ centered = false
 [node name="ReadyScreen" parent="." instance=ExtResource( 8 )]
 visible = false
 
+[node name="Viewport" type="Viewport" parent="."]
+
 [connection signal="ready_pressed" from="ReadyScreen" to="." method="_on_ReadyScreen_ready_pressed"]
