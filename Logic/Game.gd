@@ -23,8 +23,8 @@ const TYPE_GOLD = 1
 const TYPE_GEARS = 2
 const TYPE_3 = 3
 
-var treasure_gold = 0
-var treasure_gears = 0
+var treasure_gold = 1
+var treasure_gears = 1
 var treasure_3 = 0 
 
 class Upgrades:
@@ -81,9 +81,11 @@ func set_treasures(amount: int, type: int):
 func set_gold(amount: int):
 	pass
 	
-remotesync func set_upgrade(name):
+remotesync func set_upgrade(name, cost_gold, cost_gears):
 	# only set Upgrades with this method so that it's nice and synced
 	Game.log("setting upgrade " + name)
+	treasure_gears -= cost_gears
+	treasure_gold -= cost_gold
 
 
 func log(msg: String):

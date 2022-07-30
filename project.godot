@@ -166,7 +166,7 @@ singletons=[ "res://Networking/webrtc/webrtc.gdnlib", "res://Networking/webrtc_d
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
-theme/custom="res://UI/theme.tres"
+theme/custom="res://UI/Styles/theme.tres"
 
 [input]
 
