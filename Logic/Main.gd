@@ -37,6 +37,8 @@ func _ready() -> void:
 			yield(get_tree().create_timer(.4), "timeout")
 		$MainMenu.visible = false
 		Network.connect_to_matchmaking()
+		
+	Game.connect("oxygen_depleted", self, "game_to_shop_transition")
 
 
 func _on_OnlineMatch_matchmaker_matched(_players: Dictionary):
@@ -137,3 +139,18 @@ remotesync func _do_game_start() -> void:
 
 func _on_ReadyScreen_ready_pressed() -> void:
 	rpc("player_ready", OnlineMatch.get_my_session_id())
+	
+	
+	
+func game_to_shop_transition():
+	$ShopUI.visible = true
+	$ShopUI.initialize()
+	$ViewportContainer.visible = false
+	
+	yield($ShopUI, "done_shopping")
+	rpc("shop_to_game_transition")
+	
+remotesync func shop_to_game_transition():
+	# TODO reload level completely
+	$ShopUI.visible = false
+	$ViewportContainer.visible = true

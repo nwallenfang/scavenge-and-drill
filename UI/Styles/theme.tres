@@ -1,12 +1,13 @@
-[gd_resource type="Theme" load_steps=4 format=2]
+[gd_resource type="Theme" load_steps=5 format=2]
 
-[ext_resource path="res://Assets/Fonts/iosevka-extended-regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://UI/Styles/panel_hovered.tres" type="StyleBox" id=1]
+[ext_resource path="res://Assets/Fonts/iosevka-extended-regular.ttf" type="DynamicFontData" id=2]
 
 [sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 1 )
+font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0, 0, 0, 0.411765 )
+bg_color = Color( 0.176471, 0.176471, 0.176471, 1 )
 
 [resource]
 default_font = SubResource( 1 )
@@ -22,4 +23,5 @@ HScrollBar/styles/grabber_pressed = null
 HScrollBar/styles/scroll = null
 HScrollBar/styles/scroll_focus = null
 Label/fonts/font = SubResource( 1 )
+Panel/styles/hovered = ExtResource( 1 )
 Panel/styles/panel = SubResource( 2 )

@@ -95,6 +95,11 @@ _global_script_classes=[ {
 "path": "res://Objects/RopeSegment.gd"
 }, {
 "base": "Control",
+"class": "ShopEntry",
+"language": "GDScript",
+"path": "res://UI/ShopEntry.gd"
+}, {
+"base": "Control",
 "class": "UI",
 "language": "GDScript",
 "path": "res://UI/UI.gd"
@@ -117,6 +122,7 @@ _global_script_class_icons={
 "NakamaWriteStorageObject": "",
 "Player": "",
 "RopeSegment": "",
+"ShopEntry": "",
 "UI": ""
 }
 
@@ -160,7 +166,7 @@ singletons=[ "res://Networking/webrtc/webrtc.gdnlib", "res://Networking/webrtc_d
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
-theme/custom="res://UI/theme.tres"
+theme/custom="res://UI/Styles/theme.tres"
 
 [input]
 

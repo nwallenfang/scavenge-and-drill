@@ -1,0 +1,188 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Assets/Materials/ui_icon.tres" type="Material" id=1]
+[ext_resource path="res://Assets/Sprites/gold.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Fonts/TreasureFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://UI/ShopUI.gd" type="Script" id=4]
+[ext_resource path="res://UI/ShopEntry.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Sprites/merchant.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Fonts/ShopTitleFont.tres" type="DynamicFont" id=7]
+
+[sub_resource type="Shader" id=4]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform sampler2D texture_resource;
+
+void fragment(){
+	COLOR = texture(texture_resource, UV);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 4 )
+shader_param/texture_resource = ExtResource( 2 )
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform sampler2D texture_resource;
+
+void fragment(){
+	COLOR = texture(texture_resource, UV);
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 1 )
+shader_param/texture_resource = ExtResource( 6 )
+
+[node name="ShopUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TreasureCountRow" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 51.0
+alignment = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/TreasureCountRow"]
+margin_bottom = 51.0
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/TreasureCountRow"]
+margin_left = 4.0
+margin_right = 800.0
+margin_bottom = 51.0
+size_flags_horizontal = 3
+custom_fonts/normal_font = ExtResource( 7 )
+bbcode_enabled = true
+bbcode_text = "[center]UPGRADE SHOP"
+text = "UPGRADE SHOP"
+scroll_active = false
+
+[node name="TreasureUI" type="HBoxContainer" parent="VBoxContainer/TreasureCountRow"]
+unique_name_in_owner = true
+margin_left = 804.0
+margin_right = 1024.0
+margin_bottom = 51.0
+size_flags_vertical = 0
+alignment = 2
+
+[node name="GearIcon" type="ColorRect" parent="VBoxContainer/TreasureCountRow/TreasureUI"]
+modulate = Color( 0.172549, 0.133333, 0.133333, 1 )
+material = ExtResource( 1 )
+margin_right = 48.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 48, 48 )
+
+[node name="GearAmount" type="Label" parent="VBoxContainer/TreasureCountRow/TreasureUI"]
+unique_name_in_owner = true
+margin_left = 52.0
+margin_right = 98.0
+margin_bottom = 51.0
+custom_fonts/font = ExtResource( 3 )
+text = "00"
+
+[node name="Gap" type="Control" parent="VBoxContainer/TreasureCountRow/TreasureUI"]
+unique_name_in_owner = true
+margin_left = 102.0
+margin_right = 118.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 16, 0 )
+
+[node name="GoldIcon" type="ColorRect" parent="VBoxContainer/TreasureCountRow/TreasureUI"]
+modulate = Color( 0.729412, 0.635294, 0.196078, 1 )
+material = SubResource( 2 )
+margin_left = 122.0
+margin_right = 170.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 48, 48 )
+
+[node name="GoldAmount" type="Label" parent="VBoxContainer/TreasureCountRow/TreasureUI"]
+unique_name_in_owner = true
+margin_left = 174.0
+margin_right = 220.0
+margin_bottom = 51.0
+custom_fonts/font = ExtResource( 3 )
+text = "00"
+
+[node name="MerchantScreen" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 55.0
+margin_right = 1024.0
+margin_bottom = 155.0
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MerchantScreen"]
+material = SubResource( 3 )
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/MerchantScreen"]
+margin_left = 104.0
+margin_top = 39.0
+margin_right = 320.0
+margin_bottom = 60.0
+text = "Come check out my wares!"
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+margin_top = 159.0
+margin_right = 1024.0
+margin_bottom = 569.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
+
+[node name="ShopEntry" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 510.0
+margin_bottom = 203.0
+upgrade_attribute = "chain_longer"
+cost_gold = 1
+
+[node name="ShopEntry2" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 514.0
+margin_right = 1024.0
+margin_bottom = 203.0
+upgrade_attribute = "chain_longer"
+
+[node name="ShopEntry3" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 207.0
+margin_right = 510.0
+margin_bottom = 410.0
+upgrade_attribute = "chain_longer"
+
+[node name="ShopEntry4" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 514.0
+margin_top = 207.0
+margin_right = 1024.0
+margin_bottom = 410.0
+upgrade_attribute = "chain_longer"
+
+[node name="DoneShoppingButton" type="Button" parent="VBoxContainer"]
+margin_top = 573.0
+margin_right = 1024.0
+margin_bottom = 600.0
+text = "Enter the Ocean again"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.321569, 0.321569, 0.321569, 1 )
+
+[connection signal="pressed" from="VBoxContainer/DoneShoppingButton" to="." method="_on_Button_pressed"]

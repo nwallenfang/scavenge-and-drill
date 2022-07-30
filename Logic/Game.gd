@@ -19,7 +19,18 @@ var max_o2 := 100.0
 var o2 := 100.0 setget set_o2
 var o2_loss_per_s := 20.0
 
-var treasures = 0 setget set_treasures
+const TYPE_GOLD = 1
+const TYPE_GEARS = 2
+const TYPE_3 = 3
+
+var treasure_gold = 1
+var treasure_gears = 1
+var treasure_3 = 0 
+
+class Upgrades:
+	var chain_longer := false
+
+var upgrades: Upgrades = Upgrades.new()
 
 func _process(delta: float) -> void:
 #	if is_instance_valid(viewport_sprite) and is_instance_valid(main_cam):
@@ -51,15 +62,31 @@ func set_o2(value: float):
 		ui.set_o2(value)
 
 
-remotesync func sync_treasures(amount):
-	treasures = amount
-	ui.set_treasure(amount)
+remotesync func sync_treasures(amount, type):
+	match type:
+		TYPE_GOLD:
+			treasure_gold = amount
+		TYPE_GEARS:
+			treasure_gears = amount
+		TYPE_3:
+			treasure_3 = amount
 
-func set_treasures(amount: int):
+	ui.set_treasure(amount, type)
+
+func set_treasures(amount: int, type: int):
 	# maybe this RPC isn't even needed since the treasure gets picked up 
 	# for both players..
 	if is_network_master():
 		rpc("sync_treasures", amount)
+		
+func set_gold(amount: int):
+	pass
+	
+remotesync func set_upgrade(name, cost_gold, cost_gears):
+	# only set Upgrades with this method so that it's nice and synced
+	Game.log("setting upgrade " + name)
+	treasure_gears -= cost_gears
+	treasure_gold -= cost_gold
 
 
 func log(msg: String):

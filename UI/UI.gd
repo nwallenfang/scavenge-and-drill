@@ -34,5 +34,30 @@ func add_to_log(msg: String):
 func set_o2(value_percent: float):
 	$"%OxygenProgress".value = value_percent
 	
-func set_treasure(treasures: int):
-	$"%TreasureAmount".text = "%02d" % treasures
+
+var blended_out: Color = Color("00ffffff")
+var blended_in: Color  = Color("ffffffff")
+func set_treasure(treasures: int, treasure_type: int):
+	var tween = create_tween()
+	
+	# TODO if treasure ui not blended out yet.. skip this first tween
+	tween.tween_property($"%TreasureUI", "modulate", blended_in, 0.3)
+	tween.play()
+	yield(tween, "finished")
+	# tween treasure interface in
+	match treasure_type:
+		1:
+			$"%GoldAmount".text = "%02d" % treasures
+		2:
+			$"%GearAmount".text = "%02d" % treasures
+		3:
+			printerr("Treasure type 3 not implemented!")
+			
+	# TODO maybe even play a nice animation for the number that got increased
+	# for even more polish
+
+	yield(get_tree().create_timer(3.0), "timeout")
+	tween = create_tween()
+	tween.tween_property($"%TreasureUI", "modulate", blended_out, 0.4)
+	tween.play()
+
