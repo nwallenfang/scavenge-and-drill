@@ -15,6 +15,10 @@ var game_started := false
 var viewport_sprite: Sprite
 var main_cam: Camera
 
+var max_o2 := 100.0
+var o2 := 100.0 setget set_o2
+var o2_loss_per_s := 20.0
+
 func _process(delta: float) -> void:
 #	if is_instance_valid(viewport_sprite) and is_instance_valid(main_cam):
 #		if viewport_sprite != null:
@@ -24,6 +28,22 @@ func _process(delta: float) -> void:
 #			viewport_sprite.material.set_shader_param("sideview_direction", main_cam.shader_direction)
 	if Input.is_action_just_pressed("pause"):
 		ui.toggle_pause()
+	if game_started:  # state machine maybe? menu/in_game/merchant
+		self.o2 -= o2_loss_per_s * delta
+
+signal oxygen_depleted
+var oxy_critical_threshold = 0.1 * max_o2
+signal oxygen_critical  # maybe some screen effect or sound? maybe not
+signal oxygen_filled
+func set_o2(value: float):
+	if o2 >= oxy_critical_threshold and value < oxy_critical_threshold:
+		emit_signal("oxygen_critical")
+	if value <= 0.0 and o2 > 0.0:
+		emit_signal("oxygen_depleted")
+	
+	
+	o2 = value
+	ui.set_o2(value)
 
 
 func log(msg: String):

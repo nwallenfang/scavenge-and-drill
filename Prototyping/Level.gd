@@ -9,6 +9,22 @@ export var player2_color: Color
 func _ready():
 	$Player1.set_color(player1_color)
 	$Player2.set_color(player2_color)
+	
+	Game.connect("oxygen_depleted", self, "server_oxy_depleted")
+
+
+func server_oxy_depleted():
+	# take care that this doesn't get called twice!
+	# (from client and server)
+	if is_network_master():
+		rpc("oxygen_depleted")
+
+remotesync func oxygen_depleted():
+	# TODO play some kind of return cut-scene
+	# TODO merchant sequence
+	# wait for start click
+	# then reset players to their position
+	Game.log("OXYGEN DEPLETED")
 
 
 func do_game_setup(players: Dictionary):

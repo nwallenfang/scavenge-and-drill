@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://UI/UI.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/PausedFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Assets/Sprites/oxygen/bar_over.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/oxygen/bar_under.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/oxygen/bar_progress.png" type="Texture" id=5]
 
 [node name="UI" type="Control"]
 anchor_right = 1.0
@@ -125,3 +128,45 @@ size_flags_stretch_ratio = 0.3
 [node name="Message" type="Label" parent="."]
 margin_right = 40.0
 margin_bottom = 21.0
+
+[node name="Game" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Oxygen" type="HBoxContainer" parent="Game"]
+anchor_left = 0.02
+anchor_top = 0.1
+anchor_right = 0.02
+anchor_bottom = 0.9
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Game/Oxygen"]
+margin_right = 64.0
+margin_bottom = 480.0
+
+[node name="OxygenProgress" type="TextureProgress" parent="Game/Oxygen/VBoxContainer"]
+unique_name_in_owner = true
+margin_right = 64.0
+margin_bottom = 455.0
+rect_min_size = Vector2( 64, 0 )
+size_flags_vertical = 3
+value = 100.0
+texture_under = ExtResource( 4 )
+texture_over = ExtResource( 3 )
+texture_progress = ExtResource( 5 )
+fill_mode = 3
+nine_patch_stretch = true
+stretch_margin_top = 1
+stretch_margin_bottom = 1
+
+[node name="Label" type="Label" parent="Game/Oxygen/VBoxContainer"]
+margin_top = 459.0
+margin_right = 64.0
+margin_bottom = 480.0
+text = "O2"
+align = 1
+
+[node name="FadingRect" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
