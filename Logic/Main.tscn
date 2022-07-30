@@ -1,16 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Logic/Main.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Shader/WaterDistortion.gdshader" type="Shader" id=2]
+[ext_resource path="res://Logic/ViewportContainer.gd" type="Script" id=3]
 [ext_resource path="res://UI/MainMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/ReadyScreen.tscn" type="PackedScene" id=8]
-
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 2 )
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource( 1 )
 
 [node name="MainMenu" parent="." instance=ExtResource( 4 )]
@@ -20,13 +19,13 @@ visible = false
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
 visible = false
-material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 3 )
 
 [node name="Viewport" type="Viewport" parent="ViewportContainer"]
 size = Vector2( 1024, 600 )
 handle_input_locally = false
-render_target_update_mode = 3
+render_target_update_mode = 0
 
 [connection signal="ready_pressed" from="ReadyScreen" to="." method="_on_ReadyScreen_ready_pressed"]
