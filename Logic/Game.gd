@@ -27,6 +27,11 @@ var treasure_gold = 0
 var treasure_gears = 0
 var treasure_3 = 0 
 
+class Upgrades:
+	var chain_longer := false
+
+var upgrades: Upgrades
+
 func _process(delta: float) -> void:
 #	if is_instance_valid(viewport_sprite) and is_instance_valid(main_cam):
 #		if viewport_sprite != null:
@@ -74,6 +79,10 @@ func set_treasures(amount: int, type: int):
 		rpc("sync_treasures", amount)
 		
 func set_gold(amount: int):
+	pass
+	
+remotesync func set_upgrade():
+	# only set Upgrades with this method so that it's nice and synced
 	pass
 
 

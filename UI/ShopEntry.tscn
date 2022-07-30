@@ -1,0 +1,136 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Materials/ui_icon.tres" type="Material" id=1]
+[ext_resource path="res://UI/ShopEntry.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Sprites/gold.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Fonts/TreasureFont.tres" type="DynamicFont" id=4]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform sampler2D texture_resource;
+
+void fragment(){
+	COLOR = texture(texture_resource, UV);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/texture_resource = ExtResource( 3 )
+
+[node name="ShopEntry" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 2 )
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+
+[node name="TextureButton" type="TextureButton" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand = true
+stretch_mode = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="TextureButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureButton/CenterContainer"]
+margin_left = 417.0
+margin_top = 210.0
+margin_right = 606.0
+margin_bottom = 390.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="TextureButton/CenterContainer/VBoxContainer"]
+margin_right = 189.0
+margin_bottom = 100.0
+mouse_filter = 2
+
+[node name="Image" type="ColorRect" parent="TextureButton/CenterContainer/VBoxContainer/AspectRatioContainer"]
+material = ExtResource( 1 )
+margin_left = 44.5
+margin_right = 144.5
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+mouse_filter = 2
+
+[node name="DescriptionLabel" type="Label" parent="TextureButton/CenterContainer/VBoxContainer"]
+margin_top = 104.0
+margin_right = 189.0
+margin_bottom = 125.0
+text = "GREAT UPGRADE BUY NOW"
+
+[node name="CenterContainer" type="CenterContainer" parent="TextureButton/CenterContainer/VBoxContainer"]
+margin_top = 129.0
+margin_right = 189.0
+margin_bottom = 180.0
+
+[node name="Cost" type="HBoxContainer" parent="TextureButton/CenterContainer/VBoxContainer/CenterContainer"]
+margin_left = 23.0
+margin_right = 165.0
+margin_bottom = 51.0
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="TextureButton/CenterContainer/VBoxContainer/CenterContainer/Cost"]
+margin_right = 32.0
+margin_bottom = 51.0
+mouse_filter = 2
+
+[node name="GearIcon" type="ColorRect" parent="TextureButton/CenterContainer/VBoxContainer/CenterContainer/Cost/AspectRatioContainer"]
+modulate = Color( 0.172549, 0.133333, 0.133333, 1 )
+material = ExtResource( 1 )
+margin_top = 9.5
+margin_right = 32.0
+margin_bottom = 41.5
+rect_min_size = Vector2( 32, 32 )
+
+[node name="GearAmount" type="Label" parent="TextureButton/CenterContainer/VBoxContainer/CenterContainer/Cost"]
+unique_name_in_owner = true
+margin_left = 36.0
+margin_right = 59.0
+margin_bottom = 51.0
+custom_fonts/font = ExtResource( 4 )
+text = "1"
+
+[node name="Gap" type="Control" parent="TextureButton/CenterContainer/VBoxContainer/CenterContainer/Cost"]
+unique_name_in_owner = true
+margin_left = 63.0
+margin_right = 79.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 16, 0 )
+
+[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="TextureButton/CenterContainer/VBoxContainer/CenterContainer/Cost"]
+margin_left = 83.0
+margin_right = 115.0
+margin_bottom = 51.0
+mouse_filter = 2
+
+[node name="GoldIcon" type="ColorRect" parent="TextureButton/CenterContainer/VBoxContainer/CenterContainer/Cost/AspectRatioContainer2"]
+modulate = Color( 0.729412, 0.635294, 0.196078, 1 )
+material = SubResource( 2 )
+margin_top = 9.5
+margin_right = 32.0
+margin_bottom = 41.5
+rect_min_size = Vector2( 32, 32 )
+
+[node name="GoldAmount" type="Label" parent="TextureButton/CenterContainer/VBoxContainer/CenterContainer/Cost"]
+unique_name_in_owner = true
+margin_left = 119.0
+margin_right = 142.0
+margin_bottom = 51.0
+custom_fonts/font = ExtResource( 4 )
+text = "2"
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]

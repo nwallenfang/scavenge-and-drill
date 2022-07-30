@@ -10,7 +10,7 @@
 [ext_resource path="res://Assets/Materials/ui_icon.tres" type="Material" id=8]
 [ext_resource path="res://Assets/Fonts/TreasureFont.tres" type="DynamicFont" id=9]
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
 render_mode blend_mix;
 
@@ -21,7 +21,7 @@ void fragment(){
 }"
 
 [sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
+shader = SubResource( 3 )
 shader_param/texture_resource = ExtResource( 6 )
 
 [node name="UI" type="Control"]
