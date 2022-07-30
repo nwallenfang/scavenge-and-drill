@@ -148,9 +148,9 @@ func game_to_shop_transition():
 	$ViewportContainer.visible = false
 	
 	yield($ShopUI, "done_shopping")
-	shop_to_game_transition()
+	rpc("shop_to_game_transition")
 	
-func shop_to_game_transition():
+remotesync func shop_to_game_transition():
 	# TODO reload level completely
 	$ShopUI.visible = false
 	$ViewportContainer.visible = true
