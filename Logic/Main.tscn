@@ -1,27 +1,32 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Logic/Main.gd" type="Script" id=1]
-[ext_resource path="res://Test/ViewportTest.tres" type="Material" id=3]
+[ext_resource path="res://Assets/Shader/WaterDistortion.gdshader" type="Shader" id=2]
 [ext_resource path="res://UI/MainMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/ReadyScreen.tscn" type="PackedScene" id=8]
 
-[sub_resource type="ImageTexture" id=1]
-size = Vector2( 1024, 600 )
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
 
-[node name="Main" type="Spatial"]
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="."]
-visible = false
-material = ExtResource( 3 )
-texture = SubResource( 1 )
-centered = false
 
 [node name="MainMenu" parent="." instance=ExtResource( 4 )]
 
 [node name="ReadyScreen" parent="." instance=ExtResource( 8 )]
 visible = false
 
-[node name="Viewport" type="Viewport" parent="."]
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+visible = false
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 1024, 600 )
+handle_input_locally = false
+render_target_update_mode = 3
 
 [connection signal="ready_pressed" from="ReadyScreen" to="." method="_on_ReadyScreen_ready_pressed"]
