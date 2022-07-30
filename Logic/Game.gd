@@ -19,6 +19,8 @@ var max_o2 := 100.0
 var o2 := 100.0 setget set_o2
 var o2_loss_per_s := 20.0
 
+var treasures = 0 setget set_treasures
+
 func _process(delta: float) -> void:
 #	if is_instance_valid(viewport_sprite) and is_instance_valid(main_cam):
 #		if viewport_sprite != null:
@@ -29,6 +31,9 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		ui.toggle_pause()
 	if game_started:  # state machine maybe? menu/in_game/merchant
+		# this doesn't get synced at the moment since the calc should be the
+		# same for both players
+		# maybe sync every x seconds to make sure
 		self.o2 -= o2_loss_per_s * delta
 
 signal oxygen_depleted
@@ -41,9 +46,19 @@ func set_o2(value: float):
 	if value <= 0.0 and o2 > 0.0:
 		emit_signal("oxygen_depleted")
 	
-	
 	o2 = value
 	ui.set_o2(value)
+
+
+remotesync func sync_treasures(amount):
+	treasures = amount
+	ui.set_treasure(amount)
+
+func set_treasures(amount: int):
+	# maybe this RPC isn't even needed since the treasure gets picked up 
+	# for both players..
+	if is_network_master():
+		rpc("sync_treasures", amount)
 
 
 func log(msg: String):

@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://UI/UI.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/PausedFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Assets/Sprites/oxygen/bar_over.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Sprites/oxygen/bar_under.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Sprites/oxygen/bar_progress.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/treasure_icon.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Fonts/debug_font.tres" type="DynamicFont" id=7]
 
 [node name="UI" type="Control"]
 anchor_right = 1.0
@@ -14,7 +16,6 @@ mouse_filter = 1
 script = ExtResource( 1 )
 
 [node name="DevContainer" type="HBoxContainer" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 alignment = 2
@@ -22,7 +23,7 @@ alignment = 2
 [node name="DeveloperInfo" type="VBoxContainer" parent="DevContainer"]
 margin_left = 824.0
 margin_right = 1024.0
-margin_bottom = 200.0
+margin_bottom = 220.0
 size_flags_vertical = 0
 
 [node name="FPSCounter" type="Label" parent="DevContainer/DeveloperInfo"]
@@ -47,6 +48,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 readonly = true
 wrap_enabled = true
+
+[node name="HostOrClient2" type="Label" parent="DevContainer/DeveloperInfo"]
+margin_top = 204.0
+margin_right = 200.0
+margin_bottom = 220.0
+custom_fonts/font = ExtResource( 7 )
+text = "(F1 to hide)"
+align = 1
 
 [node name="PausePanel" type="Panel" parent="."]
 visible = false
@@ -133,18 +142,18 @@ margin_bottom = 21.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Oxygen" type="HBoxContainer" parent="Game"]
+[node name="LeftSide" type="HBoxContainer" parent="Game"]
 anchor_left = 0.02
 anchor_top = 0.1
 anchor_right = 0.02
 anchor_bottom = 0.9
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Game/Oxygen"]
+[node name="Oxygen" type="VBoxContainer" parent="Game/LeftSide"]
 margin_right = 64.0
 margin_bottom = 480.0
 
-[node name="OxygenProgress" type="TextureProgress" parent="Game/Oxygen/VBoxContainer"]
+[node name="OxygenProgress" type="TextureProgress" parent="Game/LeftSide/Oxygen"]
 unique_name_in_owner = true
 margin_right = 64.0
 margin_bottom = 455.0
@@ -159,12 +168,43 @@ nine_patch_stretch = true
 stretch_margin_top = 1
 stretch_margin_bottom = 1
 
-[node name="Label" type="Label" parent="Game/Oxygen/VBoxContainer"]
+[node name="Label" type="Label" parent="Game/LeftSide/Oxygen"]
 margin_top = 459.0
 margin_right = 64.0
 margin_bottom = 480.0
 text = "O2"
 align = 1
+
+[node name="RightSide" type="HBoxContainer" parent="Game"]
+anchor_left = 0.85
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 3
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Game/RightSide"]
+margin_left = 67.0
+margin_right = 153.0
+margin_bottom = 64.0
+size_flags_vertical = 0
+alignment = 2
+
+[node name="TreasureIcon" type="TextureRect" parent="Game/RightSide/HBoxContainer"]
+margin_right = 64.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 6 )
+stretch_mode = 1
+
+[node name="TreasureAmount" type="Label" parent="Game/RightSide/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 68.0
+margin_top = 21.0
+margin_right = 86.0
+margin_bottom = 42.0
+text = "00"
 
 [node name="FadingRect" type="ColorRect" parent="."]
 visible = false

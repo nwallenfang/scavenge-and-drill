@@ -18,6 +18,10 @@ func _ready() -> void:
 			Game.debug = true
 			$DevContainer/DeveloperInfo/HostOrClient.text = "host" if is_player1 else "client"
 	debug_log.text += "Logs will be printed here\n"
+	
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("dev_toggle"):
+		toggle_dev_panel()
 
 func _physics_process(delta: float) -> void:
 	$DevContainer/DeveloperInfo/FPSCounter.text = "FPS: %d" % Engine.get_frames_per_second()
@@ -29,3 +33,6 @@ func add_to_log(msg: String):
 	
 func set_o2(value_percent: float):
 	$"%OxygenProgress".value = value_percent
+	
+func set_treasure(treasures: int):
+	$"%TreasureAmount".text = "%02d" % treasures
