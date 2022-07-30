@@ -23,7 +23,6 @@ func _ready() -> void:
 	if len(args) >= 1:
 		if args[0] == 'debug':
 			Game.debug = true
-	Game.viewport_sprite = $Sprite
 
 	OnlineMatch.connect("error", self, "_on_OnlineMatch_error")
 	OnlineMatch.connect("disconnected", self, "_on_OnlineMatch_disconnected")
