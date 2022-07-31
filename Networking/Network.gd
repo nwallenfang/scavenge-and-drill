@@ -81,16 +81,20 @@ func connect_to_matchmaking():
 	
 	var device_id = OS.get_unique_id()
 	var username = 'Milhelm'  # let player choose their name?
-	nakama_session = yield(Network.nakama_client.authenticate_device_async(device_id, username, true, null), "completed")
-	
-	if nakama_session.is_exception():
-		print("Login failed!")
-		print(nakama_session.get_exception())
-#		ui_layer.show_message("Login failed!")
+	for i in range(10):
+		nakama_session = yield(Network.nakama_client.authenticate_device_async(device_id, username, true, null), "completed")
+		
+		if nakama_session.is_exception():
+			print("(%d) Login failed!" % i)
+			print(nakama_session.get_exception())
+	#		ui_layer.show_message("Login failed!")
 
-		# We always set Online.nakama_session in case something is yielding
-		# on the "session_changed" signal.
-		nakama_session = null
+			# We always set Online.nakama_session in case something is yielding
+			# on the "session_changed" signal.
+			nakama_session = null
+			yield(get_tree().create_timer(.1),"timeout")
+		else:
+			break
 	
 	# Connect socket to realtime Nakama API if not connected.
 	if not Network.is_nakama_socket_connected():

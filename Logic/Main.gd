@@ -34,12 +34,15 @@ func _ready() -> void:
 		# other instance should wait a little because the first instance 
 		# becomes the server
 		if not is_player1:
-			yield(get_tree().create_timer(.4), "timeout")
+			yield(get_tree().create_timer(.3), "timeout")
 		$MainMenu.visible = false
 		Network.connect_to_matchmaking()
 		
 	Game.connect("oxygen_depleted", self, "game_to_shop_transition")
+	get_viewport().connect("size_changed", self, "resize_viewport")
 
+func resize_viewport():
+	$ViewportContainer/Viewport.size = get_viewport().size
 
 func _on_OnlineMatch_matchmaker_matched(_players: Dictionary):
 #	ui_layer.show_screen("ReadyScreen", { players = _players })
