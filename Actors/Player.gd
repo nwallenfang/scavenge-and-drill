@@ -12,6 +12,8 @@ var current_hover_object: Spatial
 
 var inventory_ball_count := 0
 
+var cable_force := Vector3.ZERO
+
 func _physics_process(delta):
 	if not Game.game_started:
 		return
@@ -25,6 +27,8 @@ func _physics_process(delta):
 			facing_direction = move_direction_normalized
 
 		add_acceleration(ACC * move_direction_normalized)
+		if len(cable_force) > .01:
+			add_acceleration(ACC * cable_force)
 		execute_movement(delta)
 		
 		var target_hover_object = null

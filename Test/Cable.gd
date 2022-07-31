@@ -7,9 +7,18 @@ export var seg_length = .25
 export var width := .15
 export var resolution := 8
 
+export var stretch_start := .3
+export var stretch_end := .45
+
 func _physics_process(delta):
 	render()
 	test_cable_stretch()
+
+var player_a
+var player_b
+func set_players(a, b):
+	player_a = a
+	player_b = b
 
 var highest_distance: float
 var average_distance: float
@@ -24,6 +33,12 @@ func test_cable_stretch():
 	highest_distance = most
 	average_distance = sum / (len(segments)-1)
 	Game.ui.set_rope_length("average %.4f / highest %.4f" % [average_distance, highest_distance])
+	var stretch_factor := clamp((average_distance - stretch_start) / (stretch_end  - stretch_start), 0.0, 1.0)
+	var direction_for_a : Vector3 = segments[0].global_translation.direction_to(segments[1].global_translation)
+	var direction_for_b : Vector3 = segments[-1].global_translation.direction_to(segments[-2].global_translation)
+	player_a.cable_force = direction_for_a * stretch_factor
+	player_b.cable_force = direction_for_b * stretch_factor
+	$ImmediateGeometry.material_override.albedo_color = lerp(Color.white, Color.red, stretch_factor)
 	
 
 func create_cable(piece_a: Spatial, piece_b: Spatial):

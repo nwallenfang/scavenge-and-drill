@@ -10,6 +10,7 @@ func _ready():
 	$Player1.set_color(player1_color)
 	$Player2.set_color(player2_color)
 	$Cable.create_cable($Player1/Handle, $Player2/Handle)
+	$Cable.set_players($Player1, $Player2)
 	Game.connect("oxygen_depleted", self, "server_oxy_depleted")
 
 

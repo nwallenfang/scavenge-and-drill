@@ -6,6 +6,6 @@ func set_target(t: Spatial):
 	target = t
 	self.global_translation = target.global_translation
 
-func _physics_process(delta):
+func _process(delta):
 	if target != null:
 		self.global_translation = target.global_translation
