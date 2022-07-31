@@ -1,9 +1,17 @@
 - Treasure icon
   - https://thenounproject.com/icon/treasures-1071021/
   - James Smith
+  - CC-BY
 - Gear icon
   - https://thenounproject.com/icon/gear-5023282/
   - Nur Faizah
+  - CC-BY
 - Gold icon
   - https://thenounproject.com/icon/gold-4514062/
   - Mas Dhimas
+  - CC-BY
+- Eight-toothed Gear
+  - https://opengameart.org/content/eight-toothed-gear
+  - Xeno00
+  - CC0
+
