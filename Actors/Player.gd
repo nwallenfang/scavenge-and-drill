@@ -27,7 +27,7 @@ func _physics_process(delta):
 			facing_direction = move_direction_normalized
 
 		add_acceleration(ACC * move_direction_normalized)
-		if len(cable_force) > .01:
+		if cable_force.length() > .01:
 			add_acceleration(ACC * cable_force)
 		execute_movement(delta)
 		
