@@ -34,7 +34,7 @@ func _ready() -> void:
 		# other instance should wait a little because the first instance 
 		# becomes the server
 		if not is_player1:
-			yield(get_tree().create_timer(.4), "timeout")
+			yield(get_tree().create_timer(.3), "timeout")
 		$MainMenu.visible = false
 		Network.connect_to_matchmaking()
 		
