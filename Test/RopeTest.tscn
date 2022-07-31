@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Test/RopeTest.gd" type="Script" id=1]
-[ext_resource path="res://Test/Cable.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/Cable.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Actors/Player.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleMesh" id=8]

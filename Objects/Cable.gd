@@ -1,6 +1,6 @@
 extends Spatial
 
-const SEGMENT = preload("res://Test/CableSegment.tscn")
+const SEGMENT = preload("res://Objects/CableSegment.tscn")
 var segments = []
 
 export var seg_length = .25
