@@ -17,7 +17,7 @@ var main_cam: Camera
 
 var max_o2 := 100.0
 var o2 := 100.0 setget set_o2
-var o2_loss_per_s := 20.0
+var o2_loss_per_s := 1.0
 
 const TYPE_GOLD = 1
 const TYPE_GEARS = 2

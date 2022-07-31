@@ -60,4 +60,8 @@ func set_treasure(treasures: int, treasure_type: int):
 	tween = create_tween()
 	tween.tween_property($"%TreasureUI", "modulate", blended_out, 0.4)
 	tween.play()
+	
+	
+func set_rope_length():
+	pass
 

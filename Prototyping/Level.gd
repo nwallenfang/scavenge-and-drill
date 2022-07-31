@@ -63,3 +63,5 @@ func do_game_setup(players: Dictionary):
 		camera.initialize($Player1)
 
 
+func _on_RopeLengthChecker_timeout() -> void:
+	pass # Replace with function body.

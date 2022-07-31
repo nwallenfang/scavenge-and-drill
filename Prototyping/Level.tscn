@@ -130,7 +130,12 @@ transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 10, 0 )
 [node name="Treasure" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.855672, 0, -8.46221 )
 
+[node name="RopeLengthChecker" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
 [connection signal="player_entered" from="Objects/ButtonPlate1" to="Objects/Door" method="_on_ButtonPlate1_player_entered"]
 [connection signal="player_left" from="Objects/ButtonPlate1" to="Objects/Door" method="_on_ButtonPlate1_player_left"]
 [connection signal="player_entered" from="Objects/ButtonPlate2" to="Objects/Door" method="_on_ButtonPlate2_player_entered"]
 [connection signal="player_left" from="Objects/ButtonPlate2" to="Objects/Door" method="_on_ButtonPlate2_player_left"]
+[connection signal="timeout" from="RopeLengthChecker" to="." method="_on_RopeLengthChecker_timeout"]
