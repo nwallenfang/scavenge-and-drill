@@ -29,7 +29,7 @@ player2_color = Color( 0.843137, 0.215686, 0.215686, 1 )
 [node name="Cable" parent="." instance=ExtResource( 10 )]
 
 [node name="Player1" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.187758, 0 )
 
 [node name="Handle" type="Spatial" parent="Player1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
@@ -39,7 +39,7 @@ transform = Transform( 0.20187, 0, 0, 0, 0.20187, 0, 0, 0, 0.20187, 0, 0, 0 )
 mesh = SubResource( 3 )
 
 [node name="Player2" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.187758, 0 )
 
 [node name="Handle" type="Spatial" parent="Player2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
@@ -54,10 +54,12 @@ mesh = SubResource( 4 )
 
 [node name="Ground" type="CSGBox" parent="CSGLayout"]
 transform = Transform( 24.2766, 0, 0, 0, 1, 0, 0, 0, 24.2766, 0, -1.03167, 0 )
+use_collision = true
 material = SubResource( 1 )
 
 [node name="Ground2" type="CSGBox" parent="CSGLayout"]
 transform = Transform( 24.2766, 0, 0, 0, 1, 0, 0, 0, 24.2766, 0, -1.03167, -48.5524 )
+use_collision = true
 material = SubResource( 2 )
 
 [node name="Wall" type="CSGBox" parent="CSGLayout"]

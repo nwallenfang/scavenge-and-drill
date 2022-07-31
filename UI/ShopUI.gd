@@ -8,6 +8,9 @@ func _ready() -> void:
 		entry = entry as ShopEntry
 		entry.connect("upgrade_clicked", self, "upgrade_clicked")
 	initialize()
+	
+	# reinitialize to see what's affordable, update treasure count interface
+	Game.connect("treasure_count_changed", self, "initialize")
 
 
 func initialize():
@@ -22,6 +25,10 @@ func initialize():
 			entry.affordable = true
 		else:
 			entry.affordable = false
+			
+func update_treasure():
+	$"%GearAmount".text = "%02d" % Game.treasure_gears
+	$"%GoldAmount".text = "%02d" % Game.treasure_gold
 
 
 func upgrade_clicked(upgrade_attribute: String, cost_gold: int, cost_gears:int):
@@ -35,6 +42,7 @@ func upgrade_clicked(upgrade_attribute: String, cost_gold: int, cost_gears:int):
 		Game.log("Error: unknown attribute " + upgrade_attribute)
 	else:
 		Game.rpc("set_upgrade", upgrade_attribute, cost_gold, cost_gears)
+		
 
 
 func _on_Button_pressed() -> void:

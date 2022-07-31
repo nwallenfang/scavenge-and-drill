@@ -81,12 +81,15 @@ func set_treasures(amount: int, type: int):
 		
 func set_gold(amount: int):
 	pass
-	
+
+signal treasure_count_changed
 remotesync func set_upgrade(name, cost_gold, cost_gears):
 	# only set Upgrades with this method so that it's nice and synced
 	Game.log("setting upgrade " + name)
 	treasure_gears -= cost_gears
 	treasure_gold -= cost_gold
+	
+	emit_signal("treasure_count_changed")
 
 
 func log(msg: String):

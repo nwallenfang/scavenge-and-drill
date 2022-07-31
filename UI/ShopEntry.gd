@@ -6,14 +6,16 @@ export var upgrade_attribute: String
 export var cost_gears: int = 1
 export var cost_gold: int = 2
 
-const unaffordable_color: Color = Color("5a2424")
+const unaffordable_color: Color = Color("c24040")
 const unaffordable_modulate: Color = Color("3effffff")
 const affordable_color: Color = Color.white
 
 var style_box_default: StyleBoxFlat
 var style_box_hovered: StyleBoxFlat = preload("res://UI/Styles/panel_hovered.tres")
 var style_box_not_affordable: StyleBoxFlat = preload("res://UI/Styles/panel_not_affordable.tres")
+var style_box_bought: StyleBoxFlat = preload("res://UI/Styles/panel_bought.tres")
 var affordable = true setget set_affordable
+var bought = false
 
 func _ready() -> void:
 	style_box_default = $Panel.get("custom_styles/panel")
@@ -21,14 +23,14 @@ func _ready() -> void:
 	$"%GoldAmount".text = str(cost_gold)
 	
 func set_affordable(val: bool):
-	if not val and affordable:  # switch away
+	if not val and affordable and not bought:  # switch away
 		$Panel.set("custom_styles/panel", style_box_not_affordable)
 		if cost_gears > Game.treasure_gears:
 			$"%GearAmount".add_color_override("font_color", unaffordable_color)
 		if cost_gold > Game.treasure_gold:
 			$"%GoldAmount".add_color_override("font_color", unaffordable_color)
 		$"%Image".modulate = unaffordable_modulate
-	if val and not affordable:  # switch back
+	if val and not affordable and not bought:  # switch back
 		$"%GearAmount".add_color_override("font_color", affordable_color)
 		$"%GoldAmount".add_color_override("font_color", affordable_color)
 		$Panel.set("custom_styles/panel", style_box_default)
@@ -52,5 +54,12 @@ func _on_Panel_gui_input(event: InputEvent) -> void:
 		event = event as InputEventMouseButton
 
 		if event.pressed and affordable:
+			if bought:
+				return
 			emit_signal("upgrade_clicked", upgrade_attribute, cost_gold, cost_gears)
+			bought = true
+			$Panel.set("custom_styles/panel", style_box_bought)
+			$"%GearAmount".add_color_override("font_color", affordable_color)
+			$"%GoldAmount".add_color_override("font_color", affordable_color)
+			$"%Image".modulate = unaffordable_modulate
 

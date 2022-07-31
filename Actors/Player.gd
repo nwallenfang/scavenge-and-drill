@@ -45,7 +45,6 @@ func _physics_process(delta):
 			if is_instance_valid(current_hover_object):
 				current_hover_object.set_hover_state(false, self.name)
 		if Input.is_action_just_pressed("interact"):
-			# TODO had an error here current_hover_object was null
 			if is_instance_valid(current_hover_object):
 				current_hover_object.on_interact(self)
 	else:

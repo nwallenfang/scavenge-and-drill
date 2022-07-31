@@ -17,7 +17,7 @@ func test_cable_stretch():
 	var sum = 0.0
 	var most = 0.0
 	for i in range(len(segments)-1):
-		var dist = segments[i].global_transformation.distance_to(segments[i+1].global_transformation)
+		var dist = segments[i].global_translation.distance_to(segments[i+1].global_translation)
 		sum += dist
 		if dist > most:
 			most = dist

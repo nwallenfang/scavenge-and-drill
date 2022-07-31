@@ -80,7 +80,7 @@ margin_bottom = 51.0
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="Panel/CenterContainer/VBoxContainer/CenterContainer/Cost"]
 margin_right = 32.0
 margin_bottom = 51.0
-mouse_filter = 2
+mouse_filter = 1
 
 [node name="GearIcon" type="ColorRect" parent="Panel/CenterContainer/VBoxContainer/CenterContainer/Cost/AspectRatioContainer"]
 modulate = Color( 0.172549, 0.133333, 0.133333, 1 )
@@ -89,6 +89,7 @@ margin_top = 9.5
 margin_right = 32.0
 margin_bottom = 41.5
 rect_min_size = Vector2( 32, 32 )
+mouse_filter = 1
 
 [node name="GearAmount" type="Label" parent="Panel/CenterContainer/VBoxContainer/CenterContainer/Cost"]
 unique_name_in_owner = true
@@ -110,7 +111,7 @@ rect_min_size = Vector2( 16, 0 )
 margin_left = 83.0
 margin_right = 115.0
 margin_bottom = 51.0
-mouse_filter = 2
+mouse_filter = 1
 
 [node name="GoldIcon" type="ColorRect" parent="Panel/CenterContainer/VBoxContainer/CenterContainer/Cost/AspectRatioContainer2"]
 modulate = Color( 0.729412, 0.635294, 0.196078, 1 )
@@ -119,6 +120,7 @@ margin_top = 9.5
 margin_right = 32.0
 margin_bottom = 41.5
 rect_min_size = Vector2( 32, 32 )
+mouse_filter = 1
 
 [node name="GoldAmount" type="Label" parent="Panel/CenterContainer/VBoxContainer/CenterContainer/Cost"]
 unique_name_in_owner = true
