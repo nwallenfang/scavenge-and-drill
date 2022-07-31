@@ -79,6 +79,7 @@ margin_bottom = 21.0
 text = "Rope length:"
 
 [node name="RopeLength" type="Label" parent="DevContainer/DeveloperInfo/RopeLengthCon"]
+unique_name_in_owner = true
 margin_left = 200.0
 margin_right = 200.0
 margin_bottom = 21.0

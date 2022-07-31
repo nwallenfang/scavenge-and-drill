@@ -23,6 +23,7 @@ func test_cable_stretch():
 			most = dist
 	highest_distance = most
 	average_distance = sum / (len(segments)-1)
+	Game.ui.set_rope_length("average %.4f / highest %.4f" % [average_distance, highest_distance])
 	
 
 func create_cable(piece_a: Spatial, piece_b: Spatial):

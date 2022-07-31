@@ -62,6 +62,6 @@ func set_treasure(treasures: int, treasure_type: int):
 	tween.play()
 	
 	
-func set_rope_length():
-	pass
+func set_rope_length(s):
+	$"%RopeLength".text = s
 
