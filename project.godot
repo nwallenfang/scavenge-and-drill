@@ -132,6 +132,7 @@ Nakama="*res://addons/com.heroiclabs.nakama/Nakama.gd"
 OnlineMatch="*res://addons/nakama-webrtc/OnlineMatch.gd"
 Game="*res://Logic/Game.tscn"
 Network="*res://Networking/Network.tscn"
+Dialog="*res://Logic/Dialog.tscn"
 
 [debug]
 
