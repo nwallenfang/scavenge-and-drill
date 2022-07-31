@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Materials/TreasureMaterial.tres" type="Material" id=1]
+[ext_resource path="res://Objects/TreasureArea.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/Treasure.gd" type="Script" id=3]
+
+[sub_resource type="CubeMesh" id=1]
+material = ExtResource( 1 )
+
+[node name="TreasureGold" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="TreasureArea" parent="." instance=ExtResource( 2 )]
+amount = 2
+type = 1
+label_color = Color( 0.701961, 0.615686, 0.215686, 1 )
+
+[node name="Mesh" type="Spatial" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="Mesh"]
+transform = Transform( 0.495805, 0, 0, 0, 0.495805, 0, 0, 0, 0.495805, -0.377746, 0.360092, 0.0111868 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+
+[node name="MeshInstance2" type="MeshInstance" parent="Mesh"]
+transform = Transform( 0.495805, 0, 0, 0, 0.495805, 0, 0, 0, 0.495805, -0.377746, 1.06829, 0.400201 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3" type="MeshInstance" parent="Mesh"]
+transform = Transform( 0.495805, 0, 0, 0, 0.495805, 0, 0, 0, 0.495805, 0.225616, 0.722884, -0.355826 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+
+[connection signal="animation_done" from="TreasureArea" to="." method="_on_TreasureArea_animation_done"]
+[connection signal="picked_up" from="TreasureArea" to="." method="_on_TreasureArea_picked_up"]

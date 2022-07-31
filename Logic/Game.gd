@@ -70,17 +70,10 @@ remotesync func sync_treasures(amount, type):
 			treasure_gears = amount
 		TYPE_3:
 			treasure_3 = amount
-
+			
 	ui.set_treasure(amount, type)
 
-func set_treasures(amount: int, type: int):
-	# maybe this RPC isn't even needed since the treasure gets picked up 
-	# for both players..
-	if is_network_master():
-		rpc("sync_treasures", amount)
-		
-func set_gold(amount: int):
-	pass
+
 
 signal treasure_count_changed
 remotesync func set_upgrade(name, cost_gold, cost_gears):
