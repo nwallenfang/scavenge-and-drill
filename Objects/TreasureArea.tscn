@@ -105,12 +105,11 @@ type = 2
 shape = SubResource( 2 )
 
 [node name="Label" type="Label3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0698564, 2.0459, 0.512615 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0698564, 0.0361553, 0.512615 )
 visible = false
 pixel_size = 0.02
 billboard = 1
 render_priority = 1
-modulate = Color( 1, 1, 1, 0 )
 text = "+1"
 font = ExtResource( 1 )
 

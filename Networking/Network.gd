@@ -78,8 +78,13 @@ func is_nakama_socket_connected() -> bool:
 func connect_to_matchmaking():
 	# first off authenticate with Nakama
 	# TODO device ID not available on Web, need to find an alternative!
-	
-	var device_id = OS.get_unique_id()
+	var device_id
+	if OS.has_feature("HTML5"):
+		# dirty hack, let's just use parts of the unix timestamp..
+		# hope this method is available on web
+		device_id = OS.get_unix_time()
+	else:
+		device_id = OS.get_unique_id()
 	var username = 'Milhelm'  # let player choose their name?
 	for i in range(10):
 		nakama_session = yield(Network.nakama_client.authenticate_device_async(device_id, username, true, null), "completed")
