@@ -74,6 +74,8 @@ func render():
 		for i in range(segment_count - 1):
 			var a : Vector3 = segment_points[i]
 			var b : Vector3 = segment_points[i+1]
+			if a == b:
+				return
 			segment_verts.append(get_directed_circle_points(a, b-a, resolution, width))
 			if i == segment_count - 2: # for the last segment
 				segment_verts.append(get_directed_circle_points(b, b-a, resolution, width))
