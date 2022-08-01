@@ -1,0 +1,118 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://UI/DialogPanel.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/DialogFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Assets/Sprites/arrow_down.png" type="Texture" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.188235, 0.188235, 0.188235, 0.631373 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform sampler2D texture_resource;
+
+void fragment(){
+	COLOR = texture(texture_resource, UV);
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/texture_resource = ExtResource( 3 )
+
+[node name="DialogPanel" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="CharacterInfo" type="VBoxContainer" parent="HBoxContainer"]
+margin_right = 100.0
+margin_bottom = 600.0
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="HBoxContainer/CharacterInfo"]
+margin_right = 100.0
+margin_bottom = 100.0
+
+[node name="Icon" type="ColorRect" parent="HBoxContainer/CharacterInfo/AspectRatioContainer"]
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+
+[node name="Name" type="RichTextLabel" parent="HBoxContainer/CharacterInfo"]
+unique_name_in_owner = true
+margin_top = 104.0
+margin_right = 100.0
+margin_bottom = 141.0
+custom_fonts/normal_font = ExtResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[center][color=red]Name"
+text = "Name"
+fit_content_height = true
+
+[node name="Gap" type="Control" parent="HBoxContainer"]
+margin_left = 104.0
+margin_right = 124.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="Text" type="RichTextLabel" parent="HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 128.0
+margin_right = 957.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+custom_fonts/normal_font = ExtResource( 2 )
+text = "Hii this is a long multiline text
+Test"
+scroll_active = false
+
+[node name="ContinueDialog" type="VBoxContainer" parent="HBoxContainer"]
+margin_left = 961.0
+margin_right = 1024.0
+margin_bottom = 600.0
+alignment = 2
+
+[node name="Button" type="Button" parent="HBoxContainer/ContinueDialog"]
+visible = false
+margin_top = 55.0
+margin_right = 63.0
+margin_bottom = 82.0
+icon_align = 1
+
+[node name="ContinueArrowCon" type="AspectRatioContainer" parent="HBoxContainer/ContinueDialog"]
+margin_top = 545.0
+margin_right = 63.0
+margin_bottom = 575.0
+alignment_vertical = 2
+
+[node name="BlinkingArrow" type="ColorRect" parent="HBoxContainer/ContinueDialog/ContinueArrowCon"]
+material = SubResource( 3 )
+margin_left = 16.5
+margin_right = 46.5
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+
+[node name="Label" type="Label" parent="HBoxContainer/ContinueDialog"]
+margin_top = 579.0
+margin_right = 63.0
+margin_bottom = 600.0
+text = "[space]"
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

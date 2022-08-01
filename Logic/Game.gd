@@ -2,6 +2,7 @@ extends Node
 
 
 onready var ui: UI  # will be set in level do_game_setup()
+onready var dialog_ui
 
 var online_play := true
 # debug mode set from command line -> skip cutscenes, main menu, etc.
@@ -17,7 +18,7 @@ var main_cam: Camera
 
 var max_o2 := 100.0
 var o2 := 100.0 setget set_o2
-var o2_loss_per_s := 1.0
+var o2_loss_per_s := 10.0
 
 const TYPE_GOLD = 1
 const TYPE_GEARS = 2
@@ -41,6 +42,9 @@ func _process(delta: float) -> void:
 #			viewport_sprite.material.set_shader_param("sideview_direction", main_cam.shader_direction)
 	if Input.is_action_just_pressed("pause"):
 		ui.toggle_pause()
+		
+	if Input.is_action_just_pressed("skip_dialog"):
+		dialog_ui.skip_dialog()
 	if game_started:  # state machine maybe? menu/in_game/merchant
 		# this doesn't get synced at the moment since the calc should be the
 		# same for both players
@@ -48,12 +52,13 @@ func _process(delta: float) -> void:
 		self.o2 -= o2_loss_per_s * delta
 
 signal oxygen_depleted
-var oxy_critical_threshold = 0.1 * max_o2
-signal oxygen_critical  # maybe some screen effect or sound? maybe not
+var oxy_critical_threshold = 0.8 * max_o2
+signal oxygen_low  # maybe some screen effect or sound? maybe not
 signal oxygen_filled
 func set_o2(value: float):
 	if o2 >= oxy_critical_threshold and value < oxy_critical_threshold:
-		emit_signal("oxygen_critical")
+		emit_signal("oxygen_low")
+		Dialog.trigger("oxygen_low")
 	if value <= 0.0 and o2 > 0.0:
 		emit_signal("oxygen_depleted")
 	

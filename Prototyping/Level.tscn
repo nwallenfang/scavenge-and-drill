@@ -9,8 +9,8 @@
 [ext_resource path="res://Objects/ButtonPlate.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Objects/Door.tscn" type="PackedScene" id=8]
 [ext_resource path="res://default_env.tres" type="Environment" id=9]
-[ext_resource path="res://Objects/TreasureGears.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Objects/Cable.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Objects/TreasureGears.tscn" type="PackedScene" id=11]
 
 [sub_resource type="SphereMesh" id=3]
 
