@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Test/RopeTest.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Cable.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Actors/Player.gd" type="Script" id=3]
+[ext_resource path="res://Objects/Algae.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleMesh" id=8]
 
@@ -43,7 +44,8 @@ script = ExtResource( 1 )
 
 [node name="Player" type="KinematicBody" parent="." groups=["networked"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.65978, 0, -0.409312 )
-collision_layer = 2
+collision_layer = 4
+collision_mask = 5
 script = ExtResource( 3 )
 ACC = 140.0
 
@@ -149,3 +151,9 @@ mesh = SubResource( 5 )
 transform = Transform( 1, 0, 0, 0, 0.715583, 0.698528, 0, -0.698528, 0.715583, 0, 10.8146, 3.52553 )
 
 [node name="Cable" parent="." instance=ExtResource( 2 )]
+
+[node name="Algae" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17801, 1.26581, -5.96908 )
+
+[node name="Algae2" parent="." instance=ExtResource( 4 )]
+transform = Transform( -0.69849, 0, -0.71562, 0, 1, 0, 0.71562, 0, -0.69849, -7.74654, 1.26581, -5.96908 )
