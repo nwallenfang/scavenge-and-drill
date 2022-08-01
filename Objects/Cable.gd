@@ -23,6 +23,8 @@ func set_players(a, b):
 var highest_distance: float
 var average_distance: float
 func test_cable_stretch():
+	if segments.empty():
+		return
 	var sum = 0.0
 	var most = 0.0
 	for i in range(len(segments)-1):
@@ -32,7 +34,8 @@ func test_cable_stretch():
 			most = dist
 	highest_distance = most
 	average_distance = sum / (len(segments)-1)
-	Game.ui.set_rope_length("average %.4f / highest %.4f" % [average_distance, highest_distance])
+	if Game.ui != null:
+		Game.ui.set_rope_length("average %.4f / highest %.4f" % [average_distance, highest_distance])
 	var stretch_factor := clamp((average_distance - stretch_start) / (stretch_end  - stretch_start), 0.0, 1.0)
 	var direction_for_a : Vector3 = segments[0].global_translation.direction_to(segments[1].global_translation)
 	var direction_for_b : Vector3 = segments[-1].global_translation.direction_to(segments[-2].global_translation)

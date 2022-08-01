@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Prototyping/Level.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://default_env.tres" type="Environment" id=9]
 [ext_resource path="res://Objects/Cable.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Objects/TreasureGears.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Objects/Algae.tscn" type="PackedScene" id=12]
 
 [sub_resource type="SphereMesh" id=3]
 
@@ -115,6 +116,24 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.76027, 0, -20.4439 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.96723, 0, -20.4439 )
 
 [node name="Door" parent="Objects" instance=ExtResource( 8 )]
+
+[node name="Algae" parent="Objects" instance=ExtResource( 12 )]
+transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, -4.9941, 0, -4.23189 )
+
+[node name="Algae2" parent="Objects" instance=ExtResource( 12 )]
+transform = Transform( 0.980727, 0, -0.195381, 0, 1, 0, 0.195381, 0, 0.980727, -3.79239, -9.53674e-07, -8.84642 )
+
+[node name="Algae3" parent="Objects" instance=ExtResource( 12 )]
+transform = Transform( 0.998978, 0, 0.0451886, 0, 1, 0, -0.0451886, 0, 0.998978, 6.31561, -1.90735e-06, -8.14274 )
+
+[node name="Algae4" parent="Objects" instance=ExtResource( 12 )]
+transform = Transform( 0.987879, 0, -0.155228, 0, 1, 0, 0.155228, 0, 0.987879, 10.071, 0, -4.78975 )
+
+[node name="Algae5" parent="Objects" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5367, 0, -7.77911 )
+
+[node name="Algae6" parent="Objects" instance=ExtResource( 12 )]
+transform = Transform( 0.999298, 0, -0.0374634, 0, 1, 0, 0.0374634, 0, 0.999298, 14.34, 0, -2.83039 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 9 )
