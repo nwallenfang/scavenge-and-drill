@@ -14,4 +14,8 @@
   - https://opengameart.org/content/eight-toothed-gear
   - Xeno00
   - CC0
+- arrow down
+  - https://thenounproject.com/icon/arrow-2840911/
+  - TAQRIB ICON
+  - CC-BY
 

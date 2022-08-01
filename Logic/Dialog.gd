@@ -5,6 +5,27 @@ func _ready():
 
 enum SPEAKERS {ROBOT, HUMAN, MERCHANT, FISH}
 
+var names = {
+	SPEAKERS.ROBOT: "Robot",
+	SPEAKERS.HUMAN: "Human",
+	SPEAKERS.MERCHANT: "Merchant",
+	SPEAKERS.FISH: "Fish",
+}
+
+var colors = {
+	SPEAKERS.ROBOT: Color.steelblue,
+	SPEAKERS.HUMAN: Color.orange,
+	SPEAKERS.MERCHANT: Color.coral,
+	SPEAKERS.FISH: Color.white,
+}
+
+var icons = {
+	SPEAKERS.ROBOT: preload("res://Assets/Sprites/characters/robot_PLACEHOLDER.png"),
+	SPEAKERS.HUMAN: preload("res://Assets/Sprites/characters/human_PLACEHOLDER.png"),
+	SPEAKERS.MERCHANT: preload("res://Assets/Sprites/characters/human_PLACEHOLDER.png"),
+	SPEAKERS.FISH: preload("res://Assets/Sprites/characters/human_PLACEHOLDER.png"),
+}
+
 class DialogLine:
 	var speaker_id: int
 	var text: String
@@ -14,6 +35,11 @@ class DialogLine:
 		speaker_id = sid
 		text = t
 		duration = d
+	
+	func to_dict() -> Dictionary:
+		return {
+			"speaker_id": speaker_id, "text": text, "duration": duration
+		}
 
 class DialogSequence:
 	var lines := []
@@ -21,9 +47,23 @@ class DialogSequence:
 	
 	func _init(l):
 		lines = l
+		
+	func to_basic_data() -> Array:  # array of dictionaries for rpc calls
+		var ret = []
+		for line in lines:
+			ret.append(line.to_dict())
+		return ret
 
 enum SELECTION_MODES {ORDER, RANDOM}
-enum TRIGGER_MODES {ONCE, ALWAYS, COUNT_EXACT, COUNT_GREATER_EQ, VALUE_EXACT, VALUE_GREATER_EQ, CHANCE}
+enum TRIGGER_MODES {
+	ONCE,
+	ALWAYS,
+	COUNT_EXACT,
+	COUNT_GREATER_EQ,  
+	VALUE_EXACT,
+	VALUE_GREATER_EQ,
+	CHANCE
+}
 
 class DialogTrigger:
 	var trigger_key: String
@@ -68,9 +108,11 @@ func trigger(trigger_key: String, value = null):
 		trigger_counts[trigger_key] = 1
 	
 	var found_dialogs := []
-	
+	var found_indices := []  # needed for rpc since it can't pass custom objects
+	var index = 0
 	for dialog_trigger in all_dialogs:
 		dialog_trigger = dialog_trigger as DialogTrigger
+#		dialog_trigger.index = index
 		if dialog_trigger.trigger_key == trigger_key and dialog_trigger.can_trigger:
 			match(dialog_trigger.trigger_mode):
 				TRIGGER_MODES.ONCE:
@@ -94,10 +136,12 @@ func trigger(trigger_key: String, value = null):
 				TRIGGER_MODES.CHANCE:
 					if randf() <= dialog_trigger.condition_value:
 						found_dialogs.append(dialog_trigger)
+		index += 1
 	
 	if not found_dialogs.empty():
 		found_dialogs.sort_custom(ImportanceSorter, "sort")
 		var best_match := current_dialog_trigger
+		var best_match_index := 0
 		for dialog_trigger in found_dialogs:
 			if best_match == null:
 				best_match = dialog_trigger
@@ -112,6 +156,8 @@ func trigger(trigger_key: String, value = null):
 		
 		if best_match != current_dialog_trigger:
 			execute_dialog(best_match)
+	else:
+		Game.log("unknown dialog trigger: " + trigger_key)
 
 signal dialog_started
 
@@ -153,6 +199,11 @@ func on_dialog_ended():
 	if not currently_dialoging:
 		if not dialog_queue.empty():
 			execute_dialog(dialog_queue.pop_front())
+			
+			
+func add_dialog():
+	# TODO connect to signal automatically
+	pass
 
 func create_all_dialogs():
 	var d
