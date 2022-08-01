@@ -15,7 +15,7 @@ func _physics_process(delta):
 			var push_vector = push_trigger * direction_2d
 			push += push_vector
 		var push_direction = push.normalized()
-		var push_strength = min(1.0,push.length())
+		var push_strength = clamp(push.length(), 0.0, .8)
 		print(push_direction)
 		print(push_strength)
 		$Model/Mesh.get("material/0").set("shader_param/push_direction", push_direction)

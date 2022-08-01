@@ -33,7 +33,7 @@ const float wiggle_factor = .2;
 const float wiggle_speed = 4.0;
 const float wiggle_freq = 16.0;
 const float push_curve = 2.0;
-const float push_factor = 2.0;
+const float push_factor = 1.5;
 
 float clamp_and_map(float value, float istart, float istop, float ostart, float ostop) {
     value = clamp(value, istart, istop);
@@ -43,7 +43,13 @@ float clamp_and_map(float value, float istart, float istop, float ostart, float 
 void vertex() {
 	UV=UV*uv1_scale.xy+uv1_offset.xy;
 	
-	vec2 direction = push_direction;
+	// world direction_to_local_direction
+	vec2 world_position = (inverse(WORLD_MATRIX) * vec4(0.0, 0.0, 0.0, 1.0)).xz;
+	vec2 direction = (inverse(WORLD_MATRIX) * vec4(push_direction.x, 0.0, push_direction.y, 1.0)).xz - world_position;
+	direction = direction + float(length(direction) <= 0.001) * vec2(1.0, 0.0); // very very cringe that this is necesarry
+	direction = normalize(direction);
+	//direction = vec2(1.0, 0.0);
+	
 	float y = clamp_and_map(VERTEX.y, y_min, y_max, 0.0, 1.0);
 	float wiggle_strength = smoothstep(push_strength -wiggle_transition, push_strength + wiggle_transition, y);
 //	float y_for_push = mix(y, push_factor, clamp(step(push_factor, y), 0.0, 1.0));
@@ -73,6 +79,7 @@ void fragment() {
 "
 
 [sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
 shader = SubResource( 3 )
 shader_param/albedo = Color( 1, 1, 1, 1 )
 shader_param/specular = 0.5
@@ -83,7 +90,7 @@ shader_param/uv1_scale = Vector3( 1, 1, 1 )
 shader_param/uv1_offset = Vector3( 0, 0, 0 )
 shader_param/uv2_scale = Vector3( 1, 1, 1 )
 shader_param/uv2_offset = Vector3( 0, 0, 0 )
-shader_param/push_direction = Vector2( 0, 1 )
+shader_param/push_direction = Vector2( 0, 0 )
 shader_param/push_strength = 0.0
 
 [node name="Algae" type="Spatial"]
