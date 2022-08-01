@@ -14,7 +14,7 @@ func show_dialog_line(line):
 	# TODO add color
 	$"%Name".bbcode_text = "[center]" + Dialog.names[line.speaker_id]
 	$"%Text".text = line.text
-	
+	$"%Icon".material.set("shader_param/texture_resource", Dialog.icons[line.speaker_id])
 	$Timer.start(line.duration)
 	
 	# see DialogUI

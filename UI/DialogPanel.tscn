@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://UI/DialogPanel.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/DialogFont.tres" type="DynamicFont" id=2]
@@ -24,6 +24,14 @@ uniform sampler2D texture_resource;
 void fragment(){
 	COLOR = texture(texture_resource, UV);
 }"
+
+[sub_resource type="StreamTexture" id=4]
+flags = 4
+load_path = "res://.import/gear.png-2583097dcad136b33cb185abc6c23b22.stex"
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 2 )
+shader_param/texture_resource = SubResource( 4 )
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = SubResource( 2 )
@@ -51,6 +59,8 @@ margin_right = 100.0
 margin_bottom = 100.0
 
 [node name="Icon" type="ColorRect" parent="HBoxContainer/CharacterInfo/AspectRatioContainer"]
+unique_name_in_owner = true
+material = SubResource( 5 )
 margin_right = 100.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )

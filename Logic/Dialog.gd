@@ -19,6 +19,13 @@ var colors = {
 	SPEAKERS.FISH: Color.white,
 }
 
+var icons = {
+	SPEAKERS.ROBOT: preload("res://Assets/Sprites/characters/robot_PLACEHOLDER.png"),
+	SPEAKERS.HUMAN: preload("res://Assets/Sprites/characters/human_PLACEHOLDER.png"),
+	SPEAKERS.MERCHANT: preload("res://Assets/Sprites/characters/human_PLACEHOLDER.png"),
+	SPEAKERS.FISH: preload("res://Assets/Sprites/characters/human_PLACEHOLDER.png"),
+}
+
 class DialogLine:
 	var speaker_id: int
 	var text: String
