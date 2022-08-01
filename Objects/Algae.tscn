@@ -1,96 +1,25 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Objects/Algae.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Models/AlgaeModel3.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Shader/Algae.gdshader" type="Shader" id=3]
 
 [sub_resource type="SphereShape" id=1]
 radius = 4.55438
 
-[sub_resource type="SphereMesh" id=2]
-
-[sub_resource type="Shader" id=3]
-code = "// NOTE: Shader automatically converted from Godot Engine 3.5.rc8's SpatialMaterial.
-
-shader_type spatial;
-render_mode async_visible,blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
-uniform vec4 albedo : hint_color;
-uniform sampler2D texture_albedo : hint_albedo;
-uniform float specular;
-uniform float metallic;
-uniform float roughness : hint_range(0,1);
-uniform float point_size : hint_range(0,128);
-uniform vec3 uv1_scale;
-uniform vec3 uv1_offset;
-uniform vec3 uv2_scale;
-uniform vec3 uv2_offset;
-
-uniform vec2 push_direction;
-uniform float push_strength : hint_range(0.0, 1.0);
-
-const float y_min = -1.0;
-const float y_max = 1.0;
-const float wiggle_transition = .4;
-const float wiggle_factor = .2;
-const float wiggle_speed = 4.0;
-const float wiggle_freq = 16.0;
-const float push_curve = 2.0;
-const float push_factor = 1.5;
-
-float clamp_and_map(float value, float istart, float istop, float ostart, float ostop) {
-    value = clamp(value, istart, istop);
-    return ostart + (ostop - ostart) * ((value - istart) / (istop - istart));
-}
-
-void vertex() {
-	UV=UV*uv1_scale.xy+uv1_offset.xy;
-	
-	// world direction_to_local_direction
-	vec2 world_position = (inverse(WORLD_MATRIX) * vec4(0.0, 0.0, 0.0, 1.0)).xz;
-	vec2 direction = (inverse(WORLD_MATRIX) * vec4(push_direction.x, 0.0, push_direction.y, 1.0)).xz - world_position;
-	direction = direction + float(length(direction) <= 0.001) * vec2(1.0, 0.0); // very very cringe that this is necesarry
-	direction = normalize(direction);
-	//direction = vec2(1.0, 0.0);
-	
-	float y = clamp_and_map(VERTEX.y, y_min, y_max, 0.0, 1.0);
-	float wiggle_strength = smoothstep(push_strength -wiggle_transition, push_strength + wiggle_transition, y);
-//	float y_for_push = mix(y, push_factor, clamp(step(push_factor, y), 0.0, 1.0));
-//	float y_for_push = mix(y, push_factor, smoothstep(push_factor-.1,push_factor,y));
-	float y_for_push = y * float(y < push_strength) + push_strength * float(y >= push_strength);
-	
-	VERTEX.x = VERTEX.x + push_factor * direction.x * pow(y_for_push, push_curve);
-	VERTEX.z = VERTEX.z + push_factor * direction.y * pow(y_for_push, push_curve);
-	
-	
-	
-	VERTEX.x = VERTEX.x + wiggle_factor * wiggle_strength * sin(-wiggle_speed* TIME + wiggle_freq * y);
-	//VERTEX.x = VERTEX.x + 3.0* float(VERTEX.y < 1.0 && VERTEX.y > -.9);
-}
-
-
-
-
-void fragment() {
-	vec2 base_uv = UV;
-	vec4 albedo_tex = texture(texture_albedo,base_uv);
-	ALBEDO = albedo.rgb * albedo_tex.rgb;
-	METALLIC = metallic;
-	ROUGHNESS = roughness;
-	SPECULAR = specular;
-}
-"
-
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=5]
 resource_local_to_scene = true
-shader = SubResource( 3 )
-shader_param/albedo = Color( 1, 1, 1, 1 )
+shader = ExtResource( 3 )
+shader_param/albedo = Color( 0.137255, 0.541176, 0.0666667, 1 )
 shader_param/specular = 0.5
 shader_param/metallic = 0.0
-shader_param/roughness = 1.0
+shader_param/roughness = 0.78
 shader_param/point_size = 1.0
 shader_param/uv1_scale = Vector3( 1, 1, 1 )
 shader_param/uv1_offset = Vector3( 0, 0, 0 )
 shader_param/uv2_scale = Vector3( 1, 1, 1 )
 shader_param/uv2_offset = Vector3( 0, 0, 0 )
-shader_param/push_direction = Vector2( 0, 0 )
+shader_param/push_direction = null
 shader_param/push_strength = 0.0
 
 [node name="Algae" type="Spatial"]
@@ -104,8 +33,7 @@ collision_mask = 4
 shape = SubResource( 1 )
 
 [node name="Model" type="Spatial" parent="."]
+transform = Transform( 1.48594, 0, 0, 0, 1.48594, 0, 0, 0, 1.48594, 0, 0, 0 )
 
-[node name="Mesh" type="MeshInstance" parent="Model"]
-mesh = SubResource( 2 )
-skeleton = NodePath("../..")
-material/0 = SubResource( 4 )
+[node name="Mesh" parent="Model" instance=ExtResource( 2 )]
+material/0 = SubResource( 5 )
