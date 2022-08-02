@@ -190,7 +190,7 @@ size_flags_vertical = 3
 margin_right = 64.0
 margin_bottom = 480.0
 
-[node name="OxygenProgress" type="TextureProgress" parent="Game/LeftSide/Oxygen"]
+[node name="PowerProgress" type="TextureProgress" parent="Game/LeftSide/Oxygen"]
 unique_name_in_owner = true
 margin_right = 64.0
 margin_bottom = 455.0
@@ -209,7 +209,7 @@ stretch_margin_bottom = 1
 margin_top = 459.0
 margin_right = 64.0
 margin_bottom = 480.0
-text = "O2"
+text = "Pow"
 align = 1
 
 [node name="RightSide" type="HBoxContainer" parent="Game"]

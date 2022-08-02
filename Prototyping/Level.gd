@@ -11,28 +11,27 @@ func _ready():
 	$Player2.set_color(player2_color)
 	$Cable.create_cable($Player1/Handle, $Player2/Handle)
 	$Cable.set_players($Player1, $Player2)
-	Game.connect("oxygen_depleted", self, "server_oxy_depleted")
+	Game.connect("power_depleted", self, "server_power_depleted")
 
 
-func server_oxy_depleted():
+func server_power_depleted():
 	# take care that this doesn't get called twice!
 	# (from client and server)
 	if is_network_master():
-		rpc("oxygen_depleted")
+		rpc("power_depleted")
 
-remotesync func oxygen_depleted():
+remotesync func power_depleted():
 	# TODO play some kind of return cut-scene
 	# TODO merchant sequence
 	# wait for start click
 	# then reset players to their position
-	Game.log("OXYGEN DEPLETED")
+	Game.log("POWER DEPLETED")
 
 
 func do_game_setup(players: Dictionary):
-	Game.ui = $UI
 	Game.dialog_ui.visible = true
 	if Game.debug:
-		$UI.toggle_dev_panel()
+		Game.ui.toggle_dev_panel()
 	Network.start()
 	
 	var id_other_player = 1 if get_tree().get_network_unique_id() == 2 else 2

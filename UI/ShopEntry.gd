@@ -15,7 +15,7 @@ var style_box_hovered: StyleBoxFlat = preload("res://UI/Styles/panel_hovered.tre
 var style_box_not_affordable: StyleBoxFlat = preload("res://UI/Styles/panel_not_affordable.tres")
 var style_box_bought: StyleBoxFlat = preload("res://UI/Styles/panel_bought.tres")
 var affordable = true setget set_affordable
-var bought = false
+var bought = false setget set_bought
 
 func _ready() -> void:
 	style_box_default = $Panel.get("custom_styles/panel")
@@ -49,6 +49,20 @@ func _on_Panel_mouse_exited() -> void:
 		$Panel.set("custom_styles/panel", style_box_default)
 
 
+remotesync func set_bought(val: bool):
+	if val:
+		$Panel.set("custom_styles/panel", style_box_bought)
+		$"%GearAmount".add_color_override("font_color", affordable_color)
+		$"%GoldAmount".add_color_override("font_color", affordable_color)
+		$"%Image".modulate = unaffordable_modulate
+	if bought and not val:
+		Game.log("unbuy shouldn't happen")
+		printerr("unbuy shouldn't happen")
+
+	bought = val
+	
+
+
 func _on_Panel_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		event = event as InputEventMouseButton
@@ -57,9 +71,5 @@ func _on_Panel_gui_input(event: InputEvent) -> void:
 			if bought:
 				return
 			emit_signal("upgrade_clicked", upgrade_attribute, cost_gold, cost_gears)
-			bought = true
-			$Panel.set("custom_styles/panel", style_box_bought)
-			$"%GearAmount".add_color_override("font_color", affordable_color)
-			$"%GoldAmount".add_color_override("font_color", affordable_color)
-			$"%Image".modulate = unaffordable_modulate
+			rpc("set_bought", true)
 

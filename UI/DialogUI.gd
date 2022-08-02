@@ -21,6 +21,8 @@ func _ready() -> void:
 func emit_line_done():
 	emit_signal("line_done_or_interrupt")
 
+#remote func remote_for_interrupt():
+#	emit_signal("line_done_or_interrupt")
 
 remotesync func play_dialog(dialog_sequence):
 	$DialogPanel.visible = true
@@ -47,7 +49,7 @@ func dialog_started():  # : Dialog.DialogSequence (thanks cyclic dependencies)
 
 # TODO catch space bar input to skip dialog
 signal interrupt
-func skip_dialog():
+remotesync func skip_dialog():
 	Game.log("skip line")
 	# TODO if there are multiple panels or different ones this has to change
 	$DialogPanel.on_interrupt()
