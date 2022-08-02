@@ -164,12 +164,13 @@ func game_to_shop_transition():
 remotesync func shop_to_game_transition():
 	var new_level = LEVEL_SCENE.instance()
 	# if there is a lag/loading here we can put most of this in method just above this one
-	level.name = "Old Level"
-	
+#	level.name = "Old Level"
+	var collectibles = level.get_node("Collectibles").duplicate()
+	$ViewportContainer/Viewport.remove_child(level)
 	$ViewportContainer/Viewport.add_child(new_level)
 	new_level.name = "Level"
 	new_level.do_game_setup({})
-	new_level.replace_collectibles(level.get_node("Collectibles").duplicate())
+	new_level.replace_collectibles(collectibles)
 	level.queue_free()
 	$ShopUI.visible = false
 	$ViewportContainer.visible = true
