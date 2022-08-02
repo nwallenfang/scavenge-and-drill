@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Prototyping/Level.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Objects/TreasureGears.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Objects/Algae.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Objects/EnergyCrystal.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Objects/BubbleSpawner.tscn" type="PackedScene" id=14]
 
 [sub_resource type="SphereMesh" id=3]
 
@@ -123,6 +124,15 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.36273, -9.53674e-07, -3.2887
 
 [node name="PickUpBall" parent="Objects" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.3957, 0, -3.29741 )
+
+[node name="BubbleSpawner" parent="Objects" instance=ExtResource( 14 )]
+transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, 4.81804, 0, -9.14525 )
+
+[node name="BubbleSpawner2" parent="Objects" instance=ExtResource( 14 )]
+transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, 8.74047, 0, -2.90353 )
+
+[node name="BubbleSpawner3" parent="Objects" instance=ExtResource( 14 )]
+transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, -5.52819, 9.53674e-07, -6.5547 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 9 )
