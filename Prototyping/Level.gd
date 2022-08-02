@@ -52,7 +52,7 @@ func do_game_setup(players: Dictionary):
 		$Player1.set_network_master(id_other_player)
 #		$Viewport/DualSideviewCamera.initialize($Player2, $ViewportPartner/DualSideviewCamera)
 #		$ViewportPartner/DualSideviewCamera.initialize($Player1, $Viewport/DualSideviewCamera)
-		camera.initialize($Player2)
+		camera.initialize($Player2, $Player1)
 	else:
 		$Player1.set_network_master(get_tree().get_network_unique_id())
 		$Player1.controlled = true
@@ -61,7 +61,7 @@ func do_game_setup(players: Dictionary):
 		$Player2.set_network_master(id_other_player)
 #		$Viewport/DualSideviewCamera.initialize($Player1, $ViewportPartner/DualSideviewCamera)
 #		$ViewportPartner/DualSideviewCamera.initialize($Player2, $Viewport/DualSideviewCamera)
-		camera.initialize($Player1)
+		camera.initialize($Player1, $Player2)
 
 
 func _on_RopeLengthChecker_timeout() -> void:

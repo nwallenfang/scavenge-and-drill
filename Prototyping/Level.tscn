@@ -138,13 +138,13 @@ transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, -5.52819, 9.536
 environment = ExtResource( 9 )
 
 [node name="Pivot" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 __meta__ = {
 "_editor_description_": "Tracks the controlled player on the ground"
 }
 
 [node name="TopdownCamera" parent="Pivot" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 10, 0 )
+transform = Transform( 1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 0, 6, 3 )
 current = true
 
 [node name="RopeLengthChecker" type="Timer" parent="."]
