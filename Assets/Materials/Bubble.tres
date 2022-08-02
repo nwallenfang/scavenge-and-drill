@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Shader/Bubble.gdshader" type="Shader" id=1]
+
+[sub_resource type="OpenSimplexNoise" id=4]
+
+[sub_resource type="NoiseTexture" id=5]
+width = 256
+height = 256
+seamless = true
+noise = SubResource( 4 )
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/bubble_noise_scale = 0.785
+shader_param/bubble_time_scale = 0.158
+shader_param/bubble_strength = 0.674
+shader_param/albedo = Color( 0.870588, 0.980392, 1, 0.560784 )
+shader_param/bubble_noise = SubResource( 5 )

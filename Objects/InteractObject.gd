@@ -1,10 +1,21 @@
 extends Spatial
+class_name InteractObject
 
 const OUTLINE_BLUE = preload("res://Assets/Materials/outline_blue.tres")
 const OUTLINE_RED = preload("res://Assets/Materials/outline_red.tres")
 const OUTLINE_BOTH = preload("res://Assets/Materials/two_outlines.tres")
 
 export var limit_to_player := 0
+
+var mesh_instances := []
+
+func fetch_mesh_instances():
+	for c in $Model.get_children():
+		if c is MeshInstance:
+			mesh_instances.append(c)
+
+func _ready():
+	fetch_mesh_instances()
 
 func disable():
 	$Area.queue_free()
@@ -32,19 +43,23 @@ remote func append_hovering_actor_names(han):
 	update_hover_outline()
 
 func update_hover_outline():
-	if len(hovering_actor_names) == 0:
-		$Model/MeshInstance.get_surface_material(0).next_pass = null
-	elif len(hovering_actor_names) == 2:
-		$Model/MeshInstance.get_surface_material(0).next_pass = OUTLINE_BOTH
-	elif "1" in hovering_actor_names[0]:
-		$Model/MeshInstance.get_surface_material(0).next_pass = OUTLINE_BLUE
-	else:
-		$Model/MeshInstance.get_surface_material(0).next_pass = OUTLINE_RED
+	for mi in mesh_instances:
+		if len(hovering_actor_names) == 0:
+			mi.get_surface_material(0).next_pass = null
+		elif len(hovering_actor_names) == 2 and limit_to_player == 0:
+			mi.get_surface_material(0).next_pass = OUTLINE_BOTH
+		elif "1" in hovering_actor_names[0] and limit_to_player != 2:
+			mi.get_surface_material(0).next_pass = OUTLINE_BLUE
+		elif "2" in hovering_actor_names[0] and limit_to_player != 1:
+			mi.get_surface_material(0).next_pass = OUTLINE_RED
+		else:
+			mi.get_surface_material(0).next_pass = null
 
-func _on_interaction(actor):
-	actor.inventory_ball_count += 1
-	actor.update_ball_count()
-	rpc("remote_delete")
+func on_interaction(actor):
+	_on_interaction(actor)
+
+func _on_interaction(actor): 
+	pass # OVERRIDE THIS
 
 remotesync func remote_delete():
 	queue_free()

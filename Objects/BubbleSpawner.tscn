@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Materials/Bubble.tres" type="Material" id=1]
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.241573, 0.984091 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3( 0, 1, 0 )
+spread = 180.0
+flatness = 1.0
+gravity = Vector3( 0, 1, 0 )
+initial_velocity = 3.0
+initial_velocity_random = 1.0
+angular_velocity = 128.32
+angular_velocity_random = 1.0
+tangential_accel = 0.2
+tangential_accel_random = 1.0
+damping = 0.2
+angle = 413.5
+angle_random = 1.0
+scale = 2.0
+scale_random = 1.0
+scale_curve = SubResource( 3 )
+
+[sub_resource type="SphereMesh" id=1]
+material = ExtResource( 1 )
+radius = 0.1
+height = 0.2
+
+[node name="BubbleSpawner" type="Spatial"]
+
+[node name="Particles" type="Particles" parent="."]
+lifetime = 10.0
+explosiveness = 0.41
+randomness = 1.0
+process_material = SubResource( 4 )
+draw_pass_1 = SubResource( 1 )

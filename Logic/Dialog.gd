@@ -57,7 +57,6 @@ class DialogSequence:
 enum SELECTION_MODES {ORDER, RANDOM}
 enum TRIGGER_MODES {
 	ONCE,
-	ALWAYS,
 	COUNT_EXACT,
 	COUNT_GREATER_EQ,  
 	VALUE_EXACT,
@@ -72,6 +71,7 @@ class DialogTrigger:
 	var condition_value
 	var importance: int = 1
 	var queue := false
+	var always := false
 	var trigger_count := 0
 	var max_triggers := 0
 	var can_trigger := true
@@ -116,8 +116,6 @@ func trigger(trigger_key: String, value = null):
 		if dialog_trigger.trigger_key == trigger_key and dialog_trigger.can_trigger:
 			match(dialog_trigger.trigger_mode):
 				TRIGGER_MODES.ONCE:
-					found_dialogs.append(dialog_trigger)
-				TRIGGER_MODES.ALWAYS:
 					found_dialogs.append(dialog_trigger)
 				TRIGGER_MODES.COUNT_EXACT:
 					if trigger_counts[trigger_key] == dialog_trigger.condition_value:
@@ -164,7 +162,7 @@ signal dialog_started
 func execute_dialog(dialog_trigger: DialogTrigger):
 	var seq = null
 	if dialog_trigger.selection_mode == SELECTION_MODES.ORDER:
-		if dialog_trigger.trigger_mode == TRIGGER_MODES.ALWAYS:
+		if dialog_trigger.always:
 			seq = dialog_trigger.sequences[dialog_trigger.trigger_count % len(dialog_trigger.sequences)]
 		else:
 			for s in dialog_trigger.sequences:
@@ -176,7 +174,7 @@ func execute_dialog(dialog_trigger: DialogTrigger):
 		for i in range(50):
 			dialog_trigger.sequences.shuffle()
 			var s = dialog_trigger.sequences[0] as DialogTrigger
-			if (not s.played) or dialog_trigger.trigger_mode == TRIGGER_MODES.ALWAYS:
+			if (not s.played) or dialog_trigger.always:
 				seq = s
 				break
 	if seq != null:
@@ -188,7 +186,7 @@ func execute_dialog(dialog_trigger: DialogTrigger):
 		if dialog_trigger.max_triggers != 0:
 			if dialog_trigger.trigger_count >= dialog_trigger.max_triggers:
 				dialog_trigger.can_trigger = false
-		if dialog_trigger.trigger_mode != TRIGGER_MODES.ALWAYS and dialog_trigger.is_all_played():
+		if not dialog_trigger.always and dialog_trigger.is_all_played():
 			dialog_trigger.can_trigger = false
 		emit_signal("dialog_started")
 

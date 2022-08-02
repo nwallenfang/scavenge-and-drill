@@ -4,3 +4,4 @@
 
 [node name="TopdownCamera" type="Camera"]
 script = ExtResource( 1 )
+offset = Vector3( 0, 6, 3 )
