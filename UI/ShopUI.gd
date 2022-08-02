@@ -20,7 +20,11 @@ func initialize():
 	
 	for entry in $VBoxContainer/GridContainer.get_children():
 		entry = entry as ShopEntry
-		
+		if entry.upgrade_attribute in Game.upgrades:
+			if Game.upgrades.get(entry.upgrade_attribute):
+				entry.bought = true
+		else:
+			Game.log("shop entry upgrade " + entry.upgrade_attribute + " is unkown.")
 		if entry.cost_gears <= Game.treasure_gears and entry.cost_gold <= Game.treasure_gold:
 			entry.affordable = true
 		else:

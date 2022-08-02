@@ -5,14 +5,16 @@
 [resource]
 background_mode = 2
 background_sky = SubResource( 1 )
+ambient_light_color = Color( 1, 1, 1, 1 )
 fog_enabled = true
 fog_color = Color( 0.423529, 0.709804, 1, 1 )
 fog_depth_begin = 1.0
 fog_depth_end = 80.0
 fog_depth_curve = 0.68302
 tonemap_mode = 2
-tonemap_exposure = 0.57
+tonemap_exposure = 0.7
 dof_blur_far_enabled = true
 dof_blur_far_distance = 11.0
+dof_blur_far_amount = 0.06
 dof_blur_near_distance = 5.0
 glow_enabled = true

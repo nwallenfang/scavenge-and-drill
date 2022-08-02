@@ -38,7 +38,7 @@ func _ready() -> void:
 		$MainMenu.visible = false
 		Network.connect_to_matchmaking()
 		
-	Game.connect("oxygen_depleted", self, "game_to_shop_transition")
+	Game.connect("power_depleted", self, "game_to_shop_transition")
 	get_viewport().connect("size_changed", self, "resize_viewport")
 	self.resize_viewport()
 	$ViewportContainer.enable_water_distortion()
@@ -119,6 +119,8 @@ remotesync func _do_game_setup(playerss: Dictionary) -> void:
 	
 	var level = LEVEL_SCENE.instance()
 	$ViewportContainer/Viewport.add_child(level)
+	Game.ui = $UI
+	Game.ui.visible = true
 	level.do_game_setup(playerss)
 	
 	$ViewportContainer.visible = true
@@ -152,6 +154,7 @@ func game_to_shop_transition():
 	$DialogUI.visible = false  # have to change this once we want the merchant to talk fix mouse masks then!!
 	$ShopUI.initialize()
 	$ViewportContainer.visible = false
+	$UI.to_shop()
 	
 	yield($ShopUI, "done_shopping")
 	rpc("shop_to_game_transition")
@@ -160,3 +163,5 @@ remotesync func shop_to_game_transition():
 	# TODO reload level completely
 	$ShopUI.visible = false
 	$ViewportContainer.visible = true
+	$UI.back_to_ocean()
+	Game.o2 = Game.max_o2

@@ -19,9 +19,9 @@ var level
 
 var mouse_layer: MouseDetectionLayer
 
-var max_o2 := 100.0
-var o2 := 100.0 setget set_o2
-var o2_loss_per_s := 10.0
+var max_power := 100.0
+var power := 100.0 setget set_power
+var power_loss_per_s := 10.0
 
 const TYPE_GOLD = 1
 const TYPE_GEARS = 2
@@ -47,43 +47,43 @@ func _process(delta: float) -> void:
 		ui.toggle_pause()
 		
 	if Input.is_action_just_pressed("skip_dialog"):
-		dialog_ui.skip_dialog()
-	if Input.is_action_just_pressed("diable_oxygen"):
-		rpc("disable_oxygen")
+		dialog_ui.rpc("skip_dialog")
+	if Input.is_action_just_pressed("disable_power"):
+		rpc("disable_power")
 	if game_started:  # state machine maybe? menu/in_game/merchant
 		# this doesn't get synced at the moment since the calc should be the
 		# same for both players
 		# maybe sync every x seconds to make sure
-		self.o2 -= o2_loss_per_s * delta
+		self.power -= power_loss_per_s * delta
 
-signal oxygen_depleted
-var oxy_critical_threshold = 0.8 * max_o2
-signal oxygen_low  # maybe some screen effect or sound? maybe not
-signal oxygen_filled
-func set_o2(value: float):
-	if o2 >= oxy_critical_threshold and value < oxy_critical_threshold:
-		emit_signal("oxygen_low")
-		Dialog.trigger("oxygen_low")
-	if value <= 0.0 and o2 > 0.0:
-		emit_signal("oxygen_depleted")
+signal power_depleted
+var power_critical_threshold = 0.8 * max_power
+signal power_low  # maybe some screen effect or sound? maybe not
+signal power_filled
+func set_power(value: float):
+	if power >= power_critical_threshold and value < power_critical_threshold:
+		emit_signal("power_low")
+		Dialog.trigger("power_low")
+	if value <= 0.0 and power > 0.0:
+		emit_signal("power_depleted")
 	
-	o2 = value
+	power = value
 	if ui != null:
-		ui.set_o2(value)
+		ui.set_power(value)
 
-remotesync func disable_oxygen():
-	o2_loss_per_s = 0.0
+remotesync func disable_power():
+	power_loss_per_s = 0.0
 
 remotesync func sync_treasures(amount, type):
 	match type:
 		TYPE_GOLD:
-			treasure_gold = amount
+			treasure_gold += amount
 		TYPE_GEARS:
-			treasure_gears = amount
+			treasure_gears += amount
 		TYPE_3:
-			treasure_3 = amount
+			treasure_3 += amount
 			
-	ui.set_treasure(amount, type)
+	ui.update_treasures(type)
 
 
 var energy_charges := 0

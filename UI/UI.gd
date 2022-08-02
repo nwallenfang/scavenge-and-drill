@@ -31,13 +31,14 @@ func add_to_log(msg: String):
 	debug_log.cursor_set_line(debug_log.get_line_count())
 	
 	
-func set_o2(value_percent: float):
-	$"%OxygenProgress".value = value_percent
+func set_power(value_percent: float):
+	$"%PowerProgress".value = value_percent
 	
 
 var blended_out: Color = Color("00ffffff")
 var blended_in: Color  = Color("ffffffff")
-func set_treasure(treasures: int, treasure_type: int):
+func update_treasures(treasure_type: int):
+	# type: type of the treasure amount that changed for animations maybe
 	var tween = create_tween()
 	
 	# TODO if treasure ui not blended out yet.. skip this first tween
@@ -47,9 +48,9 @@ func set_treasure(treasures: int, treasure_type: int):
 	# tween treasure interface in
 	match treasure_type:
 		1:
-			$"%GoldAmount".text = "%02d" % treasures
+			$"%GoldAmount".text = "%02d" % Game.treasure_gold
 		2:
-			$"%GearAmount".text = "%02d" % treasures
+			$"%GearAmount".text = "%02d" % Game.treasure_gears
 		3:
 			printerr("Treasure type 3 not implemented!")
 			
@@ -64,4 +65,11 @@ func set_treasure(treasures: int, treasure_type: int):
 	
 func set_rope_length(s):
 	$"%RopeLength".text = s
+	
+	
+func to_shop():
+	$Game.visible = false
+	
+func back_to_ocean():
+	$Game.visible = true
 

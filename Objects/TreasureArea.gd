@@ -17,7 +17,7 @@ func picked_up():
 	# spawn treasure label3d
 	$Label.set_as_toplevel(true)
 	$Label.visible = true
-	
+	$Label.text = "+" + str(amount)
 	# set right color in animation
 	var animation: Animation = $AnimationPlayer.get_animation("popup")
 	var track_index = animation.find_track("Label:modulate")
