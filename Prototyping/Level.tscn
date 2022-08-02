@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Prototyping/Level.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Drill.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/TreasureGold.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Logic/TopdownCamera.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Objects/PickUpBall.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Actors/FishPath.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Objects/ButtonPlate.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Objects/Door.tscn" type="PackedScene" id=8]
 [ext_resource path="res://LevelEnvironment.tres" type="Environment" id=9]
@@ -148,6 +149,8 @@ visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 9 )
+
+[node name="FishPath" parent="." instance=ExtResource( 6 )]
 
 [connection signal="player_entered" from="Objects/ButtonPlate1" to="Objects/Door" method="_on_ButtonPlate1_player_entered"]
 [connection signal="player_left" from="Objects/ButtonPlate1" to="Objects/Door" method="_on_ButtonPlate1_player_left"]

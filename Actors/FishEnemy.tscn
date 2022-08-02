@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Actors/FishEnemy.gd" type="Script" id=1]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="CapsuleShape" id=3]
+radius = 0.966859
+height = 1.13097
+
+[node name="FishEnemy" type="Spatial" groups=["networked"]]
+script = ExtResource( 1 )
+
+[node name="Model" type="Spatial" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="Model"]
+transform = Transform( 0.814905, 0, 0, 0, 0.3627, 0, 0, 0, 0.218026, 0, 0.871302, 0 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+
+[node name="MeshInstance2" type="MeshInstance" parent="Model"]
+transform = Transform( 0.451127, 0, 0, 0, 0.0943436, 0, 0, 0, 0.445862, 0.295647, 0.817325, 0 )
+mesh = SubResource( 2 )
+
+[node name="Hurtbox" type="Area" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Hurtbox"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.811, 0, -1, 0, -4.37114e-08, 0, 1.13792, 0 )
+shape = SubResource( 3 )
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]

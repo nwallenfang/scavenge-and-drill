@@ -46,6 +46,7 @@ func do_game_setup(players: Dictionary):
 	# TODO instance Level
 	
 	if not get_tree().is_network_server():
+		Game.host = false
 		$Player2.set_network_master(get_tree().get_network_unique_id())
 		$Player2.controlled = true
 		Game.own_player = $Player2
@@ -55,6 +56,7 @@ func do_game_setup(players: Dictionary):
 #		$ViewportPartner/DualSideviewCamera.initialize($Player1, $Viewport/DualSideviewCamera)
 		camera.initialize($Player2, $Player1)
 	else:
+		Game.host = true
 		$Player1.set_network_master(get_tree().get_network_unique_id())
 		$Player1.controlled = true
 		Game.own_player = $Player1
