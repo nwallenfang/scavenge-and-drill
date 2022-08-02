@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Prototyping/Level.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Objects/Cable.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Objects/TreasureGears.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Objects/Algae.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Objects/EnergyCrystal.tscn" type="PackedScene" id=13]
 
 [sub_resource type="SphereMesh" id=3]
 
@@ -91,24 +92,6 @@ depth = 32.2174
 
 [node name="Objects" type="Spatial" parent="."]
 
-[node name="PickUpBall" parent="Objects" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6882, 0, 8.75872 )
-
-[node name="PickUpBall2" parent="Objects" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58343, 0, 11.2631 )
-
-[node name="PickUpBall3" parent="Objects" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.40944, 0, 11.7027 )
-
-[node name="PickUpBall4" parent="Objects" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.42225, 0, 13.1774 )
-
-[node name="PickUpBall5" parent="Objects" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.585, 0, 8.87311 )
-
-[node name="PickUpBall6" parent="Objects" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.75642, 0, 9.08898 )
-
 [node name="ButtonPlate1" parent="Objects" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.76027, 0, -20.4439 )
 
@@ -134,6 +117,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5367, 0, -7.77911 )
 
 [node name="Algae6" parent="Objects" instance=ExtResource( 12 )]
 transform = Transform( 0.999298, 0, -0.0374634, 0, 1, 0, 0.0374634, 0, 0.999298, 14.34, 0, -2.83039 )
+
+[node name="EnergyCrystal" parent="Objects" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.36273, -9.53674e-07, -3.28875 )
+
+[node name="PickUpBall" parent="Objects" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.3957, 0, -3.29741 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 9 )

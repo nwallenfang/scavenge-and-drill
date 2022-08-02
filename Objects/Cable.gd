@@ -77,6 +77,8 @@ func add_segment(parent_segment, target_rotation):
 
 func get_directed_circle_points(origin: Vector3, direction: Vector3, res: int, wid: float) -> Array:
 	direction = direction.normalized()
+	if direction.length() == 0.0:
+		direction = Vector3.UP
 	var start_point := Vector3.UP.cross(direction).cross(direction).normalized()
 	var circle_points := []
 	for i in range(res):

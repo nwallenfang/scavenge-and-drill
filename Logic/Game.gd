@@ -45,6 +45,8 @@ func _process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("skip_dialog"):
 		dialog_ui.skip_dialog()
+	if Input.is_action_just_pressed("diable_oxygen"):
+		rpc("disable_oxygen")
 	if game_started:  # state machine maybe? menu/in_game/merchant
 		# this doesn't get synced at the moment since the calc should be the
 		# same for both players
@@ -66,6 +68,8 @@ func set_o2(value: float):
 	if ui != null:
 		ui.set_o2(value)
 
+remotesync func disable_oxygen():
+	o2_loss_per_s = 0.0
 
 remotesync func sync_treasures(amount, type):
 	match type:
@@ -78,6 +82,11 @@ remotesync func sync_treasures(amount, type):
 			
 	ui.set_treasure(amount, type)
 
+
+var energy_charges := 0
+remotesync func sync_energy_charges(x):
+	energy_charges = x
+	# to ui.set_energy_charges(x)
 
 
 signal treasure_count_changed

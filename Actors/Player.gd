@@ -10,7 +10,7 @@ var puppet_position: Vector3
 
 var current_hover_object: Spatial
 
-var inventory_ball_count := 0
+#var inventory_ball_count := 0
 
 var cable_force := Vector3.ZERO
 
@@ -34,7 +34,9 @@ func _physics_process(delta):
 		var target_hover_object = null
 		var best_distance := 100.0
 		for hover_area in $Area.get_overlapping_areas():
-			var hover_object = hover_area.get_parent()
+			var hover_object = hover_area.get_parent()# as InteractObject
+			if hover_object.limit_to_player != 0 and not str(hover_object.limit_to_player) in self.name:
+				continue
 			var dist = self.global_transform.origin.distance_to(hover_object.global_transform.origin)
 			if dist < best_distance:
 				best_distance = dist
@@ -48,9 +50,10 @@ func _physics_process(delta):
 		else:
 			if is_instance_valid(current_hover_object):
 				current_hover_object.set_hover_state(false, self.name)
+				current_hover_object = null
 		if Input.is_action_just_pressed("interact"):
 			if is_instance_valid(current_hover_object):
-				current_hover_object.on_interact(self)
+				current_hover_object.on_interaction(self)
 	else:
 		global_transform.origin = lerp(global_transform.origin, puppet_position, 0.3)
 
@@ -64,22 +67,22 @@ func set_color(c):
 	mat.albedo_color = color
 	$Model/MeshInstance.set_surface_material(0, mat)
 
-const PICKUP_BALL = preload("res://Objects/PickUpBall.tscn")
-func update_ball_count():
-	if $BallInventory.get_child_count() != inventory_ball_count:
-		for b in $BallInventory.get_children():
-			b.queue_free()
-		for i in range(inventory_ball_count):
-			var ball = PICKUP_BALL.instance()
-			ball.disable()
-			$BallInventory.add_child(ball)
-			ball.translation.y = i * .3
-
-puppet func set_puppet_ball_count(ball_count):
-	inventory_ball_count = ball_count
-	update_ball_count()
+#const PICKUP_BALL = preload("res://Objects/PickUpBall.tscn")
+#func update_ball_count():
+#	if $BallInventory.get_child_count() != inventory_ball_count:
+#		for b in $BallInventory.get_children():
+#			b.queue_free()
+#		for i in range(inventory_ball_count):
+#			var ball = PICKUP_BALL.instance()
+#			ball.disable()
+#			$BallInventory.add_child(ball)
+#			ball.translation.y = i * .3
+#
+#puppet func set_puppet_ball_count(ball_count):
+#	inventory_ball_count = ball_count
+#	update_ball_count()
 
 func _network_process(_delta):
 	if controlled:
 		rpc_unreliable("set_puppet_position", global_transform.origin)
-		rpc_unreliable("set_puppet_ball_count", inventory_ball_count)
+		#rpc_unreliable("set_puppet_ball_count", inventory_ball_count)
