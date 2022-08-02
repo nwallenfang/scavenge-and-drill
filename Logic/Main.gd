@@ -147,6 +147,7 @@ func _on_ReadyScreen_ready_pressed() -> void:
 	
 func game_to_shop_transition():
 	$ShopUI.visible = true
+	$DialogUI.visible = false  # have to change this once we want the merchant to talk fix mouse masks then!!
 	$ShopUI.initialize()
 	$ViewportContainer.visible = false
 	

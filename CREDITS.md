@@ -18,4 +18,11 @@
   - https://thenounproject.com/icon/arrow-2840911/
   - TAQRIB ICON
   - CC-BY
+- player icon
+  - https://thenounproject.com/icon/player-3098284/
+  - Kmg Design
+- handshake
+  - https://thenounproject.com/icon/handshake-5037639/
+- handshake 2
+  - https://thenounproject.com/icon/handshake-5036625/
 

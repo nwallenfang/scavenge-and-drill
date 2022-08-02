@@ -30,6 +30,7 @@ remotesync func oxygen_depleted():
 
 func do_game_setup(players: Dictionary):
 	Game.ui = $UI
+	Game.dialog_ui.visible = true
 	if Game.debug:
 		$UI.toggle_dev_panel()
 	Network.start()
