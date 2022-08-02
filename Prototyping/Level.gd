@@ -7,6 +7,7 @@ export var player1_color: Color
 export var player2_color: Color
 
 func _ready():
+	Game.level = self
 	$Player1.set_color(player1_color)
 	$Player2.set_color(player2_color)
 	$Cable.create_cable($Player1/Handle, $Player2/Handle)

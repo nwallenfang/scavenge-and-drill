@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Prototyping/Level.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Drill.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Objects/EnergyCrystal.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Objects/BubbleSpawner.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Actors/Roller.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Logic/MouseDetectionLayer.tscn" type="PackedScene" id=16]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.713726, 0.717647, 0.576471, 1 )
@@ -146,6 +147,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0396, -1.43051e-06, -8.486
 
 [node name="TreasureGears" parent="Treasures" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.02178, -4.76837e-07, -7.35904 )
+
+[node name="MouseDetectionLayer" parent="." instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.458225, 0 )
+visible = false
 
 [connection signal="player_entered" from="Objects/ButtonPlate1" to="Objects/Door" method="_on_ButtonPlate1_player_entered"]
 [connection signal="player_left" from="Objects/ButtonPlate1" to="Objects/Door" method="_on_ButtonPlate1_player_left"]

@@ -40,6 +40,8 @@ func _ready() -> void:
 		
 	Game.connect("oxygen_depleted", self, "game_to_shop_transition")
 	get_viewport().connect("size_changed", self, "resize_viewport")
+	self.resize_viewport()
+	$ViewportContainer.enable_water_distortion()
 
 func resize_viewport():
 	$ViewportContainer/Viewport.size = get_viewport().size

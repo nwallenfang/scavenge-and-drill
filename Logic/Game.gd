@@ -15,6 +15,9 @@ var game_started := false
 
 var viewport_sprite: Sprite
 var main_cam: Camera
+var level
+
+var mouse_layer: MouseDetectionLayer
 
 var max_o2 := 100.0
 var o2 := 100.0 setget set_o2

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Actors/Roller.gd" type="Script" id=1]
 
@@ -6,6 +6,10 @@
 
 [sub_resource type="SpatialMaterial" id=9]
 albedo_color = Color( 0, 0.345098, 1, 1 )
+
+[sub_resource type="CubeMesh" id=12]
+
+[sub_resource type="CylinderMesh" id=13]
 
 [sub_resource type="CapsuleShape" id=10]
 
@@ -25,6 +29,19 @@ ACC = 80.0
 transform = Transform( 1.08783, 0, 0, 0, -1.64562e-08, 0.376474, 0, -1.08783, -4.75505e-08, 0, 0.397972, 0 )
 mesh = SubResource( 8 )
 material/0 = SubResource( 9 )
+
+[node name="Head" type="Spatial" parent="Model"]
+
+[node name="MeshInstance" type="MeshInstance" parent="Model/Head"]
+transform = Transform( 0.295583, 0, 0, 0, 0.295583, 0, 0, 0, 0.295583, 0, 0.947009, 0 )
+mesh = SubResource( 12 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Model/Head"]
+transform = Transform( 0.0703036, 0, 0, 0, -3.07307e-09, -0.0703036, 0, 0.242074, -1.05814e-08, 0, 1.0981, 0.487367 )
+mesh = SubResource( 13 )
+
+[node name="BulletSpawn" type="Spatial" parent="Model/Head/MeshInstance2"]
+transform = Transform( 1, 0, 0, 0, 1, -1.06581e-14, 0, 0, 1, 0, 0.887855, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1.06482, 0, 0, 0, -2.82107e-08, 0.645386, 0, -1.06482, -4.65447e-08, 0, 0.883563, 0 )

@@ -125,3 +125,12 @@ func start():
 
 func _on_Timer_timeout() -> void:
 	get_tree().call_group("networked", "_network_process", 1.0/TICK_RATE)
+
+const BULLET = preload("res://Actors/Bullet.tscn")
+remotesync func spawn_object(object_name : String, pos := Vector3.ZERO, data = null):
+	var new_obj: Node
+	match object_name:
+		"bullet": new_obj = BULLET.instance()
+	new_obj.global_translation = pos
+	if new_obj.has_method("_network_init") and data != null:
+		new_obj.call("_network_init", data)

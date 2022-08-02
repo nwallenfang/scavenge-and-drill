@@ -22,17 +22,22 @@ func disable():
 	remove_from_group("networked")
 
 var hovering_actor_names = []
+var something_has_changed := false
 func set_hover_state(active: bool, actor_name):
 	if active:
 		if not actor_name in hovering_actor_names:
 			hovering_actor_names.append(actor_name)
+			something_has_changed = true
 	else:
 		if actor_name in hovering_actor_names:
 			hovering_actor_names.erase(actor_name)
+			something_has_changed = true
 	update_hover_outline()
 
 func _network_process(delta):
-	rpc_unreliable("append_hovering_actor_names", hovering_actor_names)
+	if something_has_changed:
+		rpc_unreliable("append_hovering_actor_names", hovering_actor_names)
+		something_has_changed = false
 
 remote func append_hovering_actor_names(han):
 	if Game.other_player.name in han:

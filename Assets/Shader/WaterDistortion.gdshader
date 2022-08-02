@@ -100,10 +100,10 @@ float snoise(vec3 v) {
 }
 
 vec2 get_water_uv(vec2 uv, float time) {
-	float distortion_strength = .01;
+	float distortion_strength = .004;
 	float x_scale = 6.0;
 	float y_scale = 6.0;
-	float time_scale = .5;
+	float time_scale = .4;
 	return uv + distortion_strength * vec2(snoise(vec3(uv.x * x_scale, uv.y * y_scale, time_scale* time)));
 }
 void fragment() {
