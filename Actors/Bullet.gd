@@ -1,10 +1,11 @@
 extends Spatial
 
-export var speed := 1.0
+export var speed := 10.0
 var direction : Vector3
 
 func _network_init(data):
-	direction = data["direction"]
+	var direction_2d = data["direction"]
+	direction = Vector3(direction_2d.x, 0.0, direction_2d.y)
 
 func _physics_process(delta):
 	global_translation += direction * delta * speed

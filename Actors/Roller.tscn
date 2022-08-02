@@ -32,6 +32,9 @@ material/0 = SubResource( 9 )
 
 [node name="Head" type="Spatial" parent="Model"]
 
+[node name="BulletSpawn" type="Spatial" parent="Model/Head"]
+transform = Transform( 0.0703036, 0, 0, 0, -3.07307e-09, -0.0703036, 0, 0.242074, -1.05814e-08, 0, 1.0981, 0.702294 )
+
 [node name="MeshInstance" type="MeshInstance" parent="Model/Head"]
 transform = Transform( 0.295583, 0, 0, 0, 0.295583, 0, 0, 0, 0.295583, 0, 0.947009, 0 )
 mesh = SubResource( 12 )
@@ -39,9 +42,6 @@ mesh = SubResource( 12 )
 [node name="MeshInstance2" type="MeshInstance" parent="Model/Head"]
 transform = Transform( 0.0703036, 0, 0, 0, -3.07307e-09, -0.0703036, 0, 0.242074, -1.05814e-08, 0, 1.0981, 0.487367 )
 mesh = SubResource( 13 )
-
-[node name="BulletSpawn" type="Spatial" parent="Model/Head/MeshInstance2"]
-transform = Transform( 1, 0, 0, 0, 1, -1.06581e-14, 0, 0, 1, 0, 0.887855, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1.06482, 0, 0, 0, -2.82107e-08, 0.645386, 0, -1.06482, -4.65447e-08, 0, 0.883563, 0 )
