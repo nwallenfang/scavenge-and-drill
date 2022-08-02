@@ -132,6 +132,7 @@ remotesync func spawn_object(object_name : String, pos := Vector3.ZERO, data = n
 	var new_obj: Node
 	match object_name:
 		"bullet": new_obj = BULLET.instance()
+	Game.level.add_child(new_obj)
 	new_obj.global_translation = pos
 	if new_obj.has_method("_network_init") and data != null:
 		new_obj.call("_network_init", data)

@@ -11,7 +11,7 @@ radius = 0.106587
 script = ExtResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 0.0935894, 0, 0, 0, 0.0935894, 0, 0, 0, 0.0935894, 0, 0, 0 )
+transform = Transform( 0.0995707, 0, 0, 0, 0.0995707, 0, 0, 0, 0.0995707, 0, 0, 0 )
 mesh = SubResource( 1 )
 
 [node name="Area" type="Area" parent="."]

@@ -13,8 +13,10 @@ func _physics_process(delta):
 			Network.rpc("spawn_object", "bullet", $Model/Head/BulletSpawn.global_translation, {"direction": aim_direction})
 
 func _network_process(delta):
+	._network_process(delta)
 	if controlled:
 		rpc_unreliable("set_puppet_aim", aim_direction)
 
 remote func set_puppet_aim(aim_direction):
-	pass
+	self.aim_direction = aim_direction
+	$Model/Head.rotation.y = -aim_direction.angle() + PI/2.0
