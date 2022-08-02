@@ -207,7 +207,7 @@ func create_all_dialogs():
 	var d
 	
 	
-	d = DialogTrigger.new("oxygen_low")
+	d = DialogTrigger.new("power_low")
 	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.ROBOT, "The oxygen levels are going down..."),
 		DialogLine.new(SPEAKERS.ROBOT, "Soon we must swim to the surface!"),

@@ -126,9 +126,9 @@ size_flags_vertical = 3
 [node name="Label" type="Label" parent="VBoxContainer/MerchantScreen"]
 margin_left = 104.0
 margin_top = 39.0
-margin_right = 320.0
+margin_right = 734.0
 margin_bottom = 60.0
-text = "Come check out my wares!"
+text = "Come check out my wares! (bought stuff doesn't show correctly, I know)"
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
 margin_top = 159.0
