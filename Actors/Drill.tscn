@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Actors/Drill.gd" type="Script" id=1]
+
+[sub_resource type="CapsuleMesh" id=8]
+
+[sub_resource type="SpatialMaterial" id=9]
+albedo_color = Color( 0, 0.345098, 1, 1 )
+
+[sub_resource type="CylinderMesh" id=12]
+bottom_radius = 0.0
+
+[sub_resource type="SpatialMaterial" id=13]
+albedo_color = Color( 0.635294, 0.635294, 0.635294, 1 )
+metallic = 0.48
+roughness = 0.51
+
+[sub_resource type="CapsuleShape" id=10]
+
+[sub_resource type="CylinderShape" id=11]
+height = 4.24622
+radius = 4.10198
+
+[node name="Drill" type="KinematicBody" groups=["networked"]]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource( 1 )
+ACC = 130.0
+
+[node name="Model" type="Spatial" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="Model"]
+transform = Transform( 0.434171, 0, 0, 0, -4.73706e-09, 0.108371, 0, -0.434171, -1.89782e-08, 0, 2.57131, 0 )
+mesh = SubResource( 8 )
+material/0 = SubResource( 9 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Model"]
+transform = Transform( 0.425555, 0, 0, 0, 0.661295, 0, 0, 0, 0.425555, 0, 1.88849, 0 )
+mesh = SubResource( 12 )
+material/0 = SubResource( 13 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.645386, 0, 0, 0, -2.82107e-08, 0.645386, 0, -0.645386, -2.82107e-08, 0, 0.883563, 0 )
+shape = SubResource( 10 )
+
+[node name="Area" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00012, 0 )
+shape = SubResource( 11 )
+
+[node name="Handle" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.60249, 0 )
