@@ -164,4 +164,4 @@ remotesync func shop_to_game_transition():
 	$ShopUI.visible = false
 	$ViewportContainer.visible = true
 	$UI.back_to_ocean()
-	Game.o2 = Game.max_o2
+	Game.power = Game.max_power
