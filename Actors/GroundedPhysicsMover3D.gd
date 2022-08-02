@@ -6,7 +6,7 @@ class_name GroundedPhysicsMover3D
 const EXPECTED_FPS := 60
 
 export var FRICTION := 0.85
-export var ACC := 3500.0
+export var ACC := 100.0
 
 var velocity := Vector3.ZERO 
 var acceleration := Vector3.ZERO 

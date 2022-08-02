@@ -4,8 +4,10 @@ export var speed := 10.0
 var direction : Vector3
 
 func _ready():
-	yield(get_tree().create_timer(3.0),"timeout")
-	queue_free()
+	if Game.upgrades.more_bullet_damage:
+		$MeshInstance.scale *= 1.5
+#	yield(get_tree().create_timer(3.0),"timeout")
+#	queue_free()
 
 func _network_init(data):
 	var direction_2d = data["direction"]

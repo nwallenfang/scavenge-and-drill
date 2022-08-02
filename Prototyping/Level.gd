@@ -10,8 +10,7 @@ func _ready():
 	Game.level = self
 	$Player1.set_color(player1_color)
 	$Player2.set_color(player2_color)
-	$Cable.create_cable($Player1/Handle, $Player2/Handle)
-	$Cable.set_players($Player1, $Player2)
+
 	Game.connect("power_depleted", self, "server_power_depleted")
 
 
@@ -37,12 +36,21 @@ func do_game_setup(players: Dictionary):
 	
 	var id_other_player = 1 if get_tree().get_network_unique_id() == 2 else 2
 
-	Game.main_cam = camera   # $Viewport/DualSideviewCamera
-#	Game.main_cam.boss = true
-#	Game.viewport_sprite.material.set_shader_param("ViewportTexture1", $Viewport.get_texture())
-#	Game.viewport_sprite.material.set_shader_param("ViewportTexture2", $ViewportPartner.get_texture())
-	#print(Game.viewport_sprite.material.get("shader_param/ViewportTexture2"))
+	Game.main_cam = camera   
+	
 
+	# STAT UPGRADES
+	Game.power_loss_per_s = Game.power_loss_per_s_upgraded if Game.upgrades.less_power_drain else Game.power_loss_per_s_default
+	$Player1.ACC = $Player1.move_acc_upgraded if Game.upgrades.more_move_speed else $Player1.move_acc_default
+	$Player2.ACC = $Player2.move_acc_upgraded if Game.upgrades.more_move_speed else $Player2.move_acc_default
+	if Game.upgrades.chain_longer:
+		$Player1.global_translation.x -= 1.0
+		$Player2.global_translation.x += 1.0
+	
+	
+	$Cable.create_cable($Player1/Handle, $Player2/Handle)
+	$Cable.set_players($Player1, $Player2)
+	
 	
 	if not get_tree().is_network_server():
 		Game.host = false

@@ -138,7 +138,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0396, -1.43051e-06, -8.486
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.02178, -4.76837e-07, -7.35904 )
 
 [node name="MouseDetectionLayer" parent="." instance=ExtResource( 16 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.458225, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99728, 1.10036, 0 )
 visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

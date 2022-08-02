@@ -38,6 +38,6 @@ func _on_Hurtbox_area_entered(area):
 		rpc("on_getting_hit")
 
 remotesync func on_getting_hit():
-	hp -= 1
+	hp -= 3 if Game.upgrades.more_bullet_damage else 1
 	if hp == 0:
 		queue_free()

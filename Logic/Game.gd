@@ -24,6 +24,8 @@ var mouse_layer: MouseDetectionLayer
 var max_power := 100.0
 var power := 100.0 setget set_power
 var power_loss_per_s := 10.0
+var power_loss_per_s_upgraded := 5.0
+var power_loss_per_s_default := 10.0
 
 const TYPE_GOLD = 1
 const TYPE_GEARS = 2
@@ -36,7 +38,10 @@ var treasure_3 = 0
 var collectibles_node: Node
 
 class Upgrades:
-	var chain_longer := false
+	var chain_longer := false #Done
+	var less_power_drain := false #Done
+	var more_move_speed := false #Done
+	var more_bullet_damage := false #Done
 
 var upgrades: Upgrades = Upgrades.new()
 
