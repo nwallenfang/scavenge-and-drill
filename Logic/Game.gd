@@ -33,6 +33,8 @@ var treasure_gold = 1
 var treasure_gears = 1
 var treasure_3 = 0 
 
+var collectibles_node: Node
+
 class Upgrades:
 	var chain_longer := false
 

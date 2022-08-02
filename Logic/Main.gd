@@ -3,6 +3,7 @@ extends Control
 #onready var game = $Level
 #onready var ui_layer: UILayer = $UILayer
 onready var ready_screen = $ReadyScreen
+var level
 
 var players := {}
 
@@ -12,6 +13,7 @@ var players_score := {}
 var game_started := false
 var game_over := false
 var players_setup := {}
+
 
 signal game_started ()
 signal game_over (player_id)
@@ -117,7 +119,7 @@ remotesync func _do_game_setup(playerss: Dictionary) -> void:
 	game_started = true
 	game_over = false
 	
-	var level = LEVEL_SCENE.instance()
+	level = LEVEL_SCENE.instance()
 	$ViewportContainer/Viewport.add_child(level)
 	Game.ui = $UI
 	Game.ui.visible = true
@@ -160,8 +162,18 @@ func game_to_shop_transition():
 	rpc("shop_to_game_transition")
 	
 remotesync func shop_to_game_transition():
-	# TODO reload level completely
+	var new_level = LEVEL_SCENE.instance()
+	# if there is a lag/loading here we can put most of this in method just above this one
+#	level.name = "Old Level"
+	var collectibles = level.get_node("Collectibles").duplicate()
+	$ViewportContainer/Viewport.remove_child(level)
+	$ViewportContainer/Viewport.add_child(new_level)
+	new_level.name = "Level"
+	new_level.do_game_setup({})
+	new_level.replace_collectibles(collectibles)
+	level.queue_free()
 	$ShopUI.visible = false
 	$ViewportContainer.visible = true
 	$UI.back_to_ocean()
 	Game.power = Game.max_power
+	level = new_level

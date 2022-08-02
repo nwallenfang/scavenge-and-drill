@@ -17,6 +17,6 @@ func _network_process(delta):
 	if controlled:
 		rpc_unreliable("set_puppet_aim", aim_direction)
 
-remote func set_puppet_aim(aim_direction):
-	self.aim_direction = aim_direction
+remote func set_puppet_aim(aim_direction_set):
+	self.aim_direction = aim_direction_set
 	$Model/Head.rotation.y = -aim_direction.angle() + PI/2.0

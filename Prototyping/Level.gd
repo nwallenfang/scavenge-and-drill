@@ -42,8 +42,7 @@ func do_game_setup(players: Dictionary):
 #	Game.viewport_sprite.material.set_shader_param("ViewportTexture1", $Viewport.get_texture())
 #	Game.viewport_sprite.material.set_shader_param("ViewportTexture2", $ViewportPartner.get_texture())
 	#print(Game.viewport_sprite.material.get("shader_param/ViewportTexture2"))
-	
-	# TODO instance Level
+
 	
 	if not get_tree().is_network_server():
 		Game.host = false
@@ -65,7 +64,11 @@ func do_game_setup(players: Dictionary):
 #		$Viewport/DualSideviewCamera.initialize($Player1, $ViewportPartner/DualSideviewCamera)
 #		$ViewportPartner/DualSideviewCamera.initialize($Player2, $Viewport/DualSideviewCamera)
 		camera.initialize($Player1, $Player2)
-
-
-func _on_RopeLengthChecker_timeout() -> void:
-	pass # Replace with function body.
+		
+		
+func replace_collectibles(collectibles_node: Node):
+	var collectibles_old = $Collectibles
+	collectibles_old.name = "Collectibles_old"
+	collectibles_old.queue_free()
+	collectibles_node.name = "Collectibles"
+	add_child(collectibles_node)
