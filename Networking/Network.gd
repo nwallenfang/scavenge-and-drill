@@ -87,8 +87,9 @@ func connect_to_matchmaking():
 		device_id = OS.get_unique_id()
 	var username = 'Milhelm'  # let player choose their name?
 	for i in range(10):
-		nakama_session = yield(Network.nakama_client.authenticate_device_async(device_id, username, true, null), "completed")
-		
+#		nakama_session = yield(Network.nakama_client.authenticate_device_async(device_id, username, true, null), "completed")
+		# please excuse this mess of a hack... couldn't get device auth working with https/CORS-policy.
+		nakama_session = yield(Network.nakama_client.authenticate_email_async("test@test.com", "12345678"), "completed")
 		if nakama_session.is_exception():
 			print("(%d) Login failed!" % i)
 			print(nakama_session.get_exception())
