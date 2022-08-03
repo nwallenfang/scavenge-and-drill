@@ -8,8 +8,8 @@ export var player2_color: Color
 
 func _ready():
 	Game.level = self
-	$Player1.set_color(player1_color)
-	$Player2.set_color(player2_color)
+#	$Player1.set_color(player1_color)
+#	$Player2.set_color(player2_color)
 
 	Game.connect("power_depleted", self, "server_power_depleted")
 
@@ -48,7 +48,7 @@ func do_game_setup(players: Dictionary):
 		$Player2.global_translation.x += 1.0
 	
 	
-	$Cable.create_cable($Player1/Handle, $Player2/Handle)
+	$Cable.create_cable($Player1.handle, $Player2.handle)
 	$Cable.set_players($Player1, $Player2)
 	
 	Game.roller = $Player1
