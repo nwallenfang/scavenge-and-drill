@@ -1,0 +1,111 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Logic/DiveStartCutscene.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Models/HookModel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Models/RollerModel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Models/DrillModel.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Cutscene"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:camera_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 1.0, 3.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:hook_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("TreasureCam:current")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HookModel/HookCam:current")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 7.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "end_cutscene"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("TreasureCam:fov")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 3.4, 4.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 70.0, 40.0 ]
+}
+
+[node name="DiveStartCutscene" type="Spatial"]
+script = ExtResource( 1 )
+camera_offset = 1.0
+hook_offset = 1.0
+
+[node name="HookModel" parent="." instance=ExtResource( 2 )]
+transform = Transform( 2.82705, 0, 0, 0, 2.82705, 0, 0, 0, 2.82705, 0, 0, 0 )
+
+[node name="HookCam" type="Camera" parent="HookModel"]
+transform = Transform( 0.996013, 0.017314, 0.0875088, -0.0887796, 0.288112, 0.953472, -0.00870392, -0.95744, 0.2885, 0.475732, 1.84197, 0.608224 )
+
+[node name="HookTip" type="Spatial" parent="HookModel"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.237359, 0 )
+
+[node name="RollerModel" parent="HookModel" instance=ExtResource( 3 )]
+transform = Transform( 0.569618, 0, 0, 0, 0.486058, 0.297006, 0, -0.297006, 0.486058, 0.000771468, -0.1986, 0.19235 )
+
+[node name="DrillModel" parent="HookModel" instance=ExtResource( 4 )]
+transform = Transform( 0.569618, 0, 0, 0, 0.297006, -0.486058, 0, 0.486058, 0.297006, 0.00281357, -0.215242, -0.240983 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Cutscene = SubResource( 1 )
+
+[node name="TreasureCam" type="Camera" parent="."]
+current = true
+fov = 67.2727
