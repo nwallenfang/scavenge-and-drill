@@ -8,6 +8,8 @@ var aim_direction : Vector2
 func _physics_process(delta):
 	._physics_process(delta)
 	if controlled:
+		if static_mode:
+			return
 		var global_mouse_pos := Game.mouse_layer.get_global_layer_mouse_position()
 		if global_mouse_pos == null:
 			global_mouse_pos = Vector3(0.0, 0.0, 0.0)
@@ -18,6 +20,8 @@ func _physics_process(delta):
 			Network.rpc("spawn_object", "bullet", $Model/Head/BulletSpawn.global_translation, {"direction": aim_direction})
 		if Input.is_action_just_pressed("initiate_swap"):
 			Game.rpc("try_swap",name)
+		if Input.is_action_just_pressed("super_mode"):
+			Game.rpc("try_super",name)
 
 func _network_process(delta):
 	._network_process(delta)

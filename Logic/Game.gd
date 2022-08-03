@@ -156,3 +156,49 @@ func execute_swap():
 	yield(get_tree().create_timer(.5),"timeout")
 	roller.static_mode = false
 	drill.static_mode = false
+
+func execute_contract():
+	Game.log("CONTRACT!")
+	roller.static_mode = true
+	drill.static_mode = true
+	yield(get_tree().create_timer(.5),"timeout")
+	var tween = get_tree().create_tween()
+	tween.tween_property(drill, "global_2d", roller.global_2d, 1.0)
+	yield(get_tree().create_timer(2.5),"timeout")
+	roller.static_mode = false
+	drill.static_mode = false
+
+var super_mode := false
+var super_speed := 150.0
+var super_duration := 10.0
+func execute_super_mode():
+	yield(execute_contract(), "completed")
+	Game.log("Contract Done")
+	drill.mounted = true
+	var old_speed := roller.ACC
+	roller.ACC = super_speed
+	roller.cable_factor = 0.0
+	yield(get_tree().create_timer(super_duration),"timeout")
+	drill.mounted = false
+	roller.ACC = old_speed
+	roller.cable_factor = 1.0
+
+var player_1_wants_to_super := false
+var player_2_wants_to_super := false
+remotesync func try_super(player_name):
+	if "1" in player_name:
+		if player_2_wants_to_super:
+			execute_super_mode()
+		elif not player_1_wants_to_super:
+			player_1_wants_to_super = true
+			Game.log("Player 1 wants to super")
+			yield(get_tree().create_timer(2.0), "timeout")
+			player_1_wants_to_super = false
+	elif "2" in player_name:
+		if player_1_wants_to_super:
+			execute_super_mode()
+		elif not player_2_wants_to_super:
+			player_2_wants_to_super = true
+			Game.log("Player 2 wants to super")
+			yield(get_tree().create_timer(2.0), "timeout")
+			player_2_wants_to_super = false

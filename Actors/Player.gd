@@ -12,8 +12,11 @@ var current_hover_object: Spatial
 #var inventory_ball_count := 0
 
 var cable_force := Vector3.ZERO
+var cable_factor := 1.0
 
 var static_mode := false
+
+
 
 func _physics_process(delta):
 	if not Game.game_started:
@@ -31,7 +34,7 @@ func _physics_process(delta):
 
 		add_acceleration(ACC * move_direction_normalized)
 		if cable_force.length() > .02:
-			add_acceleration(ACC * cable_force)
+			add_acceleration(ACC * cable_force * cable_factor)
 		execute_movement(delta)
 		
 		var target_hover_object = null
@@ -89,3 +92,12 @@ func _network_process(_delta):
 	if controlled:
 		rpc_unreliable("set_puppet_position", global_transform.origin)
 		#rpc_unreliable("set_puppet_ball_count", inventory_ball_count)
+
+var global_2d : Vector2 setget set_global_2d, get_global_2d
+
+func get_global_2d() -> Vector2:
+	return Vector2(global_translation.x, global_translation.z)
+
+func set_global_2d(pos):
+	global_translation.x = pos.x
+	global_translation.z = pos.y
