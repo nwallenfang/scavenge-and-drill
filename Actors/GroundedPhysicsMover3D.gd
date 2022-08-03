@@ -54,7 +54,7 @@ func execute_movement(delta: float) -> void:
 	# apply friction if on the floor
 	velocity = velocity * pow(FRICTION, delta * EXPECTED_FPS)
 
-	if velocity.length() < 0.15:
+	if velocity.length() < 0.05:
 		# to prevent long sliding down ramps
 		velocity = Vector3.ZERO
 		

@@ -1,15 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Actors/Roller.gd" type="Script" id=1]
-
-[sub_resource type="CapsuleMesh" id=8]
-
-[sub_resource type="SpatialMaterial" id=9]
-albedo_color = Color( 0, 0.345098, 1, 1 )
-
-[sub_resource type="CubeMesh" id=12]
-
-[sub_resource type="CylinderMesh" id=13]
+[ext_resource path="res://Assets/Models/RollerModel.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CapsuleShape" id=10]
 radius = 0.905299
@@ -22,8 +14,7 @@ radius = 4.10198
 [sub_resource type="CapsuleShape" id=14]
 
 [node name="Roller" type="KinematicBody" groups=["networked"]]
-collision_layer = 4
-collision_mask = 5
+collision_layer = 0
 axis_lock_motion_y = true
 move_lock_y = true
 script = ExtResource( 1 )
@@ -31,23 +22,17 @@ ACC = 20.0
 
 [node name="Model" type="Spatial" parent="."]
 
-[node name="MeshInstance" type="MeshInstance" parent="Model"]
-transform = Transform( 1.08783, 0, 0, 0, -1.64562e-08, 0.376474, 0, -1.08783, -4.75505e-08, 0, 0.397972, 0 )
-mesh = SubResource( 8 )
-material/0 = SubResource( 9 )
+[node name="RollerModel" parent="Model" instance=ExtResource( 2 )]
+transform = Transform( 1.32927, 0, 0, 0, 1.32927, 0, 0, 0, 1.32927, 0, 0, 0 )
 
-[node name="Head" type="Spatial" parent="Model"]
+[node name="Handle" type="Spatial" parent="Model/RollerModel"]
+transform = Transform( 0.752294, 0, 0, 0, 0.752294, 0, 0, 0, 0.752294, 0, 0.330323, -0.479799 )
 
-[node name="BulletSpawn" type="Spatial" parent="Model/Head"]
-transform = Transform( 0.0703036, 0, 0, 0, -3.07307e-09, -0.0703036, 0, 0.242074, -1.05814e-08, 0, 1.0981, 0.702294 )
+[node name="RollerConnector" parent="Model/RollerModel" index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.61564, 0.00750867 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Model/Head"]
-transform = Transform( 0.295583, 0, 0, 0, 0.295583, 0, 0, 0, 0.295583, 0, 0.947009, 0 )
-mesh = SubResource( 12 )
-
-[node name="MeshInstance2" type="MeshInstance" parent="Model/Head"]
-transform = Transform( 0.0703036, 0, 0, 0, -3.07307e-09, -0.0703036, 0, 0.242074, -1.05814e-08, 0, 1.0981, 0.487367 )
-mesh = SubResource( 13 )
+[node name="BulletSpawn" type="Spatial" parent="Model/RollerModel/Head" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.709837, 0.164104 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1.06482, 0, 0, 0, -2.82107e-08, 0.645386, 0, -1.06482, -4.65447e-08, 0, 1.23442, 0 )
@@ -62,9 +47,6 @@ collision_mask = 2
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00012, 0 )
 shape = SubResource( 11 )
 
-[node name="Handle" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.439088, 0 )
-
 [node name="Hurtbox" type="Area" parent="."]
 visible = false
 collision_layer = 48
@@ -73,3 +55,5 @@ collision_mask = 0
 [node name="CollisionShape" type="CollisionShape" parent="Hurtbox"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.763725, 0 )
 shape = SubResource( 14 )
+
+[editable path="Model/RollerModel"]

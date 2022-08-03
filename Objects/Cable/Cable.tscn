@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Objects/Cable.gd" type="Script" id=1]
-[ext_resource path="res://Objects/CableEnd.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/Cable/Cable.gd" type="Script" id=1]
+[ext_resource path="res://Objects/Cable/CableEnd.tscn" type="PackedScene" id=2]
 
 [sub_resource type="Shader" id=1]
 code = "// NOTE: Shader automatically converted from Godot Engine 3.5.rc8's SpatialMaterial.

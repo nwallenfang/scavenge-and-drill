@@ -1,7 +1,9 @@
 extends Player
 
-export var move_acc_default := 120.0
-export var move_acc_upgraded := 130.0
+export var move_acc_default := 8.0
+export var move_acc_upgraded := 12.0
+
+onready var handle := $Handle
 
 var mounted := false setget set_mounted
 
