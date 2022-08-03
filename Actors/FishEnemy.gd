@@ -34,7 +34,7 @@ func _physics_process(delta: float):
 	var target_y_rotation = - (Vector2(global_translation.x, global_translation.z) - Vector2(last_pos.x, last_pos.z)).angle()
 	rotation.y = lerp_angle(rotation.y, target_y_rotation, .2)
 
-func _network_process(delta):
+func _network_process_slowly(delta):
 	if Game.host:
 		rpc_unreliable("safe_sync_position", global_translation)
 

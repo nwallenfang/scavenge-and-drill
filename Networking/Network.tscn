@@ -7,4 +7,8 @@ script = ExtResource( 1 )
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="SlowerSyncTimer" type="Timer" parent="."]
+wait_time = 1.5
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="SlowerSyncTimer" to="." method="_on_SlowerSyncTimer_timeout"]

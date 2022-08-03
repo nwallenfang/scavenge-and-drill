@@ -16,7 +16,7 @@ radius = 5.15545
 [sub_resource type="CapsuleShape" id=5]
 radius = 0.42254
 
-[node name="FishEnemy" type="Spatial" groups=["networked"]]
+[node name="FishEnemy" type="Spatial" groups=["networked_slowly"]]
 script = ExtResource( 1 )
 
 [node name="Model" type="Spatial" parent="."]

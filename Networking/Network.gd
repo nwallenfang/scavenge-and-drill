@@ -123,6 +123,7 @@ func connect_to_matchmaking():
 
 func start():
 	$Timer.start()
+	$SlowerSyncTimer.start()
 
 func _on_Timer_timeout() -> void:
 	get_tree().call_group("networked", "_network_process", 1.0/TICK_RATE)
@@ -136,3 +137,7 @@ remotesync func spawn_object(object_name : String, pos := Vector3.ZERO, data = n
 	new_obj.global_translation = pos
 	if new_obj.has_method("_network_init") and data != null:
 		new_obj.call("_network_init", data)
+
+
+func _on_SlowerSyncTimer_timeout() -> void:
+	get_tree().call_group("networked_slow", "_slow_network_process", $SlowerSyncTimer.wait_time)
