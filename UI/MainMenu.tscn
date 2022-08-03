@@ -267,6 +267,26 @@ margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 
+[node name="Label" type="Label" parent="CreateLobbyScreen/Panel/VBoxContainer"]
+margin_top = 36.0
+margin_right = 819.0
+margin_bottom = 57.0
+text = "code copied!"
+align = 2
+
+[node name="Gap" type="Control" parent="CreateLobbyScreen/Panel/VBoxContainer"]
+margin_top = 61.0
+margin_right = 819.0
+margin_bottom = 111.0
+rect_min_size = Vector2( 100, 50 )
+
+[node name="Label2" type="Label" parent="CreateLobbyScreen/Panel/VBoxContainer"]
+margin_top = 115.0
+margin_right = 819.0
+margin_bottom = 136.0
+text = "Waiting for a player to join.."
+align = 1
+
 [connection signal="clicked" from="Buttons/PlayWithFriendButton" to="." method="_on_PlayWithFriendButton_clicked"]
 [connection signal="clicked" from="Buttons/PlayWithRandomButton" to="." method="_on_PlayWithRandomButton_clicked"]
 [connection signal="clicked" from="LobbyScreen/CreateLobby" to="." method="_on_CreateLobby_clicked"]

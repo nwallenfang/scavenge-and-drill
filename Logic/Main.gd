@@ -37,7 +37,7 @@ func _ready() -> void:
 		# becomes the server
 		if not is_player1:
 			yield(get_tree().create_timer(.3), "timeout")
-		$MainMenu.visible = false
+		$MainMenu.queue_free()
 		Network.connect_to_matchmaking()
 		
 	Game.connect("power_depleted", self, "game_to_shop_transition")
