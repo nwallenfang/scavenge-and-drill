@@ -21,6 +21,7 @@ func clamp_and_map(value, istart, istop, ostart, ostop) -> float:
 
 
 func initialize(_target: Spatial, _target2 = null):
+	offset = global_translation
 	target = _target
 	target2 = _target2
 	self.set_physics_process(true)

@@ -138,4 +138,5 @@ remotesync func try_swap(player_name):
 			player_2_wants_to_swap = false
 
 func execute_swap():
+	# Todo Animation
 	pass
