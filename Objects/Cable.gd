@@ -41,7 +41,7 @@ func test_cable_stretch():
 	var direction_for_b : Vector3 = segments[-1].global_translation.direction_to(segments[-2].global_translation)
 	player_a.cable_force = direction_for_a * stretch_factor
 	player_b.cable_force = direction_for_b * stretch_factor
-	$ImmediateGeometry.material_override.albedo_color = lerp(Color.white, Color.red, stretch_factor)
+	#$ImmediateGeometry.material_override.set("shader_param/albedo", lerp(Color.white, Color.red, stretch_factor))
 	
 
 func create_cable(piece_a: Spatial, piece_b: Spatial):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Prototyping/Level.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Drill.tscn" type="PackedScene" id=2]
@@ -17,6 +17,15 @@
 [ext_resource path="res://Actors/Roller.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Logic/MouseDetectionLayer.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Assets/Models/Level1Base.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Objects/Cliff/Cliff1.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Objects/Cliff/Cliff3.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Objects/Cliff/Cliff2.tscn" type="PackedScene" id=20]
+
+[sub_resource type="Curve3D" id=1]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 17.908, 0.394807, -8.77634, 0, 0, 0, 0, 0, 0, 23.3773, 0.454515, -10.3938, 0, 0, 0, 0, 0, 0, 26.5733, 0.585869, -13.0234, 0, 0, 0, 0, 0, 0, 24.0494, 0.809769, -16.6679, 0, 0, 0, 0, 0, 0, 16.9867, 0.902314, -17.5416, 0, 0, 0, 0, 0, 0, 10.4141, 0.909777, -16.9811, 0, 0, 0, 0, 0, 0, 7.27376, 0.762002, -14.0706, 0, 0, 0, 0, 0, 0, 8.11521, 0.55452, -10.536, 0, 0, 0, 0, 0, 0, 13.373, 0.460482, -9.44655, 0, 0, 0, 0, 0, 0, 16.4155, 0.363458, -8.07211 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+}
 
 [node name="Level" type="Spatial"]
 script = ExtResource( 1 )
@@ -105,8 +114,22 @@ visible = false
 environment = ExtResource( 9 )
 
 [node name="FishPath" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.23199, 0, -17.1365 )
+curve = SubResource( 1 )
 can_attack = true
+
+[node name="Cliffs" type="Spatial" parent="."]
+
+[node name="Cliff1" parent="Cliffs" instance=ExtResource( 18 )]
+transform = Transform( -0.338459, 0, -0.940981, 0, 1, 0, 0.940981, 0, -0.338459, -18.1186, -9.53674e-07, -12.2014 )
+
+[node name="Cliff2" parent="Cliffs" instance=ExtResource( 20 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0845, 9.53674e-07, -13.0261 )
+
+[node name="Cliff3" parent="Cliffs" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.27482, 0, -27.4031 )
+
+[node name="Cliff4" parent="Cliffs" instance=ExtResource( 19 )]
+transform = Transform( 0.646599, 0, 0.876054, 0, 1, 0, -1.1747, 0, 0.482212, 6.49369, -0.915325, 5.01101 )
 
 [connection signal="player_entered" from="Objects/ButtonPlate1" to="Objects/Door" method="_on_ButtonPlate1_player_entered"]
 [connection signal="player_left" from="Objects/ButtonPlate1" to="Objects/Door" method="_on_ButtonPlate1_player_left"]

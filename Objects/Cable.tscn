@@ -1,9 +1,60 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Objects/Cable.gd" type="Script" id=1]
 [ext_resource path="res://Objects/CableEnd.tscn" type="PackedScene" id=2]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="Shader" id=1]
+code = "// NOTE: Shader automatically converted from Godot Engine 3.5.rc8's SpatialMaterial.
+
+shader_type spatial;
+render_mode async_visible,blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
+uniform vec4 albedo : hint_color;
+uniform sampler2D texture_albedo : hint_albedo;
+uniform float specular;
+uniform float metallic;
+uniform float roughness : hint_range(0,1);
+uniform float point_size : hint_range(0,128);
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+}
+
+
+float clamp_and_map(float value, float istart, float istop, float ostart, float ostop) {
+    value = clamp(value, istart, istop);
+    return ostart + (ostop - ostart) * ((value - istart) / (istop - istart));
+}
+
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	float one = 1.0;
+	float uvy = modf(UV.y + UV.x * 4.0, one);
+	float cable_line = pow(abs(clamp_and_map(abs(uvy-.5), 0.0, .5, 1.0, 0.01)), 5.0);
+	ALBEDO = mix(albedo.rgb, albedo.rgb * .1, cable_line);
+	METALLIC = metallic;
+	ROUGHNESS = roughness;
+	SPECULAR = specular;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/albedo = Color( 0.449219, 0.289536, 0.289536, 1 )
+shader_param/specular = 0.5
+shader_param/metallic = 0.0
+shader_param/roughness = 1.0
+shader_param/point_size = 1.0
+shader_param/uv1_scale = Vector3( 1, 1, 1 )
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv2_scale = Vector3( 1, 1, 1 )
+shader_param/uv2_offset = Vector3( 0, 0, 0 )
 
 [node name="Cable" type="Spatial"]
 script = ExtResource( 1 )
@@ -13,4 +64,4 @@ script = ExtResource( 1 )
 [node name="CableEndB" parent="." instance=ExtResource( 2 )]
 
 [node name="ImmediateGeometry" type="ImmediateGeometry" parent="."]
-material_override = SubResource( 1 )
+material_overlay = SubResource( 2 )

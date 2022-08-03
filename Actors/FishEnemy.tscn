@@ -11,7 +11,7 @@ radius = 0.966859
 height = 1.13097
 
 [sub_resource type="SphereShape" id=4]
-radius = 6.03043
+radius = 5.15545
 
 [sub_resource type="CapsuleShape" id=5]
 radius = 0.42254
