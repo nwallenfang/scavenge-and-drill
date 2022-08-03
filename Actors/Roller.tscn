@@ -12,6 +12,8 @@ albedo_color = Color( 0, 0.345098, 1, 1 )
 [sub_resource type="CylinderMesh" id=13]
 
 [sub_resource type="CapsuleShape" id=10]
+radius = 0.905299
+height = 1.09211
 
 [sub_resource type="CylinderShape" id=11]
 height = 4.24622
@@ -22,6 +24,8 @@ radius = 4.10198
 [node name="Roller" type="KinematicBody" groups=["networked"]]
 collision_layer = 4
 collision_mask = 5
+axis_lock_motion_y = true
+move_lock_y = true
 script = ExtResource( 1 )
 ACC = 20.0
 
@@ -46,10 +50,11 @@ transform = Transform( 0.0703036, 0, 0, 0, -3.07307e-09, -0.0703036, 0, 0.242074
 mesh = SubResource( 13 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1.06482, 0, 0, 0, -2.82107e-08, 0.645386, 0, -1.06482, -4.65447e-08, 0, 0.883563, 0 )
+transform = Transform( 1.06482, 0, 0, 0, -2.82107e-08, 0.645386, 0, -1.06482, -4.65447e-08, 0, 1.23442, 0 )
 shape = SubResource( 10 )
 
 [node name="InteractDetection" type="Area" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
 
@@ -61,6 +66,7 @@ shape = SubResource( 11 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.439088, 0 )
 
 [node name="Hurtbox" type="Area" parent="."]
+visible = false
 collision_layer = 48
 collision_mask = 0
 
