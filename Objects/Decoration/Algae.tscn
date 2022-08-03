@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Objects/Algae.gd" type="Script" id=1]
+[ext_resource path="res://Objects/Decoration/Algae.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Models/AlgaeModel3.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Shader/Algae.gdshader" type="Shader" id=3]
 

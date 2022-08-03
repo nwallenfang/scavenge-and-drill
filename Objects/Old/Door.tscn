@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Objects/Door.gd" type="Script" id=1]
+[ext_resource path="res://Objects/Old/Door.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Materials/door_light_off.tres" type="Material" id=2]
 
 [sub_resource type="CubeMesh" id=3]

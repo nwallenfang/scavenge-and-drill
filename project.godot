@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Spatial",
 "class": "InteractObject",
 "language": "GDScript",
-"path": "res://Objects/InteractObject.gd"
+"path": "res://Objects/Pickup/InteractObject.gd"
 }, {
 "base": "Spatial",
 "class": "MouseDetectionLayer",
