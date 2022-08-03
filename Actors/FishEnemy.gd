@@ -36,7 +36,7 @@ func _physics_process(delta: float):
 
 func _network_process_slowly(delta):
 	if Game.host:
-		rpc_unreliable("safe_sync_position", global_translation)
+		rpc("safe_sync_position", global_translation)
 
 remotesync func set_state(s, target_name = ""):
 	state = s
