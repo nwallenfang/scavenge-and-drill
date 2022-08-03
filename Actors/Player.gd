@@ -13,10 +13,14 @@ var current_hover_object: Spatial
 
 var cable_force := Vector3.ZERO
 
+var static_mode := false
+
 func _physics_process(delta):
 	if not Game.game_started:
 		return
 	if controlled:
+		if static_mode:
+			return
 		var move_direction := Vector3.ZERO
 		move_direction.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 		move_direction.z = Input.get_action_strength("move_back") - Input.get_action_strength("move_forward")

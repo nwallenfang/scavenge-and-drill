@@ -127,21 +127,32 @@ remotesync func try_swap(player_name):
 			execute_swap()
 		elif not player_1_wants_to_swap:
 			player_1_wants_to_swap = true
-			yield(get_tree().create_timer(10.0), "timeout")
+			Game.log("Player 1 wants to swap")
+			yield(get_tree().create_timer(2.0), "timeout")
 			player_1_wants_to_swap = false
 	elif "2" in player_name:
 		if player_1_wants_to_swap:
 			execute_swap()
 		elif not player_2_wants_to_swap:
 			player_2_wants_to_swap = true
-			yield(get_tree().create_timer(10.0), "timeout")
+			Game.log("Player 2 wants to swap")
+			yield(get_tree().create_timer(2.0), "timeout")
 			player_2_wants_to_swap = false
 
 func execute_swap():
 	# Todo Animation
-	var player1_pos = roller.global_translation
-	var player2_pos = drill.global_translation
-	roller.global_translation = player2_pos
-	drill.global_translation = player1_pos
+	Game.log("SWAP!")
 	player_1_wants_to_swap = false
 	player_2_wants_to_swap = false
+	roller.static_mode = true
+	drill.static_mode = true
+	yield(get_tree().create_timer(.5),"timeout")
+	var player1_pos = roller.global_translation
+	var player2_pos = drill.global_translation
+	roller.global_translation.x = player2_pos.x
+	roller.global_translation.z = player2_pos.z
+	drill.global_translation.x = player1_pos.x
+	drill.global_translation.z = player1_pos.z
+	yield(get_tree().create_timer(.5),"timeout")
+	roller.static_mode = false
+	drill.static_mode = false
