@@ -139,4 +139,7 @@ remotesync func try_swap(player_name):
 
 func execute_swap():
 	# Todo Animation
-	pass
+	var player1_pos = roller.global_translation
+	var player2_pos = drill.global_translation
+	roller.global_translation = player2_pos
+	drill.global_translation = player1_pos
