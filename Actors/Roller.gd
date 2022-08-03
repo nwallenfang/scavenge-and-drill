@@ -17,7 +17,7 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("shoot"):
 			Network.rpc("spawn_object", "bullet", $Model/Head/BulletSpawn.global_translation, {"direction": aim_direction})
 		if Input.is_action_just_pressed("initiate_swap"):
-			Game.try_swap(name)
+			Game.rpc("try_swap",name)
 
 func _network_process(delta):
 	._network_process(delta)
