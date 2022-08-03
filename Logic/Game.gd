@@ -44,6 +44,7 @@ class Upgrades:
 	var less_power_drain := false #Done
 	var more_move_speed := false #Done
 	var more_bullet_damage := false #Done
+	var position_swap := true
 
 var upgrades: Upgrades = Upgrades.new()
 
@@ -117,3 +118,24 @@ func log(msg: String):
 	print(msg)
 	if ui != null:
 		ui.add_to_log(msg)
+
+var player_1_wants_to_swap := false
+var player_2_wants_to_swap := false
+remotesync func try_swap(player_name):
+	if "1" in player_name:
+		if player_2_wants_to_swap:
+			execute_swap()
+		elif not player_1_wants_to_swap:
+			player_1_wants_to_swap = true
+			yield(get_tree().create_timer(1.0), "timeout")
+			player_1_wants_to_swap = false
+	elif "2" in player_name:
+		if player_1_wants_to_swap:
+			execute_swap()
+		elif not player_2_wants_to_swap:
+			player_2_wants_to_swap = true
+			yield(get_tree().create_timer(1.0), "timeout")
+			player_2_wants_to_swap = false
+
+func execute_swap():
+	pass
