@@ -32,12 +32,12 @@ func _ready() -> void:
 	OnlineMatch.connect("player_left", self, "_on_OnlineMatch_player_left")
 	OnlineMatch.connect("matchmaker_matched", self, "_on_OnlineMatch_matchmaker_matched")
 	
+	
 	if Game.debug:
 		# other instance should wait a little because the first instance 
 		# becomes the server
 		if not is_player1:
 			yield(get_tree().create_timer(.3), "timeout")
-		$MainMenu.queue_free()
 		Network.connect_to_matchmaking()
 		
 	Game.connect("power_depleted", self, "game_to_shop_transition")
@@ -48,9 +48,20 @@ func _ready() -> void:
 func resize_viewport():
 	$ViewportContainer/Viewport.size = get_viewport().size
 
+remotesync func start_playing():
+	OnlineMatch.start_playing()
+
 func _on_OnlineMatch_matchmaker_matched(_players: Dictionary):
 #	ui_layer.show_screen("ReadyScreen", { players = _players })
-	$ReadyScreen._show_screen({ players = _players })
+#	$ReadyScreen._show_screen({ players = _players })
+	# -> ready
+
+	print("MISSING SOMETHING HERE")
+	if Game.debug:
+		rpc("player_ready", OnlineMatch.get_my_session_id())
+#		start_game()
+#		rpc("start_playing")
+#	start_game()
 
 #####
 # OnlineMatch callbacks
@@ -80,7 +91,7 @@ func _on_OnlineMatch_player_status_changed(player, status) -> void:
 # Gameplay methods and callbacks
 #####
 remotesync func player_ready(session_id: String) -> void:
-	ready_screen.set_status(session_id, "READY!")
+#	ready_screen.set_status(session_id, "READY!")
 	if get_tree().is_network_server() and not players_ready.has(session_id):
 		players_ready[session_id] = true
 		if players_ready.size() == OnlineMatch.players.size():
@@ -89,13 +100,11 @@ remotesync func player_ready(session_id: String) -> void:
 			start_game()
 
 func start_game() -> void:
-	if Game.online_play:
-		players = OnlineMatch.get_player_names_by_peer_id()
-
-	if Game.online_play:
+	players = OnlineMatch.get_player_names_by_peer_id()
+	print("START GAME@@")
+	if get_tree().is_network_server():
 		rpc("_do_game_setup", players)
-	else:
-		_do_game_setup(players)
+
 
 func stop_game() -> void:
 	OnlineMatch.leave()
@@ -113,6 +122,9 @@ func restart_game() -> void:
 # Initializes the game so that it is ready to really start.
 const LEVEL_SCENE = preload("res://Prototyping/Level.tscn")
 remotesync func _do_game_setup(playerss: Dictionary) -> void:
+	$MainMenu.queue_free()
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
 	if game_started:
 		stop_game()
 	
@@ -120,12 +132,15 @@ remotesync func _do_game_setup(playerss: Dictionary) -> void:
 	game_over = false
 	
 	level = LEVEL_SCENE.instance()
+
+	
 	$ViewportContainer/Viewport.add_child(level)
 	Game.ui = $UI
 	Game.ui.visible = true
 	level.do_game_setup(playerss)
 	
 	$ViewportContainer.visible = true
+
 
 	if Game.online_play:
 		var my_id := get_tree().get_network_unique_id()
@@ -177,3 +192,8 @@ remotesync func shop_to_game_transition():
 	$UI.back_to_ocean()
 	Game.power = Game.max_power
 	level = new_level
+	
+func _on_MainMenu_match_made():
+	print("match made")
+#	rpc("start_playing")
+	start_game()

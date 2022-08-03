@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Assets/Fonts/TitleFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Assets/Fonts/PausedFont.tres" type="DynamicFont" id=2]
@@ -11,6 +11,13 @@
 [ext_resource path="res://UI/Styles/create_lobby_sub.tres" type="StyleBox" id=9]
 [ext_resource path="res://UI/Styles/panel_submenu.tres" type="StyleBox" id=10]
 [ext_resource path="res://Assets/Sprites/copy.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Fonts/iosevka-extended-regular.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://UI/Styles/enter_lobby_panel.tres" type="StyleBox" id=13]
+
+[sub_resource type="Theme" id=4]
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 12 )
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -212,15 +219,97 @@ wait_time = 1.2
 
 [node name="JoinLobbyScreen" type="Control" parent="."]
 visible = false
+anchor_left = 0.1
+anchor_top = 0.338
+anchor_right = 0.9
+anchor_bottom = 0.876
+
+[node name="Panel" type="Panel" parent="JoinLobbyScreen"]
+anchor_right = 1.0
+anchor_bottom = 0.676
+custom_styles/panel = ExtResource( 10 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="JoinLobbyScreen/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="JoinLobbyScreen"]
-margin_right = 40.0
+[node name="Label" type="Label" parent="JoinLobbyScreen/Panel/VBoxContainer"]
+margin_right = 819.0
 margin_bottom = 21.0
-text = "join lobby"
+text = "Enter the lobby code from your friend:"
+align = 1
+
+[node name="JoinLobbyID" type="TextEdit" parent="JoinLobbyScreen/Panel/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 25.0
+margin_right = 819.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 35, 35 )
+size_flags_horizontal = 3
+text = "132465"
+
+[node name="Label2" type="Label" parent="JoinLobbyScreen/Panel/VBoxContainer"]
+margin_top = 64.0
+margin_right = 819.0
+margin_bottom = 85.0
+text = "Ctrl+V works :)"
+align = 1
+
+[node name="En" type="Panel" parent="JoinLobbyScreen/Panel/VBoxContainer"]
+margin_top = 89.0
+margin_right = 819.0
+margin_bottom = 89.0
+
+[node name="EnterLobbyButton" type="Control" parent="JoinLobbyScreen/Panel"]
+anchor_left = 0.2
+anchor_top = 0.458
+anchor_right = 0.8
+anchor_bottom = 0.64
+mouse_filter = 1
+theme = SubResource( 4 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Panel" type="Panel" parent="JoinLobbyScreen/Panel/EnterLobbyButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = ExtResource( 13 )
+
+[node name="CenterContainer" type="CenterContainer" parent="JoinLobbyScreen/Panel/EnterLobbyButton/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="JoinLobbyScreen/Panel/EnterLobbyButton/Panel/CenterContainer"]
+margin_left = 196.0
+margin_top = 9.0
+margin_right = 295.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DescriptionLabel" type="Label" parent="JoinLobbyScreen/Panel/EnterLobbyButton/Panel/CenterContainer/VBoxContainer"]
+margin_right = 99.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 6 )
+text = "Enter Lobby"
+align = 1
+
+[node name="JoinedSuccess" type="Label" parent="JoinLobbyScreen/Panel"]
+unique_name_in_owner = true
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -21.0
+text = "Joined the lobby successfully!"
+align = 1
 
 [node name="CreateLobbyScreen" type="Control" parent="."]
+visible = false
 anchor_left = 0.1
 anchor_top = 0.338
 anchor_right = 0.9
@@ -248,7 +337,8 @@ size_flags_vertical = 6
 text = "Send this lobby code to your friend:"
 align = 1
 
-[node name="TextEdit" type="TextEdit" parent="CreateLobbyScreen/Panel/VBoxContainer/HBoxContainer"]
+[node name="CreateLobbyID" type="TextEdit" parent="CreateLobbyScreen/Panel/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 margin_left = 328.0
 margin_right = 783.0
 margin_bottom = 32.0
@@ -267,11 +357,11 @@ margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 
-[node name="Label" type="Label" parent="CreateLobbyScreen/Panel/VBoxContainer"]
+[node name="CodeCopied" type="Label" parent="CreateLobbyScreen/Panel/VBoxContainer"]
+unique_name_in_owner = true
 margin_top = 36.0
 margin_right = 819.0
 margin_bottom = 57.0
-text = "code copied!"
 align = 2
 
 [node name="Gap" type="Control" parent="CreateLobbyScreen/Panel/VBoxContainer"]
@@ -298,3 +388,8 @@ align = 1
 [connection signal="mouse_entered" from="LobbyScreen/JoinLobby/Panel" to="LobbyScreen/JoinLobby" method="_on_Panel_mouse_entered"]
 [connection signal="mouse_exited" from="LobbyScreen/JoinLobby/Panel" to="LobbyScreen/JoinLobby" method="_on_Panel_mouse_exited"]
 [connection signal="timeout" from="ProgressAnimator" to="." method="_on_ProgressAnimator_timeout"]
+[connection signal="clicked" from="JoinLobbyScreen/Panel/EnterLobbyButton" to="." method="_on_EnterLobbyButton_clicked"]
+[connection signal="gui_input" from="JoinLobbyScreen/Panel/EnterLobbyButton/Panel" to="JoinLobbyScreen/Panel/EnterLobbyButton" method="_on_Panel_gui_input"]
+[connection signal="mouse_entered" from="JoinLobbyScreen/Panel/EnterLobbyButton/Panel" to="JoinLobbyScreen/Panel/EnterLobbyButton" method="_on_Panel_mouse_entered"]
+[connection signal="mouse_exited" from="JoinLobbyScreen/Panel/EnterLobbyButton/Panel" to="JoinLobbyScreen/Panel/EnterLobbyButton" method="_on_Panel_mouse_exited"]
+[connection signal="gui_input" from="CreateLobbyScreen/Panel/VBoxContainer/HBoxContainer/AspectRatioContainer/CopyButton" to="." method="_on_CopyButton_gui_input"]

@@ -73,19 +73,10 @@ func connect_nakama_socket() -> void:
 
 func is_nakama_socket_connected() -> bool:
 	   return nakama_socket != null && nakama_socket.is_connected_to_host()
-	
-# copied from MatchScreen and ConnectionScreen
-func connect_to_matchmaking():
+
+
+func connect_to_nakama():
 	# first off authenticate with Nakama
-	# TODO device ID not available on Web, need to find an alternative!
-	var device_id
-	if OS.has_feature("HTML5"):
-		# dirty hack, let's just use parts of the unix timestamp..
-		# hope this method is available on web
-		device_id = OS.get_unix_time()
-	else:
-		device_id = OS.get_unique_id()
-	var username = 'Milhelm'  # let player choose their name?
 	for i in range(10):
 #		nakama_session = yield(Network.nakama_client.authenticate_device_async(device_id, username, true, null), "completed")
 		# please excuse this mess of a hack... couldn't get device auth working with https/CORS-policy.
@@ -105,7 +96,30 @@ func connect_to_matchmaking():
 	# Connect socket to realtime Nakama API if not connected.
 	if not Network.is_nakama_socket_connected():
 		connect_nakama_socket()
-		yield(Network, "socket_connected")
+		yield(Network, "socket_connected")	
+
+# copied from MatchScreen and ConnectionScreen
+func connect_to_matchmaking():
+	for i in range(10):
+#		nakama_session = yield(Network.nakama_client.authenticate_device_async(device_id, username, true, null), "completed")
+		# please excuse this mess of a hack... couldn't get device auth working with https/CORS-policy.
+		nakama_session = yield(Network.nakama_client.authenticate_email_async("test@test.com", "12345678"), "completed")
+		if nakama_session.is_exception():
+			print("(%d) Login failed!" % i)
+			print(nakama_session.get_exception())
+	#		ui_layer.show_message("Login failed!")
+
+			# We always set Online.nakama_session in case something is yielding
+			# on the "session_changed" signal.
+			nakama_session = null
+			yield(get_tree().create_timer(.1),"timeout")
+		else:
+			break
+	
+	# Connect socket to realtime Nakama API if not connected.
+	if not Network.is_nakama_socket_connected():
+		connect_nakama_socket()
+		yield(Network, "socket_connected")	
 		
 #	ui_layer.hide_screen()
 #	ui_layer.show_message("Looking for match...")
