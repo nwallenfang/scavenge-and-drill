@@ -19,4 +19,4 @@ shape = SubResource( 3 )
 
 [node name="J" type="PinJoint" parent="C"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
-params/bias = 0.01
+params/bias = 0.02

@@ -36,8 +36,10 @@ void fragment() {
 	vec4 albedo_tex = texture(texture_albedo,base_uv);
 	float one = 1.0;
 	float uvy = modf(UV.y + UV.x * 4.0, one);
-	float cable_line = pow(abs(clamp_and_map(abs(uvy-.5), 0.0, .5, 1.0, 0.01)), 5.0);
-	ALBEDO = mix(albedo.rgb, albedo.rgb * .1, cable_line);
+	float cable_line = pow(abs(clamp_and_map(abs(uvy-.5), 0.0, .5, 1.0, 0.01)), 4.0);
+	float cable_shadows = pow(abs(clamp_and_map(abs(uvy-.5), 0.2, .5, 1.0, 0.1)), 1.0);
+	float cable_stripes = clamp(cable_line * cable_shadows, 0.0, 1.0);
+	ALBEDO = mix(albedo.rgb, albedo.rgb * 0.0, cable_stripes);
 	METALLIC = metallic;
 	ROUGHNESS = roughness;
 	SPECULAR = specular;
@@ -46,7 +48,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
-shader_param/albedo = Color( 0.449219, 0.289536, 0.289536, 1 )
+shader_param/albedo = Color( 0.28, 0.1792, 0.1792, 1 )
 shader_param/specular = 0.5
 shader_param/metallic = 0.0
 shader_param/roughness = 1.0

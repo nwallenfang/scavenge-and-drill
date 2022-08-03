@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Prototyping/Level.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Drill.tscn" type="PackedScene" id=2]
@@ -26,6 +26,9 @@ _data = {
 "points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 17.908, 0.394807, -8.77634, 0, 0, 0, 0, 0, 0, 23.3773, 0.454515, -10.3938, 0, 0, 0, 0, 0, 0, 26.5733, 0.585869, -13.0234, 0, 0, 0, 0, 0, 0, 24.0494, 0.809769, -16.6679, 0, 0, 0, 0, 0, 0, 16.9867, 0.902314, -17.5416, 0, 0, 0, 0, 0, 0, 10.4141, 0.909777, -16.9811, 0, 0, 0, 0, 0, 0, 7.27376, 0.762002, -14.0706, 0, 0, 0, 0, 0, 0, 8.11521, 0.55452, -10.536, 0, 0, 0, 0, 0, 0, 13.373, 0.460482, -9.44655, 0, 0, 0, 0, 0, 0, 16.4155, 0.363458, -8.07211 ),
 "tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
 }
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 99.1882, 0.0222201, 107.505 )
 
 [node name="Level" type="Spatial"]
 script = ExtResource( 1 )
@@ -130,6 +133,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.27482, 0, -27.4031 )
 
 [node name="Cliff4" parent="Cliffs" instance=ExtResource( 19 )]
 transform = Transform( 0.646599, 0, 0.876054, 0, 1, 0, -1.1747, 0, 0.482212, 6.49369, -0.915325, 5.01101 )
+
+[node name="GroundCollision" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="GroundCollision"]
+shape = SubResource( 2 )
 
 [connection signal="player_entered" from="Objects/ButtonPlate1" to="Objects/Door" method="_on_ButtonPlate1_player_entered"]
 [connection signal="player_left" from="Objects/ButtonPlate1" to="Objects/Door" method="_on_ButtonPlate1_player_left"]
