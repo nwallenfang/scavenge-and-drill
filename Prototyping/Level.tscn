@@ -146,7 +146,6 @@ text = "Großer Schatz
 "
 
 [node name="DiveStartCutscene" parent="." instance=ExtResource( 21 )]
-visible = false
 
 [node name="Point1" type="Camera" parent="DiveStartCutscene"]
 transform = Transform( 0.777717, -0.319594, 0.54131, 0, 0.861115, 0.50841, -0.628615, -0.395399, 0.669704, 10.5618, 3.9656, -39.4179 )
@@ -155,7 +154,7 @@ transform = Transform( 0.777717, -0.319594, 0.54131, 0, 0.861115, 0.50841, -0.62
 transform = Transform( 0.777717, -0.319594, 0.54131, 0, 0.861115, 0.50841, -0.628615, -0.395399, 0.669704, 15.1007, 8.22862, -33.8025 )
 
 [node name="Point3" type="Camera" parent="DiveStartCutscene"]
-transform = Transform( -0.918515, 0.0475003, 0.392522, 0, 0.992757, -0.120137, -0.395385, -0.110347, -0.911863, 15.1007, 8.22862, -33.8025 )
+transform = Transform( -0.918515, 0.0181013, 0.394971, 0, 0.998951, -0.0457813, -0.395385, -0.0420509, -0.917552, 11.9339, 8.22862, -27.4567 )
 
 [connection signal="player_entered" from="Objects/ButtonPlate1" to="Objects/Door" method="_on_ButtonPlate1_player_entered"]
 [connection signal="player_left" from="Objects/ButtonPlate1" to="Objects/Door" method="_on_ButtonPlate1_player_left"]
