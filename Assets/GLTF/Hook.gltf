@@ -1,0 +1,221 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v3.2.43",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0,
+                1
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "Hook",
+            "rotation" : [
+                0,
+                0.7071068286895752,
+                -0.7071068286895752,
+                0
+            ],
+            "scale" : [
+                -1,
+                -1,
+                -1
+            ],
+            "translation" : [
+                0.016744323074817657,
+                0.25179430842399597,
+                -2.1433457732200623e-05
+            ]
+        },
+        {
+            "mesh" : 1,
+            "name" : "Chain",
+            "rotation" : [
+                0.5,
+                0.5,
+                -0.5,
+                0.5
+            ],
+            "scale" : [
+                0.03273814171552658,
+                0.03273814171552658,
+                0.03273814171552658
+            ],
+            "translation" : [
+                0.01710367575287819,
+                0.5793996453285217,
+                0
+            ]
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "name" : "HookMetal",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.19598804414272308,
+                    0.19598804414272308,
+                    0.19598804414272308,
+                    1
+                ],
+                "roughnessFactor" : 0.24611395597457886
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Text.003",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Torus",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 4,
+                        "NORMAL" : 5,
+                        "TEXCOORD_0" : 6
+                    },
+                    "indices" : 7,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 606,
+            "max" : [
+                0.16283071041107178,
+                0.045015837997198105,
+                0.3064654767513275
+            ],
+            "min" : [
+                -0.21148550510406494,
+                -0.0450158417224884,
+                -0.22154086828231812
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 606,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 606,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 2694,
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 4,
+            "componentType" : 5126,
+            "count" : 6300,
+            "max" : [
+                1.3499999046325684,
+                1.2372511625289917,
+                1.8842854499816895
+            ],
+            "min" : [
+                -1.2372514009475708,
+                -1.350000023841858,
+                -300.5739440917969
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 5,
+            "componentType" : 5126,
+            "count" : 6300,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 6,
+            "componentType" : 5126,
+            "count" : 6300,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 7,
+            "componentType" : 5123,
+            "count" : 28440,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 7272,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 7272,
+            "byteOffset" : 7272
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 4848,
+            "byteOffset" : 14544
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 5388,
+            "byteOffset" : 19392
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 75600,
+            "byteOffset" : 24780
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 75600,
+            "byteOffset" : 100380
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 50400,
+            "byteOffset" : 175980
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 56880,
+            "byteOffset" : 226380
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 283260,
+            "uri" : "Hook.bin"
+        }
+    ]
+}
