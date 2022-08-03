@@ -25,4 +25,6 @@
   - https://thenounproject.com/icon/handshake-5037639/
 - handshake 2
   - https://thenounproject.com/icon/handshake-5036625/
+- sand texture
+  - https://ambientcg.com/view?id=Ground054
 

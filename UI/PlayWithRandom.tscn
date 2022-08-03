@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Fonts/MainMenuFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Sprites/player_random.png" type="Texture" id=2]
+[ext_resource path="res://UI/MainMenuButton.gd" type="Script" id=3]
+[ext_resource path="res://UI/Styles/panel_menu_button.tres" type="StyleBox" id=4]
+
+[sub_resource type="Theme" id=4]
+
+[sub_resource type="Shader" id=7]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform sampler2D texture_resource;
+
+void fragment(){
+	COLOR = texture(texture_resource, UV);
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 7 )
+shader_param/texture_resource = ExtResource( 2 )
+
+[node name="PlayWithRandom" type="Control"]
+margin_left = 581.0
+margin_top = 235.0
+margin_right = 956.0
+margin_bottom = 521.0
+rect_scale = Vector2( 0.717371, 0.743225 )
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource( 4 )
+script = ExtResource( 3 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = ExtResource( 4 )
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/CenterContainer"]
+margin_left = 75.0
+margin_right = 300.0
+margin_bottom = 312.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Panel/CenterContainer/VBoxContainer"]
+margin_right = 225.0
+margin_bottom = 200.0
+mouse_filter = 2
+ratio = 1.8444
+stretch_mode = 1
+
+[node name="Image" type="ColorRect" parent="Panel/CenterContainer/VBoxContainer/AspectRatioContainer"]
+material = SubResource( 6 )
+margin_left = -71.94
+margin_right = 296.94
+margin_bottom = 200.0
+rect_min_size = Vector2( 200, 200 )
+mouse_filter = 2
+
+[node name="DescriptionLabel" type="Label" parent="Panel/CenterContainer/VBoxContainer"]
+margin_top = 204.0
+margin_right = 225.0
+margin_bottom = 312.0
+custom_fonts/font = ExtResource( 1 )
+text = "Play online
+via matchmaking
+"
+align = 1
+
+[connection signal="gui_input" from="Panel" to="." method="_on_Panel_gui_input"]
+[connection signal="mouse_entered" from="Panel" to="." method="_on_Panel_mouse_entered"]
+[connection signal="mouse_exited" from="Panel" to="." method="_on_Panel_mouse_exited"]

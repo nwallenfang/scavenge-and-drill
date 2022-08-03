@@ -42,5 +42,6 @@ visible = false
 [node name="DialogUI" parent="." instance=ExtResource( 5 )]
 
 [node name="UI" parent="." instance=ExtResource( 6 )]
+visible = false
 
 [connection signal="ready_pressed" from="ReadyScreen" to="." method="_on_ReadyScreen_ready_pressed"]

@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Fonts/MainMenuFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://UI/MainMenuButton.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Materials/ui_icon.tres" type="Material" id=3]
+
+[sub_resource type="Theme" id=4]
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.12549, 0.215686, 0.235294, 0.388235 )
+
+[node name="PlayWithFriend" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource( 4 )
+script = ExtResource( 2 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 5 )
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/CenterContainer"]
+margin_left = 412.0
+margin_top = 144.0
+margin_right = 612.0
+margin_bottom = 456.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Panel/CenterContainer/VBoxContainer"]
+margin_right = 200.0
+margin_bottom = 200.0
+mouse_filter = 2
+ratio = 1.8444
+stretch_mode = 1
+
+[node name="Image" type="ColorRect" parent="Panel/CenterContainer/VBoxContainer/AspectRatioContainer"]
+unique_name_in_owner = true
+material = ExtResource( 3 )
+margin_left = -84.44
+margin_right = 284.44
+margin_bottom = 200.0
+rect_min_size = Vector2( 200, 200 )
+mouse_filter = 2
+
+[node name="DescriptionLabel" type="Label" parent="Panel/CenterContainer/VBoxContainer"]
+margin_top = 204.0
+margin_right = 200.0
+margin_bottom = 312.0
+custom_fonts/font = ExtResource( 1 )
+text = "Play online
+with a friend
+(recommended)"
+align = 1
+
+[connection signal="gui_input" from="Panel" to="." method="_on_Panel_gui_input"]
+[connection signal="mouse_entered" from="Panel" to="." method="_on_Panel_mouse_entered"]
+[connection signal="mouse_exited" from="Panel" to="." method="_on_Panel_mouse_exited"]
