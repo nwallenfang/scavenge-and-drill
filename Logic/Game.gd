@@ -127,14 +127,14 @@ remotesync func try_swap(player_name):
 			execute_swap()
 		elif not player_1_wants_to_swap:
 			player_1_wants_to_swap = true
-			yield(get_tree().create_timer(1.0), "timeout")
+			yield(get_tree().create_timer(10.0), "timeout")
 			player_1_wants_to_swap = false
 	elif "2" in player_name:
 		if player_1_wants_to_swap:
 			execute_swap()
 		elif not player_2_wants_to_swap:
 			player_2_wants_to_swap = true
-			yield(get_tree().create_timer(1.0), "timeout")
+			yield(get_tree().create_timer(10.0), "timeout")
 			player_2_wants_to_swap = false
 
 func execute_swap():
@@ -143,3 +143,5 @@ func execute_swap():
 	var player2_pos = drill.global_translation
 	roller.global_translation = player2_pos
 	drill.global_translation = player1_pos
+	player_1_wants_to_swap = false
+	player_2_wants_to_swap = false

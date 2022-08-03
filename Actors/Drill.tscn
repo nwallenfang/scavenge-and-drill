@@ -16,6 +16,8 @@ metallic = 0.48
 roughness = 0.51
 
 [sub_resource type="CapsuleShape" id=10]
+radius = 0.747055
+height = 2.32107
 
 [sub_resource type="CylinderShape" id=11]
 height = 4.24622
@@ -28,6 +30,8 @@ radius = 0.372142
 [node name="Drill" type="KinematicBody" groups=["networked"]]
 collision_layer = 4
 collision_mask = 5
+axis_lock_motion_y = true
+move_lock_y = true
 script = ExtResource( 1 )
 ACC = 130.0
 
@@ -44,10 +48,11 @@ mesh = SubResource( 12 )
 material/0 = SubResource( 13 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 0.645386, 0, 0, 0, -2.82107e-08, 0.645386, 0, -0.645386, -2.82107e-08, 0, 0.883563, 0 )
+transform = Transform( 0.645386, 0, 0, 0, -2.82107e-08, 0.645386, 0, -0.645386, -2.82107e-08, 0, 1.42654, 0 )
 shape = SubResource( 10 )
 
 [node name="InteractDetection" type="Area" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
 
@@ -56,6 +61,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00012, 0 )
 shape = SubResource( 11 )
 
 [node name="Hurtbox" type="Area" parent="."]
+visible = false
 collision_layer = 48
 collision_mask = 0
 
