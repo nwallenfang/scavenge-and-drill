@@ -44,4 +44,5 @@ visible = false
 [node name="UI" parent="." instance=ExtResource( 6 )]
 visible = false
 
+[connection signal="match_made" from="MainMenu" to="." method="_on_MainMenu_match_made"]
 [connection signal="ready_pressed" from="ReadyScreen" to="." method="_on_ReadyScreen_ready_pressed"]

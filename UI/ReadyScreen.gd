@@ -12,9 +12,9 @@ signal ready_pressed ()
 func _ready() -> void:
 	clear_players()
 	
-	OnlineMatch.connect("player_joined", self, "_on_OnlineMatch_player_joined")
-	OnlineMatch.connect("player_left", self, "_on_OnlineMatch_player_left")
-	OnlineMatch.connect("player_status_changed", self, "_on_OnlineMatch_player_status_changed")
+#	OnlineMatch.connect("player_joined", self, "_on_OnlineMatch_player_joined")
+#	OnlineMatch.connect("player_left", self, "_on_OnlineMatch_player_left")
+#	OnlineMatch.connect("player_status_changed", self, "_on_OnlineMatch_player_status_changed")
 	OnlineMatch.connect("match_ready", self, "_on_OnlineMatch_match_ready")
 	OnlineMatch.connect("match_not_ready", self, "_on_OnlineMatch_match_not_ready")
 	
