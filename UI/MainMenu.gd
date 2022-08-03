@@ -1,8 +1,5 @@
 extends Control
 
-onready var lobby_code: TextEdit  = $VBoxContainer/HBoxContainer/RightMenu/HBoxContainer/CodeText
-
-
 
 func _ready() -> void:
 	$Buttons.visible = true
@@ -15,15 +12,15 @@ func _on_EnterRandomMatchmaking_pressed() -> void:
 	
 
 
-func _on_JoinLobby_pressed() -> void:
-	var match_id = lobby_code.text.strip_edges()
-	if match_id == '':
-		print("Need to paste Match ID to join, PUT THIS INTO UI")
-		return
-	if not match_id.ends_with('.'):
-		match_id += '.'
-	
-	OnlineMatch.join_match(Network.nakama_socket, match_id)
+#func _on_JoinLobby_pressed() -> void:
+##	var match_id = lobby_code.text.strip_edges()
+#	if match_id == '':
+#		print("Need to paste Match ID to join, PUT THIS INTO UI")
+#		return
+#	if not match_id.ends_with('.'):
+#		match_id += '.'
+#
+#	OnlineMatch.join_match(Network.nakama_socket, match_id)
 
 
 func _on_PlayWithFriendButton_clicked() -> void:

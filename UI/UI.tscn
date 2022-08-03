@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://UI/UI.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/PausedFont.tres" type="DynamicFont" id=2]
@@ -7,8 +7,22 @@
 [ext_resource path="res://Assets/Sprites/oxygen/bar_progress.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Sprites/gold.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Fonts/debug_font.tres" type="DynamicFont" id=7]
-[ext_resource path="res://Assets/Materials/ui_icon.tres" type="Material" id=8]
+[ext_resource path="res://Assets/Sprites/gear.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Fonts/TreasureFont.tres" type="DynamicFont" id=9]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform sampler2D texture_resource;
+
+void fragment(){
+	COLOR = texture(texture_resource, UV);
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 1 )
+shader_param/texture_resource = ExtResource( 8 )
 
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
@@ -228,7 +242,7 @@ size_flags_vertical = 0
 
 [node name="GearIcon" type="ColorRect" parent="Game/RightSide/TreasureUI"]
 modulate = Color( 0.172549, 0.133333, 0.133333, 1 )
-material = ExtResource( 8 )
+material = SubResource( 4 )
 margin_right = 48.0
 margin_bottom = 51.0
 rect_min_size = Vector2( 48, 48 )
