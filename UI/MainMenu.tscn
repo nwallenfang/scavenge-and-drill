@@ -1,106 +1,280 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/Fonts/TitleFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Assets/Fonts/PausedFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://UI/MainMenu.gd" type="Script" id=3]
+[ext_resource path="res://Prototyping/MainMenu3DScene.tscn" type="PackedScene" id=4]
+[ext_resource path="res://UI/PlayWithFriend.tscn" type="PackedScene" id=5]
+[ext_resource path="res://UI/PlayWithRandom.tscn" type="PackedScene" id=6]
+[ext_resource path="res://UI/Styles/panel_menu_button.tres" type="StyleBox" id=7]
+[ext_resource path="res://UI/MainMenuButton.gd" type="Script" id=8]
+[ext_resource path="res://UI/Styles/create_lobby_sub.tres" type="StyleBox" id=9]
+[ext_resource path="res://UI/Styles/panel_submenu.tres" type="StyleBox" id=10]
+[ext_resource path="res://Assets/Sprites/copy.png" type="Texture" id=11]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform sampler2D texture_resource;
+
+void fragment(){
+	COLOR = texture(texture_resource, UV);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/texture_resource = ExtResource( 11 )
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 script = ExtResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Title" type="Label" parent="VBoxContainer"]
 margin_right = 1024.0
-margin_bottom = 106.0
+margin_bottom = 91.0
+mouse_filter = 1
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 1 )
-text = "Multiplayer Game"
+text = "Underwater"
 align = 1
+valign = 1
 
-[node name="Label2" type="Label" parent="VBoxContainer"]
-margin_top = 110.0
+[node name="Subtitle" type="Label" parent="VBoxContainer"]
+margin_top = 95.0
 margin_right = 1024.0
-margin_bottom = 151.0
+margin_bottom = 136.0
+mouse_filter = 1
 custom_fonts/font = ExtResource( 2 )
-text = "a 2-player experience"
+text = "a two-player co-op game"
 align = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 155.0
-margin_right = 1024.0
-margin_bottom = 600.0
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 1024, 600 )
+handle_input_locally = false
+hdr = false
+render_target_update_mode = 3
+gui_disable_input = true
+
+[node name="MainMenuScene" parent="ViewportContainer/Viewport" instance=ExtResource( 4 )]
+
+[node name="Buttons" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PlayWithFriendButton" parent="Buttons" instance=ExtResource( 5 )]
+anchor_left = 0.121094
+anchor_top = 0.346333
+anchor_right = 0.521094
+anchor_bottom = 0.880333
+rect_scale = Vector2( 0.717371, 0.743225 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="PlayWithRandomButton" parent="Buttons" instance=ExtResource( 6 )]
+anchor_left = 0.576172
+anchor_top = 0.338333
+anchor_right = 0.976172
+anchor_bottom = 0.880333
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 0.0
+margin_bottom = 0.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="MatchmakingScreen" type="Control" parent="."]
+visible = false
+anchor_left = 0.3
+anchor_top = 0.5
+anchor_right = 0.7
+anchor_bottom = 0.7
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Panel" type="Panel" parent="MatchmakingScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = ExtResource( 7 )
+
+[node name="CenterContainer" type="CenterContainer" parent="MatchmakingScreen/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MatchmakingScreen/Panel/CenterContainer"]
+margin_left = 101.0
+margin_top = 21.0
+margin_right = 308.0
+margin_bottom = 98.0
+
+[node name="Looking" type="Label" parent="MatchmakingScreen/Panel/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+margin_right = 207.0
+margin_bottom = 21.0
+text = "Looking for a player.."
+
+[node name="Looking2" type="Label" parent="MatchmakingScreen/Panel/CenterContainer/VBoxContainer"]
+margin_top = 25.0
+margin_right = 207.0
+margin_bottom = 46.0
+text = "(it could take a while)"
+align = 1
+
+[node name="Cancel" type="Button" parent="MatchmakingScreen/Panel/CenterContainer/VBoxContainer"]
+margin_top = 50.0
+margin_right = 207.0
+margin_bottom = 77.0
+text = "Cancel"
+
+[node name="LobbyScreen" type="Control" parent="."]
+visible = false
+anchor_left = 0.15
+anchor_top = 0.344
+anchor_right = 0.85
+anchor_bottom = 0.747
+mouse_filter = 1
+
+[node name="CreateLobby" type="Control" parent="LobbyScreen"]
+anchor_top = 0.19
+anchor_right = 0.401
+anchor_bottom = 0.594
+mouse_filter = 1
+script = ExtResource( 8 )
+
+[node name="Panel" type="Panel" parent="LobbyScreen/CreateLobby"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/panel = ExtResource( 9 )
 
-[node name="LeftMenu" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
-margin_right = 506.0
-margin_bottom = 445.0
-size_flags_horizontal = 3
+[node name="CenterContainer" type="CenterContainer" parent="LobbyScreen/CreateLobby/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/LeftMenu"]
-margin_right = 506.0
-margin_bottom = 21.0
-text = "Random Matchmaking"
-
-[node name="EnterRandomMatchmaking" type="Button" parent="VBoxContainer/HBoxContainer/LeftMenu"]
-margin_top = 25.0
-margin_right = 506.0
-margin_bottom = 52.0
-text = "Enter matchmaking"
-
-[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
-margin_left = 510.0
-margin_right = 514.0
-margin_bottom = 445.0
-
-[node name="RightMenu" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
-margin_left = 518.0
-margin_right = 1024.0
-margin_bottom = 445.0
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/RightMenu"]
-margin_right = 506.0
-margin_bottom = 21.0
-text = "Play with a friend"
-
-[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/RightMenu"]
-margin_top = 25.0
-margin_right = 506.0
-margin_bottom = 70.0
-text = "one Player presses Generate A Code, the other pastes
-the code"
-
-[node name="CreateLobby" type="Button" parent="VBoxContainer/HBoxContainer/RightMenu"]
-margin_top = 74.0
-margin_right = 506.0
-margin_bottom = 101.0
+[node name="Label" type="Label" parent="LobbyScreen/CreateLobby/Panel/CenterContainer"]
+margin_left = 89.0
+margin_top = 38.0
+margin_right = 197.0
+margin_bottom = 59.0
+mouse_filter = 1
 text = "Create Lobby"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/RightMenu"]
-margin_top = 105.0
-margin_right = 506.0
-margin_bottom = 132.0
+[node name="JoinLobby" type="Control" parent="LobbyScreen"]
+anchor_left = 0.542
+anchor_top = 0.17
+anchor_right = 0.965
+anchor_bottom = 0.599
+mouse_filter = 1
+script = ExtResource( 8 )
 
-[node name="CodeText" type="TextEdit" parent="VBoxContainer/HBoxContainer/RightMenu/HBoxContainer"]
-margin_right = 396.0
-margin_bottom = 27.0
+[node name="Panel" type="Panel" parent="LobbyScreen/JoinLobby"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
 size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 9 )
 
-[node name="PasteButtonTODO" type="TextureButton" parent="VBoxContainer/HBoxContainer/RightMenu/HBoxContainer"]
-margin_left = 400.0
-margin_right = 400.0
-margin_bottom = 27.0
+[node name="CenterContainer" type="CenterContainer" parent="LobbyScreen/JoinLobby/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
 
-[node name="JoinLobby" type="Button" parent="VBoxContainer/HBoxContainer/RightMenu/HBoxContainer"]
-margin_left = 404.0
-margin_right = 506.0
-margin_bottom = 27.0
+[node name="Label" type="Label" parent="LobbyScreen/JoinLobby/Panel/CenterContainer"]
+margin_left = 106.0
+margin_top = 41.0
+margin_right = 196.0
+margin_bottom = 62.0
+mouse_filter = 1
 text = "Join Lobby"
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/LeftMenu/EnterRandomMatchmaking" to="." method="_on_EnterRandomMatchmaking_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/RightMenu/CreateLobby" to="." method="_on_CreateLobby_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/RightMenu/HBoxContainer/JoinLobby" to="." method="_on_JoinLobby_pressed"]
+[node name="ProgressAnimator" type="Timer" parent="."]
+wait_time = 1.2
+
+[node name="JoinLobbyScreen" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="JoinLobbyScreen"]
+margin_right = 40.0
+margin_bottom = 21.0
+text = "join lobby"
+
+[node name="CreateLobbyScreen" type="Control" parent="."]
+anchor_left = 0.1
+anchor_top = 0.338
+anchor_right = 0.9
+anchor_bottom = 0.876
+
+[node name="Panel" type="Panel" parent="CreateLobbyScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = ExtResource( 10 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreateLobbyScreen/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CreateLobbyScreen/Panel/VBoxContainer"]
+margin_right = 819.0
+margin_bottom = 32.0
+
+[node name="Label" type="Label" parent="CreateLobbyScreen/Panel/VBoxContainer/HBoxContainer"]
+margin_top = 5.0
+margin_right = 324.0
+margin_bottom = 26.0
+size_flags_vertical = 6
+text = "Send this lobby code to your friend:"
+align = 1
+
+[node name="TextEdit" type="TextEdit" parent="CreateLobbyScreen/Panel/VBoxContainer/HBoxContainer"]
+margin_left = 328.0
+margin_right = 783.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+text = "132465"
+readonly = true
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="CreateLobbyScreen/Panel/VBoxContainer/HBoxContainer"]
+margin_left = 787.0
+margin_right = 819.0
+margin_bottom = 32.0
+
+[node name="CopyButton" type="ColorRect" parent="CreateLobbyScreen/Panel/VBoxContainer/HBoxContainer/AspectRatioContainer"]
+material = SubResource( 2 )
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[connection signal="clicked" from="Buttons/PlayWithFriendButton" to="." method="_on_PlayWithFriendButton_clicked"]
+[connection signal="clicked" from="Buttons/PlayWithRandomButton" to="." method="_on_PlayWithRandomButton_clicked"]
+[connection signal="clicked" from="LobbyScreen/CreateLobby" to="." method="_on_CreateLobby_clicked"]
+[connection signal="gui_input" from="LobbyScreen/CreateLobby/Panel" to="LobbyScreen/CreateLobby" method="_on_Panel_gui_input"]
+[connection signal="mouse_entered" from="LobbyScreen/CreateLobby/Panel" to="LobbyScreen/CreateLobby" method="_on_Panel_mouse_entered"]
+[connection signal="mouse_exited" from="LobbyScreen/CreateLobby/Panel" to="LobbyScreen/CreateLobby" method="_on_Panel_mouse_exited"]
+[connection signal="clicked" from="LobbyScreen/JoinLobby" to="." method="_on_JoinLobby_clicked"]
+[connection signal="gui_input" from="LobbyScreen/JoinLobby/Panel" to="LobbyScreen/JoinLobby" method="_on_Panel_gui_input"]
+[connection signal="mouse_entered" from="LobbyScreen/JoinLobby/Panel" to="LobbyScreen/JoinLobby" method="_on_Panel_mouse_entered"]
+[connection signal="mouse_exited" from="LobbyScreen/JoinLobby/Panel" to="LobbyScreen/JoinLobby" method="_on_Panel_mouse_exited"]
+[connection signal="timeout" from="ProgressAnimator" to="." method="_on_ProgressAnimator_timeout"]
