@@ -6,3 +6,4 @@ func _ready():
 	$FishEnemy.state = $FishEnemy.STATES.PATH
 	$FishEnemy.path = self
 	$FishEnemy.can_attack = can_attack
+	$FishEnemy.visible = true
