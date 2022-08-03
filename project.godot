@@ -274,6 +274,8 @@ shoot={
 3d_physics/layer_2="Interaction"
 3d_physics/layer_3="PlayerCollision"
 3d_physics/layer_4="EnemyHurtbox"
+3d_physics/layer_5="PlayerHurtbox"
+3d_physics/layer_6="PlayerDetection"
 
 [physics]
 

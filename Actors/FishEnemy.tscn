@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Actors/FishEnemy.gd" type="Script" id=1]
 
@@ -9,6 +9,12 @@
 [sub_resource type="CapsuleShape" id=3]
 radius = 0.966859
 height = 1.13097
+
+[sub_resource type="SphereShape" id=4]
+radius = 6.03043
+
+[sub_resource type="CapsuleShape" id=5]
+radius = 0.42254
 
 [node name="FishEnemy" type="Spatial" groups=["networked"]]
 script = ExtResource( 1 )
@@ -32,4 +38,22 @@ collision_mask = 0
 transform = Transform( -4.37114e-08, 0, 1, 0, 1.811, 0, -1, 0, -4.37114e-08, 0, 1.13792, 0 )
 shape = SubResource( 3 )
 
+[node name="PlayerDetection" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape" type="CollisionShape" parent="PlayerDetection"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.505126, 0 )
+shape = SubResource( 4 )
+
+[node name="Hitbox" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape" type="CollisionShape" parent="Hitbox"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.833759, 0 )
+shape = SubResource( 5 )
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="area_entered" from="PlayerDetection" to="." method="_on_PlayerDetection_area_entered"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]

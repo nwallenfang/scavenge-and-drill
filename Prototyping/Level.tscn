@@ -145,6 +145,7 @@ visible = false
 environment = ExtResource( 9 )
 
 [node name="FishPath" parent="." instance=ExtResource( 5 )]
+can_attack = true
 
 [connection signal="player_entered" from="Objects/ButtonPlate1" to="Objects/Door" method="_on_ButtonPlate1_player_entered"]
 [connection signal="player_left" from="Objects/ButtonPlate1" to="Objects/Door" method="_on_ButtonPlate1_player_left"]

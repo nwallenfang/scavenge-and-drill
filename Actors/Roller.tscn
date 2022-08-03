@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Actors/Roller.gd" type="Script" id=1]
 
@@ -16,6 +16,8 @@ albedo_color = Color( 0, 0.345098, 1, 1 )
 [sub_resource type="CylinderShape" id=11]
 height = 4.24622
 radius = 4.10198
+
+[sub_resource type="CapsuleShape" id=14]
 
 [node name="Roller" type="KinematicBody" groups=["networked"]]
 collision_layer = 4
@@ -47,13 +49,21 @@ mesh = SubResource( 13 )
 transform = Transform( 1.06482, 0, 0, 0, -2.82107e-08, 0.645386, 0, -1.06482, -4.65447e-08, 0, 0.883563, 0 )
 shape = SubResource( 10 )
 
-[node name="Area" type="Area" parent="."]
+[node name="InteractDetection" type="Area" parent="."]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape" type="CollisionShape" parent="Area"]
+[node name="CollisionShape" type="CollisionShape" parent="InteractDetection"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00012, 0 )
 shape = SubResource( 11 )
 
 [node name="Handle" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.439088, 0 )
+
+[node name="Hurtbox" type="Area" parent="."]
+collision_layer = 48
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Hurtbox"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.763725, 0 )
+shape = SubResource( 14 )

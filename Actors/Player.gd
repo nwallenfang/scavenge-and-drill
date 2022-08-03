@@ -32,7 +32,7 @@ func _physics_process(delta):
 		
 		var target_hover_object = null
 		var best_distance := 100.0
-		for hover_area in $Area.get_overlapping_areas():
+		for hover_area in $InteractDetection.get_overlapping_areas():
 			var hover_object = hover_area.get_parent()# as InteractObject
 			if hover_object.limit_to_player != 0 and not str(hover_object.limit_to_player) in self.name:
 				continue

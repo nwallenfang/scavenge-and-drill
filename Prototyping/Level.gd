@@ -51,6 +51,8 @@ func do_game_setup(players: Dictionary):
 	$Cable.create_cable($Player1/Handle, $Player2/Handle)
 	$Cable.set_players($Player1, $Player2)
 	
+	Game.roller = $Player1
+	Game.drill = $Player2
 	
 	if not get_tree().is_network_server():
 		Game.host = false

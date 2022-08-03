@@ -12,6 +12,8 @@ var host := false
 
 var own_player: Player
 var other_player: Player
+var roller: Player
+var drill: Player
 
 var game_started := false
 
