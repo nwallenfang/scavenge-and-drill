@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/CliffJagged002_COL_VAR1_1K.jpg-c3ce4c0a2fd240408a6508ca0c98ad61.s3tc.stex"
-path.etc2="res://.import/CliffJagged002_COL_VAR1_1K.jpg-c3ce4c0a2fd240408a6508ca0c98ad61.etc2.stex"
+path.s3tc="res://.import/CliffJagged002_COL_VAR1_1K_square.jpg-a2ebae00986efa1635c30aa22981b079.s3tc.stex"
+path.etc2="res://.import/CliffJagged002_COL_VAR1_1K_square.jpg-a2ebae00986efa1635c30aa22981b079.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/GLTF/CliffJagged002_COL_VAR1_1K.jpg"
-dest_files=[ "res://.import/CliffJagged002_COL_VAR1_1K.jpg-c3ce4c0a2fd240408a6508ca0c98ad61.s3tc.stex", "res://.import/CliffJagged002_COL_VAR1_1K.jpg-c3ce4c0a2fd240408a6508ca0c98ad61.etc2.stex" ]
+source_file="res://Assets/GLTF/CliffJagged002_COL_VAR1_1K_square.jpg"
+dest_files=[ "res://.import/CliffJagged002_COL_VAR1_1K_square.jpg-a2ebae00986efa1635c30aa22981b079.s3tc.stex", "res://.import/CliffJagged002_COL_VAR1_1K_square.jpg-a2ebae00986efa1635c30aa22981b079.etc2.stex" ]
 
 [params]
 
@@ -22,7 +22,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=true
-flags/filter=true
+flags/filter=false
 flags/mipmaps=true
 flags/anisotropic=false
 flags/srgb=1

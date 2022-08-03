@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/GLTF/CliffJagged002_COL_VAR1_1K_square.jpg" type="Texture" id=1]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Cliffs_Plane"
@@ -14,11 +16,19 @@ surfaces/0 = {
 "vertex_count": 84
 }
 
+[sub_resource type="SpatialMaterial" id=2]
+albedo_texture = ExtResource( 1 )
+uv1_scale = Vector3( 0.05, 0.05, 0.5 )
+uv1_triplanar = true
+uv1_triplanar_sharpness = 3.36358
+uv2_scale = Vector3( 0.2, 0.2, 0.2 )
+
 [node name="Cliff1" type="Spatial"]
 
 [node name="Cliff1" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
 skeleton = NodePath("../..")
+material/0 = SubResource( 2 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
 

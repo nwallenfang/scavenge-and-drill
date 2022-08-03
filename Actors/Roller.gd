@@ -9,6 +9,8 @@ func _physics_process(delta):
 	._physics_process(delta)
 	if controlled:
 		var global_mouse_pos := Game.mouse_layer.get_global_layer_mouse_position()
+		if global_mouse_pos == null:
+			global_mouse_pos = Vector3(0.0, 0.0, 0.0)
 		var direction := Vector2(global_translation.x, global_translation.z).direction_to(Vector2(global_mouse_pos.x, global_mouse_pos.z))
 		$Model/Head.rotation.y = -direction.angle() + PI/2.0
 		aim_direction = direction

@@ -91,7 +91,7 @@ __meta__ = {
 }
 
 [node name="TopdownCamera" parent="Pivot" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 0, 6, 3 )
+transform = Transform( 1, 0, 0, 0, 0.842903, 0.538065, 0, -0.538065, 0.842903, 0, 5.67633, 5.23851 )
 current = true
 
 [node name="Collectibles" type="Node" parent="."]
