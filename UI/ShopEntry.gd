@@ -3,6 +3,7 @@ class_name ShopEntry
 
 signal upgrade_clicked
 export var upgrade_attribute: String
+export var description: String
 export var cost_gears: int = 1
 export var cost_gold: int = 2
 
@@ -21,6 +22,7 @@ func _ready() -> void:
 	style_box_default = $Panel.get("custom_styles/panel")
 	$"%GearAmount".text = str(cost_gears)
 	$"%GoldAmount".text = str(cost_gold)
+	$"%DescriptionLabel".text = description
 	
 func set_affordable(val: bool):
 	if not val and affordable and not bought:  # switch away

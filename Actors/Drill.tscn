@@ -74,8 +74,6 @@ move_lock_y = true
 script = ExtResource( 1 )
 FRICTION = 0.99
 ACC = 130.0
-ground_color = Color( 0.560784, 0.537255, 0.486275, 1 )
-crystal_color = Color( 0.968627, 0, 1, 1 )
 
 [node name="Model" type="Spatial" parent="."]
 
@@ -131,3 +129,5 @@ collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="DrillArea"]
 shape = SubResource( 15 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

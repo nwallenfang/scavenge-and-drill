@@ -11,6 +11,7 @@ func _ready() -> void:
 	
 	# reinitialize to see what's affordable, update treasure count interface
 	Game.connect("treasure_count_changed", self, "initialize")
+	
 
 
 func initialize():

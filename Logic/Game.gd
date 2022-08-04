@@ -68,6 +68,8 @@ func _process(delta: float) -> void:
 		rpc("disable_power")
 	if Input.is_action_just_pressed("add_energy"):
 		rpc("sync_energy_charges", (energy_charges + 1))
+		rpc("sync_treasures", 100, 1)
+		rpc("sync_treasures", 100, 2)
 	if Input.is_action_just_pressed("remove_energy"):
 		rpc("sync_energy_charges", (energy_charges - 1))
 	if power_draining and game_started:  # state machine maybe? menu/in_game/merchant
@@ -117,6 +119,8 @@ remotesync func set_upgrade(name, cost_gold, cost_gears):
 	Game.log("setting upgrade " + name)
 	treasure_gears -= cost_gears
 	treasure_gold -= cost_gold
+	
+	upgrades.set(name, true)
 	
 	emit_signal("treasure_count_changed")
 

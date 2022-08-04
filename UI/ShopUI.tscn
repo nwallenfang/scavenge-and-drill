@@ -1,12 +1,20 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://Assets/Materials/ui_icon.tres" type="Material" id=1]
+[ext_resource path="res://Assets/Shader/energy_crystal_ui.gdshader" type="Shader" id=1]
 [ext_resource path="res://Assets/Sprites/gold.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Fonts/TreasureFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://UI/ShopUI.gd" type="Script" id=4]
 [ext_resource path="res://UI/ShopEntry.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Sprites/merchant.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Fonts/ShopTitleFont.tres" type="DynamicFont" id=7]
+[ext_resource path="res://Assets/Sprites/gear.png" type="Texture" id=8]
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 1 )
+shader_param/fill_color = null
+shader_param/empty_color = Color( 1, 1, 1, 1 )
+shader_param/enabled = null
+shader_param/texture_resource = ExtResource( 8 )
 
 [sub_resource type="Shader" id=4]
 code = "shader_type canvas_item;
@@ -74,7 +82,7 @@ alignment = 2
 
 [node name="GearIcon" type="ColorRect" parent="VBoxContainer/TreasureCountRow/TreasureUI"]
 modulate = Color( 0.172549, 0.133333, 0.133333, 1 )
-material = ExtResource( 1 )
+material = SubResource( 5 )
 margin_right = 48.0
 margin_bottom = 51.0
 rect_min_size = Vector2( 48, 48 )
@@ -142,8 +150,9 @@ columns = 2
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 510.0
-margin_bottom = 203.0
-upgrade_attribute = "chain_longer"
+margin_bottom = 134.0
+upgrade_attribute = "more_bullet_damage"
+description = "Improved bullet damage"
 cost_gold = 1
 
 [node name="ShopEntry2" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
@@ -151,22 +160,44 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 514.0
 margin_right = 1024.0
-margin_bottom = 203.0
-upgrade_attribute = "chain_longer"
+margin_bottom = 134.0
+upgrade_attribute = "less_power_drain"
+description = "Slower power drain"
 
 [node name="ShopEntry3" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 207.0
+margin_top = 138.0
 margin_right = 510.0
-margin_bottom = 410.0
-upgrade_attribute = "chain_longer"
+margin_bottom = 272.0
+upgrade_attribute = "more_move_speed"
+description = "Higher movement speed"
 
 [node name="ShopEntry4" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 514.0
-margin_top = 207.0
+margin_top = 138.0
+margin_right = 1024.0
+margin_bottom = 272.0
+upgrade_attribute = "chain_longer"
+
+[node name="ShopEntry5" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 276.0
+margin_right = 510.0
+margin_bottom = 410.0
+upgrade_attribute = "position_swap"
+description = "Unlock a position swap skill"
+cost_gears = 100
+cost_gold = 100
+
+[node name="ShopEntry6" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 514.0
+margin_top = 276.0
 margin_right = 1024.0
 margin_bottom = 410.0
 upgrade_attribute = "chain_longer"

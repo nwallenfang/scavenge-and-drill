@@ -29,3 +29,11 @@ light_color = Color( 0.65, 0, 0.639166, 1 )
 light_energy = 2.0
 omni_range = 3.92681
 omni_attenuation = 0.840897
+
+[node name="StaticBody" type="StaticBody" parent="."]
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.443036, 0 )
+shape = SubResource( 3 )
