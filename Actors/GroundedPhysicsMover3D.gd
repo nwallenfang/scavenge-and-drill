@@ -26,6 +26,7 @@ var capsule_height = 1.0
 var max_warp_height = 0.3
 var min_warp_height = 0.0
 
+var dead_direction := Vector3.ZERO
 
 
 func add_acceleration(var added_acc: Vector3):
@@ -53,7 +54,11 @@ func execute_movement(delta: float) -> void:
 	velocity += acceleration * delta
 	# apply friction if on the floor
 	velocity = velocity * pow(FRICTION, delta * EXPECTED_FPS)
-
+	
+#	if dead_direction != Vector3.ZERO:
+#		velocity -= velocity.project(dead_direction)
+#		dead_direction = Vector3.ZERO
+	
 	if velocity.length() < 0.05:
 		# to prevent long sliding down ramps
 		velocity = Vector3.ZERO

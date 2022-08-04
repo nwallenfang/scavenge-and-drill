@@ -51,10 +51,12 @@ func _physics_process(delta):
 			update_drill_animation()
 			last_frame_offset = drill_animation_offset
 		if is_drilling:
+			ACC = move_acc_drilling
 			drill_the_crystals(delta)
 			$Model/GroundParticles.emitting = $DrillArea.get_overlapping_areas().empty()
 			$Model/CrystalParticles.emitting = not $DrillArea.get_overlapping_areas().empty()
 		else:
+			ACC = move_acc_default if not Game.upgrades.more_move_speed else move_acc_upgraded
 			$Model/GroundParticles.emitting = false
 			$Model/CrystalParticles.emitting = false
 

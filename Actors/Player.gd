@@ -33,10 +33,10 @@ func _physics_process(delta):
 			facing_direction = move_direction_normalized
 
 		add_acceleration(ACC * move_direction_normalized)
-		if cable_force.length() > .02:
-			add_acceleration(ACC * cable_force * cable_factor)
-		if cable_force.length() > .99:
-			var projection = velocity.project(cable_force)
+		if cable_force.length() > .02 and "2" in name:
+			add_acceleration(ACC * cable_force * cable_factor )
+		if cable_force.length() > .99 and "2" in name:
+			var projection = (velocity + acceleration).project(cable_force)
 			if projection.sign() != cable_force.sign():
 				add_acceleration(-projection)
 		execute_movement(delta)
