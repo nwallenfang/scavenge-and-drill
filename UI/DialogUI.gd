@@ -27,7 +27,6 @@ func emit_line_done():
 remotesync func play_dialog(dialog_sequence):
 	$DialogPanel.visible = true
 	for line in dialog_sequence:
-		Game.log("playing " + line.text)
 		# check which dialogpanel to use
 #		panel_invalidated = false
 		$DialogPanel.show_dialog_line(line)
