@@ -31,7 +31,7 @@ var power_loss_per_s_default := 10.0
 var power_draining := false
 
 
-var energy_charges := 0.0
+var energy_charges: int = 0
 
 const TYPE_GOLD = 1
 const TYPE_GEARS = 2
@@ -66,6 +66,10 @@ func _process(delta: float) -> void:
 		dialog_ui.rpc("skip_dialog")
 	if Input.is_action_just_pressed("disable_power"):
 		rpc("disable_power")
+	if Input.is_action_just_pressed("add_energy"):
+		rpc("sync_energy_charges", (energy_charges + 1))
+	if Input.is_action_just_pressed("remove_energy"):
+		rpc("sync_energy_charges", (energy_charges - 1))
 	if power_draining and game_started:  # state machine maybe? menu/in_game/merchant
 		# this doesn't get synced at the moment since the calc should be the
 		# same for both players
@@ -102,9 +106,9 @@ remotesync func sync_treasures(amount, type):
 	ui.update_treasures(type)
 
 
-remotesync func sync_energy_charges(x):
+remotesync func sync_energy_charges(x: int):
 	energy_charges = x
-	# to ui.set_energy_charges(x)
+	ui.set_energy_charges(x)
 
 
 signal treasure_count_changed

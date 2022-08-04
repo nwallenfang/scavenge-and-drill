@@ -27,4 +27,8 @@
   - https://thenounproject.com/icon/handshake-5036625/
 - sand texture
   - https://ambientcg.com/view?id=Ground054
+- crystal
+  - https://thenounproject.com/icon/crystal-114662/
+  - Dima Lagunov
+  - CC-BY
 
