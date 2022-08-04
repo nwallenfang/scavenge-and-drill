@@ -176,9 +176,9 @@ void fragment() {
 	METALLIC = metallic;
 	ROUGHNESS = roughness;
 	SPECULAR = specular;
-	float count = .045;
-	float limit = .02;
-	ALPHA = float(mod(UV.y + UV.x * .2 + TIME * .25, count) < limit) * .5 * albedo.a;
+	float count = .065;
+	float limit = .03;
+	ALPHA = float(mod(UV.y + UV.x * .2 + TIME * .3, count) < limit) * .7 * albedo.a;
 }
 "
 
