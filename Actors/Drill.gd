@@ -33,6 +33,7 @@ func _ready():
 	$Model/CrystalParticles.draw_pass_1.surface_get_material(0).set("albedo_color", crystal_color)
 	$Model/GoldParticles.draw_pass_1.surface_get_material(0).set("albedo_color", gold_color)
 	$Model/ScrapParticles.draw_pass_1.surface_get_material(0).set("albedo_color", scrap_color)
+	$Model/DrillModel/DrillShader.get("material/0").set("shader_param/albedo:a", 0)
 	
 
 func _physics_process(delta):
@@ -84,7 +85,7 @@ remotesync func set_drill_want(b):
 
 func update_drill_animation():
 	$Model/DrillModel.transform = transform_lerp($Model/Default.transform, $Model/DrillPos.transform, drill_animation_offset)
-	
+	$Model/DrillModel/DrillShader.get("material/0").set("shader_param/albedo:a", drill_animation_offset)
 
 
 func drill_the_crystals(delta):
