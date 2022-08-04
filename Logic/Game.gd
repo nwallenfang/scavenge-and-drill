@@ -49,6 +49,7 @@ class Upgrades:
 	var more_move_speed := false #Done
 	var more_bullet_damage := false #Done
 	var position_swap := true
+	var super_mode := true
 
 var upgrades: Upgrades = Upgrades.new()
 
@@ -133,6 +134,8 @@ func log(msg: String):
 var player_1_wants_to_swap := false
 var player_2_wants_to_swap := false
 remotesync func try_swap(player_name):
+	if not upgrades.position_swap:
+		return
 	if "1" in player_name:
 		if player_2_wants_to_swap:
 			execute_swap()
@@ -197,6 +200,8 @@ func execute_super_mode():
 var player_1_wants_to_super := false
 var player_2_wants_to_super := false
 remotesync func try_super(player_name):
+	if not upgrades.super_mode:
+		return
 	if "1" in player_name:
 		if player_2_wants_to_super:
 			execute_super_mode()
