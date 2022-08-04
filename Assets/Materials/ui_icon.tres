@@ -1,17 +1,11 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=2]
 
 [ext_resource path="res://Assets/Sprites/player_coop.png" type="Texture" id=1]
-
-[sub_resource type="Shader" id=1]
-code = "shader_type canvas_item;
-render_mode blend_mix;
-
-uniform sampler2D texture_resource;
-
-void fragment(){
-	COLOR = texture(texture_resource, UV);
-}"
+[ext_resource path="res://Assets/Shader/energy_crystal_ui.gdshader" type="Shader" id=2]
 
 [resource]
-shader = SubResource( 1 )
+shader = ExtResource( 2 )
+shader_param/fill_color = null
+shader_param/empty_color = null
+shader_param/enabled = null
 shader_param/texture_resource = ExtResource( 1 )

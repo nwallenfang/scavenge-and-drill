@@ -18,6 +18,13 @@ func _ready() -> void:
 			Game.debug = true
 			$DevContainer/DeveloperInfo/HostOrClient.text = "host" if is_player1 else "client"
 	debug_log.text += "Logs will be printed here\n"
+	# make mats unique
+	var box = $"%EnergyCrystalsBox"
+	print(box.get_node("AspectRatioContainer1/ColorRect"))
+	box.get_node("AspectRatioContainer1/ColorRect").material = box.get_node("AspectRatioContainer1/ColorRect").material.duplicate(true)
+	box.get_node("AspectRatioContainer2/ColorRect").material = box.get_node("AspectRatioContainer1/ColorRect").material.duplicate(true)
+	box.get_node("AspectRatioContainer3/ColorRect").material = box.get_node("AspectRatioContainer1/ColorRect").material.duplicate(true)
+#	set_energy_crystals(2)
 	
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("dev_toggle"):
@@ -72,4 +79,29 @@ func to_shop():
 	
 func back_to_ocean():
 	$Game.visible = true
-
+	
+func set_energy_charges(val: int):
+	var full_charges := int(val / 2)
+	var half_charge: bool = (val % 2) == 1
+	
+	for i in range(full_charges):
+		var rect = $"%EnergyCrystalsBox".get_node("AspectRatioContainer" + str(i+1)).get_node("ColorRect")
+		rect.material.set("shader_param/enabled", true)
+		rect.material.set("shader_param/half_enabled", false)
+		
+	if half_charge:
+		var rect = $"%EnergyCrystalsBox".get_node("AspectRatioContainer" + str(full_charges+1)).get_node("ColorRect")
+		rect.material.set("shader_param/enabled", false)
+		rect.material.set("shader_param/half_enabled", true)
+		
+	# rest is not enabled
+	if half_charge:
+		for i in range(full_charges + 1, 3):
+			var rect = $"%EnergyCrystalsBox".get_node("AspectRatioContainer" + str(i+1)).get_node("ColorRect")
+			rect.material.set("shader_param/enabled", false)
+			rect.material.set("shader_param/half_enabled", false)
+	else:
+		for i in range(full_charges, 3):
+			var rect = $"%EnergyCrystalsBox".get_node("AspectRatioContainer" + str(i+1)).get_node("ColorRect")
+			rect.material.set("shader_param/enabled", false)
+			rect.material.set("shader_param/half_enabled", false)
