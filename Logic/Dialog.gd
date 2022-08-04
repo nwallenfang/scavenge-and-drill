@@ -3,25 +3,25 @@ extends Node
 func _ready():
 	create_all_dialogs()
 
-enum SPEAKERS {ROBOT, HUMAN, MERCHANT, FISH}
+enum SPEAKERS {DRILL, ROLLER, MERCHANT, FISH}
 
 var names = {
-	SPEAKERS.ROBOT: "Robot",
-	SPEAKERS.HUMAN: "Human",
+	SPEAKERS.DRILL: "Robot",
+	SPEAKERS.ROLLER: "Human",
 	SPEAKERS.MERCHANT: "Merchant",
 	SPEAKERS.FISH: "Fish",
 }
 
 var colors = {
-	SPEAKERS.ROBOT: Color.steelblue,
-	SPEAKERS.HUMAN: Color.orange,
+	SPEAKERS.DRILL: Color.steelblue,
+	SPEAKERS.ROLLER: Color.orange,
 	SPEAKERS.MERCHANT: Color.coral,
 	SPEAKERS.FISH: Color.white,
 }
 
 var icons = {
-	SPEAKERS.ROBOT: preload("res://Assets/Sprites/characters/robot_PLACEHOLDER.png"),
-	SPEAKERS.HUMAN: preload("res://Assets/Sprites/characters/human_PLACEHOLDER.png"),
+	SPEAKERS.DRILL: preload("res://Assets/Sprites/characters/robot_PLACEHOLDER.png"),
+	SPEAKERS.ROLLER: preload("res://Assets/Sprites/characters/human_PLACEHOLDER.png"),
 	SPEAKERS.MERCHANT: preload("res://Assets/Sprites/characters/human_PLACEHOLDER.png"),
 	SPEAKERS.FISH: preload("res://Assets/Sprites/characters/human_PLACEHOLDER.png"),
 }
@@ -108,8 +108,6 @@ func trigger(trigger_key: String, value = null):
 		trigger_counts[trigger_key] = 1
 	
 	var found_dialogs := []
-	var found_indices := []  # needed for rpc since it can't pass custom objects
-	var index = 0
 	for dialog_trigger in all_dialogs:
 		dialog_trigger = dialog_trigger as DialogTrigger
 #		dialog_trigger.index = index
@@ -134,7 +132,6 @@ func trigger(trigger_key: String, value = null):
 				TRIGGER_MODES.CHANCE:
 					if randf() <= dialog_trigger.condition_value:
 						found_dialogs.append(dialog_trigger)
-		index += 1
 	
 	if not found_dialogs.empty():
 		found_dialogs.sort_custom(ImportanceSorter, "sort")
@@ -191,7 +188,9 @@ func execute_dialog(dialog_trigger: DialogTrigger):
 		emit_signal("dialog_started")
 
 var queue_cooldown_time := 4.0
+signal dialog_ended
 func on_dialog_ended():
+	emit_signal("dialog_ended")
 	currently_dialoging = false
 	yield(get_tree().create_timer(queue_cooldown_time),"timeout")
 	if not currently_dialoging:
@@ -209,13 +208,13 @@ func create_all_dialogs():
 	
 	d = DialogTrigger.new("power_low")
 	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.ROBOT, "The oxygen levels are going down..."),
-		DialogLine.new(SPEAKERS.ROBOT, "Soon we must swim to the surface!"),
-		DialogLine.new(SPEAKERS.HUMAN, "Then we better hurry."),
+		DialogLine.new(SPEAKERS.DRILL, "The oxygen levels are going down..."),
+		DialogLine.new(SPEAKERS.DRILL, "Soon we must swim to the surface!"),
+		DialogLine.new(SPEAKERS.ROLLER, "Then we better hurry."),
 	]))
 	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.ROBOT, "The oxygen levels are going down again..."),
-		DialogLine.new(SPEAKERS.HUMAN, "It always happens so fast"),
+		DialogLine.new(SPEAKERS.DRILL, "The oxygen levels are going down again..."),
+		DialogLine.new(SPEAKERS.ROLLER, "It always happens so fast"),
 	]))
 	all_dialogs.append(d)
 	
@@ -224,8 +223,8 @@ func create_all_dialogs():
 	d.trigger_mode = TRIGGER_MODES.COUNT_EXACT
 	d.condition_value = 5
 	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.ROBOT, "This is our fifth treasure finding!"),
-		DialogLine.new(SPEAKERS.ROBOT, "Yeee!"),
+		DialogLine.new(SPEAKERS.DRILL, "This is our fifth treasure finding!"),
+		DialogLine.new(SPEAKERS.DRILL, "Yeee!"),
 	]))
 	all_dialogs.append(d)
 	
@@ -233,8 +232,8 @@ func create_all_dialogs():
 	d.trigger_mode = TRIGGER_MODES.VALUE_GREATER_EQ
 	d.condition_value = 100
 	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.HUMAN, "Amazing, now we can afford the Bomb!"),
-		DialogLine.new(SPEAKERS.ROBOT, "I would love to use it."),
+		DialogLine.new(SPEAKERS.ROLLER, "Amazing, now we can afford the Bomb!"),
+		DialogLine.new(SPEAKERS.DRILL, "I would love to use it."),
 	]))
 	all_dialogs.append(d)
 	
@@ -244,13 +243,27 @@ func create_all_dialogs():
 	d.condition_value = .5
 	d.selection_mode = SELECTION_MODES.RANDOM
 	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.HUMAN, "There is a fish!"),
+		DialogLine.new(SPEAKERS.ROLLER, "There is a fish!"),
 	]))
 	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.ROBOT, "Another fish over there."),
+		DialogLine.new(SPEAKERS.DRILL, "Another fish over there."),
 	]))
 	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.HUMAN, "I like fishes."),
+		DialogLine.new(SPEAKERS.ROLLER, "I like fishes."),
+	]))
+	all_dialogs.append(d)
+	
+	
+	d = DialogTrigger.new("close_to_eel")
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.ROLLER, "These eels look really scary..", 2.0),
+		DialogLine.new(SPEAKERS.DRILL, "I've seen them before. They drain our power levels!"),
+		DialogLine.new(SPEAKERS.ROLLER, "Sounds scary.", 1.5),
+	]))
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.DRILL, "There has to be a way to fend the eels off!"),
+		DialogLine.new(SPEAKERS.ROLLER, "You know that's what I'm built for, right? I just need energy crystals."),
+		DialogLine.new(SPEAKERS.DRILL, "Those shiny purple ones, right.."),
 	]))
 	all_dialogs.append(d)
 

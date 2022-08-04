@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Prototyping/Level.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Drill.tscn" type="PackedScene" id=2]
@@ -52,6 +52,9 @@ _data = {
 
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 99.1882, 0.0222201, 107.505 )
+
+[sub_resource type="SphereShape" id=9]
+radius = 4.32011
 
 [node name="Level" type="Spatial"]
 script = ExtResource( 1 )
@@ -331,7 +334,7 @@ transform = Transform( 0.686225, 0.000100531, -0.72739, -0.000113262, 1, 3.13551
 transform = Transform( 0.824294, 0, -0.566162, 0, 1, 0, 0.566162, 0, 0.824294, -12.3809, 9.53674e-07, 12.7561 )
 
 [node name="Cliff3" parent="Cliffs" instance=ExtResource( 19 )]
-transform = Transform( 0.084345, 0, -1.25562, 0, 1.25845, 0, 1.25562, 0, 0.084345, -24.1669, 0, -17.7015 )
+transform = Transform( 0.084345, 0, -1.25562, 0, 1.25845, 0, 1.25562, 0, 0.084345, -24.7344, 0, -17.6182 )
 
 [node name="Cliff4" parent="Cliffs" instance=ExtResource( 19 )]
 transform = Transform( -0.200314, 0, -1.66858, 0, 1.67525, 0, 2.2374, 0, -0.149386, 6.3514, -0.915325, 10.1784 )
@@ -398,3 +401,11 @@ polygon = PoolVector2Array( -1.4946, 30.3081, -15.3647, 38.6503, -29.6369, 40.45
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 6.73406, 0, -2.81422 )
 depth = 10.0
 polygon = PoolVector2Array( -48.079, 25.3991, -52.2593, 24.829, -54.3494, 26.5391, -53.7793, 30.9094, -52.8926, 33.6963, -52.8926, 39.0166, -51.0558, 43.8936, -48.269, 45.477, -44.9755, 45.0336, -41.9986, 43.0068, -40.7952, 40.4733, -41.8719, 34.4563, -44.9755, 27.8692, -46.7489, 26.0958, -44.0887, 27.2992, -41.0486, 34.393, -39.0218, 42.3735, -43.0753, 45.9837, -51.3725, 46.9337, -54.7927, 39.4599, -55.2994, 29.8327, -55.1728, 23.1189, -47.889, 23.3089, -45.2288, 25.7791, -46.8122, 26.3491 )
+
+[node name="CloseToEelDialog" type="Area" parent="."]
+transform = Transform( 1.24392, 0, 0, 0, 1, 0, 0, 0, 0.958797, 20.094, 1.75542, 35.6059 )
+
+[node name="CollisionShape" type="CollisionShape" parent="CloseToEelDialog"]
+shape = SubResource( 9 )
+
+[connection signal="body_entered" from="CloseToEelDialog" to="." method="_on_CloseToEelDialog_body_entered"]

@@ -26,10 +26,11 @@ var mouse_layer: MouseDetectionLayer
 var max_power := 100.0
 var power := 100.0 setget set_power
 var power_loss_per_s := 50.0
-var power_loss_per_s_upgraded := 5.0
-var power_loss_per_s_default := 10.0 # used to be 10
+var power_loss_per_s_upgraded := 0.33
+var power_loss_per_s_default := 0.66 # used to be 10
 var power_draining := false
 
+var try_count = 1  # gets increased on restart
 
 var energy_charges: int = 0
 
@@ -50,8 +51,12 @@ class Upgrades:
 	var more_bullet_damage := false #Done
 	var position_swap := false
 	var super_mode := false
+	
+class Progress:
+	var mined_energy_charges = 0  # doesn't have to equal number of crystals, atm they give 2 charges
 
 var upgrades: Upgrades = Upgrades.new()
+var progress: Progress = Progress.new()
 
 func _process(delta: float) -> void:
 #	if is_instance_valid(viewport_sprite) and is_instance_valid(main_cam):
@@ -110,6 +115,8 @@ remotesync func sync_treasures(amount, type):
 
 
 remotesync func sync_energy_charges(x: int):
+	if x > energy_charges:
+		progress.mined_energy_charges += x - energy_charges
 	energy_charges = x
 	ui.set_energy_charges(x)
 
