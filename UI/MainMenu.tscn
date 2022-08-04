@@ -309,6 +309,7 @@ text = "Joined the lobby successfully!"
 align = 1
 
 [node name="CreateLobbyScreen" type="Control" parent="."]
+visible = false
 anchor_left = 0.1
 anchor_top = 0.338
 anchor_right = 0.9
