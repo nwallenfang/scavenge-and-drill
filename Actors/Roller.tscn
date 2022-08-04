@@ -33,7 +33,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.195769, 0.412361 )
 transform = Transform( 0.752294, 0, 0, 0, 0.752294, 0, 0, 0, 0.752294, 0, 0.330323, -0.479799 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1.06482, 0, 0, 0, -2.82107e-08, 0.645386, 0, -1.06482, -4.65447e-08, 0, 1.23442, 0 )
+transform = Transform( 0.841622, 0, 0, 0, -2.82107e-08, 0.645386, 0, -0.841622, -3.67884e-08, 0, 1.23442, 0 )
 shape = SubResource( 10 )
 
 [node name="InteractDetection" type="Area" parent="."]

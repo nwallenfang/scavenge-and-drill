@@ -12,6 +12,7 @@ func _ready():
 #	$Player2.set_color(player2_color)
 
 	Game.connect("power_depleted", self, "server_power_depleted")
+	$WorldEnvironment.environment = load("res://LevelEnvironment.tres")
 
 
 func server_power_depleted():
