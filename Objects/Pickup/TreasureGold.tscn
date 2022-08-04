@@ -8,13 +8,13 @@
 script = ExtResource( 3 )
 
 [node name="TreasureArea" parent="." instance=ExtResource( 2 )]
-transform = Transform( 0.696647, 0, 0, 0, 0.696647, 0, 0, 0, 0.696647, 0.00720671, 0.74372, 0 )
+transform = Transform( 1.01758, 0, 0, 0, 0.809307, 0, 0, 0, 1.01758, -0.0573741, 0.74372, 0.233988 )
 amount = 2
 type = 1
 label_color = Color( 0.701961, 0.615686, 0.215686, 1 )
 
 [node name="Model" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1.31066, 0, 0, 0, 1.31066, 0, 0, 0, 1.31066, 0, 0, 0 )
+transform = Transform( 2.01256, 0, 0, 0, 2.01256, 0, 0, 0, 2.01256, 0, 0, 0 )
 
 [connection signal="animation_done" from="TreasureArea" to="." method="_on_TreasureArea_animation_done"]
 [connection signal="picked_up" from="TreasureArea" to="." method="_on_TreasureArea_picked_up"]
