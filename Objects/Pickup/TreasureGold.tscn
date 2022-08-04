@@ -1,20 +1,31 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Models/TreasureModel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Objects/Pickup/TreasureArea.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/Pickup/Treasure.gd" type="Script" id=3]
+
+[sub_resource type="SphereShape" id=1]
 
 [node name="TreasureGold" type="Spatial"]
 script = ExtResource( 3 )
 
 [node name="TreasureArea" parent="." instance=ExtResource( 2 )]
 transform = Transform( 0.696647, 0, 0, 0, 0.696647, 0, 0, 0, 0.696647, 0.00720671, 0.74372, 0 )
+collision_layer = 0
+collision_mask = 0
 amount = 2
 type = 1
 label_color = Color( 0.701961, 0.615686, 0.215686, 1 )
 
 [node name="Model" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1.31066, 0, 0, 0, 1.31066, 0, 0, 0, 1.31066, 0, 0, 0 )
+
+[node name="DrillArea" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape" type="CollisionShape" parent="DrillArea"]
+shape = SubResource( 1 )
 
 [connection signal="animation_done" from="TreasureArea" to="." method="_on_TreasureArea_animation_done"]
 [connection signal="picked_up" from="TreasureArea" to="." method="_on_TreasureArea_picked_up"]
