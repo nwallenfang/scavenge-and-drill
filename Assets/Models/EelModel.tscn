@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/GLTF/Eel Yellow.material" type="Material" id=1]
 [ext_resource path="res://Assets/GLTF/Eel Eye.material" type="Material" id=2]
 [ext_resource path="res://Assets/GLTF/Eel EyeIris.material" type="Material" id=3]
 [ext_resource path="res://Assets/Models/EelModel.gd" type="Script" id=4]
 [ext_resource path="res://Assets/GLTF/Eel Blue.material" type="Material" id=5]
+[ext_resource path="res://Assets/Materials/FishHurt.tres" type="Material" id=6]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "EelKamm_Cylinder002"
@@ -155,6 +156,7 @@ bones/2/enabled = true
 bones/2/bound_children = [  ]
 
 [node name="EelBody" type="MeshInstance" parent="Skeleton"]
+material_overlay = ExtResource( 6 )
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
 
@@ -163,13 +165,13 @@ mesh = SubResource( 3 )
 skin = SubResource( 2 )
 
 [node name="EelKamm" type="MeshInstance" parent="Skeleton"]
+material_overlay = ExtResource( 6 )
 mesh = SubResource( 4 )
 skin = SubResource( 2 )
 
 [node name="Bones" type="Spatial" parent="."]
 
 [node name="0" type="Spatial" parent="Bones"]
-transform = Transform( 1, -1.42109e-14, -2.66454e-15, 0, 1, 0, 6.66134e-15, 0, 1, 0, 0, 0 )
 
 [node name="1" type="Spatial" parent="Bones"]
 
