@@ -8,7 +8,7 @@ func set_version(v):
 
 func _on_TreasureArea_picked_up() -> void:
 	# TODO maybe blend out
-	$Mesh.visible = false
+	$Model.visible = false
 
 func _on_TreasureArea_animation_done() -> void:
 	queue_free()

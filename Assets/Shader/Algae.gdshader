@@ -16,13 +16,13 @@ uniform vec3 uv2_offset;
 uniform vec2 push_direction;
 uniform float push_strength : hint_range(0.0, 1.0);
 
-const float y_min = -.2;
+const float y_min = .2;
 const float y_max = 2.4;
 const float wiggle_transition = .4;
 const float wiggle_bias = .3;
-const float wiggle_factor = .1;
-const float wiggle_speed = 3.0;
-const float wiggle_freq = 20.0;
+const float wiggle_factor = .12;
+const float wiggle_speed = 2.2;
+const float wiggle_freq = 12.0;
 const float wiggle_z = 4.9;
 const float push_curve = .8;
 const float push_factor = .5;

@@ -57,7 +57,7 @@ remotesync func skip_cutscene():
 	end_cutscene()
 
 func host_sync_end_cutscene():
-	if Game.host and not cutscene_active:
+	if Game.host and cutscene_active:
 		rpc("end_cutscene")
 
 remotesync func end_cutscene():
