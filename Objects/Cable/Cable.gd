@@ -7,8 +7,10 @@ export var seg_length = .25
 export var width := .15
 export var resolution := 8
 
-export var stretch_start := .3
-export var stretch_end := .33
+export var stretch_start := .35
+export var stretch_end := .38
+
+var cable_force_points := 5
 
 func _physics_process(delta):
 	render()
@@ -37,10 +39,19 @@ func test_cable_stretch():
 	if Game.ui != null:
 		Game.ui.set_rope_length("average %.4f / highest %.4f" % [average_distance, highest_distance])
 	var stretch_factor := clamp((average_distance - stretch_start) / (stretch_end  - stretch_start), 0.0, 1.0)
+	
+	# No low distance pushing
+	var distance_between_players : float = segments[0].global_translation.distance_to(segments[-1].global_translation)
+	stretch_factor *= smoothstep(3.0, 3.5, distance_between_players)
+	var alert_factor = 1.5 if distance_between_players > 5.2 else 1.0
+	
 	var direction_for_a : Vector3 = segments[0].global_translation.direction_to(segments[1].global_translation)
 	var direction_for_b : Vector3 = segments[-1].global_translation.direction_to(segments[-2].global_translation)
-	player_a.cable_force = direction_for_a * stretch_factor
-	player_b.cable_force = direction_for_b * stretch_factor
+	for i in range(1, cable_force_points):
+		direction_for_a += segments[0].global_translation.direction_to(segments[i+1].global_translation)
+		direction_for_b += segments[-1].global_translation.direction_to(segments[-2-i].global_translation)
+	player_a.cable_force = direction_for_a.normalized() * stretch_factor * alert_factor
+	player_b.cable_force = direction_for_b.normalized() * stretch_factor * alert_factor
 	#$ImmediateGeometry.material_override.set("shader_param/albedo", lerp(Color.white, Color.red, stretch_factor))
 	
 
