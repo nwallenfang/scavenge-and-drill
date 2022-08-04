@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="ParticlesMaterial" id=1]
+resource_local_to_scene = true
+emission_shape = 1
+emission_sphere_radius = 0.3
+direction = Vector3( 1, 1.5, 0 )
+spread = 30.0
+gravity = Vector3( 0, -5, 0 )
+initial_velocity = 6.0
+scale = 3.0
+scale_random = 1.0
+
+[sub_resource type="SpatialMaterial" id=2]
+resource_local_to_scene = true
+flags_unshaded = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id=3]
+resource_local_to_scene = true
+material = SubResource( 2 )
+size = Vector2( 0.04, 0.04 )
+
+[node name="DrillParticles" type="Particles"]
+emitting = false
+amount = 16
+visibility_aabb = AABB( -0.330291, -0.322964, -2.95548, 5.90149, 3.89736, 5.62143 )
+local_coords = false
+process_material = SubResource( 1 )
+draw_pass_1 = SubResource( 3 )

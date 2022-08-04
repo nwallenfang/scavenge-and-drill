@@ -99,7 +99,7 @@ remotesync func sync_treasures(amount, type):
 	ui.update_treasures(type)
 
 
-var energy_charges := 0
+var energy_charges := 0.0
 remotesync func sync_energy_charges(x):
 	energy_charges = x
 	# to ui.set_energy_charges(x)

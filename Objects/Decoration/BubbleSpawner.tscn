@@ -39,5 +39,6 @@ height = 0.2
 lifetime = 10.0
 explosiveness = 0.41
 randomness = 1.0
+visibility_aabb = AABB( -3.966, -2.43536, -4.73917, 8.64857, 57.9159, 21.8269 )
 process_material = SubResource( 4 )
 draw_pass_1 = SubResource( 1 )

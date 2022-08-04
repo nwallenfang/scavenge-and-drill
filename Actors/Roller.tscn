@@ -14,7 +14,8 @@ radius = 4.10198
 [sub_resource type="CapsuleShape" id=14]
 
 [node name="Roller" type="KinematicBody" groups=["networked"]]
-collision_layer = 4
+collision_layer = 68
+collision_mask = 65
 axis_lock_motion_y = true
 move_lock_y = true
 script = ExtResource( 1 )

@@ -32,7 +32,7 @@ func _physics_process(delta: float):
 				direction = direction.normalized()
 				global_translation = global_translation + direction * delta * attack_speed
 	var target_y_rotation = - (Vector2(global_translation.x, global_translation.z) - Vector2(last_pos.x, last_pos.z)).angle()
-	rotation.y = lerp_angle(rotation.y, target_y_rotation, .2)
+	rotation.y = lerp_angle(rotation.y, target_y_rotation, .1)
 
 func _network_process_slowly(delta):
 	if Game.host:
@@ -40,6 +40,8 @@ func _network_process_slowly(delta):
 
 remotesync func set_state(s, target_name = ""):
 	state = s
+	if s == STATES.ATTACK:
+		$Model/EelModel/AnimationPlayer.playback_speed *= 1.5
 	if target_name != "":
 		if "1" in target_name:
 			target = Game.roller

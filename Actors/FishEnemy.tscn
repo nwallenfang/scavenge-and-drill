@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Actors/FishEnemy.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Models/EelModel.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -23,12 +24,18 @@ script = ExtResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Model"]
 transform = Transform( 0.814905, 0, 0, 0, 0.3627, 0, 0, 0, 0.218026, 0, 0.871302, 0 )
+visible = false
 mesh = SubResource( 1 )
 skeleton = NodePath("../..")
 
 [node name="MeshInstance2" type="MeshInstance" parent="Model"]
 transform = Transform( 0.451127, 0, 0, 0, 0.0943436, 0, 0, 0, 0.445862, 0.295647, 0.817325, 0 )
+visible = false
 mesh = SubResource( 2 )
+
+[node name="EelModel" parent="Model" instance=ExtResource( 2 )]
+transform = Transform( 3.28694e-07, -1.56473, -0.0325324, 2.54927e-07, 0.0325324, -1.56473, 1.56507, 3.23324e-07, 2.61705e-07, 0.910279, 0.839382, 0.0126855 )
+sync_bones_with_spatials = true
 
 [node name="Hurtbox" type="Area" parent="."]
 collision_layer = 8
