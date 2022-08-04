@@ -364,16 +364,24 @@ margin_right = 819.0
 margin_bottom = 57.0
 align = 2
 
-[node name="Gap" type="Control" parent="CreateLobbyScreen/Panel/VBoxContainer"]
+[node name="CodeCopied2" type="Label" parent="CreateLobbyScreen/Panel/VBoxContainer"]
 margin_top = 61.0
 margin_right = 819.0
-margin_bottom = 111.0
+margin_bottom = 106.0
+text = "Note: copying to clipboard doesn't work on the web :(
+Please join random matchmaking at the same time or type the code by hand."
+align = 1
+
+[node name="Gap" type="Control" parent="CreateLobbyScreen/Panel/VBoxContainer"]
+margin_top = 110.0
+margin_right = 819.0
+margin_bottom = 160.0
 rect_min_size = Vector2( 100, 50 )
 
 [node name="Label2" type="Label" parent="CreateLobbyScreen/Panel/VBoxContainer"]
-margin_top = 115.0
+margin_top = 164.0
 margin_right = 819.0
-margin_bottom = 136.0
+margin_bottom = 185.0
 text = "Waiting for a player to join.."
 align = 1
 

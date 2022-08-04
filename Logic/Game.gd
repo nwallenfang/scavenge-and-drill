@@ -30,6 +30,9 @@ var power_loss_per_s_upgraded := 5.0
 var power_loss_per_s_default := 10.0
 var power_draining := false
 
+
+var energy_charges := 0.0
+
 const TYPE_GOLD = 1
 const TYPE_GEARS = 2
 const TYPE_3 = 3
@@ -99,7 +102,6 @@ remotesync func sync_treasures(amount, type):
 	ui.update_treasures(type)
 
 
-var energy_charges := 0.0
 remotesync func sync_energy_charges(x):
 	energy_charges = x
 	# to ui.set_energy_charges(x)
