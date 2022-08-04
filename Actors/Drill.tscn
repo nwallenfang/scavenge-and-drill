@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Actors/Drill.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Models/DrillModel.tscn" type="PackedScene" id=2]
@@ -52,6 +52,32 @@ resource_local_to_scene = true
 material = SubResource( 22 )
 size = Vector2( 0.04, 0.04 )
 
+[sub_resource type="SpatialMaterial" id=24]
+resource_local_to_scene = true
+flags_unshaded = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id=25]
+resource_local_to_scene = true
+material = SubResource( 24 )
+size = Vector2( 0.04, 0.04 )
+
+[sub_resource type="SpatialMaterial" id=26]
+resource_local_to_scene = true
+flags_unshaded = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id=27]
+resource_local_to_scene = true
+material = SubResource( 26 )
+size = Vector2( 0.04, 0.04 )
+
 [sub_resource type="CapsuleShape" id=10]
 radius = 0.747055
 height = 2.32107
@@ -74,6 +100,9 @@ move_lock_y = true
 script = ExtResource( 1 )
 FRICTION = 0.99
 ACC = 130.0
+ground_color = Color( 0.686275, 0.686275, 0.576471, 1 )
+crystal_color = Color( 0.968627, 0.00784314, 1, 1 )
+scrap_color = Color( 0.341176, 0.341176, 0.341176, 1 )
 
 [node name="Model" type="Spatial" parent="."]
 
@@ -100,6 +129,16 @@ draw_pass_1 = SubResource( 20 )
 transform = Transform( -7.18329e-08, 0, 1.64334, 0, 1.64334, 0, -1.64334, 0, -7.18329e-08, 0, 0, 0 )
 process_material = SubResource( 21 )
 draw_pass_1 = SubResource( 23 )
+
+[node name="GoldParticles" parent="Model" instance=ExtResource( 3 )]
+transform = Transform( -7.18329e-08, 0, 1.64334, 0, 1.64334, 0, -1.64334, 0, -7.18329e-08, 0, 0, 0 )
+process_material = SubResource( 21 )
+draw_pass_1 = SubResource( 25 )
+
+[node name="ScrapParticles" parent="Model" instance=ExtResource( 3 )]
+transform = Transform( -7.18329e-08, 0, 1.64334, 0, 1.64334, 0, -1.64334, 0, -7.18329e-08, 0, 0, 0 )
+process_material = SubResource( 21 )
+draw_pass_1 = SubResource( 27 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 0.645386, 0, 0, 0, -2.82107e-08, 0.645386, 0, -0.645386, -2.82107e-08, 0, 1.42654, 0 )

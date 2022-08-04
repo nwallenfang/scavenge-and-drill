@@ -97,6 +97,8 @@ tracks/6/keys = {
 
 [node name="TreasureArea" type="Area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00720671, 0.74372, 0 )
+monitoring = false
+monitorable = false
 script = ExtResource( 2 )
 amount = 1
 type = 2

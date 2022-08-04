@@ -10,6 +10,10 @@
 script = ExtResource( 3 )
 
 [node name="TreasureArea" parent="." instance=ExtResource( 2 )]
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
 label_color = Color( 0.141176, 0.129412, 0.105882, 1 )
 
 [node name="Model" parent="." instance=ExtResource( 4 )]
