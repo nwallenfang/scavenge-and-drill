@@ -6,6 +6,7 @@ export var upgrade_attribute: String
 export var description: String
 export var cost_gears: int = 1
 export var cost_gold: int = 2
+export var upgrade_icon: StreamTexture
 
 const unaffordable_color: Color = Color("c24040")
 const unaffordable_modulate: Color = Color("3effffff")
@@ -18,11 +19,15 @@ var style_box_bought: StyleBoxFlat = preload("res://UI/Styles/panel_bought.tres"
 var affordable = true setget set_affordable
 var bought = false setget set_bought
 
+
 func _ready() -> void:
 	style_box_default = $Panel.get("custom_styles/panel")
 	$"%GearAmount".text = str(cost_gears)
 	$"%GoldAmount".text = str(cost_gold)
 	$"%DescriptionLabel".text = description
+	$"%Image".material = $"%Image".material.duplicate(true)
+	if upgrade_icon != null:
+		$"%Image".material.set_shader_param("texture_resource", upgrade_icon)
 	
 func set_affordable(val: bool):
 	if not val and affordable and not bought:  # switch away
@@ -42,12 +47,12 @@ func set_affordable(val: bool):
 
 
 func _on_Panel_mouse_entered() -> void:
-	if affordable:
+	if affordable and not bought:
 		$Panel.set("custom_styles/panel", style_box_hovered)
 
 
 func _on_Panel_mouse_exited() -> void:
-	if affordable:
+	if affordable and not bought:
 		$Panel.set("custom_styles/panel", style_box_default)
 
 

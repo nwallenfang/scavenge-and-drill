@@ -31,4 +31,13 @@
   - https://thenounproject.com/icon/crystal-114662/
   - Dima Lagunov
   - CC-BY
+- bullet icon
+  - https://thenounproject.com/icon/bullet-1067036/ 
+  - Nico Ilk
+- position swap icon
+  - https://thenounproject.com/icon/swap-4376307/
+  - Kayla Valencia
+- movement speed icon
+  - https://thenounproject.com/icon/movement-4859564/
+  - Marz Gallery
 

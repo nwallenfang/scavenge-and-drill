@@ -25,9 +25,9 @@ var mouse_layer: MouseDetectionLayer
 
 var max_power := 100.0
 var power := 100.0 setget set_power
-var power_loss_per_s := 10.0
+var power_loss_per_s := 50.0
 var power_loss_per_s_upgraded := 5.0
-var power_loss_per_s_default := 10.0
+var power_loss_per_s_default := 10.0 # used to be 10
 var power_draining := false
 
 
@@ -48,8 +48,8 @@ class Upgrades:
 	var less_power_drain := false #Done
 	var more_move_speed := false #Done
 	var more_bullet_damage := false #Done
-	var position_swap := true
-	var super_mode := true
+	var position_swap := false
+	var super_mode := false
 
 var upgrades: Upgrades = Upgrades.new()
 

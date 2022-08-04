@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Assets/Shader/energy_crystal_ui.gdshader" type="Shader" id=1]
 [ext_resource path="res://Assets/Sprites/gold.png" type="Texture" id=2]
@@ -8,6 +8,11 @@
 [ext_resource path="res://Assets/Sprites/merchant.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Fonts/ShopTitleFont.tres" type="DynamicFont" id=7]
 [ext_resource path="res://Assets/Sprites/gear.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/upgrade_icons/bullet_damage.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/upgrade_icons/more_power.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Sprites/upgrade_icons/movement_speed.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/upgrade_icons/position_swap.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Sprites/upgrade_icons/super_mode.png" type="Texture" id=13]
 
 [sub_resource type="ShaderMaterial" id=5]
 shader = ExtResource( 1 )
@@ -134,9 +139,9 @@ size_flags_vertical = 3
 [node name="Label" type="Label" parent="VBoxContainer/MerchantScreen"]
 margin_left = 104.0
 margin_top = 39.0
-margin_right = 734.0
+margin_right = 329.0
 margin_bottom = 60.0
-text = "Come check out my wares! (bought stuff doesn't show correctly, I know)"
+text = "Come check out my wares! "
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
 margin_top = 159.0
@@ -154,6 +159,7 @@ margin_bottom = 134.0
 upgrade_attribute = "more_bullet_damage"
 description = "Improved bullet damage"
 cost_gold = 1
+upgrade_icon = ExtResource( 9 )
 
 [node name="ShopEntry2" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
 anchor_right = 0.0
@@ -163,6 +169,7 @@ margin_right = 1024.0
 margin_bottom = 134.0
 upgrade_attribute = "less_power_drain"
 description = "Slower power drain"
+upgrade_icon = ExtResource( 10 )
 
 [node name="ShopEntry3" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
 anchor_right = 0.0
@@ -172,6 +179,7 @@ margin_right = 510.0
 margin_bottom = 272.0
 upgrade_attribute = "more_move_speed"
 description = "Higher movement speed"
+upgrade_icon = ExtResource( 11 )
 
 [node name="ShopEntry4" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
 anchor_right = 0.0
@@ -180,7 +188,9 @@ margin_left = 514.0
 margin_top = 138.0
 margin_right = 1024.0
 margin_bottom = 272.0
-upgrade_attribute = "chain_longer"
+upgrade_attribute = "super_mode"
+description = "Unlock a speed-boost skill"
+upgrade_icon = ExtResource( 13 )
 
 [node name="ShopEntry5" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
 anchor_right = 0.0
@@ -190,8 +200,9 @@ margin_right = 510.0
 margin_bottom = 410.0
 upgrade_attribute = "position_swap"
 description = "Unlock a position swap skill"
-cost_gears = 100
-cost_gold = 100
+cost_gears = 5
+cost_gold = 5
+upgrade_icon = ExtResource( 12 )
 
 [node name="ShopEntry6" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
 anchor_right = 0.0
@@ -201,6 +212,9 @@ margin_top = 276.0
 margin_right = 1024.0
 margin_bottom = 410.0
 upgrade_attribute = "chain_longer"
+description = "DUMMY"
+cost_gears = 99
+cost_gold = 99
 
 [node name="DoneShoppingButton" type="Button" parent="VBoxContainer"]
 margin_top = 573.0

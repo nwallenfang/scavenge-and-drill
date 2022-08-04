@@ -81,7 +81,7 @@ func back_to_ocean():
 	$Game.visible = true
 	
 func set_energy_charges(val: int):
-	var full_charges := int(val / 2)
+	var full_charges := int(val / 2.0)
 	var half_charge: bool = (val % 2) == 1
 	
 	for i in range(full_charges):

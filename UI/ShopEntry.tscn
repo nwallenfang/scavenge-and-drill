@@ -83,6 +83,7 @@ text = "GREAT UPGRADE BUY NOW"
 margin_top = 76.0
 margin_right = 168.0
 margin_bottom = 127.0
+mouse_filter = 1
 
 [node name="Cost" type="HBoxContainer" parent="Panel/CenterContainer/VBoxContainer/CenterContainer"]
 margin_left = 19.0
@@ -108,6 +109,7 @@ unique_name_in_owner = true
 margin_left = 30.0
 margin_right = 53.0
 margin_bottom = 51.0
+mouse_filter = 1
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = ExtResource( 4 )
 text = "1"
@@ -118,6 +120,7 @@ margin_left = 57.0
 margin_right = 73.0
 margin_bottom = 51.0
 rect_min_size = Vector2( 16, 0 )
+mouse_filter = 1
 
 [node name="AspectRatioContainer2" type="AspectRatioContainer" parent="Panel/CenterContainer/VBoxContainer/CenterContainer/Cost"]
 margin_left = 77.0
@@ -139,6 +142,7 @@ unique_name_in_owner = true
 margin_left = 107.0
 margin_right = 130.0
 margin_bottom = 51.0
+mouse_filter = 1
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = ExtResource( 4 )
 text = "2"
