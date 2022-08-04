@@ -106,11 +106,19 @@ version = 3
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.47208, -9.53674e-07, -12.6634 )
 
 [node name="TreasureGold3" parent="Collectibles" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0396, -1.43051e-06, -8.4864 )
-version = 2
+transform = Transform( 0.998375, 0, 0, 0, 0.998375, 0, 0, 0, 0.998375, -10.0396, -1.43051e-06, -8.4864 )
+version = 4
 
 [node name="TreasureGears" parent="Collectibles" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.02178, -4.76837e-07, -7.35904 )
+version = 3
+
+[node name="TreasureGears2" parent="Collectibles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.16596, -4.76837e-07, -13.3794 )
+version = 4
+
+[node name="TreasureGears3" parent="Collectibles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9042, -4.76837e-07, -14.191 )
 
 [node name="MouseDetectionLayer" parent="." instance=ExtResource( 16 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99728, 1.10036, 0 )

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Models/Gear.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Objects/Pickup/TreasureArea.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/Pickup/Treasure.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Models/ScrapModel.tscn" type="PackedScene" id=4]
 
 [node name="TreasureGears" type="Spatial"]
 script = ExtResource( 3 )
@@ -11,9 +12,13 @@ script = ExtResource( 3 )
 label_color = Color( 0.305882, 0.305882, 0.305882, 1 )
 
 [node name="Mesh" type="Spatial" parent="."]
+visible = false
 
 [node name="gear" parent="Mesh" instance=ExtResource( 1 )]
 transform = Transform( 0.340093, 0, 0, 0, -1.48659e-08, 0.340093, 0, -0.340093, -1.48659e-08, 0, 0.793507, 0 )
+
+[node name="Model" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1.28356, 0, 0, 0, 1.28356, 0, 0, 0, 1.28356, 0, 0, 0 )
 
 [connection signal="animation_done" from="TreasureArea" to="." method="_on_TreasureArea_animation_done"]
 [connection signal="picked_up" from="TreasureArea" to="." method="_on_TreasureArea_picked_up"]
