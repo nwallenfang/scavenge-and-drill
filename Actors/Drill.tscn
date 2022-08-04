@@ -1,7 +1,56 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Actors/Drill.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Models/DrillModel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Effects/DrillParticles.tscn" type="PackedScene" id=3]
+
+[sub_resource type="ParticlesMaterial" id=18]
+resource_local_to_scene = true
+emission_shape = 1
+emission_sphere_radius = 0.3
+direction = Vector3( 1, 1.5, 0 )
+spread = 30.0
+gravity = Vector3( 0, -5, 0 )
+initial_velocity = 6.0
+scale = 3.0
+scale_random = 1.0
+
+[sub_resource type="SpatialMaterial" id=19]
+resource_local_to_scene = true
+flags_unshaded = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id=20]
+resource_local_to_scene = true
+material = SubResource( 19 )
+size = Vector2( 0.04, 0.04 )
+
+[sub_resource type="ParticlesMaterial" id=21]
+resource_local_to_scene = true
+emission_shape = 1
+emission_sphere_radius = 0.3
+direction = Vector3( 1, 1.5, 0 )
+spread = 30.0
+gravity = Vector3( 0, -5, 0 )
+initial_velocity = 6.0
+scale = 3.0
+scale_random = 1.0
+
+[sub_resource type="SpatialMaterial" id=22]
+resource_local_to_scene = true
+flags_unshaded = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id=23]
+resource_local_to_scene = true
+material = SubResource( 22 )
+size = Vector2( 0.04, 0.04 )
 
 [sub_resource type="CapsuleShape" id=10]
 radius = 0.747055
@@ -15,18 +64,44 @@ radius = 4.10198
 height = 3.08805
 radius = 0.372142
 
+[sub_resource type="SphereShape" id=15]
+radius = 0.435087
+
 [node name="Drill" type="KinematicBody" groups=["networked"]]
-collision_layer = 0
+collision_layer = 4
 axis_lock_motion_y = true
 move_lock_y = true
 script = ExtResource( 1 )
 FRICTION = 0.99
 ACC = 130.0
+ground_color = Color( 0.560784, 0.537255, 0.486275, 1 )
+crystal_color = Color( 0.968627, 0, 1, 1 )
 
 [node name="Model" type="Spatial" parent="."]
 
 [node name="DrillModel" parent="Model" instance=ExtResource( 2 )]
 transform = Transform( 1.50665, 0, 0, 0, 1.50665, 0, 0, 0, 1.50665, 0, 2.56106, 0 )
+
+[node name="Handle" type="Spatial" parent="Model/DrillModel"]
+transform = Transform( 0.663724, 0, 0, 0, 0.663724, 0, 0, 0, 0.663724, 0, -0.0535625, 0 )
+
+[node name="Default" parent="Model" instance=ExtResource( 2 )]
+transform = Transform( 1.50665, 0, 0, 0, 1.50665, 0, 0, 0, 1.50665, 0, 2.56106, 0 )
+visible = false
+
+[node name="DrillPos" parent="Model" instance=ExtResource( 2 )]
+transform = Transform( 1.50665, 0, 0, 0, 1.15906, 0.962582, 0, -0.962582, 1.15906, 0, 0.3964, -0.403186 )
+visible = false
+
+[node name="GroundParticles" parent="Model" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+process_material = SubResource( 18 )
+draw_pass_1 = SubResource( 20 )
+
+[node name="CrystalParticles" parent="Model" instance=ExtResource( 3 )]
+transform = Transform( -7.18329e-08, 0, 1.64334, 0, 1.64334, 0, -1.64334, 0, -7.18329e-08, 0, 0, 0 )
+process_material = SubResource( 21 )
+draw_pass_1 = SubResource( 23 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 0.645386, 0, 0, 0, -2.82107e-08, 0.645386, 0, -0.645386, -2.82107e-08, 0, 1.42654, 0 )
@@ -50,5 +125,9 @@ collision_mask = 0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25289, 0 )
 shape = SubResource( 14 )
 
-[node name="Handle" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.48036, 0 )
+[node name="DrillArea" type="Area" parent="."]
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="DrillArea"]
+shape = SubResource( 15 )

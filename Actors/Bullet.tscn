@@ -1,8 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Actors/Bullet.gd" type="Script" id=1]
-
-[sub_resource type="SphereMesh" id=1]
+[ext_resource path="res://Assets/Models/BulletModel.tscn" type="PackedScene" id=2]
 
 [sub_resource type="SphereShape" id=2]
 radius = 0.161168
@@ -10,16 +9,15 @@ radius = 0.161168
 [node name="Bullet" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 0.0995707, 0, 0, 0, 0.0995707, 0, 0, 0, 0.0995707, 0, 0, 0 )
-mesh = SubResource( 1 )
-
 [node name="Area" type="Area" parent="."]
 collision_layer = 0
 collision_mask = 9
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 shape = SubResource( 2 )
+
+[node name="BulletModel" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0350126 )
 
 [connection signal="area_entered" from="Area" to="." method="_on_Area_area_entered"]
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]

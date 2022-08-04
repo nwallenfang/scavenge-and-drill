@@ -74,18 +74,27 @@ func do_game_setup(players: Dictionary):
 #		$Viewport/DualSideviewCamera.initialize($Player1, $ViewportPartner/DualSideviewCamera)
 #		$ViewportPartner/DualSideviewCamera.initialize($Player2, $Viewport/DualSideviewCamera)
 		camera.initialize($Player1, $Player2)
+	#camera.current = true
+	$Player1.visible = false
+	$Player2.visible = false
+	$Player1.static_mode = true
+	$Player2.static_mode = true
+	$Cable.visible = false
+	$DiveStartCutscene.start_cutscene()
+	yield($DiveStartCutscene,"cutscene_ended")
+	# INSERT FADE HERE
 	camera.current = true
-		
-		
+	$Player1.visible = true
+	$Player2.visible = true
+	$Player1.static_mode = false
+	$Player2.static_mode = false
+	$Cable.visible = true
+	Game.power_draining = true
+	
+
 func replace_collectibles(collectibles_node: Node):
 	var collectibles_old = $Collectibles
 	collectibles_old.name = "Collectibles_old"
 	collectibles_old.queue_free()
 	collectibles_node.name = "Collectibles"
 	add_child(collectibles_node)
-
-func _physics_process(delta):
-	if Input.is_action_just_pressed("cutscene"):
-		$DiveStartCutscene.start_cutscene()
-		yield($DiveStartCutscene,"cutscene_ended")
-		$Pivot/TopdownCamera.current = true

@@ -40,7 +40,10 @@ func set_hook_offset(x):
 		hook_offset = x
 		$HookModel.global_translation.y = lerp(hook_low, hook_high, x)
 
+var cutscene_active := false
+
 func start_cutscene():
+	cutscene_active = true
 	point_1 = $Point1
 	point_2 = $Point2
 	point_3 = $Point3
@@ -49,6 +52,20 @@ func start_cutscene():
 
 signal cutscene_ended
 
-func end_cutscene():
+remotesync func skip_cutscene():
+	$AnimationPlayer.stop()
+	end_cutscene()
+
+func host_sync_end_cutscene():
+	if Game.host and cutscene_active:
+		rpc("end_cutscene")
+
+remotesync func end_cutscene():
+	cutscene_active = false
 	self.visible = false
 	emit_signal("cutscene_ended")
+
+func _input(event):
+	if cutscene_active and event is InputEventKey:
+		if event.is_action_pressed("skip_dialog"):
+			rpc("skip_cutscene")

@@ -100,15 +100,25 @@ script = ExtResource( 6 )
 
 [node name="TreasureGold" parent="Collectibles" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.855672, 0, -8.46221 )
+version = 3
 
 [node name="TreasureGold2" parent="Collectibles" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.47208, -9.53674e-07, -12.6634 )
 
 [node name="TreasureGold3" parent="Collectibles" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0396, -1.43051e-06, -8.4864 )
+transform = Transform( 0.998375, 0, 0, 0, 0.998375, 0, 0, 0, 0.998375, -10.0396, -1.43051e-06, -8.4864 )
+version = 4
 
 [node name="TreasureGears" parent="Collectibles" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.02178, -4.76837e-07, -7.35904 )
+version = 3
+
+[node name="TreasureGears2" parent="Collectibles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.16596, -4.76837e-07, -13.3794 )
+version = 4
+
+[node name="TreasureGears3" parent="Collectibles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9042, -4.76837e-07, -14.191 )
 
 [node name="MouseDetectionLayer" parent="." instance=ExtResource( 16 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99728, 1.10036, 0 )
@@ -155,6 +165,15 @@ transform = Transform( 0.777717, -0.319594, 0.54131, 0, 0.861115, 0.50841, -0.62
 
 [node name="Point3" type="Camera" parent="DiveStartCutscene"]
 transform = Transform( -0.918515, 0.0181013, 0.394971, 0, 0.998951, -0.0457813, -0.395385, -0.0420509, -0.917552, 11.9339, 8.22862, -27.4567 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionPolygon" type="CollisionPolygon" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+depth = 10.0
+polygon = PoolVector2Array( 41.9468, 32.9808, 49.3033, 19.4256, 55.5747, 4.27614, 59.0208, 12.956, 49.1933, 27.6165, 39.2465, 50.708, 18.4075, 63.6685, 30.198, 50.6517 )
 
 [connection signal="player_entered" from="Objects/ButtonPlate1" to="Objects/Door" method="_on_ButtonPlate1_player_entered"]
 [connection signal="player_left" from="Objects/ButtonPlate1" to="Objects/Door" method="_on_ButtonPlate1_player_left"]

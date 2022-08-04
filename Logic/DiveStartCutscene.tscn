@@ -63,11 +63,11 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 12 ),
+"times": PoolRealArray( 11 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "end_cutscene"
+"method": "host_sync_end_cutscene"
 } ]
 }
 tracks/5/type = "value"
@@ -102,6 +102,7 @@ transform = Transform( 0.569618, 0, 0, 0, 0.486058, 0.297006, 0, -0.297006, 0.48
 transform = Transform( 0.569618, 0, 0, 0, 0.297006, -0.486058, 0, 0.486058, 0.297006, 0.00281357, -0.215242, -0.240983 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_process_mode = 0
 anims/Cutscene = SubResource( 1 )
 
 [node name="TreasureCam" type="Camera" parent="."]

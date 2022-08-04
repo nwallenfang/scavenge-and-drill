@@ -291,6 +291,8 @@ cutscene={
 3d_physics/layer_4="EnemyHurtbox"
 3d_physics/layer_5="PlayerHurtbox"
 3d_physics/layer_6="PlayerDetection"
+3d_physics/layer_7="Abyss"
+3d_physics/layer_8="Drill"
 
 [physics]
 
