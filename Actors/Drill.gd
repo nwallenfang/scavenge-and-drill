@@ -26,9 +26,13 @@ var last_frame_offset := 0.0
 
 export var ground_color := Color.brown
 export var crystal_color := Color.pink
+export var gold_color := Color.gold
+export var scrap_color := Color.gray
 func _ready():
 	$Model/GroundParticles.draw_pass_1.surface_get_material(0).set("albedo_color", ground_color)
 	$Model/CrystalParticles.draw_pass_1.surface_get_material(0).set("albedo_color", crystal_color)
+	$Model/GoldParticles.draw_pass_1.surface_get_material(0).set("albedo_color", gold_color)
+	$Model/ScrapParticles.draw_pass_1.surface_get_material(0).set("albedo_color", scrap_color)
 	
 
 func _physics_process(delta):
@@ -54,11 +58,22 @@ func _physics_process(delta):
 			ACC = move_acc_drilling
 			drill_the_crystals(delta)
 			$Model/GroundParticles.emitting = $DrillArea.get_overlapping_areas().empty()
-			$Model/CrystalParticles.emitting = not $DrillArea.get_overlapping_areas().empty()
+			$Model/CrystalParticles.emitting = false
+			$Model/GoldParticles.emitting = false
+			$Model/ScrapParticles.emitting = false
+			for a in $DrillArea.get_overlapping_areas():
+				if "Crystal" in a.get_parent().name:
+					$Model/CrystalParticles.emitting = true
+				elif "Gold" in a.get_parent().name:
+					$Model/GoldParticles.emitting = true
+				elif "Gear" in a.get_parent().name:
+					$Model/ScrapParticles.emitting = true
 		else:
 			ACC = move_acc_default if not Game.upgrades.more_move_speed else move_acc_upgraded
 			$Model/GroundParticles.emitting = false
 			$Model/CrystalParticles.emitting = false
+			$Model/GoldParticles.emitting = false
+			$Model/ScrapParticles.emitting = false
 
 func _network_process(delta):
 	._network_process(delta)

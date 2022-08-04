@@ -13,9 +13,14 @@ func _on_TreasureArea_picked_up() -> void:
 func _on_TreasureArea_animation_done() -> void:
 	queue_free()
 
+var base_scale
+func _ready():
+	base_scale = $Model.scale
+
 var hp := 1.0
 func get_drilled(amount):
-	hp -= amount
-	$Model.scale = lerp(.5, 1.0, hp)
-	if hp <= 0.0:
-		$TreasureArea.picked_up()
+	if hp > 0.0:
+		hp -= amount
+		$Model.scale = base_scale * lerp(.5, 1.0, hp)
+		if hp <= 0.0:
+			$TreasureArea.picked_up()
