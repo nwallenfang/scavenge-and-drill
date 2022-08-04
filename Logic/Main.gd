@@ -192,6 +192,7 @@ remotesync func shop_to_game_transition():
 	$UI.back_to_ocean()
 	Game.power = Game.max_power
 	level = new_level
+	Game.try_count += 1   
 	
 func _on_MainMenu_match_made():
 	print("match made")
