@@ -147,6 +147,6 @@ mesh = SubResource( 4 )
 skeleton = NodePath("../../..")
 
 [node name="Cylinder" type="MeshInstance" parent="Head"]
-transform = Transform( 1.58511, 0, 0, 0, 0, -1.58511, 0, 1.58511, 0, 0, 0.203823, 0.230955 )
+transform = Transform( 1.58511, 0, 0, 0, 0, -1.58511, 0, 3.59789, 0, 0, 0.203823, 0.272715 )
 mesh = SubResource( 6 )
 skeleton = NodePath("../../..")

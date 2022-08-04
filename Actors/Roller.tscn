@@ -14,7 +14,7 @@ radius = 4.10198
 [sub_resource type="CapsuleShape" id=14]
 
 [node name="Roller" type="KinematicBody" groups=["networked"]]
-collision_layer = 0
+collision_layer = 4
 axis_lock_motion_y = true
 move_lock_y = true
 script = ExtResource( 1 )
@@ -25,11 +25,8 @@ ACC = 20.0
 [node name="RollerModel" parent="Model" instance=ExtResource( 2 )]
 transform = Transform( 1.32927, 0, 0, 0, 1.32927, 0, 0, 0, 1.32927, 0, 0, 0 )
 
-[node name="RollerConnector" parent="Model/RollerModel" index="3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.61564, 0.00750867 )
-
 [node name="BulletSpawn" type="Spatial" parent="Model/RollerModel/Head" index="2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.709837, 0.164104 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.195769, 0.412361 )
 
 [node name="Handle" type="Spatial" parent="Model/RollerModel"]
 transform = Transform( 0.752294, 0, 0, 0, 0.752294, 0, 0, 0, 0.752294, 0, 0.330323, -0.479799 )

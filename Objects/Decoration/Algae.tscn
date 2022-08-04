@@ -19,7 +19,7 @@ shader_param/uv1_scale = Vector3( 1, 1, 1 )
 shader_param/uv1_offset = Vector3( 0, 0, 0 )
 shader_param/uv2_scale = Vector3( 1, 1, 1 )
 shader_param/uv2_offset = Vector3( 0, 0, 0 )
-shader_param/push_direction = null
+shader_param/push_direction = Vector2( 1, 0 )
 shader_param/push_strength = 0.0
 
 [node name="Algae" type="Spatial"]

@@ -16,7 +16,7 @@ height = 3.08805
 radius = 0.372142
 
 [node name="Drill" type="KinematicBody" groups=["networked"]]
-collision_layer = 0
+collision_layer = 4
 axis_lock_motion_y = true
 move_lock_y = true
 script = ExtResource( 1 )

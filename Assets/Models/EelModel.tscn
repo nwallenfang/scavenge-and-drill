@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/GLTF/Eel Yellow.material" type="Material" id=1]
 [ext_resource path="res://Assets/GLTF/Eel Eye.material" type="Material" id=2]
 [ext_resource path="res://Assets/GLTF/Eel EyeIris.material" type="Material" id=3]
+[ext_resource path="res://Assets/Models/EelModel.gd" type="Script" id=4]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Eel_Cylinder002"
@@ -61,6 +62,8 @@ surfaces/1 = {
 
 [node name="EelModel" type="Spatial"]
 transform = Transform( -1, -1.62885e-07, -1.66307e-07, 1.62885e-07, 0.0207865, -0.999784, 1.66307e-07, -0.999784, -0.0207865, 0, 0, 0.738207 )
+script = ExtResource( 4 )
+sync_bones_with_spatials = true
 
 [node name="Skeleton" type="Skeleton" parent="."]
 transform = Transform( 1, 0, 3.9746e-14, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0 )
@@ -87,3 +90,11 @@ skin = SubResource( 2 )
 [node name="EelEyes" type="MeshInstance" parent="Skeleton"]
 mesh = SubResource( 3 )
 skin = SubResource( 2 )
+
+[node name="Bones" type="Spatial" parent="."]
+
+[node name="0" type="Spatial" parent="Bones"]
+
+[node name="1" type="Spatial" parent="Bones"]
+
+[node name="2" type="Spatial" parent="Bones"]
