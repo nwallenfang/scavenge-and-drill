@@ -16,7 +16,8 @@ func _physics_process(delta):
 	._physics_process(delta)
 	var new_pos = self.global_2d
 	if new_pos.distance_to(old_pos) > .01:
-		facing_angle = -old_pos.direction_to(new_pos).angle() + PI / 2.0
+		facing_angle = lerp_angle(facing_angle, Vector2(facing_direction.x, -facing_direction.z).angle() + PI / 2.0, 1.0-pow(.005, delta))
+		#facing_angle = -old_pos.direction_to(new_pos).angle() + PI / 2.0
 		$Model/RollerModel.rotation.y = facing_angle
 	if controlled:
 		if static_mode:

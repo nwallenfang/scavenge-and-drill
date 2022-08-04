@@ -8,7 +8,7 @@ export var width := .15
 export var resolution := 8
 
 export var stretch_start := .3
-export var stretch_end := .45
+export var stretch_end := .33
 
 func _physics_process(delta):
 	render()
