@@ -192,6 +192,7 @@ signal dialog_ended
 func on_dialog_ended():
 	emit_signal("dialog_ended")
 	currently_dialoging = false
+	current_dialog_trigger = null
 	yield(get_tree().create_timer(queue_cooldown_time),"timeout")
 	if not currently_dialoging:
 		if not dialog_queue.empty():
