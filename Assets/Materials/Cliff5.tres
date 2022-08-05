@@ -1,0 +1,9 @@
+[gd_resource type="SpatialMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://Assets/GLTF/CliffJagged002_COL_VAR1_1K_square.jpg" type="Texture" id=1]
+
+[resource]
+albedo_texture = ExtResource( 1 )
+uv1_scale = Vector3( 0.5, 0.5, 0.6 )
+uv1_offset = Vector3( 0.076, 0.644, -0.047 )
+uv2_scale = Vector3( 0.2, 0.2, 0.2 )
