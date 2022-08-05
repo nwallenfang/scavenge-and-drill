@@ -135,6 +135,7 @@ remotesync func _do_game_setup(playerss: Dictionary) -> void:
 
 	
 	$ViewportContainer/Viewport.add_child(level)
+#	$ViewportContainer.enable_dither()
 #	$ViewportContainer.enable_post_processing()
 	Game.ui = $UI
 	Game.ui.visible = true

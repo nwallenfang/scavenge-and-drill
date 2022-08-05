@@ -55,6 +55,7 @@ anchor_bottom = 1.0
 margin_right = 339.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="HBoxContainer/CharacterInfo"]
 margin_right = 339.0

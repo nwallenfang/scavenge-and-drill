@@ -14,3 +14,9 @@ func enable_post_processing():
 	var mat: ShaderMaterial = ShaderMaterial.new()
 	mat.shader = post_proc
 	self.material = mat
+
+export var dither: ShaderMaterial
+func enable_dither():
+#	var mat: ShaderMaterial = ShaderMaterial.new()
+#	mat.shader = dither
+	self.material = dither
