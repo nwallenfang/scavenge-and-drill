@@ -12,7 +12,8 @@ func _ready():
 #	$Player2.set_color(player2_color)
 
 	Game.connect("power_depleted", self, "server_power_depleted")
-	$WorldEnvironment.environment = load("res://LevelEnvironment.tres")
+#	$WorldEnvironment.environment = load("res://LevelEnvironment.tres")
+
 
 
 func server_power_depleted():
@@ -88,7 +89,11 @@ func do_game_setup(players: Dictionary):
 	$Player1.static_mode = true
 	$Player2.static_mode = true
 	$Cable.visible = false
+	Game.ui.fade_in(0.50)
+	yield(get_tree().create_timer(0.10), "timeout")
 	$DiveStartCutscene.start_cutscene()
+	
+
 	yield($DiveStartCutscene,"cutscene_ended")
 
 	Game.ui.fade_out(0.45)

@@ -30,9 +30,9 @@ mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/CenterContainer"]
 margin_left = 412.0
-margin_top = 144.0
+margin_top = 162.0
 margin_right = 612.0
-margin_bottom = 456.0
+margin_bottom = 437.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -55,11 +55,10 @@ mouse_filter = 2
 [node name="DescriptionLabel" type="Label" parent="Panel/CenterContainer/VBoxContainer"]
 margin_top = 204.0
 margin_right = 200.0
-margin_bottom = 312.0
+margin_bottom = 275.0
 custom_fonts/font = ExtResource( 1 )
 text = "Play online
-with a friend
-(recommended)"
+with a friend"
 align = 1
 
 [connection signal="gui_input" from="Panel" to="." method="_on_Panel_gui_input"]

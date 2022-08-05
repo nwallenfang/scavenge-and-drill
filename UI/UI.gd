@@ -40,7 +40,12 @@ func add_to_log(msg: String):
 	
 func set_power(value_percent: float):
 	$"%PowerProgress".material.set_shader_param("value", value_percent)
-	
+
+
+func update_treasures_without_pop_in():
+	$"%GoldAmount".text = "%02d" % Game.treasure_gold	
+	$"%GearAmount".text = "%02d" % Game.treasure_gears
+	$"%DiamondAmount".text = "%02d" % Game.treasure_diamond	
 
 var blended_out: Color = Color("00ffffff")
 var blended_in: Color  = Color("ffffffff")

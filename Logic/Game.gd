@@ -34,14 +34,15 @@ var power_draining := false
 
 var try_count = 1  # gets increased on restart
 
+var max_energy_charges = 6
 var energy_charges: int = 0
 
 const TYPE_GOLD = 1
 const TYPE_GEARS = 2
 const TYPE_3 = 3
 
-var treasure_gold = 1
-var treasure_gears = 1
+var treasure_gold = 0
+var treasure_gears = 0
 var treasure_diamond = 0 
 
 var collectibles_node: Node
@@ -121,6 +122,8 @@ remotesync func sync_treasures(amount, type):
 remotesync func sync_energy_charges(x: int):
 	if x > energy_charges:
 		progress.mined_energy_charges += x - energy_charges
+	if x > max_energy_charges:
+		x = max_energy_charges
 	energy_charges = x
 	ui.set_energy_charges(x)
 

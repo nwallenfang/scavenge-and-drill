@@ -9,7 +9,7 @@ export var cost_gold: int = 2
 export var upgrade_icon: StreamTexture
 
 const unaffordable_color: Color = Color("c24040")
-const unaffordable_modulate: Color = Color("3effffff")
+const unaffordable_modulate: Color = Color("2bffffff")
 const affordable_color: Color = Color.white
 
 var style_box_default: StyleBoxFlat
@@ -61,6 +61,8 @@ remotesync func set_bought(val: bool):
 		$Panel.set("custom_styles/panel", style_box_bought)
 		$"%GearAmount".add_color_override("font_color", affordable_color)
 		$"%GoldAmount".add_color_override("font_color", affordable_color)
+		$"%GoldAmount".text = "-"
+		$"%GearAmount".text = "-"
 		$"%Image".modulate = unaffordable_modulate
 	if bought and not val:
 		Game.log("unbuy shouldn't happen")
