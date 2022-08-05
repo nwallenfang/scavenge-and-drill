@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://UI/DialogPanel.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Fonts/DialogFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://UI/Styles/theme.tres" type="Theme" id=2]
 [ext_resource path="res://Assets/Sprites/arrow_down.png" type="Texture" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -52,51 +52,52 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="CharacterInfo" type="VBoxContainer" parent="HBoxContainer"]
-margin_right = 100.0
+margin_right = 339.0
 margin_bottom = 600.0
+size_flags_horizontal = 3
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="HBoxContainer/CharacterInfo"]
-margin_right = 100.0
-margin_bottom = 100.0
+margin_right = 339.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Icon" type="ColorRect" parent="HBoxContainer/CharacterInfo/AspectRatioContainer"]
 unique_name_in_owner = true
 material = SubResource( 5 )
-margin_right = 100.0
-margin_bottom = 100.0
+margin_top = 130.5
+margin_right = 339.0
+margin_bottom = 469.5
 rect_min_size = Vector2( 100, 100 )
 mouse_filter = 1
 
-[node name="Name" type="RichTextLabel" parent="HBoxContainer/CharacterInfo"]
-unique_name_in_owner = true
-margin_top = 104.0
-margin_right = 100.0
-margin_bottom = 141.0
-custom_fonts/normal_font = ExtResource( 2 )
-bbcode_enabled = true
-bbcode_text = "[center][color=red]Name"
-text = "Name"
-fit_content_height = true
-
 [node name="Gap" type="Control" parent="HBoxContainer"]
-margin_left = 104.0
-margin_right = 124.0
+margin_left = 343.0
+margin_right = 363.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Text" type="RichTextLabel" parent="HBoxContainer"]
-unique_name_in_owner = true
-margin_left = 128.0
-margin_right = 957.0
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+margin_left = 367.0
+margin_right = 903.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
-custom_fonts/normal_font = ExtResource( 2 )
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.58
+
+[node name="Text" type="RichTextLabel" parent="HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+margin_right = 536.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.51
+theme = ExtResource( 2 )
 text = "Hii this is a long multiline text
 Test"
 scroll_active = false
 
 [node name="ContinueDialog" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 961.0
+margin_left = 907.0
 margin_right = 1024.0
 margin_bottom = 600.0
 alignment = 2
@@ -110,21 +111,21 @@ icon_align = 1
 
 [node name="ContinueArrowCon" type="AspectRatioContainer" parent="HBoxContainer/ContinueDialog"]
 margin_top = 545.0
-margin_right = 63.0
+margin_right = 117.0
 margin_bottom = 575.0
 alignment_vertical = 2
 
 [node name="BlinkingArrow" type="ColorRect" parent="HBoxContainer/ContinueDialog/ContinueArrowCon"]
 material = SubResource( 3 )
-margin_left = 16.5
-margin_right = 46.5
+margin_left = 43.5
+margin_right = 73.5
 margin_bottom = 30.0
 rect_min_size = Vector2( 30, 30 )
 
 [node name="Label" type="Label" parent="HBoxContainer/ContinueDialog"]
 margin_top = 579.0
-margin_right = 63.0
+margin_right = 117.0
 margin_bottom = 600.0
-text = "[space]"
+text = "[space skips]"
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -12,7 +12,7 @@ func show_dialog_line(line):
 	# TODO add color
 	var color_hex = Dialog.colors[line.speaker_id].to_html()
 	var color_bb = "[color=#%s]" % color_hex
-	$"%Name".bbcode_text = "[center]" + color_bb + Dialog.names[line.speaker_id]
+#	$"%Name".bbcode_text = "[center]" + color_bb + Dialog.names[line.speaker_id]
 	# maybe make the text the same color? don't know
 	$"%Text".text = line.text
 	$"%Icon".material.set("shader_param/texture_resource", Dialog.icons[line.speaker_id])

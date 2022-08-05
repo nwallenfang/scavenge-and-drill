@@ -39,7 +39,7 @@ func add_to_log(msg: String):
 	
 	
 func set_power(value_percent: float):
-	$"%PowerProgress".value = value_percent
+	$"%PowerProgress".material.set_shader_param("value", value_percent)
 	
 
 var blended_out: Color = Color("00ffffff")

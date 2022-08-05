@@ -1,15 +1,14 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://UI/UI.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/PausedFont.tres" type="DynamicFont" id=2]
-[ext_resource path="res://Assets/Sprites/oxygen/bar_over.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Sprites/oxygen/bar_under.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Sprites/oxygen/bar_progress.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Sprites/gold.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Fonts/debug_font.tres" type="DynamicFont" id=7]
 [ext_resource path="res://Assets/Sprites/gear.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Fonts/TreasureFont.tres" type="DynamicFont" id=9]
 [ext_resource path="res://Assets/Sprites/energy_crystal.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Sprites/upgrade_icons/power_bar_icon.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Shader/energy_crystal_ui.gdshader" type="Shader" id=12]
 
 [sub_resource type="Shader" id=7]
 code = "shader_type canvas_item;
@@ -45,6 +44,43 @@ shader_param/empty_color = Color( 1, 1, 1, 0.266667 )
 shader_param/enabled = false
 shader_param/half_enabled = false
 shader_param/texture_resource = ExtResource( 10 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0, 0, 0, 0.607843 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Shader" id=11]
+code = "shader_type canvas_item;
+
+uniform float max_value = 100;
+uniform float value = 50;
+
+uniform vec4 start_color: hint_color;
+uniform vec4 end_color: hint_color;
+
+void fragment() {
+	float fraction = 1.0 - value/max_value;
+	COLOR = float(UV.y > fraction) * mix(start_color, end_color, UV.y);
+}"
+
+[sub_resource type="ShaderMaterial" id=12]
+shader = SubResource( 11 )
+shader_param/max_value = 100.0
+shader_param/value = 100.0
+shader_param/start_color = Color( 0.898039, 0.694118, 0.0901961, 1 )
+shader_param/end_color = Color( 0.898039, 0.266667, 0.0745098, 1 )
+
+[sub_resource type="Theme" id=9]
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = ExtResource( 12 )
+shader_param/fill_color = Color( 0.843137, 0.733333, 0.133333, 1 )
+shader_param/empty_color = Color( 0.831373, 0.713726, 0.713726, 1 )
+shader_param/enabled = true
+shader_param/texture_resource = ExtResource( 11 )
 
 [sub_resource type="Shader" id=6]
 code = "shader_type canvas_item;
@@ -236,77 +272,87 @@ anchor_right = 0.02
 anchor_bottom = 0.9
 size_flags_vertical = 3
 
-[node name="Oxygen" type="VBoxContainer" parent="Game/LeftSide"]
-margin_right = 64.0
+[node name="PowerAndCrystals" type="VBoxContainer" parent="Game/LeftSide"]
+margin_right = 50.0
 margin_bottom = 480.0
 
-[node name="PowerProgress" type="TextureProgress" parent="Game/LeftSide/Oxygen"]
+[node name="EnergyCrystalsBox" type="VBoxContainer" parent="Game/LeftSide/PowerAndCrystals"]
 unique_name_in_owner = true
-margin_right = 64.0
-margin_bottom = 455.0
-rect_min_size = Vector2( 64, 0 )
-size_flags_vertical = 3
-value = 100.0
-texture_under = ExtResource( 4 )
-texture_over = ExtResource( 3 )
-texture_progress = ExtResource( 5 )
-fill_mode = 3
-nine_patch_stretch = true
-stretch_margin_top = 1
-stretch_margin_bottom = 1
-
-[node name="Label" type="Label" parent="Game/LeftSide/Oxygen"]
-margin_top = 459.0
-margin_right = 64.0
-margin_bottom = 480.0
-text = "Pow"
-align = 1
-
-[node name="Gap" type="Control" parent="Game/LeftSide"]
-margin_left = 68.0
-margin_right = 73.0
-margin_bottom = 480.0
-rect_min_size = Vector2( 5, 5 )
-
-[node name="EnergyCrystalsBox" type="VBoxContainer" parent="Game/LeftSide"]
-unique_name_in_owner = true
-margin_left = 77.0
-margin_right = 125.0
-margin_bottom = 480.0
+margin_right = 50.0
+margin_bottom = 194.0
 alignment = 1
 
-[node name="AspectRatioContainer3" type="AspectRatioContainer" parent="Game/LeftSide/EnergyCrystalsBox"]
-margin_top = 143.0
-margin_right = 48.0
-margin_bottom = 205.0
+[node name="AspectRatioContainer3" type="AspectRatioContainer" parent="Game/LeftSide/PowerAndCrystals/EnergyCrystalsBox"]
+margin_right = 50.0
+margin_bottom = 62.0
 
-[node name="ColorRect" type="ColorRect" parent="Game/LeftSide/EnergyCrystalsBox/AspectRatioContainer3"]
+[node name="ColorRect" type="ColorRect" parent="Game/LeftSide/PowerAndCrystals/EnergyCrystalsBox/AspectRatioContainer3"]
 material = SubResource( 5 )
-margin_right = 48.0
+margin_right = 50.0
 margin_bottom = 62.0
 rect_min_size = Vector2( 48, 62 )
 
-[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="Game/LeftSide/EnergyCrystalsBox"]
-margin_top = 209.0
-margin_right = 48.0
-margin_bottom = 271.0
+[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="Game/LeftSide/PowerAndCrystals/EnergyCrystalsBox"]
+margin_top = 66.0
+margin_right = 50.0
+margin_bottom = 128.0
 
-[node name="ColorRect" type="ColorRect" parent="Game/LeftSide/EnergyCrystalsBox/AspectRatioContainer2"]
+[node name="ColorRect" type="ColorRect" parent="Game/LeftSide/PowerAndCrystals/EnergyCrystalsBox/AspectRatioContainer2"]
 material = SubResource( 5 )
-margin_right = 48.0
+margin_right = 50.0
 margin_bottom = 62.0
 rect_min_size = Vector2( 48, 62 )
 
-[node name="AspectRatioContainer1" type="AspectRatioContainer" parent="Game/LeftSide/EnergyCrystalsBox"]
-margin_top = 275.0
-margin_right = 48.0
-margin_bottom = 337.0
+[node name="AspectRatioContainer1" type="AspectRatioContainer" parent="Game/LeftSide/PowerAndCrystals/EnergyCrystalsBox"]
+margin_top = 132.0
+margin_right = 50.0
+margin_bottom = 194.0
 
-[node name="ColorRect" type="ColorRect" parent="Game/LeftSide/EnergyCrystalsBox/AspectRatioContainer1"]
+[node name="ColorRect" type="ColorRect" parent="Game/LeftSide/PowerAndCrystals/EnergyCrystalsBox/AspectRatioContainer1"]
 material = SubResource( 5 )
-margin_right = 48.0
+margin_right = 50.0
 margin_bottom = 62.0
 rect_min_size = Vector2( 48, 62 )
+
+[node name="Gap" type="Control" parent="Game/LeftSide/PowerAndCrystals"]
+margin_top = 198.0
+margin_right = 50.0
+margin_bottom = 216.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.09
+
+[node name="Panel" type="Panel" parent="Game/LeftSide/PowerAndCrystals"]
+margin_top = 220.0
+margin_right = 50.0
+margin_bottom = 430.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 10 )
+
+[node name="PowerProgress" type="ColorRect" parent="Game/LeftSide/PowerAndCrystals/Panel"]
+unique_name_in_owner = true
+material = SubResource( 12 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource( 9 )
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Game/LeftSide/PowerAndCrystals"]
+margin_top = 434.0
+margin_right = 50.0
+margin_bottom = 479.0
+
+[node name="PowerIcon" type="ColorRect" parent="Game/LeftSide/PowerAndCrystals/AspectRatioContainer"]
+material = SubResource( 8 )
+margin_right = 50.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 50, 45 )
 
 [node name="RightSide" type="HBoxContainer" parent="Game"]
 anchor_right = 1.0

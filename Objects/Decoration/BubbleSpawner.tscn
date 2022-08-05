@@ -32,6 +32,8 @@ scale_curve = SubResource( 3 )
 material = ExtResource( 1 )
 radius = 0.1
 height = 0.2
+radial_segments = 4
+rings = 6
 
 [node name="BubbleSpawner" type="Spatial"]
 

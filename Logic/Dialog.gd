@@ -20,8 +20,8 @@ var colors = {
 }
 
 var icons = {
-	SPEAKERS.DRILL: preload("res://Assets/Sprites/characters/robot_PLACEHOLDER.png"),
-	SPEAKERS.ROLLER: preload("res://Assets/Sprites/characters/human_PLACEHOLDER.png"),
+	SPEAKERS.DRILL: preload("res://Assets/Sprites/characters/drill.png"),
+	SPEAKERS.ROLLER: preload("res://Assets/Sprites/characters/roller.png"),
 	SPEAKERS.MERCHANT: preload("res://Assets/Sprites/characters/human_PLACEHOLDER.png"),
 	SPEAKERS.FISH: preload("res://Assets/Sprites/characters/human_PLACEHOLDER.png"),
 }
