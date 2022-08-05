@@ -136,6 +136,7 @@ tracks/1/keys = {
 [node name="EelModel" type="Spatial"]
 transform = Transform( -1, -1.62885e-07, -1.66307e-07, 1.62885e-07, 0.0207865, -0.999784, 1.66307e-07, -0.999784, -0.0207865, 0, 0, 0.738207 )
 script = ExtResource( 4 )
+sync_bones_with_spatials = true
 
 [node name="Skeleton" type="Skeleton" parent="."]
 transform = Transform( 1, -1.42109e-14, -2.66454e-15, 0, 1, 0, 6.66134e-15, 0, 1, 0, 0, 0 )

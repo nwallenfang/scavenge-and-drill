@@ -21,6 +21,8 @@ var viewport_sprite: Sprite
 var main_cam: Camera
 var level
 
+var main
+
 var mouse_layer: MouseDetectionLayer
 
 var max_power := 100.0

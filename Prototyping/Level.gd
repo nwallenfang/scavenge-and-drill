@@ -22,11 +22,22 @@ func server_power_depleted():
 		rpc("power_depleted")
 
 remotesync func power_depleted():
-	# TODO play some kind of return cut-scene
+	Game.log("POWER DEPLETED")
+	# play some kind of return cut-scene
+	Game.execute_contract()
+	yield(get_tree().create_timer(3),"timeout")
+	$Player1.static_mode = true
+	$Player2.static_mode = true
+	$Player1/Model.visible = false
+	$Player2.visible = false
+	$Cable.visible = false
+	$Player1/EndCutscene.start()
+	yield($Player1/EndCutscene,"cutscene_done")
+	Game.main.game_to_shop_transition()
 	# TODO merchant sequence
 	# wait for start click
 	# then reset players to their position
-	Game.log("POWER DEPLETED")
+	
 
 
 func do_game_setup(players: Dictionary):
