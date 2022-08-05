@@ -92,6 +92,11 @@ func set_color(c):
 #	inventory_ball_count = ball_count
 #	update_ball_count()
 
+func _ready():
+	yield(get_tree(),"idle_frame")
+	if controlled:
+		rpc_unreliable("set_puppet_position", global_transform.origin)
+
 func _network_process(_delta):
 	if controlled:
 		rpc_unreliable("set_puppet_position", global_transform.origin)

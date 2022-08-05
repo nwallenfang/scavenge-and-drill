@@ -35,6 +35,7 @@ export var gold_color := Color.gold
 export var scrap_color := Color.gray
 
 func _ready():
+	._ready()
 	$Model/GroundParticles.draw_pass_1.surface_get_material(0).set("albedo_color", ground_color)
 	$Model/CrystalParticles.draw_pass_1.surface_get_material(0).set("albedo_color", crystal_color)
 	$Model/GoldParticles.draw_pass_1.surface_get_material(0).set("albedo_color", gold_color)
