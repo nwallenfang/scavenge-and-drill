@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Actors/Drill.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Models/DrillModel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Effects/DrillParticles.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Effects/TeleportEffect.tscn" type="PackedScene" id=4]
 
 [sub_resource type="ParticlesMaterial" id=18]
 resource_local_to_scene = true
@@ -176,3 +177,6 @@ collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="DrillArea"]
 shape = SubResource( 15 )
+
+[node name="TeleportEffect" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1687, 0 )
