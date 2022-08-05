@@ -11,7 +11,7 @@ var hp := 2
 var can_attack := false
 var attack_speed := 2.5
 var target: Spatial
-var damage := 30.0
+var damage := 35.0
 
 func _physics_process(delta: float):
 	var last_pos := global_translation

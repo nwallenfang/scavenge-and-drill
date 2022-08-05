@@ -28,8 +28,8 @@ var mouse_layer: MouseDetectionLayer
 var max_power := 100.0
 var power := 100.0 setget set_power
 var power_loss_per_s := 50.0
-var power_loss_per_s_upgraded := 0.33
-var power_loss_per_s_default := 0.66 # used to be 10
+var power_loss_per_s_upgraded := 0.5
+var power_loss_per_s_default := 1.0 # used to be 10
 var power_draining := false
 
 var try_count = 1  # gets increased on restart
@@ -186,6 +186,11 @@ func execute_swap():
 	roller.global_translation.z = player2_pos.z
 	drill.global_translation.x = player1_pos.x
 	drill.global_translation.z = player1_pos.z
+	roller.static_mode = false
+	drill.static_mode = false
+	yield(get_tree(),"idle_frame")
+	roller.static_mode = true
+	drill.static_mode = true
 	yield(get_tree().create_timer(1.0),"timeout")
 	roller.static_mode = false
 	drill.static_mode = false
