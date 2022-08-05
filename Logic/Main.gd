@@ -184,10 +184,12 @@ func game_to_shop_transition():
 	
 remotesync func shop_to_game_transition():
 	Game.ui.fade_out(0.3)
+	Game.game_started = false
 	yield(Game.ui, "fade_done")
 	Game.ui.update_treasures(1)
 	Game.ui.update_treasures(2)
 	Game.ui.update_treasures(3)
+	Game.power_draining = false
 	var new_level = LEVEL_SCENE.instance()
 	# if there is a lag/loading here we can put most of this in method just above this one
 #	level.name = "Old Level"
@@ -206,6 +208,7 @@ remotesync func shop_to_game_transition():
 	level = new_level
 	Game.try_count += 1   
 	Game.rpc("sync_energy_charges", 0)
+	Game.game_started = true
 	
 func _on_MainMenu_match_made():
 #	rpc("start_playing")
