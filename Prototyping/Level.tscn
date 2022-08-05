@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Prototyping/Level.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Drill.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Actors/FishPath.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prototyping/Collectibles.gd" type="Script" id=6]
 [ext_resource path="res://LevelEditing.tres" type="Environment" id=7]
+[ext_resource path="res://Objects/Pickup/Diamond.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Objects/Cable/Cable.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Objects/Pickup/TreasureGears.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Objects/Decoration/Algae.tscn" type="PackedScene" id=12]
@@ -409,5 +410,8 @@ transform = Transform( 1.24392, 0, 0, 0, 1, 0, 0, 0, 0.958797, 20.094, 1.75542, 
 
 [node name="CollisionShape" type="CollisionShape" parent="CloseToEelDialog"]
 shape = SubResource( 9 )
+
+[node name="Diamond" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 37.9544 )
 
 [connection signal="body_entered" from="CloseToEelDialog" to="." method="_on_CloseToEelDialog_body_entered"]
