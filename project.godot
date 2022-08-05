@@ -303,6 +303,7 @@ remove_energy={
 3d_physics/layer_6="PlayerDetection"
 3d_physics/layer_7="Abyss"
 3d_physics/layer_8="Drill"
+3d_physics/layer_9="DrillTarget"
 
 [physics]
 

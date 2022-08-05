@@ -9,6 +9,7 @@ func transform_lerp(a:Transform,b:Transform,x:float):
 export var move_acc_default := 8.0
 export var move_acc_upgraded := 12.0
 export var move_acc_drilling := 4.0
+export var move_acc_drilling_target := 0.0
 
 onready var handle := $Model/DrillModel/Handle
 
@@ -23,6 +24,10 @@ var drill_animation_offset := 0.0
 var drill_animation_length := .7
 var drill_offset_trigger := .9
 var last_frame_offset := 0.0
+
+var has_drill_target := false
+var drill_target
+var drill_cooldown := false
 
 export var ground_color := Color.brown
 export var crystal_color := Color.pink
@@ -49,37 +54,51 @@ func _physics_process(delta):
 				Game.rpc("try_swap", name)
 			if Input.is_action_just_pressed("super_mode"):
 				Game.rpc("try_super", name)
-			if Input.is_action_pressed("shoot") != wants_to_drill:
+			if drill_cooldown:
+				if wants_to_drill:
+					rpc("set_drill_want", false)
+			elif Input.is_action_pressed("shoot") != wants_to_drill:
 				rpc("set_drill_want", Input.is_action_pressed("shoot"))
 	
 	if mounted or static_mode:
 		wants_to_drill = false
+	if wants_to_drill and drill_animation_offset == 0.0:
+		has_drill_target = not $TargetDetection.get_overlapping_areas().empty()
+		if has_drill_target:
+			drill_target = $TargetDetection.get_overlapping_areas()[0].get_parent()
+			ACC = move_acc_drilling_target
+	if has_drill_target and not wants_to_drill:
+		ACC = move_acc_default if not Game.upgrades.more_move_speed else move_acc_upgraded
 	drill_animation_offset += (delta if wants_to_drill else -delta) / drill_animation_length
 	drill_animation_offset = clamp(drill_animation_offset, 0.0, 1.0)
 	is_drilling = drill_animation_offset > drill_offset_trigger
-	if drill_animation_offset != last_frame_offset:
+	if drill_animation_offset != last_frame_offset or has_drill_target:
 		update_drill_animation()
 		last_frame_offset = drill_animation_offset
-	if is_drilling:
-		ACC = move_acc_drilling
-		drill_the_crystals(delta)
-		$Model/GroundParticles.emitting = $DrillArea.get_overlapping_areas().empty()
-		$Model/CrystalParticles.emitting = false
-		$Model/GoldParticles.emitting = false
-		$Model/ScrapParticles.emitting = false
-		for a in $DrillArea.get_overlapping_areas():
-			if "Crystal" in a.get_parent().name:
-				$Model/CrystalParticles.emitting = true
-			elif "Gold" in a.get_parent().name:
-				$Model/GoldParticles.emitting = true
-			elif "Gear" in a.get_parent().name:
-				$Model/ScrapParticles.emitting = true
+	if not has_drill_target:
+		if is_drilling:
+			ACC = move_acc_drilling
+			drill_the_crystals(delta)
+			$Model/GroundParticles.emitting = $DrillArea.get_overlapping_areas().empty()
+			$Model/CrystalParticles.emitting = false
+			$Model/GoldParticles.emitting = false
+			$Model/ScrapParticles.emitting = false
+			for a in $DrillArea.get_overlapping_areas():
+				if "Crystal" in a.get_parent().name:
+					$Model/CrystalParticles.emitting = true
+				elif "Gold" in a.get_parent().name:
+					$Model/GoldParticles.emitting = true
+				elif "Gear" in a.get_parent().name:
+					$Model/ScrapParticles.emitting = true
+		else:
+			ACC = move_acc_default if not Game.upgrades.more_move_speed else move_acc_upgraded
+			$Model/GroundParticles.emitting = false
+			$Model/CrystalParticles.emitting = false
+			$Model/GoldParticles.emitting = false
+			$Model/ScrapParticles.emitting = false
 	else:
-		ACC = move_acc_default if not Game.upgrades.more_move_speed else move_acc_upgraded
-		$Model/GroundParticles.emitting = false
-		$Model/CrystalParticles.emitting = false
-		$Model/GoldParticles.emitting = false
-		$Model/ScrapParticles.emitting = false
+		if is_drilling:
+			drill_the_crystals(delta)
 
 func _network_process(delta):
 	._network_process(delta)
@@ -88,14 +107,24 @@ remotesync func set_drill_want(b):
 	wants_to_drill = b
 
 
+
 func update_drill_animation():
-	$Model/DrillModel.transform = transform_lerp($Model/Default.transform, $Model/DrillPos.transform, drill_animation_offset)
+	if not has_drill_target:
+		$Model/DrillModel.transform = transform_lerp($Model/Default.transform, $Model/DrillPos.transform, drill_animation_offset)
+	else:
+		$Model/DrillModel.global_transform = transform_lerp($Model/Default.global_transform, drill_target.get_node("DrillModel").global_transform, drill_animation_offset)
 	var color = $Model/DrillModel/DrillShader.get("material/0").get("shader_param/albedo")
 	color.a = drill_animation_offset
 	$Model/DrillModel/DrillShader.get("material/0").set("shader_param/albedo", color)
-	#$Model/DrillModel/DrillShader.get("material/0").get("shader_param/albedo").a = drill_animation_offset
 
 
 func drill_the_crystals(delta):
+	if has_drill_target:
+		drill_target.get_parent().get_drilled(delta * .3)
 	for area in $DrillArea.get_overlapping_areas():
 		area.get_parent().get_drilled(delta * .3)
+
+func cooldown():
+	drill_cooldown = true
+	yield(get_tree().create_timer(drill_animation_length + 1.5),"timeout")
+	drill_cooldown = false
