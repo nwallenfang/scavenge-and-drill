@@ -61,9 +61,9 @@ func _on_Hurtbox_area_entered(area):
 		rpc("on_getting_hit")
 
 remotesync func on_getting_hit():
-	hp -= 3 if Game.upgrades.more_bullet_damage else 1
+	hp -= 2 if Game.upgrades.more_bullet_damage else 1
 	$Model/EelModel.hurt_animation()
-	if hp == 0:
+	if hp <= 0:
 		queue_free()
 
 func _on_PlayerDetection_area_entered(area):

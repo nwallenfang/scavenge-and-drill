@@ -169,6 +169,7 @@ remotesync func try_swap(player_name):
 func execute_swap():
 	# Todo Animation
 	Game.log("SWAP!")
+	rpc("sync_energy_charges", Game.energy_charges-2)
 	player_1_wants_to_swap = false
 	player_2_wants_to_swap = false
 	roller.static_mode = true

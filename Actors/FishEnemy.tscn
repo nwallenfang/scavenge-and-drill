@@ -189,7 +189,6 @@ mesh = SubResource( 2 )
 
 [node name="EelModel" parent="Model" instance=ExtResource( 2 )]
 transform = Transform( 3.28694e-07, -1.56473, -0.0325324, 2.54927e-07, 0.0325324, -1.56473, 1.56507, 3.23324e-07, 2.61705e-07, 0.910279, 0.839382, 0.0126855 )
-sync_bones_with_spatials = true
 
 [node name="Hurtbox" type="Area" parent="."]
 collision_layer = 8
