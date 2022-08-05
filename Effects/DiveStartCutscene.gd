@@ -31,14 +31,17 @@ func set_camera_offset(x):
 		$TreasureCam.global_transform = get_interpolated_transform(x)
 
 
-export var hook_high : float = 26.0
+export var hook_high : float = 28.0
 export var hook_low : float = 2.0
 
 export var hook_offset : float setget set_hook_offset
 func set_hook_offset(x):
 	if Game.game_started:
 		hook_offset = x
-		$HookModel.global_translation.y = lerp(hook_low, hook_high, x)
+		if Game.try_count == 1:
+			$HookModel.global_translation.y = lerp(hook_low, 40.0, x)
+		else:
+			$HookModel.global_translation.y = lerp(hook_low, hook_high, x)
 
 var cutscene_active := false
 
@@ -48,7 +51,10 @@ func start_cutscene():
 	point_2 = $Point2
 	point_3 = $Point3
 	self.visible = true
-	$AnimationPlayer.play("Cutscene")
+	if Game.try_count == 1:
+		$AnimationPlayer.play("CutsceneLong")
+	else:
+		$AnimationPlayer.play("Cutscene")
 
 signal cutscene_ended
 

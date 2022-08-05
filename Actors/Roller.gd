@@ -38,7 +38,7 @@ func _physics_process(delta):
 				Game.not_enough_crystals()
 		if Input.is_action_just_pressed("initiate_swap"):
 			if Game.energy_charges >= 2:
-				Game.rpc("sync_energy_charges", Game.energy_charges-2)
+				#Game.rpc("sync_energy_charges", Game.energy_charges-2)
 				Game.rpc("try_swap",name)
 			else:
 				Game.not_enough_crystals()
@@ -46,6 +46,8 @@ func _physics_process(delta):
 			Game.rpc("try_super",name)
 
 func _network_process(delta):
+	if static_mode:
+		return
 	._network_process(delta)
 	if controlled:
 		rpc_unreliable("set_puppet_aim", aim_direction)

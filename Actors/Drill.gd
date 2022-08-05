@@ -51,7 +51,8 @@ func _physics_process(delta):
 		._physics_process(delta)
 		if controlled:
 			if Input.is_action_just_pressed("initiate_swap"):
-				Game.rpc("try_swap", name)
+				if Game.energy_charges >= 2:
+					Game.rpc("try_swap", name)
 			if Input.is_action_just_pressed("super_mode"):
 				Game.rpc("try_super", name)
 			if drill_cooldown:
@@ -101,6 +102,8 @@ func _physics_process(delta):
 			drill_the_crystals(delta)
 
 func _network_process(delta):
+	if static_mode:
+		return
 	._network_process(delta)
 
 remotesync func set_drill_want(b):
