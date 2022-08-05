@@ -59,7 +59,7 @@ shape = SubResource( 14 )
 [node name="EndCutscene" parent="." instance=ExtResource( 3 )]
 visible = false
 
-[node name="TelportEffect" parent="." instance=ExtResource( 4 )]
+[node name="TeleportEffect" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.535135, 0 )
 
 [editable path="Model/RollerModel"]
