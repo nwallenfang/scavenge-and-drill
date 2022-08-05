@@ -136,6 +136,7 @@ tracks/4/keys = {
 script = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_process_mode = 0
 anims/Cutscene = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 
@@ -145,10 +146,10 @@ transform = Transform( 1.9332, 0, 0, 0, 1.9332, 0, 0, 0, 1.9332, 0, 8.85312, -0.
 [node name="RollerModel" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1.32929, 0, 0, 0, 1.32929, 0, 0, 0, 1.32929, 0, 0, 0 )
 
+[node name="Head" parent="RollerModel" index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56377, 0 )
+
 [node name="DrillModel" parent="RollerModel" instance=ExtResource( 3 )]
 transform = Transform( 1.14999, 0, 0, 0, -5.02679e-08, -1.14999, 0, 1.14999, -5.02679e-08, 0, 0.326429, -0.65841 )
-
-[node name="Head" parent="RollerModel" index="5"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56377, 0 )
 
 [editable path="RollerModel"]

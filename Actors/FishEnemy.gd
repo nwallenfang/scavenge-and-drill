@@ -76,6 +76,12 @@ func _on_Hitbox_area_entered(area):
 	if Game.host:
 		rpc("hit_player")
 
+var is_attacking := false
 remotesync func hit_player():
-	Game.power -= damage
-	queue_free()
+	if not is_attacking:
+		is_attacking = true
+		Game.power -= damage
+		$Model/EelModel/AnimationPlayer.play("Attack")
+		$Model/AttackParticles.emitting = true
+		yield(get_tree().create_timer(1.5),"timeout")
+		queue_free()

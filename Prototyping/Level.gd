@@ -24,13 +24,14 @@ func server_power_depleted():
 remotesync func power_depleted():
 	Game.log("POWER DEPLETED")
 	# play some kind of return cut-scene
-	Game.execute_contract()
+	Game.execute_contract(true)
 	yield(get_tree().create_timer(3),"timeout")
 	$Player1.static_mode = true
 	$Player2.static_mode = true
 	$Player1/Model.visible = false
 	$Player2.visible = false
 	$Cable.visible = false
+	$Player1/EndCutscene.rotation.y = $Player1/Model/RollerModel.rotation.y
 	$Player1/EndCutscene.start()
 	yield($Player1/EndCutscene,"cutscene_done")
 	Game.main.game_to_shop_transition()

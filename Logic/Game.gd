@@ -180,7 +180,7 @@ func execute_swap():
 	roller.static_mode = false
 	drill.static_mode = false
 
-func execute_contract():
+func execute_contract(static_mode_after = false):
 	Game.log("CONTRACT!")
 	roller.static_mode = true
 	drill.static_mode = true
@@ -188,8 +188,8 @@ func execute_contract():
 	var tween = get_tree().create_tween()
 	tween.tween_property(drill, "global_2d", roller.global_2d, 1.0)
 	yield(get_tree().create_timer(2.5),"timeout")
-	roller.static_mode = false
-	drill.static_mode = false
+	roller.static_mode = static_mode_after
+	drill.static_mode = static_mode_after
 
 var super_mode := false
 var super_speed := 150.0
