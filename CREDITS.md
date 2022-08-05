@@ -40,4 +40,7 @@
 - movement speed icon
   - https://thenounproject.com/icon/movement-4859564/
   - Marz Gallery
+- Diamond Treasure Icon
+  - https://thenounproject.com/icon/diamond-5049998/
+  - Singlar
 

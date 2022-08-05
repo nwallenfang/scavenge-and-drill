@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Assets/Sprites/Stars/star_07.png" type="Texture" id=1]
 [ext_resource path="res://Objects/Pickup/Diamond.gd" type="Script" id=2]
 [ext_resource path="res://Objects/DrillTarget.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Effects/DrillParticles.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Objects/Pickup/TreasureArea.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Diamond_Circle"
@@ -205,5 +206,12 @@ visible = false
 [node name="DrillParticles" parent="." instance=ExtResource( 4 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.8918, 0 )
 amount = 24
+visibility_aabb = AABB( -3.18748, -0.320555, -3.11341, 6.16229, 3.96961, 5.72383 )
 process_material = SubResource( 14 )
 draw_pass_1 = SubResource( 16 )
+
+[node name="TreasureArea" parent="." instance=ExtResource( 5 )]
+collision_layer = 0
+collision_mask = 0
+type = 3
+label_color = Color( 0.0627451, 0.819608, 0.941176, 1 )

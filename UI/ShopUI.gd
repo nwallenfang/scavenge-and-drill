@@ -13,11 +13,16 @@ func _ready() -> void:
 	Game.connect("treasure_count_changed", self, "initialize")
 	
 
-
+var diamonds_were_visible_once = false
 func initialize():
 	$"%GearAmount".text = "%02d" % Game.treasure_gears
 	$"%GoldAmount".text = "%02d" % Game.treasure_gold
+	$"%DiamondAmount".text = "%02d" % Game.treasure_diamond
 	
+	if Game.treasure_diamond > 0:
+		diamonds_were_visible_once = true
+		$"%DiamondIcon".visible = true
+		$"%DiamondAmount".visible = true
 	
 	for entry in $VBoxContainer/GridContainer.get_children():
 		entry = entry as ShopEntry
@@ -34,6 +39,12 @@ func initialize():
 func update_treasure():
 	$"%GearAmount".text = "%02d" % Game.treasure_gears
 	$"%GoldAmount".text = "%02d" % Game.treasure_gold
+	$"%DiamondAmount".text = "%02d" % Game.treasure_diamond
+	
+	if Game.treasure_diamond > 0:
+		diamonds_were_visible_once = true
+		$"%DiamondIcon".visible = true
+		$"%DiamondAmount".visible = true
 
 
 func upgrade_clicked(upgrade_attribute: String, cost_gold: int, cost_gears:int):

@@ -42,7 +42,7 @@ const TYPE_3 = 3
 
 var treasure_gold = 1
 var treasure_gears = 1
-var treasure_3 = 0 
+var treasure_diamond = 0 
 
 var collectibles_node: Node
 
@@ -113,7 +113,7 @@ remotesync func sync_treasures(amount, type):
 		TYPE_GEARS:
 			treasure_gears += amount
 		TYPE_3:
-			treasure_3 += amount
+			treasure_diamond += amount
 			
 	ui.update_treasures(type)
 
