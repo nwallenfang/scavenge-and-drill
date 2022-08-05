@@ -144,7 +144,7 @@ tracks/1/keys = {
 [sub_resource type="Curve" id=12]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -3.43864, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=13]
+[sub_resource type="CurveTexture" id=17]
 curve = SubResource( 12 )
 
 [sub_resource type="ParticlesMaterial" id=14]
@@ -157,9 +157,9 @@ gravity = Vector3( 0, -5, 0 )
 initial_velocity = 6.0
 scale = 4.0
 scale_random = 1.0
-scale_curve = SubResource( 13 )
+scale_curve = SubResource( 17 )
 
-[sub_resource type="SpatialMaterial" id=15]
+[sub_resource type="SpatialMaterial" id=18]
 resource_local_to_scene = true
 flags_unshaded = true
 params_billboard_mode = 3
@@ -170,7 +170,7 @@ albedo_color = Color( 0.0117647, 0.8, 0.980392, 1 )
 
 [sub_resource type="QuadMesh" id=16]
 resource_local_to_scene = true
-material = SubResource( 15 )
+material = SubResource( 18 )
 size = Vector2( 0.04, 0.04 )
 
 [node name="Diamond" type="Spatial"]

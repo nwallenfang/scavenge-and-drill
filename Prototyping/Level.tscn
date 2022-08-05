@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Prototyping/Level.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Drill.tscn" type="PackedScene" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://Objects/Cliff/Cliff2.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Effects/DiveStartCutscene.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Objects/Cliff/Cliff5_large.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Objects/Cliff/Wall.tscn" type="PackedScene" id=23]
 
 [sub_resource type="Curve3D" id=10]
 _data = {
@@ -325,6 +326,9 @@ transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, 5.21587, 0, -24
 [node name="BubbleSpawner3" parent="Objects" instance=ExtResource( 14 )]
 transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, -5.52819, 9.53674e-07, -6.5547 )
 
+[node name="Wall" parent="Objects" instance=ExtResource( 23 )]
+transform = Transform( -0.466665, 0, 0.884434, 0, 1, 0, -0.884434, 0, -0.466665, -22.7243, 0, 35.5848 )
+
 [node name="Pivot" type="Spatial" parent="."]
 __meta__ = {
 "_editor_description_": "Tracks the controlled player on the ground"
@@ -454,7 +458,7 @@ transform = Transform( -0.437817, 0, -0.899064, 0, 1, 0, 0.899064, 0, -0.437817,
 transform = Transform( -0.420265, 0, -0.907401, 0, 1, 0, 0.907401, 0, -0.420265, -12.6554, 0.0542393, 24.9646 )
 
 [node name="Cliff2" parent="Cliffs" instance=ExtResource( 20 )]
-transform = Transform( 0.686225, 0.000100531, -0.72739, -0.000113262, 1, 3.13551e-05, 0.72739, 6.08692e-05, 0.686225, -30.0579, 0.0894651, 40.9781 )
+transform = Transform( 0.0124613, 0.000100531, -0.999923, -6.21169e-05, 1, 9.97644e-05, 0.999923, 6.08688e-05, 0.0124613, -27.4198, 0.0892019, 40.9452 )
 
 [node name="Cliff7" parent="Cliffs" instance=ExtResource( 20 )]
 transform = Transform( 0.824294, 0, -0.566162, 0, 1, 0, 0.566162, 0, 0.824294, -12.3809, 9.53674e-07, 12.7561 )
