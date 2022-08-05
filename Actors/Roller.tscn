@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Actors/Roller.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Models/RollerModel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Effects/EndCutscene.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Effects/TeleportEffect.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Effects/MagicForceField.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Effects/DustTrack.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleShape" id=10]
 radius = 0.905299
@@ -14,6 +16,7 @@ height = 4.24622
 radius = 4.10198
 
 [sub_resource type="CapsuleShape" id=14]
+radius = 0.880596
 
 [node name="Roller" type="KinematicBody" groups=["networked"]]
 collision_layer = 68
@@ -61,5 +64,13 @@ visible = false
 
 [node name="TeleportEffect" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.535135, 0 )
+
+[node name="MagicForceField" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1.61904, 0, 0, 0, 1.61904, 0, 0, 0, 1.61904, 0, 1.0463, -0.0589361 )
+visible = false
+
+[node name="DustTrack" parent="." instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0230429, -0.0807253, -0.762481 )
+emitting = false
 
 [editable path="Model/RollerModel"]

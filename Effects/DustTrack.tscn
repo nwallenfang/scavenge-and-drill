@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/Materials/DissolveMaterial.tres" type="Material" id=1]
+[ext_resource path="res://Assets/Shader/DustNew.gdshader" type="Shader" id=2]
+
+[sub_resource type="Gradient" id=11]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0.28, 0.24752, 0.1176, 1 )
+
+[sub_resource type="GradientTexture" id=12]
+gradient = SubResource( 11 )
+
+[sub_resource type="Curve" id=13]
+_data = [ Vector2( 0, 0.167045 ), 0.0, 0.0, 0, 0, Vector2( 0.494506, 0.488636 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.797727 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=14]
+curve = SubResource( 13 )
+
+[sub_resource type="ShaderMaterial" id=15]
+shader = ExtResource( 2 )
+shader_param/direction = Vector3( 0, -0.5, 1 )
+shader_param/spread = 50.0
+shader_param/flatness = 0.0
+shader_param/initial_linear_velocity = 1.5
+shader_param/initial_angle = 0.0
+shader_param/angular_velocity = 0.0
+shader_param/orbit_velocity = 0.0
+shader_param/linear_accel = 0.0
+shader_param/radial_accel = 4.0
+shader_param/tangent_accel = 0.0
+shader_param/damping = 0.3
+shader_param/scale = 2.5
+shader_param/hue_variation = 0.0
+shader_param/anim_speed = 0.0
+shader_param/anim_offset = 0.0
+shader_param/initial_linear_velocity_random = 0.3
+shader_param/initial_angle_random = 0.0
+shader_param/angular_velocity_random = 0.0
+shader_param/orbit_velocity_random = 0.0
+shader_param/linear_accel_random = 0.0
+shader_param/radial_accel_random = 0.0
+shader_param/tangent_accel_random = 0.0
+shader_param/damping_random = 0.0
+shader_param/scale_random = 1.0
+shader_param/hue_variation_random = 0.0
+shader_param/anim_speed_random = 0.0
+shader_param/anim_offset_random = 0.0
+shader_param/lifetime_randomness = 0.2
+shader_param/emission_sphere_radius = 0.3
+shader_param/color_value = Color( 1, 1, 1, 1 )
+shader_param/trail_divisor = 1
+shader_param/gravity = Vector3( 0, -1e-06, 0 )
+shader_param/color_ramp = SubResource( 12 )
+shader_param/scale_texture = SubResource( 14 )
+
+[sub_resource type="SphereMesh" id=6]
+material = ExtResource( 1 )
+radius = 0.3
+height = 0.6
+radial_segments = 16
+rings = 16
+
+[node name="DustTrack" type="Particles"]
+cast_shadow = 0
+amount = 30
+lifetime = 0.6
+speed_scale = 0.6
+visibility_aabb = AABB( -2.22355, -2.81941, -1.09875, 3.87861, 4.36701, 3.86718 )
+local_coords = false
+process_material = SubResource( 15 )
+draw_pass_1 = SubResource( 6 )

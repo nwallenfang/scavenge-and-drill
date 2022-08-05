@@ -53,7 +53,7 @@ class Upgrades:
 	var more_move_speed := false #Done
 	var more_bullet_damage := false #Done
 	var position_swap := false
-	var super_mode := false
+	var super_mode := true
 	
 class Progress:
 	var mined_energy_charges = 0  # doesn't have to equal number of crystals, atm they give 2 charges
@@ -202,21 +202,25 @@ func execute_contract(static_mode_after = false):
 	drill.static_mode = static_mode_after
 
 var super_mode := false
-var super_speed := 150.0
-var super_duration := 10.0
+var super_speed := 55.0
+var super_duration := 8.0
 func execute_super_mode():
 	Game.log("Super mode!")
 	rpc("sync_energy_charges", Game.energy_charges-2)
 	yield(execute_contract(), "completed")
 	Game.log("Contract Done")
+	super_mode = true
 	drill.mounted = true
 	var old_speed := roller.ACC
 	roller.ACC = super_speed
 	roller.cable_factor = 0.0
+	roller.get_node("MagicForceField").visible = true
 	yield(get_tree().create_timer(super_duration),"timeout")
+	roller.get_node("MagicForceField").visible = false
 	drill.mounted = false
 	roller.ACC = old_speed
 	roller.cable_factor = 1.0
+	super_mode = false
 
 var player_1_wants_to_super := false
 var player_2_wants_to_super := false

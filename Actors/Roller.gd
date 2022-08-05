@@ -20,13 +20,16 @@ func _physics_process(delta):
 	var old_pos = self.global_2d
 	._physics_process(delta)
 	var new_pos = self.global_2d
+	if Game.super_mode:
+		$DustTrack.emitting = new_pos.distance_to(old_pos) > .02
+	else:
+		$DustTrack.emitting = false
 	if controlled:
 		if new_pos.distance_to(old_pos) > .01:
 			facing_angle = lerp_angle(facing_angle, Vector2(facing_direction.x, -facing_direction.z).angle() + PI / 2.0, 1.0-pow(.005, delta))
 			#facing_angle = -old_pos.direction_to(new_pos).angle() + PI / 2.0
 			$Model/RollerModel.rotation.y = facing_angle
 			#$EndCutscene.rotation.y = facing_angle
-	if controlled:
 		if static_mode:
 			return
 		var global_mouse_pos := Game.mouse_layer.get_global_layer_mouse_position()
@@ -35,7 +38,6 @@ func _physics_process(delta):
 			var direction := Vector2(global_translation.x, global_translation.z).direction_to(Vector2(global_mouse_pos.x, global_mouse_pos.z))
 			head.rotation.y = -direction.angle() + PI/2.0 - facing_angle
 			aim_direction = direction
-			Game.log("?")
 		if Input.is_action_just_pressed("shoot"):
 			if not shoot_cooldown:
 				if Game.energy_charges >= 1:
