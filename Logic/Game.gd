@@ -80,6 +80,8 @@ func _process(delta: float) -> void:
 		rpc("sync_treasures", 100, 2)
 	if Input.is_action_just_pressed("remove_energy"):
 		rpc("sync_energy_charges", (energy_charges - 1))
+	if Input.is_action_just_pressed("go_to_shop"):
+		level.rpc("power_depleted")
 	if power_draining and game_started:  # state machine maybe? menu/in_game/merchant
 		# this doesn't get synced at the moment since the calc should be the
 		# same for both players

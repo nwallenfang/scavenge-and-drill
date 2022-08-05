@@ -76,9 +76,16 @@ func set_rope_length(s):
 	
 func to_shop():
 	$Game.visible = false
+	$Game/LeftSide/CanvasLayer.visible = false
 	
 func back_to_ocean():
 	$Game.visible = true
+	$Game/LeftSide/CanvasLayer.visible = true
+	
+	
+func set_game_ui_visible(val: bool):
+	$Game.visible = val
+	$Game/LeftSide/CanvasLayer.visible = val
 	
 func set_energy_charges(val: int):
 	var full_charges := int(val / 2.0)
@@ -105,3 +112,22 @@ func set_energy_charges(val: int):
 			var rect = $"%EnergyCrystalsBox".get_node("AspectRatioContainer" + str(i+1)).get_node("ColorRect")
 			rect.material.set("shader_param/enabled", false)
 			rect.material.set("shader_param/half_enabled", false)
+
+var fade_faded_out: Color = Color("ff000000")
+var fade_faded_in: Color = Color("00000000")  # looks funny lol
+signal fade_done
+func fade_out(speed: float):
+	var tween = create_tween()
+	tween.tween_property($FadeRect, "color", fade_faded_out, speed)
+	yield(tween, "finished")
+	emit_signal("fade_done")
+
+func fade_in(speed: float):
+	var tween = create_tween()
+	tween.tween_property($FadeRect, "color", fade_faded_in, speed)
+	yield(tween, "finished")
+	emit_signal("fade_done")
+	
+func vignette_hit_effect():
+	$VignetteHitPlayer.play("get_hit")
+

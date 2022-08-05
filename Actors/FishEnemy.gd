@@ -81,7 +81,8 @@ remotesync func hit_player():
 	if not is_attacking:
 		is_attacking = true
 		Game.power -= damage
+		Game.ui.vignette_hit_effect()
 		$Model/EelModel/AnimationPlayer.play("Attack")
 		$Model/AttackParticles.emitting = true
-		yield(get_tree().create_timer(1.5),"timeout")
+		yield(get_tree().create_timer(1.0),"timeout")
 		queue_free()

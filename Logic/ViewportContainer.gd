@@ -8,7 +8,9 @@ func enable_water_distortion():
 	var mat: ShaderMaterial = ShaderMaterial.new()
 	mat.shader = water_dist
 	self.material = mat
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass
+	
+var post_proc = preload("res://Assets/Shader/PostProcessing.gdshader")
+func enable_post_processing():
+	var mat: ShaderMaterial = ShaderMaterial.new()
+	mat.shader = post_proc
+	self.material = mat

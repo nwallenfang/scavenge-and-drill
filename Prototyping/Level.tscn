@@ -226,6 +226,8 @@ __meta__ = {
 transform = Transform( 1, 0, 0, 0, 0.842903, 0.538065, 0, -0.538065, 0.842903, 0, 5.67633, 5.23851 )
 current = true
 far = 75.0
+zoom_end = 12.0
+zoom_min = 1.1
 
 [node name="Collectibles" type="Node" parent="."]
 script = ExtResource( 6 )

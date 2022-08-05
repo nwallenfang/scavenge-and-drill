@@ -168,5 +168,3 @@ collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="DrillArea"]
 shape = SubResource( 15 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -35,11 +35,6 @@ remotesync func power_depleted():
 	$Player1/EndCutscene.start()
 	yield($Player1/EndCutscene,"cutscene_done")
 	Game.main.game_to_shop_transition()
-	# TODO merchant sequence
-	# wait for start click
-	# then reset players to their position
-	
-
 
 func do_game_setup(players: Dictionary):
 	Game.dialog_ui.visible = true
@@ -95,14 +90,19 @@ func do_game_setup(players: Dictionary):
 	$Cable.visible = false
 	$DiveStartCutscene.start_cutscene()
 	yield($DiveStartCutscene,"cutscene_ended")
-	# INSERT FADE HERE
-	camera.current = true
+
+	Game.ui.fade_out(0.45)
+	yield(Game.ui, "fade_done")
+	Game.ui.set_game_ui_visible(true)
 	$Player1.visible = true
 	$Player2.visible = true
 	$Player1.static_mode = false
 	$Player2.static_mode = false
 	$Cable.visible = true
+	camera.current = true
 	Game.power_draining = true
+	Game.ui.fade_in(0.25)
+	
 	
 
 func replace_collectibles(collectibles_node: Node):
@@ -120,17 +120,13 @@ func _on_CloseToEelDialog_body_entered(body: Node) -> void:
 		if count > 0:
 			if Game.progress.mined_energy_charges == 0:
 				# only trigger second time if no energy crystals mined
-				Game.log("SECOND TRIGGER")
 				Dialog.trigger("close_to_eel")
 				return
 			else:
-				Game.log("leaving due to count")
 				return
 		
 		Dialog.trigger("close_to_eel")
 		$CloseToEelDialog.set_deferred("monitoring", false)
 		count += 1
-		Game.log("triggered " + str(count))
 		yield(get_tree().create_timer(cooldown_time), "timeout")
 		$CloseToEelDialog.set_deferred("monitoring", true)
-		Game.log("this is GOOD")

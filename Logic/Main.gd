@@ -44,7 +44,6 @@ func _ready() -> void:
 	#Game.connect("power_depleted", self, "game_to_shop_transition")
 	get_viewport().connect("size_changed", self, "resize_viewport")
 	self.resize_viewport()
-	#$ViewportContainer.enable_water_distortion()
 
 func resize_viewport():
 	$ViewportContainer/Viewport.size = get_viewport().size
@@ -136,6 +135,7 @@ remotesync func _do_game_setup(playerss: Dictionary) -> void:
 
 	
 	$ViewportContainer/Viewport.add_child(level)
+#	$ViewportContainer.enable_post_processing()
 	Game.ui = $UI
 	Game.ui.visible = true
 	level.do_game_setup(playerss)
@@ -165,19 +165,22 @@ remotesync func _do_game_start() -> void:
 func _on_ReadyScreen_ready_pressed() -> void:
 	rpc("player_ready", OnlineMatch.get_my_session_id())
 	
-	
-	
 func game_to_shop_transition():
+	Game.ui.fade_out(0.3)
+	yield(Game.ui, "fade_done")
 	$ShopUI.visible = true
 	$DialogUI.visible = false  # have to change this once we want the merchant to talk fix mouse masks then!!
 	$ShopUI.initialize()
 	$ViewportContainer.visible = false
 	$UI.to_shop()
+	Game.ui.fade_in(0.3)
 	
 	yield($ShopUI, "done_shopping")
 	rpc("shop_to_game_transition")
 	
 remotesync func shop_to_game_transition():
+	Game.ui.fade_out(0.3)
+	yield(Game.ui, "fade_done")
 	var new_level = LEVEL_SCENE.instance()
 	# if there is a lag/loading here we can put most of this in method just above this one
 #	level.name = "Old Level"
@@ -191,11 +194,11 @@ remotesync func shop_to_game_transition():
 	$ShopUI.visible = false
 	$ViewportContainer.visible = true
 	$UI.back_to_ocean()
+	Game.ui.fade_in(0.3)
 	Game.power = Game.max_power
 	level = new_level
 	Game.try_count += 1   
 	
 func _on_MainMenu_match_made():
-	print("match made")
 #	rpc("start_playing")
 	start_game()

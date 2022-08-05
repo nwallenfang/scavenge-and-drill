@@ -68,6 +68,20 @@ tracks/4/keys = {
 "update": 0,
 "values": [ Vector3( 0, 0, 0 ), Vector3( 3.16, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ) ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 6.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "cut_scene_done_emit"
+} ]
+}
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -145,9 +159,6 @@ transform = Transform( 1.9332, 0, 0, 0, 1.9332, 0, 0, 0, 1.9332, 0, 8.85312, -0.
 
 [node name="RollerModel" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1.32929, 0, 0, 0, 1.32929, 0, 0, 0, 1.32929, 0, 0, 0 )
-
-[node name="Head" parent="RollerModel" index="4"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56377, 0 )
 
 [node name="DrillModel" parent="RollerModel" instance=ExtResource( 3 )]
 transform = Transform( 1.14999, 0, 0, 0, -5.02679e-08, -1.14999, 0, 1.14999, -5.02679e-08, 0, 0.326429, -0.65841 )
