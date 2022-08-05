@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Assets/GLTF/StoneC4.material" type="Material" id=1]
 [ext_resource path="res://Assets/GLTF/StoneC3.material" type="Material" id=2]
 [ext_resource path="res://Assets/GLTF/StoneC1.material" type="Material" id=3]
 [ext_resource path="res://Assets/GLTF/StoneC2.material" type="Material" id=4]
+[ext_resource path="res://Objects/DrillTarget.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Objects/Cliff/Wall.gd" type="Script" id=6]
+[ext_resource path="res://Effects/DrillParticles.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Wall_Cube036"
@@ -56,7 +59,61 @@ surfaces/3 = {
 "vertex_count": 1557
 }
 
+[sub_resource type="Curve" id=16]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -3.43864, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=13]
+curve = SubResource( 16 )
+
+[sub_resource type="ParticlesMaterial" id=17]
+resource_local_to_scene = true
+emission_shape = 1
+emission_sphere_radius = 0.3
+direction = Vector3( 0, 1, 0 )
+spread = 30.0
+gravity = Vector3( 0, -5, 0 )
+initial_velocity = 6.0
+scale = 4.0
+scale_random = 1.0
+scale_curve = SubResource( 13 )
+
+[sub_resource type="SpatialMaterial" id=15]
+resource_local_to_scene = true
+flags_unshaded = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 0.470588, 0.505882, 0.580392, 1 )
+
+[sub_resource type="QuadMesh" id=18]
+resource_local_to_scene = true
+material = SubResource( 15 )
+size = Vector2( 0.04, 0.04 )
+
+[sub_resource type="BoxShape" id=19]
+extents = Vector3( 0.719791, 1.35519, 2.72108 )
+
 [node name="Wall" type="Spatial"]
+script = ExtResource( 6 )
 
 [node name="Wall" type="MeshInstance" parent="."]
+transform = Transform( 2.27505, 0, 0, 0, 2.4506, 0, 0, 0, 2.27505, 0, 0, 0 )
 mesh = SubResource( 1 )
+
+[node name="DrillTarget" parent="." instance=ExtResource( 5 )]
+transform = Transform( 0.40471, -0.893957, -0.192487, 0.863561, 0.442865, -0.241107, 0.300785, -0.0686459, 0.951218, -0.639657, 0.741552, 0.664529 )
+visible = false
+
+[node name="DrillParticles" parent="." instance=ExtResource( 7 )]
+transform = Transform( -3.25976e-08, -0.450183, 0.745747, -1.96781e-08, 0.745747, 0.450183, -0.871093, 0, -3.80767e-08, -0.653901, 0.560455, 0.735089 )
+amount = 24
+visibility_aabb = AABB( -3.18748, -0.320555, -3.11341, 6.16229, 3.96961, 5.72383 )
+process_material = SubResource( 17 )
+draw_pass_1 = SubResource( 18 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0641003, 1.31194, 0 )
+shape = SubResource( 19 )
