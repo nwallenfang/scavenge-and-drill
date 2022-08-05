@@ -11,6 +11,9 @@ onready var bullet_spawn := $Model/RollerModel/Head/BulletSpawn
 
 onready var handle := $Model/RollerModel/Handle
 
+func _ready():
+	._ready()
+
 func _physics_process(delta):
 	var old_pos = self.global_2d
 	._physics_process(delta)
