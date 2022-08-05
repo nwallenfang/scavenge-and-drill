@@ -54,8 +54,13 @@ func _physics_process(delta):
 			if Input.is_action_just_pressed("initiate_swap"):
 				if Game.energy_charges >= 2:
 					Game.rpc("try_swap", name)
+				else:
+					Game.not_enough_crystals()
 			if Input.is_action_just_pressed("super_mode"):
-				Game.rpc("try_super", name)
+				if Game.energy_charges >= 2:
+					Game.rpc("try_super", name)
+				else:
+					Game.not_enough_crystals()
 			if drill_cooldown:
 				if wants_to_drill:
 					rpc("set_drill_want", false)
@@ -103,7 +108,6 @@ func _physics_process(delta):
 			drill_the_crystals(delta)
 
 func _network_process(delta):
-
 	._network_process(delta)
 
 remotesync func set_drill_want(b):
@@ -123,7 +127,7 @@ func update_drill_animation():
 
 func drill_the_crystals(delta):
 	if has_drill_target:
-		drill_target.get_parent().get_drilled(delta * .3)
+		drill_target.get_parent().get_drilled(delta * .37)
 	for area in $DrillArea.get_overlapping_areas():
 		area.get_parent().get_drilled(delta * .3)
 

@@ -2,7 +2,10 @@ extends Spatial
 
 var currently_drilled := false
 var hp := 1.0
+var drilled_out := false
 func get_drilled(delta):
+	if drilled_out:
+		return
 	currently_drilled = true
 	hp -= delta
 	$DrillTarget.translation.y = lerp(1.5, 2.1, hp)
@@ -10,6 +13,7 @@ func get_drilled(delta):
 	if not $DrillParticles.emitting:
 		$DrillParticles.emitting = true
 	if hp <= 0.0:
+		drilled_out = true
 		Game.drill.cooldown()
 		$Pivot.visible = false
 		$TreasureArea.picked_up()

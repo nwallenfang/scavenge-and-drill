@@ -48,10 +48,10 @@ particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="QuadMesh" id=23]
+[sub_resource type="QuadMesh" id=28]
 resource_local_to_scene = true
 material = SubResource( 22 )
-size = Vector2( 0.04, 0.04 )
+size = Vector2( 0.08, 0.08 )
 
 [sub_resource type="SpatialMaterial" id=24]
 resource_local_to_scene = true
@@ -61,10 +61,10 @@ particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="QuadMesh" id=25]
+[sub_resource type="QuadMesh" id=29]
 resource_local_to_scene = true
 material = SubResource( 24 )
-size = Vector2( 0.04, 0.04 )
+size = Vector2( 0.06, 0.06 )
 
 [sub_resource type="SpatialMaterial" id=26]
 resource_local_to_scene = true
@@ -74,10 +74,10 @@ particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="QuadMesh" id=27]
+[sub_resource type="QuadMesh" id=30]
 resource_local_to_scene = true
 material = SubResource( 26 )
-size = Vector2( 0.04, 0.04 )
+size = Vector2( 0.07, 0.07 )
 
 [sub_resource type="CapsuleShape" id=10]
 radius = 0.747055
@@ -129,17 +129,17 @@ draw_pass_1 = SubResource( 20 )
 [node name="CrystalParticles" parent="Model" instance=ExtResource( 3 )]
 transform = Transform( -7.18329e-08, 0, 1.64334, 0, 1.64334, 0, -1.64334, 0, -7.18329e-08, 0, 0, 0 )
 process_material = SubResource( 21 )
-draw_pass_1 = SubResource( 23 )
+draw_pass_1 = SubResource( 28 )
 
 [node name="GoldParticles" parent="Model" instance=ExtResource( 3 )]
 transform = Transform( -7.18329e-08, 0, 1.64334, 0, 1.64334, 0, -1.64334, 0, -7.18329e-08, 0, 0, 0 )
 process_material = SubResource( 21 )
-draw_pass_1 = SubResource( 25 )
+draw_pass_1 = SubResource( 29 )
 
 [node name="ScrapParticles" parent="Model" instance=ExtResource( 3 )]
 transform = Transform( -7.18329e-08, 0, 1.64334, 0, 1.64334, 0, -1.64334, 0, -7.18329e-08, 0, 0, 0 )
 process_material = SubResource( 21 )
-draw_pass_1 = SubResource( 27 )
+draw_pass_1 = SubResource( 30 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 0.221588, 0, 0, 0, -3.12939e-08, 0.715921, 0, -0.221588, -9.6859e-09, 0, 1.42654, 0.0566603 )

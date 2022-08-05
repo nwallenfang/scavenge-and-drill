@@ -125,12 +125,12 @@ transform = Transform( 1.7634, 0, 0, 0, 1.7634, 0, 0, 0, 1.7634, 0.297689, 0, 0.
 mesh = SubResource( 1 )
 
 [node name="MetalSrapV2" type="MeshInstance" parent="."]
-transform = Transform( 1.2713, 0, 0, 0, 1.2713, 0, 0, 0, 1.2713, -0.227154, 2.38419e-07, -0.299387 )
+transform = Transform( 1.42385, 0, 0, 0, 1.42385, 0, 0, 0, 1.42385, -0.227154, 2.38419e-07, -0.299387 )
 visible = false
 mesh = SubResource( 2 )
 
 [node name="MetalSrapV3" type="MeshInstance" parent="."]
-transform = Transform( 0.456994, 0, 0, 0, 0.456994, 0, 0, 0, 0.456994, -0.388406, 0, 0.0763755 )
+transform = Transform( 0.574953, 0, 0, 0, 0.574953, 0, 0, 0, 0.574953, -0.388406, 0, 0.0763755 )
 visible = false
 mesh = SubResource( 3 )
 

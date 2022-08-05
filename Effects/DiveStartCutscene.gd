@@ -32,7 +32,7 @@ func set_camera_offset(x):
 
 
 export var hook_high : float = 28.0
-export var hook_low : float = 2.0
+export var hook_low : float = 0.8
 
 export var hook_offset : float setget set_hook_offset
 func set_hook_offset(x):

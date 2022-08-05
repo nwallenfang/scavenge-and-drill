@@ -11,6 +11,8 @@ onready var bullet_spawn := $Model/RollerModel/Head/BulletSpawn
 
 onready var handle := $Model/RollerModel/Handle
 
+var shoot_cooldown := false
+
 func _ready():
 	._ready()
 
@@ -35,11 +37,13 @@ func _physics_process(delta):
 			aim_direction = direction
 			Game.log("?")
 		if Input.is_action_just_pressed("shoot"):
-			if Game.energy_charges >= 1:
-				Game.rpc("sync_energy_charges", Game.energy_charges-1)
-				Network.rpc("spawn_object", "bullet", bullet_spawn.global_translation, {"direction": aim_direction})
-			else:
-				Game.not_enough_crystals()
+			if not shoot_cooldown:
+				if Game.energy_charges >= 1:
+					Game.rpc("sync_energy_charges", Game.energy_charges-1)
+					Network.rpc("spawn_object", "bullet", bullet_spawn.global_translation, {"direction": aim_direction})
+					do_cooldown()
+				else:
+					Game.not_enough_crystals()
 		if Input.is_action_just_pressed("initiate_swap"):
 			if Game.energy_charges >= 2:
 				#Game.rpc("sync_energy_charges", Game.energy_charges-2)
@@ -47,7 +51,15 @@ func _physics_process(delta):
 			else:
 				Game.not_enough_crystals()
 		if Input.is_action_just_pressed("super_mode"):
-			Game.rpc("try_super",name)
+			if Game.energy_charges >= 2:
+				Game.rpc("try_super",name)
+			else:
+				Game.not_enough_crystals()
+
+func do_cooldown():
+	shoot_cooldown = true
+	yield(get_tree().create_timer(1.1),"timeout")
+	shoot_cooldown = false
 
 func _network_process(delta):
 	._network_process(delta)
