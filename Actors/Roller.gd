@@ -34,8 +34,14 @@ func _physics_process(delta):
 			if Game.energy_charges >= 1:
 				Game.rpc("sync_energy_charges", Game.energy_charges-1)
 				Network.rpc("spawn_object", "bullet", bullet_spawn.global_translation, {"direction": aim_direction})
+			else:
+				Game.not_enough_crystals()
 		if Input.is_action_just_pressed("initiate_swap"):
-			Game.rpc("try_swap",name)
+			if Game.energy_charges >= 2:
+				Game.rpc("sync_energy_charges", Game.energy_charges-2)
+				Game.rpc("try_swap",name)
+			else:
+				Game.not_enough_crystals()
 		if Input.is_action_just_pressed("super_mode"):
 			Game.rpc("try_super",name)
 

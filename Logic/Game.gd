@@ -233,3 +233,6 @@ remotesync func try_super(player_name):
 			Game.log("Player 2 wants to super")
 			yield(get_tree().create_timer(2.0), "timeout")
 			player_2_wants_to_super = false
+
+func not_enough_crystals():
+	pass

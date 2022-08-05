@@ -54,7 +54,7 @@ curve = SubResource( 10 )
 
 [sub_resource type="ParticlesMaterial" id=6]
 emission_shape = 1
-emission_sphere_radius = 2.5
+emission_sphere_radius = 2.0
 flag_align_y = true
 gravity = Vector3( 0, 0, 0 )
 radial_accel = -1.0
@@ -117,7 +117,7 @@ shader_param/uv2_offset = Vector3( 0, 0, 0 )
 
 [sub_resource type="SphereMesh" id=13]
 
-[node name="TelportEffect" type="Spatial"]
+[node name="TeleportEffect" type="Spatial"]
 script = ExtResource( 2 )
 
 [node name="TryParticles" type="Particles" parent="."]
@@ -130,7 +130,6 @@ process_material = SubResource( 3 )
 draw_pass_1 = SubResource( 5 )
 
 [node name="DoParticles" type="Particles" parent="."]
-emitting = false
 amount = 20
 lifetime = 1.5
 speed_scale = 2.0
@@ -140,5 +139,6 @@ process_material = SubResource( 6 )
 draw_pass_1 = SubResource( 7 )
 
 [node name="Magic" type="MeshInstance" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 material_override = SubResource( 15 )
 mesh = SubResource( 13 )
