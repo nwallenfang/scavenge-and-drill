@@ -11,7 +11,10 @@ var hp := 2
 var can_attack := false
 var attack_speed := 2.5
 var target: Spatial
-var damage := 35.0
+var damage : float
+
+func _ready():
+	damage = 35.0 if not Game.upgrades.less_power_drain else 23.0
 
 func _physics_process(delta: float):
 	var last_pos := global_translation

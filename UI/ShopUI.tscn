@@ -190,7 +190,6 @@ margin_bottom = 134.0
 upgrade_attribute = "more_bullet_damage"
 description = "Improved bullet damage"
 cost_gears = 2
-cost_gold = 0
 upgrade_icon = ExtResource( 9 )
 
 [node name="ShopEntry2" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]

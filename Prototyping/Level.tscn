@@ -378,6 +378,10 @@ version = 4
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1772, -4.76837e-07, -22.7915 )
 version = 3
 
+[node name="TreasureGears11" parent="Collectibles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21.1485, 4.76837e-07, -22.7223 )
+version = 4
+
 [node name="TreasureGears3" parent="Collectibles" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9042, -4.76837e-07, -14.191 )
 version = 2
