@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Actors/Roller.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Models/RollerModel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Effects/EndCutscene.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Effects/TeleportEffect.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape" id=10]
 radius = 0.905299
@@ -57,5 +58,8 @@ shape = SubResource( 14 )
 
 [node name="EndCutscene" parent="." instance=ExtResource( 3 )]
 visible = false
+
+[node name="TelportEffect" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.535135, 0 )
 
 [editable path="Model/RollerModel"]
