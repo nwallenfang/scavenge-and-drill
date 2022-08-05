@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Assets/Sprites/Stars/star_07.png" type="Texture" id=1]
 [ext_resource path="res://Objects/Pickup/Diamond.gd" type="Script" id=2]
 [ext_resource path="res://Objects/DrillTarget.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Objects/Pickup/TreasureArea.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Effects/DrillParticles.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Objects/Pickup/TreasureArea.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Diamond_Circle"
@@ -140,6 +141,38 @@ tracks/1/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 360, 0 ) ]
 }
 
+[sub_resource type="Curve" id=12]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -3.43864, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=13]
+curve = SubResource( 12 )
+
+[sub_resource type="ParticlesMaterial" id=14]
+resource_local_to_scene = true
+emission_shape = 1
+emission_sphere_radius = 0.3
+direction = Vector3( 0, 1, 0 )
+spread = 30.0
+gravity = Vector3( 0, -5, 0 )
+initial_velocity = 6.0
+scale = 4.0
+scale_random = 1.0
+scale_curve = SubResource( 13 )
+
+[sub_resource type="SpatialMaterial" id=15]
+resource_local_to_scene = true
+flags_unshaded = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 0.0117647, 0.8, 0.980392, 1 )
+
+[sub_resource type="QuadMesh" id=16]
+resource_local_to_scene = true
+material = SubResource( 15 )
+size = Vector2( 0.04, 0.04 )
+
 [node name="Diamond" type="Spatial"]
 script = ExtResource( 2 )
 
@@ -167,10 +200,17 @@ anims/RESET = SubResource( 3 )
 anims/hover = SubResource( 4 )
 
 [node name="DrillTarget" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.10385, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, 0 )
 visible = false
 
-[node name="TreasureArea" parent="." instance=ExtResource( 4 )]
+[node name="DrillParticles" parent="." instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.8918, 0 )
+amount = 24
+visibility_aabb = AABB( -3.18748, -0.320555, -3.11341, 6.16229, 3.96961, 5.72383 )
+process_material = SubResource( 14 )
+draw_pass_1 = SubResource( 16 )
+
+[node name="TreasureArea" parent="." instance=ExtResource( 5 )]
 collision_layer = 0
 collision_mask = 0
 type = 3
