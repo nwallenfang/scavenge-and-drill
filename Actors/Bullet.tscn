@@ -4,7 +4,7 @@
 [ext_resource path="res://Assets/Models/BulletModel.tscn" type="PackedScene" id=2]
 
 [sub_resource type="SphereShape" id=2]
-radius = 0.161168
+radius = 0.198793
 
 [node name="Bullet" type="Spatial"]
 script = ExtResource( 1 )
@@ -17,7 +17,7 @@ collision_mask = 9
 shape = SubResource( 2 )
 
 [node name="BulletModel" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0350126 )
+transform = Transform( 1.78704, 0, 0, 0, 1.78704, 0, 0, 0, 1.78704, 0, 0, -0.0350126 )
 
 [connection signal="area_entered" from="Area" to="." method="_on_Area_area_entered"]
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
