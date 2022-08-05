@@ -35,7 +35,7 @@ var power_draining := false
 var try_count = 1  # gets increased on restart
 
 var max_energy_charges = 6
-var energy_charges: int = 0
+var energy_charges: int = 2
 
 const TYPE_GOLD = 1
 const TYPE_GEARS = 2
@@ -186,12 +186,7 @@ func execute_swap():
 	roller.global_translation.z = player2_pos.z
 	drill.global_translation.x = player1_pos.x
 	drill.global_translation.z = player1_pos.z
-	roller.static_mode = false
-	drill.static_mode = false
-	yield(get_tree(),"idle_frame")
-	roller.static_mode = true
-	drill.static_mode = true
-	yield(get_tree().create_timer(1.0),"timeout")
+	yield(get_tree().create_timer(.8),"timeout")
 	roller.static_mode = false
 	drill.static_mode = false
 

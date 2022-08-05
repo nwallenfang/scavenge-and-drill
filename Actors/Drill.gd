@@ -103,8 +103,7 @@ func _physics_process(delta):
 			drill_the_crystals(delta)
 
 func _network_process(delta):
-	if static_mode:
-		return
+
 	._network_process(delta)
 
 remotesync func set_drill_want(b):

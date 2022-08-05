@@ -28,11 +28,12 @@ func _physics_process(delta):
 		if static_mode:
 			return
 		var global_mouse_pos := Game.mouse_layer.get_global_layer_mouse_position()
-		if global_mouse_pos == null:
-			global_mouse_pos = Vector3(0.0, 0.0, 0.0)
-		var direction := Vector2(global_translation.x, global_translation.z).direction_to(Vector2(global_mouse_pos.x, global_mouse_pos.z))
-		head.rotation.y = -direction.angle() + PI/2.0 - facing_angle
-		aim_direction = direction
+		if global_mouse_pos != null:
+			#global_mouse_pos = Vector3(0.0, 0.0, 0.0)
+			var direction := Vector2(global_translation.x, global_translation.z).direction_to(Vector2(global_mouse_pos.x, global_mouse_pos.z))
+			head.rotation.y = -direction.angle() + PI/2.0 - facing_angle
+			aim_direction = direction
+			Game.log("?")
 		if Input.is_action_just_pressed("shoot"):
 			if Game.energy_charges >= 1:
 				Game.rpc("sync_energy_charges", Game.energy_charges-1)
@@ -49,8 +50,6 @@ func _physics_process(delta):
 			Game.rpc("try_super",name)
 
 func _network_process(delta):
-	if static_mode:
-		return
 	._network_process(delta)
 	if controlled:
 		rpc_unreliable("set_puppet_aim", aim_direction)
