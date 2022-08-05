@@ -142,7 +142,7 @@ process_material = SubResource( 21 )
 draw_pass_1 = SubResource( 27 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 0.645386, 0, 0, 0, -2.82107e-08, 0.645386, 0, -0.645386, -2.82107e-08, 0, 1.42654, 0 )
+transform = Transform( 0.221588, 0, 0, 0, -3.12939e-08, 0.715921, 0, -0.221588, -9.6859e-09, 0, 1.42654, 0.0566603 )
 shape = SubResource( 10 )
 
 [node name="TargetDetection" type="Area" parent="."]
