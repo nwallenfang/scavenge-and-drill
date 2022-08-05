@@ -130,6 +130,7 @@ process_material = SubResource( 3 )
 draw_pass_1 = SubResource( 5 )
 
 [node name="DoParticles" type="Particles" parent="."]
+emitting = false
 amount = 20
 lifetime = 1.5
 speed_scale = 2.0
