@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/GLTF/Eel Yellow.material" type="Material" id=1]
 [ext_resource path="res://Assets/GLTF/Eel Eye.material" type="Material" id=2]
 [ext_resource path="res://Assets/GLTF/Eel EyeIris.material" type="Material" id=3]
 [ext_resource path="res://Assets/Models/EelModel.gd" type="Script" id=4]
 [ext_resource path="res://Assets/GLTF/Eel Blue.material" type="Material" id=5]
+[ext_resource path="res://Assets/Materials/FishHurt.tres" type="Material" id=6]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "EelKamm_Cylinder002"
@@ -76,6 +77,48 @@ surfaces/0 = {
 "vertex_count": 64
 }
 
+[sub_resource type="Animation" id=7]
+resource_name = "Attack"
+length = 0.5
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Bones/1:transform")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.05, 0.35 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Transform( 0.487936, -0.872691, -0.0181442, 0.872691, 0.488157, -0.0106416, 0.018144, -0.0106419, 0.999779, 0, 0, 0 ), Transform( 0.352381, 0.935655, 0.0194531, -0.935655, 0.352661, -0.013459, -0.0194533, -0.0134587, 0.99972, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Bones/2:transform")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.25, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Transform( 0.181463, 0.983185, 0.0204413, -0.983185, 0.181817, -0.017011, -0.0204415, -0.0170107, 0.999646, 0, 0, 0 ), Transform( 0.256947, -0.966217, -0.0200887, 0.966217, 0.257268, -0.015442, 0.0200885, -0.0154423, 0.999679, 1.42109e-14, 5.96046e-08, 2.79397e-09 ), Transform( 0.151845, 0.988191, 0.0205453, -0.988191, 0.152211, -0.0176265, -0.0205456, -0.0176262, 0.999633, 1.42109e-14, 5.96046e-08, 3.72529e-09 ), Transform( 0.229957, -0.97299, -0.0202296, 0.97299, 0.23029, -0.0160029, 0.0202293, -0.0160032, 0.999667, 1.42109e-14, 5.96046e-08, 3.72529e-09 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Bones/0:transform")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Transform( 0.807136, 0.590239, 0.0122716, -0.590239, 0.807219, -0.00400821, -0.0122717, -0.00400801, 0.999917, 0, 0, 0 ), Transform( 0.818892, -0.573824, -0.0119304, 0.573824, 0.81897, -0.0037637, 0.0119303, -0.00376388, 0.999922, 0, 0, 0 ) ]
+}
+
 [sub_resource type="Animation" id=5]
 length = 0.001
 tracks/0/type = "value"
@@ -97,6 +140,18 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Bones/0:transform")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -135,6 +190,7 @@ tracks/1/keys = {
 [node name="EelModel" type="Spatial"]
 transform = Transform( -1, -1.62885e-07, -1.66307e-07, 1.62885e-07, 0.0207865, -0.999784, 1.66307e-07, -0.999784, -0.0207865, 0, 0, 0.738207 )
 script = ExtResource( 4 )
+sync_bones_with_spatials = true
 
 [node name="Skeleton" type="Skeleton" parent="."]
 transform = Transform( 1, -1.42109e-14, -2.66454e-15, 0, 1, 0, 6.66134e-15, 0, 1, 0, 0, 0 )
@@ -155,6 +211,8 @@ bones/2/enabled = true
 bones/2/bound_children = [  ]
 
 [node name="EelBody" type="MeshInstance" parent="Skeleton"]
+transform = Transform( 1, 0, -2.44249e-15, 0, 1, 0, 6.66134e-15, 0, 1, 0, 0, 0 )
+material_overlay = ExtResource( 6 )
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
 
@@ -163,13 +221,13 @@ mesh = SubResource( 3 )
 skin = SubResource( 2 )
 
 [node name="EelKamm" type="MeshInstance" parent="Skeleton"]
+material_overlay = ExtResource( 6 )
 mesh = SubResource( 4 )
 skin = SubResource( 2 )
 
 [node name="Bones" type="Spatial" parent="."]
 
 [node name="0" type="Spatial" parent="Bones"]
-transform = Transform( 1, -1.42109e-14, -2.66454e-15, 0, 1, 0, 6.66134e-15, 0, 1, 0, 0, 0 )
 
 [node name="1" type="Spatial" parent="Bones"]
 
@@ -177,5 +235,6 @@ transform = Transform( 1, -1.42109e-14, -2.66454e-15, 0, 1, 0, 6.66134e-15, 0, 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "swim"
+anims/Attack = SubResource( 7 )
 anims/RESET = SubResource( 5 )
 anims/swim = SubResource( 6 )

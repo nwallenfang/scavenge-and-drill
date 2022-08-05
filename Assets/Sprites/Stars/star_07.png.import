@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/spark_01.png-c88f8da25d349c0271626efff7bcb7d9.s3tc.stex"
-path.etc2="res://.import/spark_01.png-c88f8da25d349c0271626efff7bcb7d9.etc2.stex"
+path.s3tc="res://.import/star_07.png-2c1584f3db086e6afdf18722f5234b14.s3tc.stex"
+path.etc2="res://.import/star_07.png-2c1584f3db086e6afdf18722f5234b14.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Sprites/Sparks/spark_01.png"
-dest_files=[ "res://.import/spark_01.png-c88f8da25d349c0271626efff7bcb7d9.s3tc.stex", "res://.import/spark_01.png-c88f8da25d349c0271626efff7bcb7d9.etc2.stex" ]
+source_file="res://Assets/Sprites/Stars/star_07.png"
+dest_files=[ "res://.import/star_07.png-2c1584f3db086e6afdf18722f5234b14.s3tc.stex", "res://.import/star_07.png-2c1584f3db086e6afdf18722f5234b14.etc2.stex" ]
 
 [params]
 

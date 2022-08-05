@@ -39,8 +39,9 @@ func _ready() -> void:
 		if not is_player1:
 			yield(get_tree().create_timer(.3), "timeout")
 		Network.connect_to_matchmaking()
-		
-	Game.connect("power_depleted", self, "game_to_shop_transition")
+	
+	Game.main = self
+	#Game.connect("power_depleted", self, "game_to_shop_transition")
 	get_viewport().connect("size_changed", self, "resize_viewport")
 	self.resize_viewport()
 	#$ViewportContainer.enable_water_distortion()

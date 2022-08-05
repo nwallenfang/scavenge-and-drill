@@ -20,6 +20,7 @@ func _physics_process(delta):
 			facing_angle = lerp_angle(facing_angle, Vector2(facing_direction.x, -facing_direction.z).angle() + PI / 2.0, 1.0-pow(.005, delta))
 			#facing_angle = -old_pos.direction_to(new_pos).angle() + PI / 2.0
 			$Model/RollerModel.rotation.y = facing_angle
+			#$EndCutscene.rotation.y = facing_angle
 	if controlled:
 		if static_mode:
 			return
@@ -47,6 +48,7 @@ func _network_process(delta):
 remote func set_puppet_rotation(rot):
 	self.facing_angle = lerp_angle(facing_angle,rot,.5)
 	$Model/RollerModel.rotation.y = facing_angle
+	#$EndCutscene.rotation.y = facing_angle
 
 remote func set_puppet_aim(aim_direction_set):
 	self.aim_direction = aim_direction_set

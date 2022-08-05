@@ -7,7 +7,7 @@ var path_target_position : Vector3
 var path_direction := 1
 var path_speed := 1.5
 var current_path_offset := 0.0
-var hp := 3
+var hp := 2
 var can_attack := false
 var attack_speed := 2.5
 var target: Spatial
@@ -62,6 +62,7 @@ func _on_Hurtbox_area_entered(area):
 
 remotesync func on_getting_hit():
 	hp -= 3 if Game.upgrades.more_bullet_damage else 1
+	$Model/EelModel.hurt_animation()
 	if hp == 0:
 		queue_free()
 
@@ -75,6 +76,12 @@ func _on_Hitbox_area_entered(area):
 	if Game.host:
 		rpc("hit_player")
 
+var is_attacking := false
 remotesync func hit_player():
-	Game.power -= damage
-	queue_free()
+	if not is_attacking:
+		is_attacking = true
+		Game.power -= damage
+		$Model/EelModel/AnimationPlayer.play("Attack")
+		$Model/AttackParticles.emitting = true
+		yield(get_tree().create_timer(1.5),"timeout")
+		queue_free()

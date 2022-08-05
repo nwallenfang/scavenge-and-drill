@@ -52,32 +52,34 @@ func _physics_process(delta):
 			if Input.is_action_pressed("shoot") != wants_to_drill:
 				rpc("set_drill_want", Input.is_action_pressed("shoot"))
 	
-		drill_animation_offset += (delta if wants_to_drill else -delta) / drill_animation_length
-		drill_animation_offset = clamp(drill_animation_offset, 0.0, 1.0)
-		is_drilling = drill_animation_offset > drill_offset_trigger
-		if drill_animation_offset != last_frame_offset:
-			update_drill_animation()
-			last_frame_offset = drill_animation_offset
-		if is_drilling:
-			ACC = move_acc_drilling
-			drill_the_crystals(delta)
-			$Model/GroundParticles.emitting = $DrillArea.get_overlapping_areas().empty()
-			$Model/CrystalParticles.emitting = false
-			$Model/GoldParticles.emitting = false
-			$Model/ScrapParticles.emitting = false
-			for a in $DrillArea.get_overlapping_areas():
-				if "Crystal" in a.get_parent().name:
-					$Model/CrystalParticles.emitting = true
-				elif "Gold" in a.get_parent().name:
-					$Model/GoldParticles.emitting = true
-				elif "Gear" in a.get_parent().name:
-					$Model/ScrapParticles.emitting = true
-		else:
-			ACC = move_acc_default if not Game.upgrades.more_move_speed else move_acc_upgraded
-			$Model/GroundParticles.emitting = false
-			$Model/CrystalParticles.emitting = false
-			$Model/GoldParticles.emitting = false
-			$Model/ScrapParticles.emitting = false
+	if mounted or static_mode:
+		wants_to_drill = false
+	drill_animation_offset += (delta if wants_to_drill else -delta) / drill_animation_length
+	drill_animation_offset = clamp(drill_animation_offset, 0.0, 1.0)
+	is_drilling = drill_animation_offset > drill_offset_trigger
+	if drill_animation_offset != last_frame_offset:
+		update_drill_animation()
+		last_frame_offset = drill_animation_offset
+	if is_drilling:
+		ACC = move_acc_drilling
+		drill_the_crystals(delta)
+		$Model/GroundParticles.emitting = $DrillArea.get_overlapping_areas().empty()
+		$Model/CrystalParticles.emitting = false
+		$Model/GoldParticles.emitting = false
+		$Model/ScrapParticles.emitting = false
+		for a in $DrillArea.get_overlapping_areas():
+			if "Crystal" in a.get_parent().name:
+				$Model/CrystalParticles.emitting = true
+			elif "Gold" in a.get_parent().name:
+				$Model/GoldParticles.emitting = true
+			elif "Gear" in a.get_parent().name:
+				$Model/ScrapParticles.emitting = true
+	else:
+		ACC = move_acc_default if not Game.upgrades.more_move_speed else move_acc_upgraded
+		$Model/GroundParticles.emitting = false
+		$Model/CrystalParticles.emitting = false
+		$Model/GoldParticles.emitting = false
+		$Model/ScrapParticles.emitting = false
 
 func _network_process(delta):
 	._network_process(delta)

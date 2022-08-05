@@ -257,6 +257,12 @@ func create_all_dialogs():
 	
 	d = DialogTrigger.new("close_to_eel")
 	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.ROLLER, "There are eels, eww!", 2.0),
+		DialogLine.new(SPEAKERS.DRILL, "Disgusting!", .8),
+		DialogLine.new(SPEAKERS.ROLLER, "Disgusting!", .8),
+		DialogLine.new(SPEAKERS.DRILL, "Attack!", 1.8),
+	]))
+	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.ROLLER, "These eels look really scary..", 2.0),
 		DialogLine.new(SPEAKERS.DRILL, "I've seen them before. They drain our power levels!"),
 		DialogLine.new(SPEAKERS.ROLLER, "Sounds scary.", 1.5),
