@@ -59,7 +59,9 @@ func update_treasures(treasure_type: int):
 		2:
 			$"%GearAmount".text = "%02d" % Game.treasure_gears
 		3:
-			printerr("Treasure type 3 not implemented!")
+			$"%DiamondAmount".text = "%02d" % Game.treasure_diamond
+			$"%DiamondAmount".visible = true
+			$"%DiamondIcon".visible = true
 			
 	# TODO maybe even play a nice animation for the number that got increased
 	# for even more polish
@@ -76,16 +78,16 @@ func set_rope_length(s):
 	
 func to_shop():
 	$Game.visible = false
-	$Game/LeftSide/CanvasLayer.visible = false
+	$Game/CanvasLayer.visible = false
 	
 func back_to_ocean():
 	$Game.visible = true
-	$Game/LeftSide/CanvasLayer.visible = true
+	$Game/CanvasLayer.visible = true
 	
 	
 func set_game_ui_visible(val: bool):
 	$Game.visible = val
-	$Game/LeftSide/CanvasLayer.visible = val
+	$Game/CanvasLayer.visible = val
 	
 func set_energy_charges(val: int):
 	var full_charges := int(val / 2.0)
