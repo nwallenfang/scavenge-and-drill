@@ -12,10 +12,10 @@ direction = Vector3( 1, 1.5, 0 )
 spread = 30.0
 gravity = Vector3( 0, -5, 0 )
 initial_velocity = 6.0
-scale = 3.0
-scale_random = 1.0
+scale = 4.0
+scale_random = 0.48
 
-[sub_resource type="SpatialMaterial" id=19]
+[sub_resource type="SpatialMaterial" id=28]
 resource_local_to_scene = true
 flags_unshaded = true
 params_billboard_mode = 3
@@ -25,7 +25,7 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id=20]
 resource_local_to_scene = true
-material = SubResource( 19 )
+material = SubResource( 28 )
 size = Vector2( 0.04, 0.04 )
 
 [sub_resource type="ParticlesMaterial" id=21]
@@ -36,8 +36,8 @@ direction = Vector3( 1, 1.5, 0 )
 spread = 30.0
 gravity = Vector3( 0, -5, 0 )
 initial_velocity = 6.0
-scale = 3.0
-scale_random = 1.0
+scale = 5.0
+scale_random = 0.3
 
 [sub_resource type="SpatialMaterial" id=22]
 resource_local_to_scene = true
