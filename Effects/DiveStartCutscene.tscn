@@ -75,7 +75,7 @@ tracks/5/path = NodePath("TreasureCam:fov")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
-tracks/5/enabled = true
+tracks/5/enabled = false
 tracks/5/keys = {
 "times": PoolRealArray( 6.3, 6.8 ),
 "transitions": PoolRealArray( 1, 1 ),

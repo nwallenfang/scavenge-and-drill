@@ -209,16 +209,25 @@ func create_all_dialogs():
 	
 	d = DialogTrigger.new("power_low")
 	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.DRILL, "The oxygen levels are going down..."),
-		DialogLine.new(SPEAKERS.DRILL, "Soon we must swim to the surface!"),
-		DialogLine.new(SPEAKERS.ROLLER, "Then we better hurry."),
+		DialogLine.new(SPEAKERS.ROLLER, "We'll go home once the our power is out.."),
+		DialogLine.new(SPEAKERS.DRILL, "So soon.. but at least going home means shopping time!"),
+		DialogLine.new(SPEAKERS.ROLLER, "Right! Let's find some treasures then."),
 	]))
 	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.DRILL, "The oxygen levels are going down again..."),
+		DialogLine.new(SPEAKERS.DRILL, "The power levels are halfway down again..."),
 		DialogLine.new(SPEAKERS.ROLLER, "It always happens so fast"),
 	]))
 	all_dialogs.append(d)
-	
+
+	d = DialogTrigger.new("treasure_drill")
+	d.trigger_mode = TRIGGER_MODES.COUNT_EXACT
+	d.condition_value = 4
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.ROLLER, "Can't you hurry up with your drilling? You're taking your time."),
+		DialogLine.new(SPEAKERS.DRILL, "Hey, these treasures have to be drilled with utmost care!"),
+	]))
+	all_dialogs.append(d)
+
 	
 	d = DialogTrigger.new("treasure_found")
 	d.trigger_mode = TRIGGER_MODES.COUNT_EXACT
@@ -263,7 +272,7 @@ func create_all_dialogs():
 		DialogLine.new(SPEAKERS.DRILL, "Attack!", 1.8),
 	]))
 	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.ROLLER, "These eels look really scary..", 2.0),
+		DialogLine.new(SPEAKERS.ROLLER, "These eels look really icky..", 2.0),
 		DialogLine.new(SPEAKERS.DRILL, "I've seen them before. They drain our power levels!"),
 		DialogLine.new(SPEAKERS.ROLLER, "Sounds scary.", 1.5),
 	]))

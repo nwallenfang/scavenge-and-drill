@@ -189,7 +189,8 @@ margin_right = 510.0
 margin_bottom = 134.0
 upgrade_attribute = "more_bullet_damage"
 description = "Improved bullet damage"
-cost_gold = 1
+cost_gears = 2
+cost_gold = 0
 upgrade_icon = ExtResource( 9 )
 
 [node name="ShopEntry2" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
@@ -200,6 +201,8 @@ margin_right = 1024.0
 margin_bottom = 134.0
 upgrade_attribute = "less_power_drain"
 description = "Slower power drain"
+cost_gears = 3
+cost_gold = 1
 upgrade_icon = ExtResource( 10 )
 
 [node name="ShopEntry3" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
@@ -210,6 +213,8 @@ margin_right = 510.0
 margin_bottom = 272.0
 upgrade_attribute = "more_move_speed"
 description = "Higher movement speed"
+cost_gears = 2
+cost_gold = 0
 upgrade_icon = ExtResource( 11 )
 
 [node name="ShopEntry4" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
@@ -221,6 +226,8 @@ margin_right = 1024.0
 margin_bottom = 272.0
 upgrade_attribute = "super_mode"
 description = "Unlock a speed-boost skill"
+cost_gears = 3
+cost_gold = 3
 upgrade_icon = ExtResource( 13 )
 
 [node name="ShopEntry5" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
@@ -231,8 +238,8 @@ margin_right = 510.0
 margin_bottom = 410.0
 upgrade_attribute = "position_swap"
 description = "Unlock a position swap skill"
-cost_gears = 5
-cost_gold = 5
+cost_gears = 2
+cost_gold = 4
 upgrade_icon = ExtResource( 12 )
 
 [node name="ShopEntry6" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]

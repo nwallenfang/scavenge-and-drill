@@ -93,6 +93,7 @@ func do_game_setup(players: Dictionary):
 
 	Game.ui.fade_out(0.45)
 	yield(Game.ui, "fade_done")
+	yield(get_tree().create_timer(0.8), "timeout")
 	Game.ui.set_game_ui_visible(true)
 	$Player1.visible = true
 	$Player2.visible = true

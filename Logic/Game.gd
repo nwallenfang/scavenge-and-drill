@@ -89,7 +89,7 @@ func _process(delta: float) -> void:
 		self.power -= power_loss_per_s * delta
 
 signal power_depleted
-var power_critical_threshold = 0.8 * max_power
+var power_critical_threshold = 0.4 * max_power
 signal power_low  # maybe some screen effect or sound? maybe not
 signal power_filled
 func set_power(value: float):

@@ -199,6 +199,7 @@ remotesync func shop_to_game_transition():
 	Game.power = Game.max_power
 	level = new_level
 	Game.try_count += 1   
+	Game.rpc("sync_energy_charges", 0)
 	
 func _on_MainMenu_match_made():
 #	rpc("start_playing")

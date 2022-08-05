@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Prototyping/Level.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Drill.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Prototyping/Collectibles.gd" type="Script" id=6]
 [ext_resource path="res://LevelEditing.tres" type="Environment" id=7]
 [ext_resource path="res://Objects/Pickup/Diamond.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Objects/Cliff/Cliff4.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Objects/Cable/Cable.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Objects/Pickup/TreasureGears.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Objects/Decoration/Algae.tscn" type="PackedScene" id=12]
@@ -20,6 +21,7 @@
 [ext_resource path="res://Objects/Cliff/Cliff3.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Objects/Cliff/Cliff2.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Effects/DiveStartCutscene.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Objects/Cliff/Cliff5_large.tscn" type="PackedScene" id=22]
 
 [sub_resource type="Curve3D" id=4]
 _data = {
@@ -93,19 +95,34 @@ transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, -
 transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, -19.5968, 0, 13.3731 )
 
 [node name="Algae11" parent="Objects" instance=ExtResource( 12 )]
-transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, -15.4801, 0, 7.19435 )
+transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, -14.7597, 0, 5.35086 )
 
 [node name="Algae25" parent="Objects" instance=ExtResource( 12 )]
-transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, -25.9386, 0, -1.28025 )
+transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, -26.122, 0, -1.06889 )
 
 [node name="Algae26" parent="Objects" instance=ExtResource( 12 )]
-transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, -22.87, 0, 0.631312 )
+transform = Transform( 0.989147, 0, -0.146929, 0, 1, 0, 0.146929, 0, 0.989147, -22.5746, 4.76837e-07, 1.29565 )
 
 [node name="Algae12" parent="Objects" instance=ExtResource( 12 )]
 transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, 14.0486, 1.90735e-06, 16.2408 )
 
 [node name="Algae13" parent="Objects" instance=ExtResource( 12 )]
 transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, 13.1009, 1.90735e-06, 30.5297 )
+
+[node name="Algae30" parent="Objects" instance=ExtResource( 12 )]
+transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, 23.737, 1.90735e-06, 22.2991 )
+
+[node name="Algae31" parent="Objects" instance=ExtResource( 12 )]
+transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, 21.5471, 1.90735e-06, 13.6909 )
+
+[node name="Algae32" parent="Objects" instance=ExtResource( 12 )]
+transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, 27.4896, 2.86102e-06, 14.3558 )
+
+[node name="Algae33" parent="Objects" instance=ExtResource( 12 )]
+transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, 14.9891, 2.86102e-06, 23.546 )
+
+[node name="Algae34" parent="Objects" instance=ExtResource( 12 )]
+transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, 25.6579, 2.86102e-06, 29.8416 )
 
 [node name="Algae14" parent="Objects" instance=ExtResource( 12 )]
 transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, 4.94334, 0, 13.3503 )
@@ -158,14 +175,65 @@ transform = Transform( 0.987879, 0, -0.155228, 0, 1, 0, 0.155228, 0, 0.987879, -
 [node name="Algae27" parent="Objects" instance=ExtResource( 12 )]
 transform = Transform( 0.987879, 0, -0.155228, 0, 1, 0, 0.155228, 0, 0.987879, -0.823235, 0, -2.1739 )
 
+[node name="Algae35" parent="Objects" instance=ExtResource( 12 )]
+transform = Transform( 0.987879, 0, -0.155228, 0, 1, 0, 0.155228, 0, 0.987879, 34.6896, -1.90735e-06, -27.2838 )
+
+[node name="Algae36" parent="Objects" instance=ExtResource( 12 )]
+transform = Transform( 0.987879, 0, -0.155228, 0, 1, 0, 0.155228, 0, 0.987879, 40.6148, -1.90735e-06, -29.5134 )
+
+[node name="Algae37" parent="Objects" instance=ExtResource( 12 )]
+transform = Transform( 0.987879, 0, -0.155228, 0, 1, 0, 0.155228, 0, 0.987879, 44.2379, -1.90735e-06, -24.8519 )
+
+[node name="Algae38" parent="Objects" instance=ExtResource( 12 )]
+transform = Transform( 0.987879, 0, -0.155228, 0, 1, 0, 0.155228, 0, 0.987879, 46.6679, -1.90735e-06, -19.7357 )
+
+[node name="Algae39" parent="Objects" instance=ExtResource( 12 )]
+transform = Transform( 0.987879, 0, -0.155228, 0, 1, 0, 0.155228, 0, 0.987879, 37.0262, 0, -26.9613 )
+
+[node name="Algae40" parent="Objects" instance=ExtResource( 12 )]
+transform = Transform( 0.987879, 0, -0.155228, 0, 1, 0, 0.155228, 0, 0.987879, 42.1863, 0, -22.2531 )
+
+[node name="Algae41" parent="Objects" instance=ExtResource( 12 )]
+transform = Transform( 0.987879, 0, -0.155228, 0, 1, 0, 0.155228, 0, 0.987879, 41.0194, 9.53674e-07, -12.2393 )
+
+[node name="Algae42" parent="Objects" instance=ExtResource( 12 )]
+transform = Transform( 0.987879, 0, -0.155228, 0, 1, 0, 0.155228, 0, 0.987879, 47.039, 0, -17.3215 )
+
+[node name="Algae43" parent="Objects" instance=ExtResource( 12 )]
+transform = Transform( 0.987879, 0, -0.155228, 0, 1, 0, 0.155228, 0, 0.987879, 43.1895, 2.86102e-06, -19.3804 )
+
+[node name="Algae44" parent="Objects" instance=ExtResource( 12 )]
+transform = Transform( 0.987879, 0, -0.155228, 0, 1, 0, 0.155228, 0, 0.987879, 34.0496, 1.90735e-06, -35.2117 )
+
+[node name="Algae45" parent="Objects" instance=ExtResource( 12 )]
+transform = Transform( 0.987879, 0, -0.155228, 0, 1, 0, 0.155228, 0, 0.987879, 29.0979, 1.90735e-06, -30.2111 )
+
 [node name="Algae5" parent="Objects" instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0321, 0, -1.84138 )
+
+[node name="Algae46" parent="Objects" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6529, 0, -18.4036 )
 
 [node name="Algae6" parent="Objects" instance=ExtResource( 12 )]
 transform = Transform( 0.999298, 0, -0.0374634, 0, 1, 0, 0.0374634, 0, 0.999298, 2.44564, 0, -5.08342 )
 
 [node name="EnergyCrystal" parent="Objects" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.7037, -2.86102e-06, -12.1597 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7037, -2.86102e-06, -14.1597 )
+
+[node name="EnergyCrystal5" parent="Objects" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.45117, -2.86102e-06, 2.4444 )
+
+[node name="EnergyCrystal6" parent="Objects" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.05589, -2.86102e-06, -8.48977 )
+
+[node name="EnergyCrystal7" parent="Objects" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.2601, -2.86102e-06, -32.3453 )
+
+[node name="EnergyCrystal8" parent="Objects" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.4059, -2.86102e-06, -34.5646 )
+
+[node name="EnergyCrystal4" parent="Objects" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7827, -2.86102e-06, -2.86386 )
 
 [node name="EnergyCrystal2" parent="Objects" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0824, -2.86102e-06, 17.596 )
@@ -185,6 +253,15 @@ transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, -1.60886, 0, 6.
 [node name="BubbleSpawner10" parent="Objects" instance=ExtResource( 14 )]
 transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, -8.78663, 0, 6.94744 )
 
+[node name="BubbleSpawner16" parent="Objects" instance=ExtResource( 14 )]
+transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, 16.1688, 0, 18.633 )
+
+[node name="BubbleSpawner17" parent="Objects" instance=ExtResource( 14 )]
+transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, 25.226, 0, 18.0512 )
+
+[node name="BubbleSpawner18" parent="Objects" instance=ExtResource( 14 )]
+transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, 18.9185, 0, -4.85147 )
+
 [node name="BubbleSpawner13" parent="Objects" instance=ExtResource( 14 )]
 transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, -25.5255, 0, -32.4424 )
 
@@ -193,6 +270,12 @@ transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, -9.15557, 0, -3
 
 [node name="BubbleSpawner15" parent="Objects" instance=ExtResource( 14 )]
 transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, 3.73475, 0, -3.37843 )
+
+[node name="BubbleSpawner19" parent="Objects" instance=ExtResource( 14 )]
+transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, 39.9262, 0, -26.1519 )
+
+[node name="BubbleSpawner20" parent="Objects" instance=ExtResource( 14 )]
+transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, 38.5982, 0, -16.4915 )
 
 [node name="BubbleSpawner11" parent="Objects" instance=ExtResource( 14 )]
 transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, -29.6478, 0, 22.3202 )
@@ -242,7 +325,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.54007, -9.53674e-07, -14.450
 version = 3
 
 [node name="TreasureGold3" parent="Collectibles" instance=ExtResource( 3 )]
-transform = Transform( 0.998375, 0, 0, 0, 0.998375, 0, 0, 0, 0.998375, -21.0628, -1.43051e-06, -16.2441 )
+transform = Transform( 0.998375, 0, 0, 0, 0.998375, 0, 0, 0, 0.998375, -21.348, -1.43051e-06, -16.4203 )
 version = 4
 
 [node name="TreasureGold4" parent="Collectibles" instance=ExtResource( 3 )]
@@ -321,11 +404,11 @@ can_attack = true
 [node name="Cliff1" parent="Cliffs" instance=ExtResource( 18 )]
 transform = Transform( -0.338459, 0, -0.940981, 0, 1, 0, 0.940981, 0, -0.338459, -20.0312, -4.76837e-06, -13.2155 )
 
-[node name="Cliff9" parent="Cliffs" instance=ExtResource( 18 )]
-transform = Transform( 0.00822005, 0, -0.999966, 0, 1, 0, 0.999966, 0, 0.00822005, 27.8833, -4.76837e-06, 26.3025 )
-
 [node name="Cliff6" parent="Cliffs" instance=ExtResource( 18 )]
-transform = Transform( -0.627672, 0, 1.08419, 0, 1.62591, 0, -0.865431, 0, -0.501027, 7.37634, -4.76837e-06, 29.7508 )
+transform = Transform( -0.587111, 0, 0.809506, 0, 1, 0, -0.809506, 0, -0.587111, 7.37634, -4.76837e-06, 29.7508 )
+
+[node name="Cliff11" parent="Cliffs" instance=ExtResource( 18 )]
+transform = Transform( -0.437817, 0, -0.899064, 0, 1, 0, 0.899064, 0, -0.437817, 48.22, -6.67572e-06, -13.0547 )
 
 [node name="Cliff5" parent="Cliffs" instance=ExtResource( 18 )]
 transform = Transform( -0.420265, 0, -0.907401, 0, 1, 0, 0.907401, 0, -0.420265, -12.6554, 0.0542393, 24.9646 )
@@ -339,39 +422,46 @@ transform = Transform( 0.824294, 0, -0.566162, 0, 1, 0, 0.566162, 0, 0.824294, -
 [node name="Cliff3" parent="Cliffs" instance=ExtResource( 19 )]
 transform = Transform( 0.084345, 0, -1.25562, 0, 1.25845, 0, 1.25562, 0, 0.084345, -24.7344, 0, -17.6182 )
 
-[node name="Cliff4" parent="Cliffs" instance=ExtResource( 19 )]
-transform = Transform( -0.200314, 0, -1.66858, 0, 1.67525, 0, 2.2374, 0, -0.149386, 6.3514, -0.915325, 10.1784 )
-
 [node name="Cliff10" parent="Cliffs" instance=ExtResource( 19 )]
-transform = Transform( 1.90934, 0, -0.882561, 0, 1.67525, 0, 1.18343, 0, 1.42392, 12.0322, -0.915325, -18.9111 )
+transform = Transform( 0.849975, 0, -0.526824, 0, 1, 0, 0.526824, 0, 0.849975, -10.5239, -0.915325, -26.0008 )
 
-[node name="Cliff11" parent="Cliffs" instance=ExtResource( 19 )]
-transform = Transform( 1.90934, 0, -0.882561, 0, 1.67525, 0, 1.18343, 0, 1.42392, 12.0322, -0.915325, -18.9111 )
+[node name="Cliff14" parent="Cliffs" instance=ExtResource( 19 )]
+transform = Transform( 0.849975, 0, -0.526824, 0, 1, 0, 0.526824, 0, 0.849975, -32.9896, -0.915325, -30.8365 )
 
 [node name="Cliff12" parent="Cliffs" instance=ExtResource( 19 )]
-transform = Transform( 0.930869, 0, 1.52465, 0, 1.67525, 0, -2.0444, 0, 0.694211, 12.5645, -0.915325, -3.98242 )
+transform = Transform( 0.414392, 0, 0.910099, 0, 1, 0, -0.910099, 0, 0.414392, 11.9516, 0.119888, -1.43969 )
+
+[node name="Cliff13" parent="Cliffs" instance=ExtResource( 19 )]
+transform = Transform( 0.414392, 0, 0.910099, 0, 1, 0, -0.910099, 0, 0.414392, 28.9454, 0.0234053, 35.3347 )
 
 [node name="Cliff8" parent="Cliffs" instance=ExtResource( 19 )]
 transform = Transform( 1.33354, 0, -0.104632, 0, 1, 0, 0.140303, 0, 0.99451, -20.898, -0.915333, 4.99798 )
+
+[node name="CliffNew" parent="Cliffs" instance=ExtResource( 9 )]
+transform = Transform( 0.677081, 0, -0.735908, 0, 1, 0, 0.735908, 0, 0.677081, 7.30044, 0, -18.6146 )
+
+[node name="CliffNew3" parent="Cliffs" instance=ExtResource( 9 )]
+transform = Transform( 0.999963, 0, -0.00855201, 0, 1, 0, 0.00855201, 0, 0.999963, -26.3212, 0, -38.4007 )
+
+[node name="CliffNew2" parent="Cliffs" instance=ExtResource( 9 )]
+transform = Transform( 1.10083, 0, -0.471588, 0, 1.50164, 0, 0.471588, 0, 1.10083, 40.166, 0, -36.7608 )
+
+[node name="Cliff9" parent="Cliffs" instance=ExtResource( 22 )]
+transform = Transform( -0.184243, 0, 0.982881, 0, 1, 0, -0.982881, 0, -0.184243, 13.4074, -3.8147e-06, 14.3803 )
 
 [node name="GroundCollision" type="StaticBody" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="GroundCollision"]
 shape = SubResource( 2 )
 
-[node name="Treasure" type="Label3D" parent="."]
-transform = Transform( 6.22609, 0, 0.561592, 0, 7.52476, 0, -4.22585, 0, 0.827414, 6.6453, 1.19804, -42.6523 )
-text = "Großer Schatz
-"
-
 [node name="DiveStartCutscene" parent="." instance=ExtResource( 21 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.44705, 0, 45.4271 )
 
 [node name="Point1" type="Camera" parent="DiveStartCutscene"]
-transform = Transform( 0.777717, -0.319594, 0.54131, 0, 0.861115, 0.50841, -0.628615, -0.395399, 0.669704, 10.5618, 3.9656, -39.4179 )
+transform = Transform( 0.419785, 0, -0.907624, 0, 1, 0, 0.907624, 0, 0.419785, 37.2973, 3.12208, -60.7893 )
 
 [node name="Point2" type="Camera" parent="DiveStartCutscene"]
-transform = Transform( 0.777717, -0.319594, 0.54131, 0, 0.861115, 0.50841, -0.628615, -0.395399, 0.669704, 15.1007, 8.22862, -33.8025 )
+transform = Transform( -0.85512, 0, 0.51843, 0, 1, 0, -0.51843, 0, -0.85512, 29.7726, 8.49234, -47.0862 )
 
 [node name="Point3" type="Camera" parent="DiveStartCutscene"]
 transform = Transform( -0.918515, 0.0181013, 0.394971, 0, 0.998951, -0.0457813, -0.395385, -0.0420509, -0.917552, 11.9339, 8.22862, -27.4567 )
@@ -406,12 +496,12 @@ depth = 10.0
 polygon = PoolVector2Array( -48.079, 25.3991, -52.2593, 24.829, -54.3494, 26.5391, -53.7793, 30.9094, -52.8926, 33.6963, -52.8926, 39.0166, -51.0558, 43.8936, -48.269, 45.477, -44.9755, 45.0336, -41.9986, 43.0068, -40.7952, 40.4733, -41.8719, 34.4563, -44.9755, 27.8692, -46.7489, 26.0958, -44.0887, 27.2992, -41.0486, 34.393, -39.0218, 42.3735, -43.0753, 45.9837, -51.3725, 46.9337, -54.7927, 39.4599, -55.2994, 29.8327, -55.1728, 23.1189, -47.889, 23.3089, -45.2288, 25.7791, -46.8122, 26.3491 )
 
 [node name="CloseToEelDialog" type="Area" parent="."]
-transform = Transform( 1.24392, 0, 0, 0, 1, 0, 0, 0, 0.958797, 20.094, 1.75542, 35.6059 )
+transform = Transform( 1.23078, -0.0947068, 0.105219, 0.120163, 0.99525, -0.0115628, -0.13444, 0.0225334, 0.952936, 20.5816, 1.75542, 34.7681 )
 
 [node name="CollisionShape" type="CollisionShape" parent="CloseToEelDialog"]
 shape = SubResource( 9 )
 
 [node name="Diamond" parent="." instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 37.9544 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.1261, 0, -18.5226 )
 
 [connection signal="body_entered" from="CloseToEelDialog" to="." method="_on_CloseToEelDialog_body_entered"]
