@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Actors/Roller.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Models/RollerModel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Effects/EndCutscene.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape" id=10]
 radius = 0.905299
@@ -53,5 +54,8 @@ collision_mask = 0
 [node name="CollisionShape" type="CollisionShape" parent="Hurtbox"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.763725, 0 )
 shape = SubResource( 14 )
+
+[node name="EndCutscene" parent="." instance=ExtResource( 3 )]
+visible = false
 
 [editable path="Model/RollerModel"]

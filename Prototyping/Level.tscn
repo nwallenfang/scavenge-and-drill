@@ -18,7 +18,7 @@
 [ext_resource path="res://Objects/Cliff/Cliff1.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Objects/Cliff/Cliff3.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Objects/Cliff/Cliff2.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Logic/DiveStartCutscene.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Effects/DiveStartCutscene.tscn" type="PackedScene" id=21]
 
 [sub_resource type="Curve3D" id=4]
 _data = {
