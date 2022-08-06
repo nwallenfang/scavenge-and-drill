@@ -11,5 +11,5 @@ dest_files=[ "res://.import/AMB_MULTIJAM_Underwater.ogg-29826af15ec7ccfe688f1a75
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0

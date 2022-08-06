@@ -170,6 +170,7 @@ func _on_ReadyScreen_ready_pressed() -> void:
 	rpc("player_ready", OnlineMatch.get_my_session_id())
 	
 func game_to_shop_transition():
+	Sound.start_game_sounds()
 	Game.ui.fade_out(0.3)
 	yield(Game.ui, "fade_done")
 	$ShopUI.visible = true
@@ -211,6 +212,7 @@ remotesync func shop_to_game_transition():
 	Game.try_count += 1   
 	Game.rpc("sync_energy_charges", 0)
 	Game.game_started = true
+	Sound.start_game_sounds()
 	
 func _on_MainMenu_match_made():
 #	rpc("start_playing")
