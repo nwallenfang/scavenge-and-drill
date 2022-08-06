@@ -84,6 +84,7 @@ func _physics_process(delta):
 	drill_animation_offset = clamp(drill_animation_offset, 0.0, 1.0)
 	is_drilling = drill_animation_offset > drill_offset_trigger
 	if drill_animation_offset != last_frame_offset or has_drill_target:
+		update_drill_sound()
 		update_drill_animation()
 		last_frame_offset = drill_animation_offset
 	if not has_drill_target:
@@ -117,7 +118,16 @@ func _network_process(delta):
 remotesync func set_drill_want(b):
 	wants_to_drill = b
 
-
+var sound := false
+func update_drill_sound():
+	if drill_animation_offset > .3:
+		if not sound:
+			sound = true
+			Sound.start_drilling()
+	else:
+		if sound:
+			sound = false
+			Sound.stop_drilling()
 
 func update_drill_animation():
 	if not has_drill_target:
