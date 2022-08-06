@@ -391,6 +391,7 @@ margin_right = 40.0
 margin_bottom = 21.0
 
 [node name="Game" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -590,19 +591,25 @@ text = "00"
 
 [node name="TutorialPanel" type="PanelContainer" parent="Game/CanvasLayer"]
 unique_name_in_owner = true
+visible = false
 anchor_left = 0.993
-anchor_top = 0.096
+anchor_top = 0.09
 anchor_right = 0.993
-anchor_bottom = 0.318
+anchor_bottom = 0.187
 margin_left = -216.0
 grow_horizontal = 0
 custom_styles/panel = ExtResource( 13 )
 
-[node name="TutorialMsg" type="Label" parent="Game/CanvasLayer/TutorialPanel"]
-unique_name_in_owner = true
-margin_top = 39.0
+[node name="CenterContainer" type="CenterContainer" parent="Game/CanvasLayer/TutorialPanel"]
 margin_right = 216.0
-margin_bottom = 93.0
+margin_bottom = 58.2
+
+[node name="TutorialMsg" type="Label" parent="Game/CanvasLayer/TutorialPanel/CenterContainer"]
+unique_name_in_owner = true
+margin_left = 13.0
+margin_top = 2.0
+margin_right = 202.0
+margin_bottom = 56.0
 custom_fonts/font = ExtResource( 5 )
 text = "Explore and find treasures!
 Left Mouse Button to drill
