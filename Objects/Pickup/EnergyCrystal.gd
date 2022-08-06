@@ -13,5 +13,10 @@ func get_drilled(amount):
 		Game.rpc("sync_energy_charges", Game.energy_charges + 2.0)
 		rpc("drilled_out")
 
+const CRYSTAL_POP = preload("res://Effects/CrystalPop.tscn")
+
 remotesync func drilled_out():
+	var pop = CRYSTAL_POP.instance()
+	Game.level.add_child(pop)
+	pop.global_translation = self.global_translation
 	queue_free()
