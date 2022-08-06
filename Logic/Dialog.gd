@@ -280,17 +280,17 @@ func create_all_dialogs():
 	]))
 	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.DRILL, "There has to be a way to fend the eels off!"),
-		DialogLine.new(SPEAKERS.ROLLER, "You know that's what I'm built for, right? I just need crystals."),
+		DialogLine.new(SPEAKERS.ROLLER, "You know that's what I'm built for, right?"),
+		DialogLine.new(SPEAKERS.ROLLER, "I just need crystals to power my gun."),
 		DialogLine.new(SPEAKERS.DRILL, "Those shiny purple ones, right.."),
 	]))
 	all_dialogs.append(d)
 
 	d = DialogTrigger.new("drill_too_weak")
 	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.DRILL, "Damn!", 1.0),
-		DialogLine.new(SPEAKERS.DRILL, "My Drill power is too low.", 1.8),
-		DialogLine.new(SPEAKERS.ROLLER, "You're f*cking useless!", 1.5),
-		DialogLine.new(SPEAKERS.ROLLER, "Piece of junk!", 1.5),
+		DialogLine.new(SPEAKERS.DRILL, "Damn!", 1.2),
+		DialogLine.new(SPEAKERS.DRILL, "My Drill power is too low.", 2.4),
+		DialogLine.new(SPEAKERS.ROLLER, "I'm sure we can upgrade your drill.", 2.4),
 	]))
 	all_dialogs.append(d)
 	
