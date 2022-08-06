@@ -1,26 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Objects/Decoration/Algae.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Models/AlgaeModel3.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/Shader/Algae.gdshader" type="Shader" id=3]
+[ext_resource path="res://Assets/Materials/Algae.tres" type="Material" id=3]
 
 [sub_resource type="SphereShape" id=1]
 radius = 4.55438
-
-[sub_resource type="ShaderMaterial" id=5]
-resource_local_to_scene = true
-shader = ExtResource( 3 )
-shader_param/albedo = Color( 0.137255, 0.541176, 0.0666667, 1 )
-shader_param/specular = 0.5
-shader_param/metallic = 0.0
-shader_param/roughness = 0.78
-shader_param/point_size = 1.0
-shader_param/uv1_scale = Vector3( 1, 1, 1 )
-shader_param/uv1_offset = Vector3( 0, 0, 0 )
-shader_param/uv2_scale = Vector3( 1, 1, 1 )
-shader_param/uv2_offset = Vector3( 0, 0, 0 )
-shader_param/push_direction = Vector2( 1, 0 )
-shader_param/push_strength = 0.0
 
 [node name="Algae" type="Spatial"]
 script = ExtResource( 1 )
@@ -36,4 +21,4 @@ shape = SubResource( 1 )
 transform = Transform( 1.48594, 0, 0, 0, 1.48594, 0, 0, 0, 1.48594, 0, 0, 0 )
 
 [node name="Mesh" parent="Model" instance=ExtResource( 2 )]
-material/0 = SubResource( 5 )
+material/0 = ExtResource( 3 )

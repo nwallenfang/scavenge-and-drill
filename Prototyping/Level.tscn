@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Prototyping/Level.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Drill.tscn" type="PackedScene" id=2]
@@ -23,6 +23,8 @@
 [ext_resource path="res://Effects/DiveStartCutscene.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Objects/Cliff/Cliff5_large.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Objects/Cliff/Wall.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Objects/Decoration/AlgaeB.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Objects/Decoration/Anemone.tscn" type="PackedScene" id=25]
 
 [sub_resource type="Curve3D" id=10]
 _data = {
@@ -87,13 +89,16 @@ transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, -
 transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, -10.0001, 3.33786e-06, 24.482 )
 
 [node name="Algae8" parent="Objects" instance=ExtResource( 12 )]
-transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, 3.16165, 1.90735e-06, 30.7855 )
+transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, 15.0243, 1.36424e-12, 50.9863 )
 
 [node name="Algae9" parent="Objects" instance=ExtResource( 12 )]
 transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, -0.0031786, 0, 21.048 )
 
 [node name="Algae10" parent="Objects" instance=ExtResource( 12 )]
 transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, -19.5968, 0, 13.3731 )
+
+[node name="Algae50" parent="Objects" instance=ExtResource( 12 )]
+transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, -37.2338, 0, -1.15019 )
 
 [node name="Algae11" parent="Objects" instance=ExtResource( 12 )]
 transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, -14.7597, 0, 5.35086 )
@@ -207,10 +212,10 @@ transform = Transform( 0.987879, 0, -0.155228, 0, 1, 0, 0.155228, 0, 0.987879, 4
 transform = Transform( 0.987879, 0, -0.155228, 0, 1, 0, 0.155228, 0, 0.987879, 41.0194, 9.53674e-07, -12.2393 )
 
 [node name="Algae42" parent="Objects" instance=ExtResource( 12 )]
-transform = Transform( 0.987879, 0, -0.155228, 0, 1, 0, 0.155228, 0, 0.987879, 47.039, 0, -17.3215 )
+transform = Transform( 0.987879, 0, -0.155228, 0, 1, 0, 0.155228, 0, 0.987879, 43.7985, 0, -18.5398 )
 
 [node name="Algae43" parent="Objects" instance=ExtResource( 12 )]
-transform = Transform( 0.987879, 0, -0.155228, 0, 1, 0, 0.155228, 0, 0.987879, 43.1895, 2.86102e-06, -19.3804 )
+transform = Transform( 0.987879, 0, -0.155228, 0, 1, 0, 0.155228, 0, 0.987879, 56.4269, 2.86102e-06, -15.1687 )
 
 [node name="Algae44" parent="Objects" instance=ExtResource( 12 )]
 transform = Transform( 0.987879, 0, -0.155228, 0, 1, 0, 0.155228, 0, 0.987879, 34.0496, 1.90735e-06, -35.2117 )
@@ -328,6 +333,45 @@ transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, -5.52819, 9.536
 
 [node name="Wall" parent="Objects" instance=ExtResource( 23 )]
 transform = Transform( -0.466665, 0, 0.884434, 0, 1, 0, -0.884434, 0, -0.466665, -22.7243, 0, 35.5848 )
+
+[node name="AlgaeB" parent="Objects" instance=ExtResource( 24 )]
+transform = Transform( 0.74936, 0, 0.662162, 0, 1, 0, -0.662162, 0, 0.74936, -11.3811, 0, 33.7188 )
+
+[node name="AlgaeB5" parent="Objects" instance=ExtResource( 24 )]
+transform = Transform( 0.836353, 0, -0.548191, 0, 1, 0, 0.548191, 0, 0.836353, 41.0219, 0, -24.9926 )
+
+[node name="AlgaeB6" parent="Objects" instance=ExtResource( 24 )]
+transform = Transform( 0.48345, 0, -0.875372, 0, 1, 0, 0.875372, 0, 0.48345, 45.4847, 0, -22.1236 )
+
+[node name="AlgaeB3" parent="Objects" instance=ExtResource( 24 )]
+transform = Transform( 0.915015, 0, -0.756697, 0, 1.18737, 0, 0.756697, 0, 0.915015, 4.79001, 1.90735e-06, 32.1521 )
+
+[node name="AlgaeB4" parent="Objects" instance=ExtResource( 24 )]
+transform = Transform( 0.915015, 0, -0.756697, 0, 1.18737, 0, 0.756697, 0, 0.915015, -34.3464, 0, -0.202473 )
+
+[node name="AlgaeB2" parent="Objects" instance=ExtResource( 24 )]
+transform = Transform( 0.994751, 0, -0.102324, 0, 1, 0, 0.102324, 0, 0.994751, -12.9165, 0, 34.4804 )
+
+[node name="Anemone" parent="Objects" instance=ExtResource( 25 )]
+transform = Transform( 0.701817, 0, -0.712357, 0, 1, 0, 0.712357, 0, 0.701817, 3.00288, 1.90735e-06, 30.0866 )
+
+[node name="Anemone2" parent="Objects" instance=ExtResource( 25 )]
+transform = Transform( 0.701817, 0, -0.712357, 0, 1, 0, 0.712357, 0, 0.701817, 25.7445, 1.90735e-06, 38.7606 )
+
+[node name="Anemone3" parent="Objects" instance=ExtResource( 25 )]
+transform = Transform( 0.701817, 0, -0.712357, 0, 1, 0, 0.712357, 0, 0.701817, 38.6065, 1.90735e-06, -5.83077 )
+
+[node name="Anemone4" parent="Objects" instance=ExtResource( 25 )]
+transform = Transform( 0.701817, 0, -0.712357, 0, 1, 0, 0.712357, 0, 0.701817, -19.7407, 1.90735e-06, -33.9219 )
+
+[node name="Anemone5" parent="Objects" instance=ExtResource( 25 )]
+transform = Transform( 0.701817, 0, -0.712357, 0, 1, 0, 0.712357, 0, 0.701817, -9.24818, 1.90735e-06, -50.0124 )
+
+[node name="Anemone6" parent="Objects" instance=ExtResource( 25 )]
+transform = Transform( 0.701817, 0, -0.712357, 0, 1, 0, 0.712357, 0, 0.701817, -35.9196, 1.90735e-06, 0.960449 )
+
+[node name="Anemone7" parent="Objects" instance=ExtResource( 25 )]
+transform = Transform( 0.701817, 0, -0.712357, 0, 1, 0, 0.712357, 0, 0.701817, -33.743, 5.72205e-06, 33.0047 )
 
 [node name="Pivot" type="Spatial" parent="."]
 __meta__ = {

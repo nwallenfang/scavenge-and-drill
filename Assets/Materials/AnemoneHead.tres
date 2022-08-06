@@ -1,4 +1,7 @@
-// NOTE: Shader automatically converted from Godot Engine 3.5.rc8's SpatialMaterial.
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "// NOTE: Shader automatically converted from Godot Engine 3.5.rc8's SpatialMaterial.
 
 shader_type spatial;
 render_mode async_visible,blend_mix,depth_draw_opaque,cull_disabled,diffuse_burley,specular_schlick_ggx;
@@ -20,10 +23,10 @@ const float y_min = .2;
 const float y_max = 2.4;
 const float wiggle_transition = .4;
 const float wiggle_bias = .3;
-const float wiggle_factor = .12;
-const float wiggle_speed = 2.2;
+const float wiggle_factor = .08;
+const float wiggle_speed = 1.7;
 const float wiggle_freq = 12.0;
-const float wiggle_z = 4.9;
+const float wiggle_z = 7.9;
 const float push_curve = .8;
 const float push_factor = .5;
 const float y_scale = .78;
@@ -66,3 +69,19 @@ void fragment() {
 	ROUGHNESS = roughness;
 	SPECULAR = specular;
 }
+"
+
+[resource]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/albedo = Color( 0.905882, 0.686275, 0.517647, 1 )
+shader_param/specular = 0.5
+shader_param/metallic = 0.0
+shader_param/roughness = 0.78
+shader_param/point_size = 1.0
+shader_param/uv1_scale = Vector3( 1, 1, 1 )
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv2_scale = Vector3( 1, 1, 1 )
+shader_param/uv2_offset = Vector3( 0, 0, 0 )
+shader_param/push_direction = Vector2( 1, 0 )
+shader_param/push_strength = 0.0
