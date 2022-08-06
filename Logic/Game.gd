@@ -55,7 +55,7 @@ class Upgrades:
 	var more_move_speed := false
 	var more_bullet_damage := false
 	var position_swap := false
-	var super_mode := true
+	var super_mode := false
 	var drill_power := false
 	var level_2 := false
 	
@@ -73,7 +73,8 @@ func _process(delta: float) -> void:
 #			viewport_sprite.material.set_shader_param("sideview_visible", main_cam.shader_visible)
 #			viewport_sprite.material.set_shader_param("sideview_direction", main_cam.shader_direction)
 	if Input.is_action_just_pressed("pause"):
-		ui.toggle_pause()
+		if ui != null:
+			ui.toggle_pause()
 		
 	if Input.is_action_just_pressed("skip_dialog"):
 		dialog_ui.rpc("skip_dialog")

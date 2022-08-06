@@ -60,6 +60,7 @@ func start_cutscene():
 signal cutscene_ended
 
 remotesync func skip_cutscene():
+	stop_intro_music()
 	$AnimationPlayer.stop()
 	end_cutscene()
 
@@ -67,6 +68,8 @@ func host_sync_end_cutscene():
 	if Game.host and cutscene_active:
 		rpc("end_cutscene")
 
+func stop_intro_music():
+	Sound.stop_shop_theme()
 
 func trigger_dialog():
 	Dialog.trigger("intro_sequence")

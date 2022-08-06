@@ -310,15 +310,14 @@ text = "(F1 to hide)"
 align = 1
 
 [node name="PausePanel" type="Panel" parent="."]
+unique_name_in_owner = true
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="InnerPanel" type="Panel" parent="PausePanel"]
-anchor_left = 0.2
-anchor_top = 0.2
-anchor_right = 0.8
-anchor_bottom = 0.8
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PausePanel/InnerPanel"]
 anchor_right = 1.0
@@ -329,27 +328,28 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="PausePanel/InnerPanel/VBoxContainer"]
-margin_right = 614.0
-margin_bottom = 61.0
+margin_right = 1024.0
+margin_bottom = 85.0
 custom_fonts/font = ExtResource( 2 )
-text = "PAUSED"
+text = "SETTINGS
+(ESC to enter/leave)"
 align = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PausePanel/InnerPanel/VBoxContainer"]
-margin_top = 65.0
-margin_right = 614.0
-margin_bottom = 111.0
+margin_top = 89.0
+margin_right = 1024.0
+margin_bottom = 135.0
 alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="PausePanel/InnerPanel/VBoxContainer/HBoxContainer"]
-margin_right = 113.0
+margin_right = 190.0
 margin_bottom = 46.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.3
 
 [node name="GridContainer" type="GridContainer" parent="PausePanel/InnerPanel/VBoxContainer/HBoxContainer"]
-margin_left = 117.0
-margin_right = 496.0
+margin_left = 194.0
+margin_right = 829.0
 margin_bottom = 46.0
 size_flags_horizontal = 3
 columns = 2
@@ -361,11 +361,14 @@ text = "Music Volume:"
 align = 2
 
 [node name="MusicSlider" type="HSlider" parent="PausePanel/InnerPanel/VBoxContainer/HBoxContainer/GridContainer"]
+unique_name_in_owner = true
 margin_left = 184.0
-margin_right = 379.0
+margin_right = 635.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
+max_value = 1.0
+step = 0.02
 
 [node name="MusicVolumeLabel2" type="Label" parent="PausePanel/InnerPanel/VBoxContainer/HBoxContainer/GridContainer"]
 margin_top = 25.0
@@ -374,14 +377,17 @@ margin_bottom = 46.0
 text = "Sound Effect Volume:"
 
 [node name="SoundSlider" type="HSlider" parent="PausePanel/InnerPanel/VBoxContainer/HBoxContainer/GridContainer"]
+unique_name_in_owner = true
 margin_left = 184.0
 margin_top = 25.0
-margin_right = 379.0
+margin_right = 635.0
 margin_bottom = 41.0
+max_value = 1.0
+step = 0.02
 
 [node name="CenterContainer2" type="CenterContainer" parent="PausePanel/InnerPanel/VBoxContainer/HBoxContainer"]
-margin_left = 500.0
-margin_right = 614.0
+margin_left = 833.0
+margin_right = 1024.0
 margin_bottom = 46.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.3
@@ -397,6 +403,7 @@ unique_name_in_owner = true
 material = SubResource( 13 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 color = Color( 1, 1, 1, 0 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Game"]
@@ -628,10 +635,7 @@ anims/energy_crystal_missing = SubResource( 17 )
 [node name="SpaceToSkip" type="Label" parent="."]
 visible = false
 anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 1.0
-margin_right = 1.0
-margin_bottom = -528.0
+anchor_bottom = 0.121
 custom_fonts/font = ExtResource( 2 )
 text = "[space] to skip"
 align = 1
@@ -639,3 +643,6 @@ valign = 1
 
 [node name="CrystalsEmpty" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
+
+[connection signal="value_changed" from="PausePanel/InnerPanel/VBoxContainer/HBoxContainer/GridContainer/MusicSlider" to="." method="_on_MusicSlider_value_changed"]
+[connection signal="value_changed" from="PausePanel/InnerPanel/VBoxContainer/HBoxContainer/GridContainer/SoundSlider" to="." method="_on_SoundSlider_value_changed"]

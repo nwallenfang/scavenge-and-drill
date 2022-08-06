@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Schubler Corals.ogg-68e7dcd4b3f6531f289ef6ec66cef35e.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/music/Schubler Corals.ogg"
+dest_files=[ "res://.import/Schubler Corals.ogg-68e7dcd4b3f6531f289ef6ec66cef35e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -39,7 +39,7 @@ func _physics_process(delta):
 			var direction := Vector2(global_translation.x, global_translation.z).direction_to(Vector2(global_mouse_pos.x, global_mouse_pos.z))
 			head.rotation.y = -direction.angle() + PI/2.0 - facing_angle
 			aim_direction = direction
-		if Input.is_action_just_pressed("shoot"):
+		if Input.is_action_just_pressed("shoot") and not Game.ui.paused:
 			if not shoot_cooldown:
 				if Game.energy_charges >= 1:
 					Game.rpc("sync_energy_charges", Game.energy_charges-1)

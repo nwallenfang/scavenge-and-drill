@@ -10,6 +10,8 @@ func _ready() -> void:
 	OnlineMatch.connect("match_joined", self, "_on_OnlineMatch_joined")
 	OnlineMatch.connect("player_joined", self, "_on_OnlineMatch_player_joined")
 	OnlineMatch.connect("match_ready", self, "_on_OnlineMatch_match_ready")
+	Game.ui = get_parent().get_node("UI")
+	Sound.start_shop_theme()
 
 func _on_EnterRandomMatchmaking_pressed() -> void:
 	Network.connect_to_matchmaking()
@@ -38,13 +40,11 @@ func _on_OnlineMatch_joined(match_id: String):
 
 
 func _on_PlayWithFriendButton_clicked() -> void:
-	print("play with friend")
 	$Buttons.visible = false
 	$LobbyScreen.visible = true
 
 
 func _on_PlayWithRandomButton_clicked() -> void:
-	print("play with random")
 	Network.connect_to_matchmaking()
 	# wait until match is found to make menu invisible.. maybe even once the game is setup
 	$Buttons.visible = false
@@ -101,7 +101,7 @@ func _on_EnterLobbyButton_clicked() -> void:
 	
 	
 func _on_OnlineMatch_player_joined(player) -> void:
-	print("player joined!!")
+	pass
 
 #func _on_OnlineMatch_player_left(player) -> void:
 #	remove_player(player.session_id)
@@ -111,3 +111,33 @@ func _on_OnlineMatch_player_status_changed(player, status) -> void:
 
 func _on_OnlineMatch_match_ready(_players: Dictionary) -> void:
 	emit_signal("match_made")
+
+
+func _on_SettingsButton_clicked() -> void:
+	Game.ui.toggle_pause()
+
+
+# Lobby Screen
+func _on_Back_clicked() -> void:
+	$Buttons.visible = true
+	$LobbyScreen.visible = false
+
+
+func _on_BackLobby_clicked() -> void:
+	$JoinLobbyScreen.visible = false
+	$LobbyScreen.visible = true
+
+
+func _on_BackCreatedLobby_clicked() -> void:
+	get_tree().reload_current_scene()	
+	$CreateLobbyScreen.visible = false
+	$LobbyScreen.visible = true
+
+
+func _on_Cancel_pressed() -> void:
+	OnlineMatch.leave()
+	get_tree().reload_current_scene()
+
+
+func _on_CreditsButton_clicked() -> void:
+	print("SHOW CREDITS")
