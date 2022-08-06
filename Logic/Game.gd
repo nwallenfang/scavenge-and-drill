@@ -35,7 +35,7 @@ var power_draining := false
 var try_count = 1  # gets increased on restart
 
 var max_energy_charges = 6
-var energy_charges: int = 2
+var energy_charges: int = 6
 
 const TYPE_GOLD = 1
 const TYPE_GEARS = 2

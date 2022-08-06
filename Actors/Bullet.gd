@@ -1,12 +1,13 @@
 extends Spatial
 
-export var speed := 15.0
-export var friction := .4
+export var speed := 14.0
+export var friction := .6
 var direction : Vector3
 
 func _ready():
 	if Game.upgrades.more_bullet_damage:
-		$BulletModel.scale *= 1.5
+		$BulletModel.scale *= 1.2
+	create_tween().tween_property($BulletEffect.material_override,"shader_param/active",1.0,.5)
 	yield(get_tree().create_timer(3.0),"timeout")
 	queue_free()
 
