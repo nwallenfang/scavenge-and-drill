@@ -109,6 +109,7 @@ func do_game_setup(players: Dictionary):
 	Game.power_draining = true
 	Game.ui.init_tutorial_msg()
 	Game.ui.fade_in(0.25)
+	Game.rpc("sync_energy_charges", 2)
 	
 	
 

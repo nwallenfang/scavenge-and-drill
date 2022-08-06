@@ -1,10 +1,9 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://UI/UI.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/PausedFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Assets/Shader/Vignette.gdshader" type="Shader" id=3]
 [ext_resource path="res://Assets/Sprites/treasure_diamond.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Fonts/TutorialFont.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Assets/Sprites/gold.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Fonts/debug_font.tres" type="DynamicFont" id=7]
 [ext_resource path="res://Assets/Sprites/gear.png" type="Texture" id=8]
@@ -588,7 +587,6 @@ text = "00"
 
 [node name="TutorialPanel" type="PanelContainer" parent="Game/CanvasLayer"]
 unique_name_in_owner = true
-visible = false
 anchor_left = 0.993
 anchor_top = 0.09
 anchor_right = 0.993
@@ -598,21 +596,21 @@ grow_horizontal = 0
 custom_styles/panel = ExtResource( 13 )
 
 [node name="CenterContainer" type="CenterContainer" parent="Game/CanvasLayer/TutorialPanel"]
-margin_right = 216.0
+margin_right = 243.0
 margin_bottom = 58.2
 
-[node name="TutorialMsg" type="Label" parent="Game/CanvasLayer/TutorialPanel/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Game/CanvasLayer/TutorialPanel/CenterContainer"]
+margin_top = 6.0
+margin_right = 243.0
+margin_bottom = 51.0
+
+[node name="TutorialMsg" type="Label" parent="Game/CanvasLayer/TutorialPanel/CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
-margin_left = 13.0
-margin_top = 2.0
-margin_right = 202.0
-margin_bottom = 56.0
-custom_fonts/font = ExtResource( 5 )
+margin_right = 243.0
+margin_bottom = 45.0
+size_flags_horizontal = 5
 text = "Explore and find treasures!
-Left Mouse Button to drill
-"
-align = 1
-valign = 1
+Left Mouse Button to drill"
 
 [node name="FadeRect" type="ColorRect" parent="."]
 anchor_right = 1.0

@@ -57,9 +57,6 @@ func upgrade_clicked(upgrade_attribute: String, cost_gold: int, cost_gears:int):
 		Game.log("Error: unknown attribute " + upgrade_attribute)
 	else:
 		Game.rpc("set_upgrade", upgrade_attribute, cost_gold, cost_gears)
-		
-
 
 func _on_Button_pressed() -> void:
-	$BackToOceanSound.play()
 	emit_signal("done_shopping")

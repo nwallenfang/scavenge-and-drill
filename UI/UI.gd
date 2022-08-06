@@ -20,10 +20,12 @@ func _ready() -> void:
 	debug_log.text += "Logs will be printed here\n"
 	# make mats unique
 	var box = $"%EnergyCrystalsBox"
-	print(box.get_node("AspectRatioContainer1/ColorRect"))
+
 	box.get_node("AspectRatioContainer1/ColorRect").material = box.get_node("AspectRatioContainer1/ColorRect").material.duplicate(true)
 	box.get_node("AspectRatioContainer2/ColorRect").material = box.get_node("AspectRatioContainer1/ColorRect").material.duplicate(true)
 	box.get_node("AspectRatioContainer3/ColorRect").material = box.get_node("AspectRatioContainer1/ColorRect").material.duplicate(true)
+	box.get_node("AspectRatioContainer4/ColorRect").material = box.get_node("AspectRatioContainer1/ColorRect").material.duplicate(true)
+	box.get_node("AspectRatioContainer5/ColorRect").material = box.get_node("AspectRatioContainer1/ColorRect").material.duplicate(true)
 	set_energy_charges(Game.energy_charges)
 
 func init_tutorial_msg():
@@ -122,12 +124,12 @@ func set_energy_charges(val: int):
 		
 	# rest is not enabled
 	if half_charge:
-		for i in range(full_charges + 1, 3):
+		for i in range(full_charges + 1, 5):
 			var rect = $"%EnergyCrystalsBox".get_node("AspectRatioContainer" + str(i+1)).get_node("ColorRect")
 			rect.material.set("shader_param/enabled", false)
 			rect.material.set("shader_param/half_enabled", false)
 	else:
-		for i in range(full_charges, 3):
+		for i in range(full_charges, 5):
 			var rect = $"%EnergyCrystalsBox".get_node("AspectRatioContainer" + str(i+1)).get_node("ColorRect")
 			rect.material.set("shader_param/enabled", false)
 			rect.material.set("shader_param/half_enabled", false)

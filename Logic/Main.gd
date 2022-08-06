@@ -170,7 +170,7 @@ func _on_ReadyScreen_ready_pressed() -> void:
 	rpc("player_ready", OnlineMatch.get_my_session_id())
 	
 func game_to_shop_transition():
-	Sound.start_game_sounds()
+	Sound.stop_game_sounds()
 	Game.ui.fade_out(0.3)
 	yield(Game.ui, "fade_done")
 	$ShopUI.visible = true
@@ -184,6 +184,7 @@ func game_to_shop_transition():
 	rpc("shop_to_game_transition")
 	
 remotesync func shop_to_game_transition():
+	Game.get_node("BackToOceanSound").play()
 	Game.ui.init_tutorial_msg()
 	Game.ui.fade_out(0.3)
 	Game.game_started = false
