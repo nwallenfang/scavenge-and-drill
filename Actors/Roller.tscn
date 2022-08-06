@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Actors/Roller.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Models/RollerModel.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Effects/TeleportEffect.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Effects/MagicForceField.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Effects/DustTrack.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Sprites/Stars/star_01.png" type="Texture" id=7]
 
 [sub_resource type="CapsuleShape" id=10]
 radius = 0.905299
@@ -17,6 +18,41 @@ radius = 4.10198
 
 [sub_resource type="CapsuleShape" id=14]
 radius = 0.880596
+
+[sub_resource type="Curve" id=34]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.449438, 0.981818 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 34 )
+
+[sub_resource type="ParticlesMaterial" id=35]
+emission_shape = 5
+emission_ring_radius = 2.0
+emission_ring_inner_radius = 1.9
+emission_ring_height = 0.1
+emission_ring_axis = Vector3( 0, 1, 0 )
+gravity = Vector3( 0, 0, 0 )
+radial_accel = -1.0
+tangential_accel = 0.5
+scale_curve = SubResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=33]
+flags_transparent = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 1, 0, 0, 1 )
+albedo_texture = ExtResource( 7 )
+emission_enabled = true
+emission = Color( 1, 0, 0, 1 )
+emission_energy = 2.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="QuadMesh" id=36]
+material = SubResource( 33 )
+size = Vector2( 0.5, 0.8 )
 
 [node name="Roller" type="KinematicBody" groups=["networked"]]
 collision_layer = 68
@@ -72,5 +108,15 @@ visible = false
 [node name="DustTrack" parent="." instance=ExtResource( 6 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0230429, -0.0807253, -0.762481 )
 emitting = false
+
+[node name="TryParticles" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.288404, 0 )
+emitting = false
+amount = 16
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 35 )
+draw_pass_1 = SubResource( 36 )
 
 [editable path="Model/RollerModel"]

@@ -48,12 +48,14 @@ var treasure_diamond = 0
 var collectibles_node: Node
 
 class Upgrades:
-	var chain_longer := false #Done
-	var less_power_drain := false #Done
-	var more_move_speed := false #Done
-	var more_bullet_damage := false #Done
+	var chain_longer := false
+	var less_power_drain := false
+	var more_move_speed := false
+	var more_bullet_damage := false
 	var position_swap := false
-	var super_mode := true
+	var super_mode := false
+	var drill_power := false
+	var level_2 := false
 	
 class Progress:
 	var mined_energy_charges = 0  # doesn't have to equal number of crystals, atm they give 2 charges
@@ -228,6 +230,7 @@ remotesync func try_super(player_name):
 	if not upgrades.super_mode:
 		return
 	if "1" in player_name:
+		Game.roller.try_particles_red()
 		if player_2_wants_to_super:
 			execute_super_mode()
 		elif not player_1_wants_to_super:
@@ -236,6 +239,7 @@ remotesync func try_super(player_name):
 			yield(get_tree().create_timer(2.0), "timeout")
 			player_1_wants_to_super = false
 	elif "2" in player_name:
+		Game.drill.try_particles_red()
 		if player_1_wants_to_super:
 			execute_super_mode()
 		elif not player_2_wants_to_super:
