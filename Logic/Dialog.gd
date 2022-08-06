@@ -300,6 +300,41 @@ func create_all_dialogs():
 	]))
 	all_dialogs.append(d)
 	
+	d = DialogTrigger.new("see_wall")
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.DRILL, "DRILL! DRILL! DRILL!", 1.2),
+		DialogLine.new(SPEAKERS.DRILL, "Drive next to that wall!", 2.4),
+		DialogLine.new(SPEAKERS.DRILL, "I will drill it to dust.", 2.4),
+	]))
+	all_dialogs.append(d)
+	
+	d = DialogTrigger.new("other_side")
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.DRILL, "I see that shiny diamond.", 2.4),
+		DialogLine.new(SPEAKERS.DRILL, "Get me over there!", 2.2),
+		DialogLine.new(SPEAKERS.DRILL, "I can't.", 1.4),
+		DialogLine.new(SPEAKERS.DRILL, "We'd both sink to the ground.", 1.4),
+	]))
+	all_dialogs.append(d)
+	
+	d = DialogTrigger.new("anemone_drill")
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.ROLLER, "?", 1.4),
+		DialogLine.new(SPEAKERS.ROLLER, "Why are you drilling that sea anemone?", 3.0),
+		DialogLine.new(SPEAKERS.DRILL, "I'm a drill", 1.9),
+		DialogLine.new(SPEAKERS.DRILL, "That's what I do...", 2.4),
+	]))
+	all_dialogs.append(d)
+	
+	d = DialogTrigger.new("anemone_drill")
+	d.trigger_mode = TRIGGER_MODES.COUNT_GREATER_EQ
+	d.condition_value = 4
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.ROLLER, "Could you stop drilling those useless anemones?"),
+		DialogLine.new(SPEAKERS.DRILL, "I could but I won't."),
+	]))
+	all_dialogs.append(d)
+	
 	d = DialogTrigger.new("intro_sequence")
 	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.ROLLER, "Finally, our first treasure hunt on our own!", 2.5),
