@@ -6,7 +6,7 @@
 [ext_resource path="res://Logic/TopdownCamera.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Actors/FishPath.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prototyping/Collectibles.gd" type="Script" id=6]
-[ext_resource path="res://LevelEditing.tres" type="Environment" id=7]
+[ext_resource path="res://LevelEnvironment.tres" type="Environment" id=7]
 [ext_resource path="res://Objects/Pickup/Diamond.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Objects/Cliff/Cliff4.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Objects/Cable/Cable.tscn" type="PackedScene" id=10]
@@ -34,9 +34,9 @@ _data = {
 "tilts": PoolRealArray( 0, 0, 0, 0 )
 }
 
-[sub_resource type="Curve3D" id=5]
+[sub_resource type="Curve3D" id=11]
 _data = {
-"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 18.5842, 0, 0.0148958, 0, 0, 0, 0, 0, 0, 13.8744, 0, 6.32119, 0, 0, 0, 0, 0, 0, 12.2779, 0, 12.2683, 0, 0, 0, 0, 0, 0, 10.2822, 0, 16.8184, 0, 0, 0, 0, 0, 0, 10.6814, 0, 21.8075 ),
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 17.1374, 0, -28.6441, 0, 0, 0, 0, 0, 0, 12.3297, 0, -21.5216, 0, 0, 0, 0, 0, 0, 17.7785, 0, -16.144, 0, 0, 0, 0, 0, 0, 15.6417, 0, -9.5557, 0, 0, 0, 0, 0, 0, 20.5919, 0, -3.67961 ),
 "tilts": PoolRealArray( 0, 0, 0, 0, 0 )
 }
 
@@ -48,7 +48,7 @@ _data = {
 
 [sub_resource type="Curve3D" id=7]
 _data = {
-"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 18.7426, 0, 7.46815, 0, 0, 0, 0, 0, 0, 17.4936, 0, 11.215, 0, 0, 0, 0, 0, 0, 16.0275, 0, 16.6994, 0, 0, 0, 0, 0, 0, 13.5296, 0, 23.5957, 0, 0, 0, 0, 0, 0, 13.9097, 0, 25.8221 ),
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 18.7426, 0, 7.46815, 0, 0, 0, 0, 0, 0, 17.4936, 0, 11.215, 0, 0, 0, 0, 0, 0, 17.585, 0, 16.6658, 0, 0, 0, 0, 0, 0, 13.5296, 0, 23.5957, 0, 0, 0, 0, 0, 0, 13.9097, 0, 25.8221 ),
 "tilts": PoolRealArray( 0, 0, 0, 0, 0 )
 }
 
@@ -312,6 +312,27 @@ transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, 38.5982, 0, -16
 [node name="BubbleSpawner11" parent="Objects" instance=ExtResource( 14 )]
 transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, -29.6478, 0, 22.3202 )
 
+[node name="BubbleSpawner21" parent="Objects" instance=ExtResource( 14 )]
+transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, -10.0574, 0, -50.2427 )
+
+[node name="BubbleSpawner22" parent="Objects" instance=ExtResource( 14 )]
+transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, -38.5345, 0, -44.6951 )
+
+[node name="BubbleSpawner23" parent="Objects" instance=ExtResource( 14 )]
+transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, -43.8592, 0, -39.9582 )
+
+[node name="BubbleSpawner24" parent="Objects" instance=ExtResource( 14 )]
+transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, -21.2497, 0, -17.252 )
+
+[node name="BubbleSpawner25" parent="Objects" instance=ExtResource( 14 )]
+transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, -35.7909, 0, -1.37346 )
+
+[node name="BubbleSpawner26" parent="Objects" instance=ExtResource( 14 )]
+transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, -42.0169, 0, 7.49248 )
+
+[node name="BubbleSpawner27" parent="Objects" instance=ExtResource( 14 )]
+transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, -50.8204, 0, 7.65346 )
+
 [node name="BubbleSpawner12" parent="Objects" instance=ExtResource( 14 )]
 transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, -23.2345, 1.90735e-06, 14.7982 )
 
@@ -363,6 +384,12 @@ transform = Transform( 0.701817, 0, -0.712357, 0, 1, 0, 0.712357, 0, 0.701817, 2
 [node name="Anemone3" parent="Objects" instance=ExtResource( 25 )]
 transform = Transform( 0.701817, 0, -0.712357, 0, 1, 0, 0.712357, 0, 0.701817, 38.6065, 1.90735e-06, -5.83077 )
 
+[node name="Anemone8" parent="Objects" instance=ExtResource( 25 )]
+transform = Transform( 0.701817, 0, -0.712357, 0, 1, 0, 0.712357, 0, 0.701817, 53.096, 1.90735e-06, -14.6566 )
+
+[node name="Anemone9" parent="Objects" instance=ExtResource( 25 )]
+transform = Transform( 0.701817, 0, -0.712357, 0, 1, 0, 0.712357, 0, 0.701817, 58.5583, 1.90735e-06, -13.0722 )
+
 [node name="Anemone4" parent="Objects" instance=ExtResource( 25 )]
 transform = Transform( 0.701817, 0, -0.712357, 0, 1, 0, 0.712357, 0, 0.701817, -19.7407, 1.90735e-06, -33.9219 )
 
@@ -391,7 +418,11 @@ zoom_min = 1.1
 script = ExtResource( 6 )
 
 [node name="TreasureGold" parent="Collectibles" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.557, 0, 7.65944 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.848, 0, 5.57712 )
+version = 3
+
+[node name="TreasureGold4" parent="Collectibles" instance=ExtResource( 3 )]
+transform = Transform( 0.213457, 0, -0.976953, 0, 1, 0, 0.976953, 0, 0.213457, 54.1626, 1.90735e-06, -12.4371 )
 version = 3
 
 [node name="TreasureGold2" parent="Collectibles" instance=ExtResource( 3 )]
@@ -409,6 +440,10 @@ version = 3
 [node name="TreasureGold8" parent="Collectibles" instance=ExtResource( 3 )]
 transform = Transform( 0.998375, 0, 0, 0, 0.998375, 0, 0, 0, 0.998375, -40.7128, -1.43051e-06, -44.4211 )
 version = 4
+
+[node name="TreasureGold10" parent="Collectibles" instance=ExtResource( 3 )]
+transform = Transform( 0.998375, 0, 0, 0, 0.998375, 0, 0, 0, 0.998375, -15.5879, -1.43051e-06, -52.8226 )
+version = 2
 
 [node name="TreasureGold5" parent="Collectibles" instance=ExtResource( 3 )]
 transform = Transform( 0.892295, 0, -0.447841, 0, 0.998375, 0, 0.447841, 0, 0.892295, -39.586, 0.0564327, 10.0912 )
@@ -433,8 +468,20 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1772, -4.76837e-07, -22.791
 version = 3
 
 [node name="TreasureGears11" parent="Collectibles" instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21.1485, 4.76837e-07, -22.7223 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9962, 4.76837e-07, -25.4967 )
 version = 4
+
+[node name="TreasureGears20" parent="Collectibles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 55.7575, 4.76837e-07, -12.2631 )
+version = 4
+
+[node name="TreasureGears21" parent="Collectibles" instance=ExtResource( 11 )]
+transform = Transform( 0.279276, 0, -0.960211, 0, 1, 0, 0.960211, 0, 0.279276, 55.0574, 4.76837e-07, -13.7631 )
+version = 4
+
+[node name="TreasureGears17" parent="Collectibles" instance=ExtResource( 11 )]
+transform = Transform( 0.803556, 0, -0.59523, 0, 1, 0, 0.59523, 0, 0.803556, 18.3702, 4.76837e-07, -27.0676 )
+version = 2
 
 [node name="TreasureGears3" parent="Collectibles" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9042, -4.76837e-07, -14.191 )
@@ -444,12 +491,20 @@ version = 2
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19.2987, -4.76837e-07, -29.4972 )
 version = 4
 
+[node name="TreasureGears16" parent="Collectibles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.6833, -4.76837e-07, -27.0292 )
+version = 2
+
 [node name="TreasureGears13" parent="Collectibles" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -42.7574, -4.76837e-07, -42.0502 )
 version = 2
 
 [node name="TreasureGears14" parent="Collectibles" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37.421, -4.76837e-07, -38.114 )
+
+[node name="TreasureGears15" parent="Collectibles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.4404, -4.76837e-07, -4.70718 )
+version = 3
 
 [node name="TreasureGears8" parent="Collectibles" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.7731, -4.76837e-07, -45.9699 )
@@ -469,6 +524,13 @@ version = 2
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -43.0197, -9.53674e-07, 8.01625 )
 version = 3
 
+[node name="TreasureGears18" parent="Collectibles" instance=ExtResource( 11 )]
+transform = Transform( 0.587348, 0, -0.809335, 0, 1, 0, 0.809335, 0, 0.587348, -31.67, -9.53674e-07, 40.7191 )
+version = 3
+
+[node name="TreasureGears19" parent="Collectibles" instance=ExtResource( 11 )]
+transform = Transform( 0.587348, 0, -0.809335, 0, 1, 0, 0.809335, 0, 0.587348, -9.31013, 1.90735e-06, 34.3415 )
+
 [node name="TreasureGears7" parent="Collectibles" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -42.6223, -9.53674e-07, 9.07524 )
 version = 4
@@ -486,7 +548,7 @@ can_attack = true
 
 [node name="FishPath2" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
-curve = SubResource( 5 )
+curve = SubResource( 11 )
 can_attack = true
 
 [node name="FishPath3" parent="." instance=ExtResource( 5 )]

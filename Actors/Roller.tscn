@@ -195,9 +195,10 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.02304
 emitting = false
 
 [node name="Puff" parent="." instance=ExtResource( 6 )]
-transform = Transform( -1.37279, 0, -1.20013e-07, -1.20013e-07, -6.00064e-08, 1.37279, -5.24593e-15, 1.37279, 6.00064e-08, 0.0230429, 0.170656, -0.860537 )
+transform = Transform( -1.73336, 0, -1.51535e-07, -1.51535e-07, -7.57673e-08, 1.73336, -6.62379e-15, 1.73336, 7.57673e-08, 0.0230429, 0.342269, -0.166025 )
 emitting = false
 one_shot = true
+speed_scale = 0.7
 explosiveness = 0.69
 process_material = SubResource( 39 )
 draw_pass_1 = SubResource( 41 )
