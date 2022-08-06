@@ -6,7 +6,8 @@ func _ready() -> void:
 	# connect to all shop entries
 	for entry in $VBoxContainer/GridContainer.get_children():
 		entry = entry as ShopEntry
-		entry.connect("upgrade_clicked", self, "upgrade_clicked")
+		if entry != null:
+			entry.connect("upgrade_clicked", self, "upgrade_clicked")
 	initialize()
 	
 	# reinitialize to see what's affordable, update treasure count interface
@@ -26,6 +27,8 @@ func initialize():
 	
 	for entry in $VBoxContainer/GridContainer.get_children():
 		entry = entry as ShopEntry
+		if entry == null:
+			continue
 		if entry.upgrade_attribute in Game.upgrades:
 			if Game.upgrades.get(entry.upgrade_attribute):
 				entry.bought = true
@@ -59,4 +62,8 @@ func upgrade_clicked(upgrade_attribute: String, cost_gold: int, cost_gears:int):
 		Game.rpc("set_upgrade", upgrade_attribute, cost_gold, cost_gears)
 
 func _on_Button_pressed() -> void:
+	emit_signal("done_shopping")
+
+
+func _on_DoneShopping_clicked() -> void:
 	emit_signal("done_shopping")

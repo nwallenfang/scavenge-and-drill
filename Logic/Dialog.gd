@@ -229,7 +229,7 @@ func create_all_dialogs():
 	all_dialogs.append(d)
 	
 	d = DialogTrigger.new("getting_hit")
-	d.trigger_mode = TRIGGER_MODES.COUNT_EXACT_EQ
+	d.trigger_mode = TRIGGER_MODES.COUNT_GREATER_EQ
 	d.condition_value = 4
 	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.ROLLER, "Those eels always steal our power."),
