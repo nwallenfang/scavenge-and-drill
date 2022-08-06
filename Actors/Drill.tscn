@@ -98,7 +98,7 @@ radius = 0.435087
 [sub_resource type="Curve" id=31]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.449438, 0.981818 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=2]
+[sub_resource type="CurveTexture" id=35]
 curve = SubResource( 31 )
 
 [sub_resource type="ParticlesMaterial" id=32]
@@ -110,9 +110,9 @@ emission_ring_axis = Vector3( 0, 1, 0 )
 gravity = Vector3( 0, 0, 0 )
 radial_accel = -1.0
 tangential_accel = 0.5
-scale_curve = SubResource( 2 )
+scale_curve = SubResource( 35 )
 
-[sub_resource type="SpatialMaterial" id=33]
+[sub_resource type="SpatialMaterial" id=36]
 flags_transparent = true
 params_billboard_mode = 3
 particles_anim_h_frames = 1
@@ -127,7 +127,7 @@ emission_operator = 0
 emission_on_uv2 = false
 
 [sub_resource type="QuadMesh" id=34]
-material = SubResource( 33 )
+material = SubResource( 36 )
 size = Vector2( 0.5, 0.8 )
 
 [node name="Drill" type="KinematicBody" groups=["networked"]]
