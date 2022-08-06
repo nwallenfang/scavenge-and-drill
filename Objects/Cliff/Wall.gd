@@ -5,6 +5,8 @@ var hp := 1.0
 var drilled_out := false
 var old_scale_y
 
+var dialog := false
+
 func _ready():
 	old_scale_y = $Wall.scale.y
 
@@ -13,7 +15,8 @@ func get_drilled(delta):
 		return
 	currently_drilled = true
 	hp -= delta * (1.0 if Game.upgrades.drill_power else .02)
-	if not Game.upgrades.drill_power:
+	if not Game.upgrades.drill_power and not dialog:
+		dialog = true
 		Dialog.trigger("drill_too_weak")
 	#$DrillTarget.translation.y = lerp(1.5, 2.1, hp)
 	$Wall.scale.y = old_scale_y * lerp(.82, 1.0, hp)

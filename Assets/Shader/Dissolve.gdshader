@@ -28,7 +28,7 @@ void fragment() {
 	ALBEDO = COLOR.rgb;
 	vec2 sample_vector = UV + uv_offset;
 	float sample = texture(dissolve_texture, sample_vector).r;
-	ALPHA = smoothstep(dissolve_amount - 0.3, dissolve_amount, sample);
+	ALPHA = smoothstep(dissolve_amount - 0.3, dissolve_amount, sample) * albedo.a;
 	METALLIC = metallic;
 	ROUGHNESS = roughness;
 	SPECULAR = specular;
