@@ -14,7 +14,7 @@
 [ext_resource path="res://Assets/Sprites/upgrade_icons/position_swap.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Sprites/upgrade_icons/super_mode.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Sprites/treasure_diamond.png" type="Texture" id=14]
-[ext_resource path="res://Assets/Sound/UI_MULTIJAM_Menu_01_02.ogg" type="AudioStream" id=15]
+[ext_resource path="res://Assets/Sound/UI_MULTIJAM_Menu_01_01.ogg" type="AudioStream" id=15]
 
 [sub_resource type="ShaderMaterial" id=5]
 shader = ExtResource( 1 )
