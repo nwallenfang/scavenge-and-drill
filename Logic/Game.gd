@@ -48,12 +48,14 @@ var treasure_diamond = 0
 var collectibles_node: Node
 
 class Upgrades:
-	var chain_longer := false #Done
-	var less_power_drain := false #Done
-	var more_move_speed := false #Done
-	var more_bullet_damage := false #Done
+	var chain_longer := false
+	var less_power_drain := false
+	var more_move_speed := false
+	var more_bullet_damage := false
 	var position_swap := false
-	var super_mode := true
+	var super_mode := false
+	var drill_power := false
+	var level_2 := false
 	
 class Progress:
 	var mined_energy_charges = 0  # doesn't have to equal number of crystals, atm they give 2 charges

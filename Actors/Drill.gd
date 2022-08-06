@@ -36,6 +36,10 @@ export var scrap_color := Color.gray
 
 func _ready():
 	._ready()
+	$Model/GroundParticles.scale *= (1.2 if Game.upgrades.drill_power else .8)
+	$Model/CrystalParticles.scale *= (1.2 if Game.upgrades.drill_power else .8)
+	$Model/GoldParticles.scale *= (1.2 if Game.upgrades.drill_power else .8)
+	$Model/ScrapParticles.scale *= (1.2 if Game.upgrades.drill_power else .8)
 	$Model/GroundParticles.draw_pass_1.surface_get_material(0).set("albedo_color", ground_color)
 	$Model/CrystalParticles.draw_pass_1.surface_get_material(0).set("albedo_color", crystal_color)
 	$Model/GoldParticles.draw_pass_1.surface_get_material(0).set("albedo_color", gold_color)
@@ -127,7 +131,7 @@ func update_drill_animation():
 
 func drill_the_crystals(delta):
 	if has_drill_target:
-		drill_target.get_parent().get_drilled(delta * .37)
+		drill_target.get_parent().get_drilled(delta * .37 * (1.2 if Game.upgrades.drill_power else .8))
 	for area in $DrillArea.get_overlapping_areas():
 		area.get_parent().get_drilled(delta * .3)
 

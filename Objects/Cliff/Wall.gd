@@ -12,7 +12,9 @@ func get_drilled(delta):
 	if drilled_out:
 		return
 	currently_drilled = true
-	hp -= delta
+	hp -= delta * (1.0 if Game.upgrades.drill_power else .02)
+	if not Game.upgrades.drill_power:
+		Dialog.trigger("drill_too_weak")
 	#$DrillTarget.translation.y = lerp(1.5, 2.1, hp)
 	$Wall.scale.y = old_scale_y * lerp(.82, 1.0, hp)
 	if not $DrillParticles.emitting:
