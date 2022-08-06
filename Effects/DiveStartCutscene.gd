@@ -47,6 +47,7 @@ var cutscene_active := false
 
 func start_cutscene():
 	cutscene_active = true
+	Game.ui.get_node("SpaceToSkip").visible = true
 	point_1 = $Point1
 	point_2 = $Point2
 	point_3 = $Point3
@@ -69,6 +70,7 @@ func host_sync_end_cutscene():
 remotesync func end_cutscene():
 	cutscene_active = false
 	self.visible = false
+	Game.ui.get_node("SpaceToSkip").visible = false
 	emit_signal("cutscene_ended")
 
 func _input(event):

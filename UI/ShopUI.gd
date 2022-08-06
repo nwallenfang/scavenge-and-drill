@@ -52,7 +52,6 @@ func upgrade_clicked(upgrade_attribute: String, cost_gold: int, cost_gears:int):
 	# disabled
 	print("CLICKED " + upgrade_attribute)
 	
-	# TODO reduce resources gears/gold
 	
 	if not upgrade_attribute in Game.upgrades:
 		Game.log("Error: unknown attribute " + upgrade_attribute)
