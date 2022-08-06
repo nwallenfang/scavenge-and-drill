@@ -119,20 +119,20 @@ func replace_collectibles(collectibles_node: Node):
 	add_child(collectibles_node)
 
 
-var cooldown_time = 10.0
-var count = 0
-func _on_CloseToEelDialog_body_entered(body: Node) -> void:
-	if body is Player:
-		if count > 0:
-			if Game.progress.mined_energy_charges == 0:
-				# only trigger second time if no energy crystals mined
-				Dialog.trigger("close_to_eel")
-				return
-			else:
-				return
-		
-		Dialog.trigger("close_to_eel")
-		$CloseToEelDialog.set_deferred("monitoring", false)
-		count += 1
-		yield(get_tree().create_timer(cooldown_time), "timeout")
-		$CloseToEelDialog.set_deferred("monitoring", true)
+#var cooldown_time = 10.0
+#var count = 0
+#func _on_CloseToEelDialog_body_entered(body: Node) -> void:
+#	if body is Player:
+#		if count > 0:
+#			if Game.progress.mined_energy_charges == 0:
+#				# only trigger second time if no energy crystals mined
+#				Dialog.trigger("close_to_eel")
+#				return
+#			else:
+#				return
+#
+#		Dialog.trigger("close_to_eel")
+#		$CloseToEelDialog.set_deferred("monitoring", false)
+#		count += 1
+#		yield(get_tree().create_timer(cooldown_time), "timeout")
+#		$CloseToEelDialog.set_deferred("monitoring", true)
