@@ -189,7 +189,8 @@ remotesync func shop_to_game_transition():
 	yield(Game.ui, "fade_done")
 	Game.ui.update_treasures(1)
 	Game.ui.update_treasures(2)
-	Game.ui.update_treasures(3)
+	if $ShopUI.diamonds_were_visible_once:
+		Game.ui.update_treasures(3)
 	Game.power_draining = false
 	var new_level = LEVEL_SCENE.instance()
 	# if there is a lag/loading here we can put most of this in method just above this one

@@ -6,7 +6,7 @@
 [ext_resource path="res://Logic/TopdownCamera.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Actors/FishPath.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prototyping/Collectibles.gd" type="Script" id=6]
-[ext_resource path="res://LevelEnvironment.tres" type="Environment" id=7]
+[ext_resource path="res://LevelEditing.tres" type="Environment" id=7]
 [ext_resource path="res://Objects/Pickup/Diamond.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Objects/Cliff/Cliff4.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Objects/Cable/Cable.tscn" type="PackedScene" id=10]
@@ -606,8 +606,24 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 6.73406
 depth = 10.0
 polygon = PoolVector2Array( -48.079, 25.3991, -52.2593, 24.829, -54.3494, 26.5391, -53.7793, 30.9094, -52.8926, 33.6963, -52.8926, 39.0166, -51.0558, 43.8936, -48.269, 45.477, -44.9755, 45.0336, -41.9986, 43.0068, -40.7952, 40.4733, -41.8719, 34.4563, -44.9755, 27.8692, -46.7489, 26.0958, -44.0887, 27.2992, -41.0486, 34.393, -39.0218, 42.3735, -43.0753, 45.9837, -51.3725, 46.9337, -54.7927, 39.4599, -55.2994, 29.8327, -55.1728, 23.1189, -47.889, 23.3089, -45.2288, 25.7791, -46.8122, 26.3491 )
 
+[node name="CollisionPolygon6" type="CollisionPolygon" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 6.73406, 0, -2.81422 )
+depth = 10.0
+polygon = PoolVector2Array( -45.633, -22.3425, -54.7837, -25.989, -62.4895, -23.2369, -67.9936, -15.8751, -69.9889, -8.65091, -66.6864, -1.56432, -60.2878, 3.66463, -51.3436, 7.58634, -43.3625, 6.69191, -41.8489, 8.82477, -54.6461, 9.09998, -66.2048, 3.80223, -72.2593, -6.79326, -68.8193, -20.1408, -57.1229, -28.8787, -47.0779, -26.2642, -43.8442, -22.8241 )
+
+[node name="CollisionPolygon7" type="CollisionPolygon" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 6.73406, 0, -2.81422 )
+depth = 10.0
+polygon = PoolVector2Array( 5.8175, 28.3953, 5.40469, 36.8579, 11.3904, 41.2612, 21.0915, 43.4629, 32.0998, 41.3301, 45.9978, 31.7666, 57.7629, 18.5566, 57.0061, 8.23634, 50.1259, 0.461726, 40.7001, -4.76722, 30.9302, -6.28086, 23.4308, -2.15274, 6.0239, 27.7761, 2.99662, 29.9089, 3.34063, 41.4677, 14.9681, 45.7334, 37.8792, 42.4997, 51.3644, 30.0465, 62.1662, 17.1806, 58.5197, 1.70016, 47.305, -5.66164, 34.0263, -9.65215, 23.8436, -3.87279 )
+
+[node name="CollisionPolygon8" type="CollisionPolygon" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 6.73406, 0, -2.81422 )
+depth = 10.0
+
 [node name="CloseToEelDialog" type="Area" parent="."]
 transform = Transform( 1.23078, -0.0947068, 0.105219, 0.120163, 0.99525, -0.0115628, -0.13444, 0.0225334, 0.952936, 20.5816, 1.75542, 34.7681 )
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape" type="CollisionShape" parent="CloseToEelDialog"]
 shape = SubResource( 9 )
