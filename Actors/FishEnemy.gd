@@ -44,6 +44,7 @@ func _network_process_slowly(delta):
 remotesync func set_state(s, target_name = ""):
 	state = s
 	if s == STATES.ATTACK:
+		Sound.play_fish_ambience()
 		$Model/EelModel/AnimationPlayer.playback_speed *= 1.5
 	if target_name != "":
 		if "1" in target_name:

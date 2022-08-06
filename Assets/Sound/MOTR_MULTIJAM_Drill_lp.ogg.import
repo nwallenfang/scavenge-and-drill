@@ -11,5 +11,5 @@ dest_files=[ "res://.import/MOTR_MULTIJAM_Drill_lp.ogg-51b5612f1f2cab26d72b2c174
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0

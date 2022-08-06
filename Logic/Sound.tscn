@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Logic/Sound.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sound/VOX_Robot_DrillRobot_02.ogg" type="AudioStream" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://Assets/Sound/WATR_MULTIJAM_FishSwim_04.ogg" type="AudioStream" id=11]
 [ext_resource path="res://Assets/Sound/WATR_MULTIJAM_FishSwim_05.ogg" type="AudioStream" id=12]
 [ext_resource path="res://Assets/Sound/UI_MULTIJAM_Menu_Upgrades_01_01.ogg" type="AudioStream" id=13]
+[ext_resource path="res://Assets/Sound/AMB_MULTIJAM_Underwater.ogg" type="AudioStream" id=14]
+[ext_resource path="res://Assets/Sound/MOTR_MULTIJAM_Drill_lp.ogg" type="AudioStream" id=15]
 
 [node name="Sound" type="Node"]
 script = ExtResource( 1 )
@@ -51,6 +53,9 @@ bus = "SFX"
 
 [node name="FishAmbienceTimer" type="Timer" parent="."]
 
+[node name="UnderwaterAmbienceTimer" type="Timer" parent="."]
+wait_time = 10.0
+
 [node name="FishAmbiences" type="Node" parent="."]
 
 [node name="Ambience1" type="AudioStreamPlayer" parent="FishAmbiences"]
@@ -73,4 +78,13 @@ bus = "SFX"
 stream = ExtResource( 12 )
 bus = "SFX"
 
+[node name="UnderwaterAmbience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+bus = "SFX"
+
+[node name="Drilling" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+bus = "SFX"
+
 [connection signal="timeout" from="FishAmbienceTimer" to="." method="_on_FishAmbienceTimer_timeout"]
+[connection signal="timeout" from="UnderwaterAmbienceTimer" to="." method="_on_UnderwaterAmbienceTimer_timeout"]
