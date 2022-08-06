@@ -12,7 +12,7 @@
 
 [sub_resource type="ShaderMaterial" id=5]
 shader = ExtResource( 6 )
-shader_param/fill_color = Color( 1, 1, 1, 1 )
+shader_param/fill_color = Color( 0.482353, 0.45098, 0.45098, 1 )
 shader_param/empty_color = Color( 0.588235, 0.588235, 0.588235, 1 )
 shader_param/enabled = null
 shader_param/texture_resource = ExtResource( 7 )
@@ -96,7 +96,6 @@ margin_bottom = 51.0
 mouse_filter = 1
 
 [node name="GearIcon" type="ColorRect" parent="Panel/CenterContainer/VBoxContainer/CenterContainer/Cost/AspectRatioContainer"]
-modulate = Color( 0.172549, 0.133333, 0.133333, 1 )
 material = SubResource( 5 )
 margin_top = 12.5
 margin_right = 26.0

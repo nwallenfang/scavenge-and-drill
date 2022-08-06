@@ -1,9 +1,10 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://UI/UI.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/PausedFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Assets/Shader/Vignette.gdshader" type="Shader" id=3]
 [ext_resource path="res://Assets/Sprites/treasure_diamond.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Fonts/TutorialFont.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Assets/Sprites/gold.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Fonts/debug_font.tres" type="DynamicFont" id=7]
 [ext_resource path="res://Assets/Sprites/gear.png" type="Texture" id=8]
@@ -11,6 +12,7 @@
 [ext_resource path="res://Assets/Sprites/energy_crystal.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Sprites/upgrade_icons/power_bar_icon.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Shader/energy_crystal_ui.gdshader" type="Shader" id=12]
+[ext_resource path="res://UI/Styles/tut_box.tres" type="StyleBox" id=13]
 
 [sub_resource type="ShaderMaterial" id=13]
 shader = ExtResource( 3 )
@@ -239,6 +241,7 @@ tracks/0/keys = {
 }
 
 [node name="UI" type="Control"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( -359, -172 )
@@ -389,6 +392,7 @@ margin_right = 40.0
 margin_bottom = 21.0
 
 [node name="Game" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -401,9 +405,9 @@ anchor_bottom = 1.0
 color = Color( 1, 1, 1, 0 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Game"]
+visible = false
 
 [node name="LeftSide" type="HBoxContainer" parent="Game/CanvasLayer"]
-visible = false
 anchor_left = 0.011
 anchor_top = 0.15
 anchor_right = 0.02
@@ -523,7 +527,7 @@ margin_bottom = 51.0
 size_flags_vertical = 0
 
 [node name="GearIcon" type="ColorRect" parent="Game/CanvasLayer/RightSide/TreasureUI"]
-modulate = Color( 0.172549, 0.133333, 0.133333, 1 )
+modulate = Color( 0.356863, 0.301961, 0.301961, 1 )
 material = SubResource( 4 )
 margin_right = 48.0
 margin_bottom = 51.0
@@ -585,6 +589,28 @@ margin_right = 270.0
 margin_bottom = 51.0
 custom_fonts/font = ExtResource( 9 )
 text = "00"
+
+[node name="TutorialPanel" type="PanelContainer" parent="Game/CanvasLayer"]
+unique_name_in_owner = true
+anchor_left = 0.993
+anchor_top = 0.096
+anchor_right = 0.993
+anchor_bottom = 0.318
+margin_left = -216.0
+grow_horizontal = 0
+custom_styles/panel = ExtResource( 13 )
+
+[node name="TutorialMsg" type="Label" parent="Game/CanvasLayer/TutorialPanel"]
+unique_name_in_owner = true
+margin_top = 39.0
+margin_right = 216.0
+margin_bottom = 93.0
+custom_fonts/font = ExtResource( 5 )
+text = "Explore and find treasures!
+Left Mouse Button to drill
+"
+align = 1
+valign = 1
 
 [node name="FadeRect" type="ColorRect" parent="."]
 anchor_right = 1.0

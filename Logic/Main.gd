@@ -183,6 +183,7 @@ func game_to_shop_transition():
 	rpc("shop_to_game_transition")
 	
 remotesync func shop_to_game_transition():
+	Game.ui.init_tutorial_msg()
 	Game.ui.fade_out(0.3)
 	Game.game_started = false
 	yield(Game.ui, "fade_done")
