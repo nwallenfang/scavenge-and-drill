@@ -142,3 +142,12 @@ func _on_CloseToEelDialog_body_entered(body: Node) -> void:
 
 func _on_CloseToEelMiddle_body_entered(body):
 	Dialog.trigger("close_to_eel_middle")
+
+
+func _on_SeeWallDialog_body_entered(body):
+	Dialog.trigger("see_wall")
+
+
+func _on_OtherSideDialog_body_entered(body):
+	if not Game.upgrades.position_swap:
+		Dialog.trigger("other_side")

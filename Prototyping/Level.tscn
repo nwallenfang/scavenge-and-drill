@@ -501,7 +501,7 @@ transform = Transform( 0.894353, 0, -0.907784, 0, 1.27434, 0, 0.907784, 0, 0.894
 transform = Transform( 0.894353, 0, -0.907784, 0, 1.27434, 0, 0.907784, 0, 0.894353, 66.7467, 1.90735e-06, 9.56474 )
 
 [node name="Anemone10" parent="Objects" instance=ExtResource( 25 )]
-transform = Transform( 0.701817, 0, -0.712357, 0, 1, 0, 0.712357, 0, 0.701817, 37.7208, 1.90735e-06, 59.3944 )
+transform = Transform( 0.701817, 0, -0.712357, 0, 1, 0, 0.712357, 0, 0.701817, 39.5644, 1.90735e-06, 56.4908 )
 
 [node name="Anemone3" parent="Objects" instance=ExtResource( 25 )]
 transform = Transform( 0.701817, 0, -0.712357, 0, 1, 0, 0.712357, 0, 0.701817, 38.6065, 1.90735e-06, -5.83077 )
@@ -674,7 +674,7 @@ transform = Transform( 0.587348, 0, -0.809335, 0, 1, 0, 0.809335, 0, 0.587348, -
 version = 3
 
 [node name="TreasureGears22" parent="Collectibles" instance=ExtResource( 11 )]
-transform = Transform( 0.587348, 0, -0.809335, 0, 1, 0, 0.809335, 0, 0.587348, 36.4708, -8.58307e-06, 57.9159 )
+transform = Transform( 0.587348, 0, -0.809335, 0, 1, 0, 0.809335, 0, 0.587348, 35.6159, -8.58307e-06, 58.6109 )
 version = 4
 
 [node name="TreasureGears24" parent="Collectibles" instance=ExtResource( 11 )]
@@ -685,7 +685,7 @@ version = 3
 transform = Transform( 0.587348, 0, -0.809335, 0, 1, 0, 0.809335, 0, 0.587348, 93.3001, 0.310073, 57.9523 )
 
 [node name="TreasureGears23" parent="Collectibles" instance=ExtResource( 11 )]
-transform = Transform( -0.992176, 0, -0.124849, 0, 1, 0, 0.124849, 0, -0.992176, 37.4363, -8.58307e-06, 57.5378 )
+transform = Transform( -0.992176, 0, -0.124849, 0, 1, 0, 0.124849, 0, -0.992176, 36.6693, -8.58307e-06, 57.6343 )
 version = 2
 
 [node name="TreasureGears19" parent="Collectibles" instance=ExtResource( 11 )]
@@ -838,13 +838,13 @@ shape = SubResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.44705, 0, 45.4271 )
 
 [node name="Point1" type="Camera" parent="DiveStartCutscene"]
-transform = Transform( 0.419785, 0, -0.907624, 0, 1, 0, 0.907624, 0, 0.419785, 37.2973, 3.12208, -60.7893 )
+transform = Transform( 0.419785, 0.215606, -0.881643, 0, 0.971375, 0.23755, 0.907624, -0.09972, 0.407769, 37.2973, 3.41402, -60.7893 )
 
 [node name="Point2" type="Camera" parent="DiveStartCutscene"]
 transform = Transform( -0.85512, 0, 0.51843, 0, 1, 0, -0.51843, 0, -0.85512, 29.7726, 8.49234, -47.0862 )
 
 [node name="Point3" type="Camera" parent="DiveStartCutscene"]
-transform = Transform( -0.918515, 0.0181013, 0.394971, 0, 0.998951, -0.0457813, -0.395385, -0.0420509, -0.917552, 11.9339, 8.22862, -27.4567 )
+transform = Transform( -0.918515, 0.0181013, 0.394971, 0, 0.998951, -0.0457814, -0.395385, -0.0420509, -0.917552, 9.95713, 8.45775, -22.8645 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
 collision_layer = 64
@@ -908,6 +908,22 @@ collision_mask = 4
 [node name="CollisionShape" type="CollisionShape" parent="CloseToEelDialog"]
 shape = SubResource( 9 )
 
+[node name="SeeWallDialog" type="Area" parent="."]
+transform = Transform( 1.23078, -0.0947068, 0.105219, 0.120163, 0.99525, -0.0115628, -0.13444, 0.0225334, 0.952936, 39.1237, 3.09224, 53.6549 )
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape" type="CollisionShape" parent="SeeWallDialog"]
+shape = SubResource( 9 )
+
+[node name="OtherSideDialog" type="Area" parent="."]
+transform = Transform( 1.1193, -0.0947065, -0.408315, 0.0944115, 0.99525, -0.0584512, 0.534403, 0.0225334, 0.865537, 18.4038, 2.57431, -10.5536 )
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape" type="CollisionShape" parent="OtherSideDialog"]
+shape = SubResource( 9 )
+
 [node name="CloseToEelMiddle" type="Area" parent="."]
 transform = Transform( 2.07757, -0.159866, 0.177611, 0.202836, 1.67999, -0.0195181, -0.226936, 0.0380366, 1.60856, -1.17924, 0.521982, -2.21304 )
 collision_layer = 0
@@ -920,4 +936,6 @@ shape = SubResource( 9 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.1261, 0, -18.5226 )
 
 [connection signal="body_entered" from="CloseToEelDialog" to="." method="_on_CloseToEelDialog_body_entered"]
+[connection signal="body_entered" from="SeeWallDialog" to="." method="_on_SeeWallDialog_body_entered"]
+[connection signal="body_entered" from="OtherSideDialog" to="." method="_on_OtherSideDialog_body_entered"]
 [connection signal="body_entered" from="CloseToEelMiddle" to="." method="_on_CloseToEelMiddle_body_entered"]

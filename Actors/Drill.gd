@@ -88,6 +88,8 @@ func _physics_process(delta):
 		update_drill_animation()
 		last_frame_offset = drill_animation_offset
 	if not has_drill_target:
+		if not $TargetDetection.get_overlapping_areas().empty():
+			cooldown()
 		if is_drilling:
 			ACC = move_acc_drilling
 			drill_the_crystals(delta)
