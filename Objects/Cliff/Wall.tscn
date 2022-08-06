@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Assets/GLTF/StoneC4.material" type="Material" id=1]
 [ext_resource path="res://Assets/GLTF/StoneC3.material" type="Material" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Objects/DrillTarget.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Objects/Cliff/Wall.gd" type="Script" id=6]
 [ext_resource path="res://Effects/DrillParticles.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Effects/DustTrack.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Sprites/voronoi.png" type="Texture" id=9]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Wall_Cube036"
@@ -94,6 +96,312 @@ size = Vector2( 0.04, 0.04 )
 [sub_resource type="BoxShape" id=19]
 extents = Vector3( 0.719791, 1.35519, 2.72108 )
 
+[sub_resource type="Shader" id=20]
+code = "// NOTE: Shader automatically converted from Godot Engine 3.4.stable's ParticlesMaterial.
+
+shader_type particles;
+uniform vec3 direction;
+uniform float spread;
+uniform float flatness;
+uniform float initial_linear_velocity;
+uniform float initial_angle;
+uniform float angular_velocity;
+uniform float orbit_velocity;
+uniform float linear_accel;
+uniform float radial_accel;
+uniform float tangent_accel;
+uniform float damping;
+uniform float scale;
+uniform float hue_variation;
+uniform float anim_speed;
+uniform float anim_offset;
+uniform float initial_linear_velocity_random;
+uniform float initial_angle_random;
+uniform float angular_velocity_random;
+uniform float orbit_velocity_random;
+uniform float linear_accel_random;
+uniform float radial_accel_random;
+uniform float tangent_accel_random;
+uniform float damping_random;
+uniform float scale_random;
+uniform float hue_variation_random;
+uniform float anim_speed_random;
+uniform float anim_offset_random;
+uniform float lifetime_randomness;
+uniform float emission_sphere_radius;
+uniform vec4 color_value : hint_color;
+uniform int trail_divisor;
+uniform vec3 gravity;
+uniform sampler2D color_ramp;
+uniform sampler2D scale_texture;
+
+
+float rand_from_seed(inout uint seed) {
+	int k;
+	int s = int(seed);
+	if (s == 0)
+	s = 305420679;
+	k = s / 127773;
+	s = 16807 * (s - k * 127773) - 2836 * k;
+	if (s < 0)
+		s += 2147483647;
+	seed = uint(s);
+	return float(seed % uint(65536)) / 65535.0;
+}
+
+float rand_from_seed_m1_p1(inout uint seed) {
+	return rand_from_seed(seed) * 2.0 - 1.0;
+}
+
+uint hash(uint x) {
+	x = ((x >> uint(16)) ^ x) * uint(73244475);
+	x = ((x >> uint(16)) ^ x) * uint(73244475);
+	x = (x >> uint(16)) ^ x;
+	return x;
+}
+
+void vertex() {
+	uint base_number = NUMBER / uint(trail_divisor);
+	uint alt_seed = hash(base_number + uint(1) + RANDOM_SEED);
+	float angle_rand = rand_from_seed(alt_seed);
+	float scale_rand = rand_from_seed(alt_seed);
+	float hue_rot_rand = rand_from_seed(alt_seed);
+	float anim_offset_rand = rand_from_seed(alt_seed);
+	float pi = 3.14159;
+	float degree_to_rad = pi / 180.0;
+
+	bool restart = false;
+	float tv = 0.0;
+	if (CUSTOM.y > CUSTOM.w) {
+		restart = true;
+		tv = 1.0;
+	}
+
+	if (RESTART || restart) {
+		float tex_linear_velocity = 0.0;
+		float tex_angle = 0.0;
+		float tex_anim_offset = 0.0;
+		float spread_rad = spread * degree_to_rad;
+		{
+			float angle1_rad = rand_from_seed_m1_p1(alt_seed) * spread_rad;
+			float angle2_rad = rand_from_seed_m1_p1(alt_seed) * spread_rad * (1.0 - flatness);
+			vec3 direction_xz = vec3(sin(angle1_rad), 0.0, cos(angle1_rad));
+			vec3 direction_yz = vec3(0.0, sin(angle2_rad), cos(angle2_rad));
+			direction_yz.z = direction_yz.z / max(0.0001,sqrt(abs(direction_yz.z))); // better uniform distribution
+			vec3 spread_direction = vec3(direction_xz.x * direction_yz.z, direction_yz.y, direction_xz.z * direction_yz.z);
+			vec3 direction_nrm = length(direction) > 0.0 ? normalize(direction) : vec3(0.0, 0.0, 1.0);
+			// rotate spread to direction
+			vec3 binormal = cross(vec3(0.0, 1.0, 0.0), direction_nrm);
+			if (length(binormal) < 0.0001) {
+				// direction is parallel to Y. Choose Z as the binormal.
+				binormal = vec3(0.0, 0.0, 1.0);
+			}
+			binormal = normalize(binormal);
+			vec3 normal = cross(binormal, direction_nrm);
+			spread_direction = binormal * spread_direction.x + normal * spread_direction.y + direction_nrm * spread_direction.z;
+			VELOCITY = spread_direction * initial_linear_velocity * mix(1.0, rand_from_seed(alt_seed), initial_linear_velocity_random);
+		}
+		float base_angle = (initial_angle + tex_angle) * mix(1.0, angle_rand, initial_angle_random);
+		CUSTOM.x = rand_from_seed_m1_p1(alt_seed);
+		CUSTOM.y = 0.0;
+		CUSTOM.w = (1.0 - lifetime_randomness * rand_from_seed(alt_seed));
+		CUSTOM.z = (anim_offset + tex_anim_offset) * mix(1.0, anim_offset_rand, anim_offset_random);
+		float s = rand_from_seed(alt_seed) * 2.0 - 1.0;
+		float t = rand_from_seed(alt_seed) * 2.0 * pi;
+		float radius = emission_sphere_radius * sqrt(1.0 - s * s);
+		TRANSFORM[3].xyz = vec3(radius * cos(t), radius * sin(t), emission_sphere_radius * s);
+		VELOCITY = (EMISSION_TRANSFORM * vec4(VELOCITY, 0.0)).xyz;
+		TRANSFORM = EMISSION_TRANSFORM * TRANSFORM;
+	} else {
+		CUSTOM.y += DELTA / LIFETIME;
+		tv = CUSTOM.y / CUSTOM.w;
+		float tex_linear_velocity = 0.0;
+		float tex_angular_velocity = 0.0;
+		float tex_linear_accel = 0.0;
+		float tex_radial_accel = 0.0;
+		float tex_tangent_accel = 0.0;
+		float tex_damping = 0.0;
+		float tex_angle = 0.0;
+		float tex_anim_speed = 0.0;
+		float tex_anim_offset = 0.0;
+		vec3 force = gravity;
+		vec3 pos = TRANSFORM[3].xyz;
+		// apply linear acceleration
+		force += length(VELOCITY) > 0.0 ? normalize(VELOCITY) * (linear_accel + tex_linear_accel) * mix(1.0, rand_from_seed(alt_seed), linear_accel_random) : vec3(0.0);
+		// apply radial acceleration
+		vec3 org = EMISSION_TRANSFORM[3].xyz;
+		vec3 diff = pos - org;
+		force += length(diff) > 0.0 ? normalize(diff) * (radial_accel + tex_radial_accel) * mix(1.0, rand_from_seed(alt_seed), radial_accel_random) : vec3(0.0);
+		// apply tangential acceleration;
+		vec3 crossDiff = cross(normalize(diff), normalize(gravity));
+		force += length(crossDiff) > 0.0 ? normalize(crossDiff) * ((tangent_accel + tex_tangent_accel) * mix(1.0, rand_from_seed(alt_seed), tangent_accel_random)) : vec3(0.0);
+		// apply attractor forces
+		VELOCITY += force * DELTA;
+		// orbit velocity
+		if (damping + tex_damping > 0.0) {
+			float v = length(VELOCITY);
+			float damp = (damping + tex_damping) * mix(1.0, rand_from_seed(alt_seed), damping_random);
+			v -= damp * DELTA;
+			if (v < 0.0) {
+				VELOCITY = vec3(0.0);
+			} else {
+				VELOCITY = normalize(VELOCITY) * v;
+			}
+		}
+		float base_angle = (initial_angle + tex_angle) * mix(1.0, angle_rand, initial_angle_random);
+		base_angle += CUSTOM.y * LIFETIME * (angular_velocity + tex_angular_velocity) * mix(1.0, rand_from_seed(alt_seed) * 2.0 - 1.0, angular_velocity_random);
+		CUSTOM.z = (anim_offset + tex_anim_offset) * mix(1.0, anim_offset_rand, anim_offset_random) + CUSTOM.y * (anim_speed + tex_anim_speed) * mix(1.0, rand_from_seed(alt_seed), anim_speed_random);
+	}
+	float tex_scale = textureLod(scale_texture, vec2(tv, 0.0), 0.0).r;
+	float tex_hue_variation = 0.0;
+	float hue_rot_angle = (hue_variation + tex_hue_variation) * pi * 2.0 * mix(1.0, hue_rot_rand * 2.0 - 1.0, hue_variation_random);
+	float hue_rot_c = cos(hue_rot_angle);
+	float hue_rot_s = sin(hue_rot_angle);
+	mat4 hue_rot_mat = mat4(vec4(0.299, 0.587, 0.114, 0.0),
+			vec4(0.299, 0.587, 0.114, 0.0),
+			vec4(0.299, 0.587, 0.114, 0.0),
+			vec4(0.000, 0.000, 0.000, 1.0)) +
+		mat4(vec4(0.701, -0.587, -0.114, 0.0),
+			vec4(-0.299, 0.413, -0.114, 0.0),
+			vec4(-0.300, -0.588, 0.886, 0.0),
+			vec4(0.000, 0.000, 0.000, 0.0)) * hue_rot_c +
+		mat4(vec4(0.168, 0.330, -0.497, 0.0),
+			vec4(-0.328, 0.035,  0.292, 0.0),
+			vec4(1.250, -1.050, -0.203, 0.0),
+			vec4(0.000, 0.000, 0.000, 0.0)) * hue_rot_s;
+	COLOR = hue_rot_mat * textureLod(color_ramp, vec2(tv, 0.0), 0.0) * color_value;
+
+	TRANSFORM[0].xyz = normalize(TRANSFORM[0].xyz);
+	TRANSFORM[1].xyz = normalize(TRANSFORM[1].xyz);
+	TRANSFORM[2].xyz = normalize(TRANSFORM[2].xyz);
+	float base_scale = tex_scale * mix(scale, 1.0, scale_random * scale_rand);
+	if (base_scale < 0.000001) {
+		base_scale = 0.000001;
+	}
+	TRANSFORM[0].xyz *= base_scale;
+	TRANSFORM[1].xyz *= base_scale;
+	TRANSFORM[2].xyz *= base_scale;
+	if (CUSTOM.y > CUSTOM.w) {
+		ACTIVE = false;
+//		discard;
+	}
+}
+
+"
+
+[sub_resource type="Gradient" id=11]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0.39, 0.34944, 0.1872, 1 )
+
+[sub_resource type="GradientTexture" id=12]
+gradient = SubResource( 11 )
+
+[sub_resource type="Curve" id=21]
+_data = [ Vector2( 0, 0.167045 ), 0.0, 0.0, 0, 0, Vector2( 0.494506, 0.488636 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.797727 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=14]
+curve = SubResource( 21 )
+
+[sub_resource type="ShaderMaterial" id=22]
+shader = SubResource( 20 )
+shader_param/direction = Vector3( 0, -0.5, 1 )
+shader_param/spread = 50.0
+shader_param/flatness = 0.0
+shader_param/initial_linear_velocity = 1.5
+shader_param/initial_angle = 0.0
+shader_param/angular_velocity = 0.0
+shader_param/orbit_velocity = 0.0
+shader_param/linear_accel = 0.0
+shader_param/radial_accel = 4.0
+shader_param/tangent_accel = 0.0
+shader_param/damping = 0.3
+shader_param/scale = 2.5
+shader_param/hue_variation = 0.0
+shader_param/anim_speed = 0.0
+shader_param/anim_offset = 0.0
+shader_param/initial_linear_velocity_random = 0.3
+shader_param/initial_angle_random = 0.0
+shader_param/angular_velocity_random = 0.0
+shader_param/orbit_velocity_random = 0.0
+shader_param/linear_accel_random = 0.0
+shader_param/radial_accel_random = 0.0
+shader_param/tangent_accel_random = 0.0
+shader_param/damping_random = 0.0
+shader_param/scale_random = 1.0
+shader_param/hue_variation_random = 0.0
+shader_param/anim_speed_random = 0.0
+shader_param/anim_offset_random = 0.0
+shader_param/lifetime_randomness = 0.2
+shader_param/emission_sphere_radius = 1.6
+shader_param/color_value = Color( 1, 1, 1, 1 )
+shader_param/trail_divisor = 1
+shader_param/gravity = Vector3( 0, -1e-06, 0 )
+shader_param/color_ramp = SubResource( 12 )
+shader_param/scale_texture = SubResource( 14 )
+
+[sub_resource type="Shader" id=23]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_alpha_prepass, cull_disabled;
+uniform vec4 albedo : hint_color;
+uniform sampler2D texture_albedo : hint_albedo;
+uniform float specular;
+uniform float metallic;
+uniform float roughness : hint_range(0,1);
+uniform float point_size : hint_range(0,128);
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+uniform sampler2D dissolve_texture;
+uniform sampler2D dissolve_ramp;
+
+varying float dissolve_amount;
+varying float uv_offset;
+
+
+void vertex() {
+	dissolve_amount = textureLod(dissolve_ramp, vec2(INSTANCE_CUSTOM.y/INSTANCE_CUSTOM.w, 0.0), 0.0).r;
+	uv_offset = INSTANCE_CUSTOM.x;
+}
+
+
+void fragment() {
+	ALBEDO = COLOR.rgb;
+	vec2 sample_vector = UV + uv_offset;
+	float sample = texture(dissolve_texture, sample_vector).r;
+	ALPHA = smoothstep(dissolve_amount - 0.3, dissolve_amount, sample);
+	METALLIC = metallic;
+	ROUGHNESS = roughness;
+	SPECULAR = specular;
+}"
+
+[sub_resource type="Curve" id=24]
+_data = [ Vector2( 0, 0.0136364 ), 0.0, -0.0417355, 0, 1, Vector2( 0.326733, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 1.48529, 0.0, 1, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 24 )
+
+[sub_resource type="ShaderMaterial" id=25]
+shader = SubResource( 23 )
+shader_param/albedo = Color( 0, 0, 0, 1 )
+shader_param/specular = 0.0
+shader_param/metallic = 0.265
+shader_param/roughness = 1.0
+shader_param/point_size = null
+shader_param/uv1_scale = null
+shader_param/uv1_offset = null
+shader_param/uv2_scale = null
+shader_param/uv2_offset = null
+shader_param/dissolve_texture = ExtResource( 9 )
+shader_param/dissolve_ramp = SubResource( 2 )
+
+[sub_resource type="SphereMesh" id=26]
+material = SubResource( 25 )
+height = 1.8
+radial_segments = 16
+rings = 16
+
 [node name="Wall" type="Spatial"]
 script = ExtResource( 6 )
 
@@ -117,3 +425,13 @@ draw_pass_1 = SubResource( 18 )
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0641003, 1.31194, 0 )
 shape = SubResource( 19 )
+
+[node name="DustTrack" parent="." instance=ExtResource( 8 )]
+transform = Transform( 0.722539, 0, 0, 0, 0.722539, 0, 0, 0, 1.21075, 0, 0.694436, 0 )
+emitting = false
+amount = 50
+lifetime = 1.0
+one_shot = true
+explosiveness = 0.81
+process_material = SubResource( 22 )
+draw_pass_1 = SubResource( 26 )

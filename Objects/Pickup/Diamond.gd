@@ -17,6 +17,8 @@ func get_drilled(delta):
 		Game.drill.cooldown()
 		$Pivot.visible = false
 		$TreasureArea.picked_up()
+		$DrillTarget/Area.set_deferred("monitorable", false)
+		$DrillTarget/Area.set_deferred("monitoring", false)
 
 func _physics_process(delta):
 	if currently_drilled:

@@ -20,8 +20,12 @@ func get_drilled(delta):
 	if hp <= 0.0:
 		drilled_out = true
 		Game.drill.cooldown()
+		$DustTrack.emitting = true
+		yield(get_tree().create_timer(.6),"timeout")
 		$Wall.visible = false
 		$StaticBody.queue_free()
+		$DrillTarget/Area.set_deferred("monitorable", false)
+		$DrillTarget/Area.set_deferred("monitoring", false)
 
 func _physics_process(delta):
 	if currently_drilled:

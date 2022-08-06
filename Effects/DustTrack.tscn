@@ -5,16 +5,16 @@
 
 [sub_resource type="Gradient" id=11]
 offsets = PoolRealArray( 0 )
-colors = PoolColorArray( 0.28, 0.24752, 0.1176, 1 )
+colors = PoolColorArray( 0.39, 0.34944, 0.1872, 1 )
 
 [sub_resource type="GradientTexture" id=12]
 gradient = SubResource( 11 )
 
-[sub_resource type="Curve" id=13]
+[sub_resource type="Curve" id=21]
 _data = [ Vector2( 0, 0.167045 ), 0.0, 0.0, 0, 0, Vector2( 0.494506, 0.488636 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.797727 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=14]
-curve = SubResource( 13 )
+curve = SubResource( 21 )
 
 [sub_resource type="ShaderMaterial" id=15]
 shader = ExtResource( 2 )
