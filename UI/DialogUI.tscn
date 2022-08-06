@@ -24,6 +24,7 @@ shader = SubResource( 2 )
 shader_param/texture_resource = SubResource( 4 )
 
 [node name="DialogUI" type="Control"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1

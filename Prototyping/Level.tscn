@@ -402,6 +402,10 @@ version = 3
 transform = Transform( 0.998375, 0, 0, 0, 0.998375, 0, 0, 0, 0.998375, -21.081, -1.43051e-06, -16.2626 )
 version = 4
 
+[node name="TreasureGold9" parent="Collectibles" instance=ExtResource( 3 )]
+transform = Transform( 0.998375, 0, 0, 0, 0.998375, 0, 0, 0, 0.998375, -21.9423, -1.43051e-06, -17.946 )
+version = 3
+
 [node name="TreasureGold8" parent="Collectibles" instance=ExtResource( 3 )]
 transform = Transform( 0.998375, 0, 0, 0, 0.998375, 0, 0, 0, 0.998375, -40.7128, -1.43051e-06, -44.4211 )
 version = 4
@@ -435,6 +439,17 @@ version = 4
 [node name="TreasureGears3" parent="Collectibles" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9042, -4.76837e-07, -14.191 )
 version = 2
+
+[node name="TreasureGears12" parent="Collectibles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19.2987, -4.76837e-07, -29.4972 )
+version = 4
+
+[node name="TreasureGears13" parent="Collectibles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -42.7574, -4.76837e-07, -42.0502 )
+version = 2
+
+[node name="TreasureGears14" parent="Collectibles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37.421, -4.76837e-07, -38.114 )
 
 [node name="TreasureGears8" parent="Collectibles" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.7731, -4.76837e-07, -45.9699 )
