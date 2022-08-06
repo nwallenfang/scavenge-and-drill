@@ -160,7 +160,7 @@ transform = Transform( -0.918515, 0.0181013, 0.394971, 0, 0.998951, -0.0457813, 
 [node name="Level2Base" parent="." instance=ExtResource( 19 )]
 
 [node name="TreasureChest" parent="." instance=ExtResource( 5 )]
-transform = Transform( 0.754706, 0, -4.9709, 0, 5.02786, 0, 4.9709, 0, 0.754706, 40.7274, -9.53674e-07, -23.1712 )
+transform = Transform( 0.150105, 0, -0.98867, 0, 1, 0, 0.98867, 0, 0.150105, 40.7274, -9.53674e-07, -23.1712 )
 
 [node name="Cliffs" type="Spatial" parent="."]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Assets/GLTF/Crystal1.material" type="Material" id=1]
 [ext_resource path="res://Assets/GLTF/TreasureMetal.material" type="Material" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Assets/GLTF/Cristal2.material" type="Material" id=6]
 [ext_resource path="res://Assets/Sprites/Stars/star_07.png" type="Texture" id=7]
 [ext_resource path="res://Objects/Pickup/TreasureChest.gd" type="Script" id=8]
+[ext_resource path="res://Objects/DrillTarget.tscn" type="PackedScene" id=9]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "TreasureChestwithCrystals_Cube005"
@@ -233,6 +234,7 @@ tracks/0/keys = {
 script = ExtResource( 8 )
 
 [node name="Model" type="Spatial" parent="."]
+transform = Transform( 5.10745, 0, 0, 0, 5.10745, 0, 0, 0, 5.10745, 0, 0, 0 )
 
 [node name="TreasuerChestBase" type="MeshInstance" parent="Model"]
 mesh = SubResource( 1 )
@@ -260,3 +262,6 @@ draw_pass_1 = SubResource( 15 )
 anims/RESET = SubResource( 16 )
 anims/close = SubResource( 17 )
 anims/open = SubResource( 18 )
+
+[node name="DrillTarget" parent="." instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 4.37114e-08, 1, 1, -4.37114e-08, 4.37114e-08, 4.37114e-08, 1, -4.37114e-08, 0, 1.099, 1.2 )
