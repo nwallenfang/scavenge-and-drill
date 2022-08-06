@@ -334,7 +334,7 @@ transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, 5.21587, 0, -24
 transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, -5.52819, 9.53674e-07, -6.5547 )
 
 [node name="Wall" parent="Objects" instance=ExtResource( 23 )]
-transform = Transform( -0.466665, 0, 0.884434, 0, 1, 0, -0.884434, 0, -0.466665, -22.7243, 0, 35.5848 )
+transform = Transform( -0.869994, 0, -0.493062, 0, 1, 0, 0.493062, 0, -0.869994, -12.3169, -0.221054, -31.1845 )
 
 [node name="AlgaeB" parent="Objects" instance=ExtResource( 24 )]
 transform = Transform( 0.74936, 0, 0.662162, 0, 1, 0, -0.662162, 0, 0.74936, -11.3811, 0, 33.7188 )
