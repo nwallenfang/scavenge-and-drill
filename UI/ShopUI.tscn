@@ -1,12 +1,12 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Assets/Shader/energy_crystal_ui.gdshader" type="Shader" id=1]
 [ext_resource path="res://Assets/Sprites/gold.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Fonts/TreasureFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://UI/ShopUI.gd" type="Script" id=4]
 [ext_resource path="res://UI/ShopEntry.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Assets/Sprites/merchant.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Fonts/ShopTitleFont.tres" type="DynamicFont" id=7]
+[ext_resource path="res://UI/MainMenuButton.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Sprites/arrow_left.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Sprites/gear.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Sprites/upgrade_icons/bullet_damage.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Sprites/upgrade_icons/more_power.png" type="Texture" id=10]
@@ -14,7 +14,19 @@
 [ext_resource path="res://Assets/Sprites/upgrade_icons/position_swap.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Sprites/upgrade_icons/super_mode.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Sprites/treasure_diamond.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Sprites/robot_merchant_wop.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Sprites/upgrade_icons/drill_power.png" type="Texture" id=16]
+[ext_resource path="res://UI/Styles/create_lobby_sub.tres" type="StyleBox" id=17]
+[ext_resource path="res://Assets/Fonts/iosevka-extended-regular.ttf" type="DynamicFontData" id=18]
+[ext_resource path="res://UI/ShopEntryGap.tscn" type="PackedScene" id=19]
+[ext_resource path="res://UI/ShopEntrySecret.tscn" type="PackedScene" id=20]
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = ExtResource( 1 )
+shader_param/fill_color = Color( 1, 1, 1, 1 )
+shader_param/empty_color = null
+shader_param/enabled = null
+shader_param/texture_resource = ExtResource( 15 )
 
 [sub_resource type="ShaderMaterial" id=5]
 shader = ExtResource( 1 )
@@ -41,19 +53,16 @@ shader_param/texture_resource = ExtResource( 2 )
 shader = SubResource( 4 )
 shader_param/texture_resource = ExtResource( 14 )
 
-[sub_resource type="Shader" id=1]
-code = "shader_type canvas_item;
-render_mode blend_mix;
+[sub_resource type="DynamicFont" id=9]
+size = 20
+font_data = ExtResource( 18 )
 
-uniform sampler2D texture_resource;
-
-void fragment(){
-	COLOR = texture(texture_resource, UV);
-}"
-
-[sub_resource type="ShaderMaterial" id=3]
-shader = SubResource( 1 )
-shader_param/texture_resource = ExtResource( 6 )
+[sub_resource type="ShaderMaterial" id=8]
+shader = ExtResource( 1 )
+shader_param/fill_color = null
+shader_param/empty_color = null
+shader_param/enabled = null
+shader_param/texture_resource = ExtResource( 7 )
 
 [node name="ShopUI" type="Control"]
 anchor_right = 1.0
@@ -61,132 +70,28 @@ anchor_bottom = 1.0
 script = ExtResource( 4 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.53
+anchor_top = 0.116
 anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="TreasureCountRow" type="HBoxContainer" parent="VBoxContainer"]
-margin_right = 1024.0
-margin_bottom = 51.0
-alignment = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/TreasureCountRow"]
-margin_bottom = 51.0
-
-[node name="Label" type="RichTextLabel" parent="VBoxContainer/TreasureCountRow"]
-margin_left = 4.0
-margin_right = 784.0
-margin_bottom = 51.0
-size_flags_horizontal = 3
-custom_fonts/normal_font = ExtResource( 7 )
-bbcode_enabled = true
-bbcode_text = "[center]UPGRADE SHOP"
-text = "UPGRADE SHOP"
-scroll_active = false
-
-[node name="TreasureUI" type="HBoxContainer" parent="VBoxContainer/TreasureCountRow"]
-unique_name_in_owner = true
-margin_left = 788.0
-margin_right = 1024.0
-margin_bottom = 51.0
-size_flags_vertical = 0
-alignment = 2
-
-[node name="GearIcon" type="ColorRect" parent="VBoxContainer/TreasureCountRow/TreasureUI"]
-material = SubResource( 5 )
-margin_right = 44.0
-margin_bottom = 51.0
-rect_min_size = Vector2( 44, 44 )
-
-[node name="GearAmount" type="Label" parent="VBoxContainer/TreasureCountRow/TreasureUI"]
-unique_name_in_owner = true
-margin_left = 48.0
-margin_right = 94.0
-margin_bottom = 51.0
-custom_fonts/font = ExtResource( 3 )
-text = "00"
-
-[node name="Gap" type="Control" parent="VBoxContainer/TreasureCountRow/TreasureUI"]
-unique_name_in_owner = true
-margin_left = 98.0
-margin_right = 114.0
-margin_bottom = 51.0
-rect_min_size = Vector2( 16, 0 )
-
-[node name="GoldIcon" type="ColorRect" parent="VBoxContainer/TreasureCountRow/TreasureUI"]
-modulate = Color( 0.729412, 0.635294, 0.196078, 1 )
-material = SubResource( 2 )
-margin_left = 118.0
-margin_right = 166.0
-margin_bottom = 51.0
-rect_min_size = Vector2( 48, 48 )
-
-[node name="GoldAmount" type="Label" parent="VBoxContainer/TreasureCountRow/TreasureUI"]
-unique_name_in_owner = true
-margin_left = 170.0
-margin_right = 216.0
-margin_bottom = 51.0
-custom_fonts/font = ExtResource( 3 )
-text = "00"
-
-[node name="Gap2" type="Control" parent="VBoxContainer/TreasureCountRow/TreasureUI"]
-unique_name_in_owner = true
-margin_left = 220.0
-margin_right = 236.0
-margin_bottom = 51.0
-rect_min_size = Vector2( 16, 0 )
-
-[node name="DiamondIcon" type="ColorRect" parent="VBoxContainer/TreasureCountRow/TreasureUI"]
-unique_name_in_owner = true
-visible = false
-modulate = Color( 0.176471, 0.854902, 0.854902, 1 )
-material = SubResource( 6 )
-margin_left = 244.0
-margin_right = 292.0
-margin_bottom = 51.0
-rect_min_size = Vector2( 48, 48 )
-
-[node name="DiamondAmount" type="Label" parent="VBoxContainer/TreasureCountRow/TreasureUI"]
-unique_name_in_owner = true
-visible = false
-margin_left = 296.0
-margin_right = 342.0
-margin_bottom = 51.0
-custom_fonts/font = ExtResource( 3 )
-text = "00"
+anchor_bottom = 0.746
 
 [node name="MerchantScreen" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 55.0
-margin_right = 1024.0
-margin_bottom = 155.0
+margin_right = 481.0
 size_flags_horizontal = 3
-
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MerchantScreen"]
-material = SubResource( 3 )
-margin_right = 100.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 100, 100 )
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="VBoxContainer/MerchantScreen"]
-margin_left = 104.0
-margin_top = 39.0
-margin_right = 329.0
-margin_bottom = 60.0
-text = "Come check out my wares! "
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
-margin_top = 159.0
-margin_right = 1024.0
-margin_bottom = 569.0
+margin_top = 4.0
+margin_right = 481.0
+margin_bottom = 378.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-columns = 2
+columns = 3
 
 [node name="ShopEntry" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 510.0
-margin_bottom = 134.0
+margin_right = 158.0
+margin_bottom = 122.0
 upgrade_attribute = "more_bullet_damage"
 description = "Improved bullet damage"
 cost_gears = 2
@@ -196,9 +101,9 @@ upgrade_icon = ExtResource( 9 )
 [node name="ShopEntry2" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 514.0
-margin_right = 1024.0
-margin_bottom = 134.0
+margin_left = 162.0
+margin_right = 320.0
+margin_bottom = 122.0
 upgrade_attribute = "less_power_drain"
 description = "Slower power drain"
 cost_gears = 3
@@ -208,9 +113,9 @@ upgrade_icon = ExtResource( 10 )
 [node name="ShopEntry3" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 138.0
-margin_right = 510.0
-margin_bottom = 272.0
+margin_left = 324.0
+margin_right = 481.0
+margin_bottom = 122.0
 upgrade_attribute = "more_move_speed"
 description = "Higher movement speed"
 cost_gears = 2
@@ -220,12 +125,11 @@ upgrade_icon = ExtResource( 11 )
 [node name="ShopEntry4" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 514.0
-margin_top = 138.0
-margin_right = 1024.0
-margin_bottom = 272.0
+margin_top = 126.0
+margin_right = 158.0
+margin_bottom = 248.0
 upgrade_attribute = "super_mode"
-description = "Unlock a speed-boost skill"
+description = "Invincibility skill"
 cost_gears = 2
 cost_gold = 3
 upgrade_icon = ExtResource( 13 )
@@ -233,11 +137,12 @@ upgrade_icon = ExtResource( 13 )
 [node name="ShopEntry5" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 276.0
-margin_right = 510.0
-margin_bottom = 410.0
+margin_left = 162.0
+margin_top = 126.0
+margin_right = 320.0
+margin_bottom = 248.0
 upgrade_attribute = "position_swap"
-description = "Unlock a position swap skill"
+description = "Unlock teleport"
 cost_gears = 2
 cost_gold = 4
 upgrade_icon = ExtResource( 12 )
@@ -245,28 +150,194 @@ upgrade_icon = ExtResource( 12 )
 [node name="ShopEntry6" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 514.0
-margin_top = 276.0
-margin_right = 1024.0
-margin_bottom = 410.0
+margin_left = 324.0
+margin_top = 126.0
+margin_right = 481.0
+margin_bottom = 248.0
 upgrade_attribute = "drill_power"
-description = "Make the drill stronger"
+description = "Make drill stronger"
 cost_gears = 3
 cost_gold = 5
 upgrade_icon = ExtResource( 16 )
 
-[node name="DoneShoppingButton" type="Button" parent="VBoxContainer"]
-margin_top = 573.0
-margin_right = 1024.0
-margin_bottom = 600.0
-text = "Enter the Ocean again"
+[node name="Gap" parent="VBoxContainer/GridContainer" instance=ExtResource( 19 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 252.0
+margin_right = 158.0
+margin_bottom = 374.0
+
+[node name="ShopEntrySecret" parent="VBoxContainer/GridContainer" instance=ExtResource( 20 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 162.0
+margin_top = 252.0
+margin_right = 320.0
+margin_bottom = 374.0
+upgrade_attribute = "level2_unlock"
+description = "?"
+cost_gears = 9999
+cost_gold = 9999
+
+[node name="Gap2" parent="VBoxContainer/GridContainer" instance=ExtResource( 19 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 324.0
+margin_top = 252.0
+margin_right = 481.0
+margin_bottom = 374.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
 
 [node name="Background" type="ColorRect" parent="CanvasLayer"]
+show_behind_parent = true
+material = SubResource( 7 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.321569, 0.321569, 0.321569, 1 )
+mouse_filter = 2
 
-[connection signal="pressed" from="VBoxContainer/DoneShoppingButton" to="." method="_on_Button_pressed"]
+[node name="TreasureCountRow" type="HBoxContainer" parent="."]
+margin_left = 542.72
+margin_right = 1023.72
+margin_bottom = 51.0
+alignment = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TreasureCountRow"]
+margin_left = 261.0
+margin_right = 261.0
+margin_bottom = 51.0
+
+[node name="TreasureUI" type="HBoxContainer" parent="TreasureCountRow"]
+unique_name_in_owner = true
+margin_left = 265.0
+margin_right = 481.0
+margin_bottom = 48.0
+size_flags_vertical = 0
+alignment = 2
+
+[node name="GearIcon" type="ColorRect" parent="TreasureCountRow/TreasureUI"]
+material = SubResource( 5 )
+margin_right = 44.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 44, 44 )
+
+[node name="GearAmount" type="Label" parent="TreasureCountRow/TreasureUI"]
+unique_name_in_owner = true
+margin_left = 48.0
+margin_top = 3.0
+margin_right = 84.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 3 )
+text = "00"
+
+[node name="Gap" type="Control" parent="TreasureCountRow/TreasureUI"]
+unique_name_in_owner = true
+margin_left = 88.0
+margin_right = 104.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 16, 0 )
+
+[node name="GoldIcon" type="ColorRect" parent="TreasureCountRow/TreasureUI"]
+modulate = Color( 0.729412, 0.635294, 0.196078, 1 )
+material = SubResource( 2 )
+margin_left = 108.0
+margin_right = 156.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+
+[node name="GoldAmount" type="Label" parent="TreasureCountRow/TreasureUI"]
+unique_name_in_owner = true
+margin_left = 160.0
+margin_top = 3.0
+margin_right = 196.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 3 )
+text = "00"
+
+[node name="Gap2" type="Control" parent="TreasureCountRow/TreasureUI"]
+unique_name_in_owner = true
+margin_left = 200.0
+margin_right = 216.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 16, 0 )
+
+[node name="DiamondIcon" type="ColorRect" parent="TreasureCountRow/TreasureUI"]
+unique_name_in_owner = true
+visible = false
+modulate = Color( 0.176471, 0.854902, 0.854902, 1 )
+material = SubResource( 6 )
+margin_left = 244.0
+margin_right = 292.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 48, 48 )
+
+[node name="DiamondAmount" type="Label" parent="TreasureCountRow/TreasureUI"]
+unique_name_in_owner = true
+visible = false
+margin_left = 296.0
+margin_right = 342.0
+margin_bottom = 51.0
+custom_fonts/font = ExtResource( 3 )
+text = "00"
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.230469
+anchor_top = 0.146667
+anchor_right = 0.523438
+anchor_bottom = 0.19
+custom_fonts/font = SubResource( 9 )
+text = "Come check out my wares! "
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="DoneShopping" type="Control" parent="."]
+anchor_left = 0.708984
+anchor_top = 0.783333
+anchor_right = 0.831143
+anchor_bottom = 0.913333
+mouse_filter = 1
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Panel" type="Panel" parent="DoneShopping"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 17 )
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="DoneShopping/Panel"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="DoneShopping/Panel/AspectRatioContainer"]
+material = SubResource( 8 )
+margin_left = 23.5454
+margin_right = 101.545
+margin_bottom = 78.0
+mouse_filter = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="DoneShopping/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="DoneShopping/Panel/CenterContainer"]
+margin_left = 4.0
+margin_top = 28.0
+margin_right = 121.0
+margin_bottom = 49.0
+mouse_filter = 1
+text = "Done Shopping"
+
+[connection signal="clicked" from="DoneShopping" to="." method="_on_DoneShopping_clicked"]
+[connection signal="gui_input" from="DoneShopping/Panel" to="DoneShopping" method="_on_Panel_gui_input"]
+[connection signal="mouse_entered" from="DoneShopping/Panel" to="DoneShopping" method="_on_Panel_mouse_entered"]
+[connection signal="mouse_exited" from="DoneShopping/Panel" to="DoneShopping" method="_on_Panel_mouse_exited"]

@@ -53,6 +53,8 @@ func _physics_process(delta: float) -> void:
 	$DevContainer/DeveloperInfo/FPSCounter.text = "FPS: %d" % Engine.get_frames_per_second()
 
 func add_to_log(msg: String):
+	if debug_log == null:
+		return
 	debug_log.text += msg + '\n'
 	debug_log.cursor_set_line(debug_log.get_line_count())
 	

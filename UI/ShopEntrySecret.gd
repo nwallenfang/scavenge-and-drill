@@ -1,5 +1,4 @@
 extends Control
-class_name ShopEntry
 
 signal upgrade_clicked
 export var upgrade_attribute: String
