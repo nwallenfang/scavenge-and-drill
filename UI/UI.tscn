@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://UI/UI.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/PausedFont.tres" type="DynamicFont" id=2]
@@ -17,41 +17,6 @@ shader = ExtResource( 3 )
 shader_param/vignette_intensity = 0.5
 shader_param/vignette_opacity = 0.465
 shader_param/vignette_rgb = Color( 0.105882, 0.784314, 0.964706, 1 )
-
-[sub_resource type="Shader" id=7]
-code = "shader_type canvas_item;
-render_mode blend_mix;
-
-uniform sampler2D texture_resource;
-uniform vec4 fill_color: hint_color;
-uniform vec4 empty_color: hint_color;
-uniform bool enabled;
-uniform bool half_enabled;
-
-void fragment(){
-	vec4 color;
-	vec4 tex = texture(texture_resource, UV);
-	if(half_enabled) {
-		color = float(UV.y >= 0.5) * tex * fill_color
-			+ float(UV.y < 0.5) * tex * empty_color;
-	}
-	else if(enabled) {
-		color = tex * fill_color;
-	} else {
-		color = vec4(1.0 - float(enabled)) * tex * empty_color;	
-	}
-	
-	COLOR = color;
-	
-}"
-
-[sub_resource type="ShaderMaterial" id=5]
-shader = SubResource( 7 )
-shader_param/fill_color = Color( 0.611681, 0.182877, 0.917969, 1 )
-shader_param/empty_color = Color( 1, 1, 1, 0.266667 )
-shader_param/enabled = false
-shader_param/half_enabled = false
-shader_param/texture_resource = ExtResource( 10 )
 
 [sub_resource type="StyleBoxFlat" id=10]
 bg_color = Color( 0, 0, 0, 0.607843 )
@@ -89,6 +54,50 @@ shader_param/fill_color = Color( 0.843137, 0.733333, 0.133333, 1 )
 shader_param/empty_color = Color( 0.831373, 0.713726, 0.713726, 1 )
 shader_param/enabled = true
 shader_param/texture_resource = ExtResource( 11 )
+
+[sub_resource type="Shader" id=7]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform sampler2D texture_resource;
+uniform vec4 fill_color: hint_color;
+uniform vec4 empty_color: hint_color;
+uniform bool enabled;
+uniform bool half_enabled;
+
+uniform float missing_progress: hint_range(0.0, 1.0, 0.03);
+uniform vec4 missing_color: hint_color;
+
+void fragment(){
+	vec4 color;
+	vec4 tex = texture(texture_resource, UV);
+	if(half_enabled) {
+		color = float(UV.y >= 0.5) * tex * fill_color
+			+ float(UV.y < 0.5) * tex * empty_color;
+	}
+	else if(enabled) {
+		color = tex * fill_color;
+	} else {
+		color = vec4(1.0 - float(enabled)) * tex * empty_color;	
+	}
+	
+	if(missing_progress > 0.02) {
+		color = mix(empty_color, missing_color, missing_progress) * tex;
+	}
+	
+	COLOR = color;
+	
+}"
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 7 )
+shader_param/fill_color = Color( 0.611681, 0.182877, 0.917969, 1 )
+shader_param/empty_color = Color( 1, 1, 1, 0.266667 )
+shader_param/enabled = false
+shader_param/half_enabled = false
+shader_param/missing_progress = 0.0
+shader_param/missing_color = Color( 0.811765, 0.27451, 0.27451, 1 )
+shader_param/texture_resource = ExtResource( 10 )
 
 [sub_resource type="Shader" id=6]
 code = "shader_type canvas_item;
@@ -212,6 +221,21 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 0.105882, 0.784314, 0.964706, 1 ), Color( 0.917647, 0.964706, 0.105882, 1 ), Color( 0.105882, 0.784314, 0.964706, 1 ), Color( 0.917647, 0.964706, 0.105882, 1 ), Color( 0.105882, 0.784314, 0.964706, 1 ), Color( 0.917647, 0.964706, 0.105882, 1 ), Color( 0.105882, 0.784314, 0.964706, 1 ) ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "energy_crystal_missing"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:missing_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0, 1.0, 0.0 ]
 }
 
 [node name="UI" type="Control"]
@@ -377,70 +401,22 @@ anchor_bottom = 1.0
 color = Color( 1, 1, 1, 0 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Game"]
-visible = false
 
 [node name="LeftSide" type="HBoxContainer" parent="Game/CanvasLayer"]
 anchor_left = 0.011
-anchor_top = 0.1
+anchor_top = 0.15
 anchor_right = 0.02
-anchor_bottom = 0.9
+anchor_bottom = 0.85
 margin_right = 40.784
 size_flags_vertical = 3
 
 [node name="PowerAndCrystals" type="VBoxContainer" parent="Game/CanvasLayer/LeftSide"]
 margin_right = 50.0
-margin_bottom = 480.0
-
-[node name="EnergyCrystalsBox" type="VBoxContainer" parent="Game/CanvasLayer/LeftSide/PowerAndCrystals"]
-unique_name_in_owner = true
-margin_right = 50.0
-margin_bottom = 194.0
-alignment = 1
-
-[node name="AspectRatioContainer3" type="AspectRatioContainer" parent="Game/CanvasLayer/LeftSide/PowerAndCrystals/EnergyCrystalsBox"]
-margin_right = 50.0
-margin_bottom = 62.0
-
-[node name="ColorRect" type="ColorRect" parent="Game/CanvasLayer/LeftSide/PowerAndCrystals/EnergyCrystalsBox/AspectRatioContainer3"]
-material = SubResource( 5 )
-margin_right = 50.0
-margin_bottom = 62.0
-rect_min_size = Vector2( 48, 62 )
-
-[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="Game/CanvasLayer/LeftSide/PowerAndCrystals/EnergyCrystalsBox"]
-margin_top = 66.0
-margin_right = 50.0
-margin_bottom = 128.0
-
-[node name="ColorRect" type="ColorRect" parent="Game/CanvasLayer/LeftSide/PowerAndCrystals/EnergyCrystalsBox/AspectRatioContainer2"]
-material = SubResource( 5 )
-margin_right = 50.0
-margin_bottom = 62.0
-rect_min_size = Vector2( 48, 62 )
-
-[node name="AspectRatioContainer1" type="AspectRatioContainer" parent="Game/CanvasLayer/LeftSide/PowerAndCrystals/EnergyCrystalsBox"]
-margin_top = 132.0
-margin_right = 50.0
-margin_bottom = 194.0
-
-[node name="ColorRect" type="ColorRect" parent="Game/CanvasLayer/LeftSide/PowerAndCrystals/EnergyCrystalsBox/AspectRatioContainer1"]
-material = SubResource( 5 )
-margin_right = 50.0
-margin_bottom = 62.0
-rect_min_size = Vector2( 48, 62 )
-
-[node name="Gap" type="Control" parent="Game/CanvasLayer/LeftSide/PowerAndCrystals"]
-margin_top = 198.0
-margin_right = 50.0
-margin_bottom = 216.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.09
+margin_bottom = 420.0
 
 [node name="Panel" type="Panel" parent="Game/CanvasLayer/LeftSide/PowerAndCrystals"]
-margin_top = 220.0
 margin_right = 50.0
-margin_bottom = 430.0
+margin_bottom = 371.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 10 )
@@ -459,15 +435,77 @@ size_flags_vertical = 3
 theme = SubResource( 9 )
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="Game/CanvasLayer/LeftSide/PowerAndCrystals"]
-margin_top = 434.0
+margin_top = 375.0
 margin_right = 50.0
-margin_bottom = 479.0
+margin_bottom = 420.0
 
 [node name="PowerIcon" type="ColorRect" parent="Game/CanvasLayer/LeftSide/PowerAndCrystals/AspectRatioContainer"]
 material = SubResource( 8 )
 margin_right = 50.0
 margin_bottom = 45.0
 rect_min_size = Vector2( 50, 45 )
+
+[node name="EnergyCrystalsBox" type="VBoxContainer" parent="Game/CanvasLayer/LeftSide"]
+unique_name_in_owner = true
+margin_left = 54.0
+margin_right = 102.0
+margin_bottom = 420.0
+alignment = 1
+
+[node name="AspectRatioContainer5" type="AspectRatioContainer" parent="Game/CanvasLayer/LeftSide/EnergyCrystalsBox"]
+margin_top = 47.0
+margin_right = 48.0
+margin_bottom = 109.0
+
+[node name="ColorRect" type="ColorRect" parent="Game/CanvasLayer/LeftSide/EnergyCrystalsBox/AspectRatioContainer5"]
+material = SubResource( 5 )
+margin_right = 48.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 48, 62 )
+
+[node name="AspectRatioContainer4" type="AspectRatioContainer" parent="Game/CanvasLayer/LeftSide/EnergyCrystalsBox"]
+margin_top = 113.0
+margin_right = 48.0
+margin_bottom = 175.0
+
+[node name="ColorRect" type="ColorRect" parent="Game/CanvasLayer/LeftSide/EnergyCrystalsBox/AspectRatioContainer4"]
+material = SubResource( 5 )
+margin_right = 48.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 48, 62 )
+
+[node name="AspectRatioContainer3" type="AspectRatioContainer" parent="Game/CanvasLayer/LeftSide/EnergyCrystalsBox"]
+margin_top = 179.0
+margin_right = 48.0
+margin_bottom = 241.0
+
+[node name="ColorRect" type="ColorRect" parent="Game/CanvasLayer/LeftSide/EnergyCrystalsBox/AspectRatioContainer3"]
+material = SubResource( 5 )
+margin_right = 48.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 48, 62 )
+
+[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="Game/CanvasLayer/LeftSide/EnergyCrystalsBox"]
+margin_top = 245.0
+margin_right = 48.0
+margin_bottom = 307.0
+
+[node name="ColorRect" type="ColorRect" parent="Game/CanvasLayer/LeftSide/EnergyCrystalsBox/AspectRatioContainer2"]
+material = SubResource( 5 )
+margin_right = 48.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 48, 62 )
+
+[node name="AspectRatioContainer1" type="AspectRatioContainer" parent="Game/CanvasLayer/LeftSide/EnergyCrystalsBox"]
+margin_top = 311.0
+margin_right = 48.0
+margin_bottom = 373.0
+
+[node name="ColorRect" type="ColorRect" parent="Game/CanvasLayer/LeftSide/EnergyCrystalsBox/AspectRatioContainer1"]
+material = SubResource( 5 )
+margin_right = 48.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 48, 62 )
 
 [node name="RightSide" type="HBoxContainer" parent="Game/CanvasLayer"]
 anchor_right = 1.0
@@ -478,7 +516,7 @@ alignment = 2
 [node name="TreasureUI" type="HBoxContainer" parent="Game/CanvasLayer/RightSide"]
 unique_name_in_owner = true
 modulate = Color( 1, 1, 1, 0 )
-margin_left = 804.0
+margin_left = 784.0
 margin_right = 1024.0
 margin_bottom = 51.0
 size_flags_vertical = 0
@@ -523,8 +561,8 @@ text = "00"
 
 [node name="Gap2" type="Control" parent="Game/CanvasLayer/RightSide/TreasureUI"]
 unique_name_in_owner = true
-margin_left = 102.0
-margin_right = 118.0
+margin_left = 224.0
+margin_right = 240.0
 margin_bottom = 51.0
 rect_min_size = Vector2( 16, 0 )
 
@@ -556,3 +594,6 @@ color = Color( 0, 0, 0, 0 )
 [node name="VignetteHitPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 15 )
 anims/get_hit = SubResource( 14 )
+
+[node name="EnergyCrystalPlayer" type="AnimationPlayer" parent="."]
+anims/energy_crystal_missing = SubResource( 17 )

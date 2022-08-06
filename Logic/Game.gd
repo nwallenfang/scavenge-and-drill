@@ -34,8 +34,8 @@ var power_draining := false
 
 var try_count = 1  # gets increased on restart
 
-var max_energy_charges = 6
-var energy_charges: int = 6
+var max_energy_charges = 10
+var energy_charges: int = 2
 
 const TYPE_GOLD = 1
 const TYPE_GEARS = 2
@@ -245,4 +245,4 @@ remotesync func try_super(player_name):
 			player_2_wants_to_super = false
 
 func not_enough_crystals():
-	pass
+	ui.show_energy_crystals_missing()

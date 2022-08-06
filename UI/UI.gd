@@ -24,7 +24,7 @@ func _ready() -> void:
 	box.get_node("AspectRatioContainer1/ColorRect").material = box.get_node("AspectRatioContainer1/ColorRect").material.duplicate(true)
 	box.get_node("AspectRatioContainer2/ColorRect").material = box.get_node("AspectRatioContainer1/ColorRect").material.duplicate(true)
 	box.get_node("AspectRatioContainer3/ColorRect").material = box.get_node("AspectRatioContainer1/ColorRect").material.duplicate(true)
-#	set_energy_crystals(2)
+	set_energy_charges(Game.energy_charges)
 	
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("dev_toggle"):
@@ -137,4 +137,17 @@ func fade_in(speed: float):
 	
 func vignette_hit_effect():
 	$VignetteHitPlayer.play("get_hit")
+	
+
+export var missing_value: float setget set_missing_value
+func set_missing_value(value: float):
+	if not is_inside_tree():
+		return
+	var box = $"%EnergyCrystalsBox"
+	for i in range(1, box.get_child_count()+1):
+		box.get_node("AspectRatioContainer%d/ColorRect" % i).material.set_shader_param("missing_progress", value)
+
+	
+func show_energy_crystals_missing():
+	$EnergyCrystalPlayer.play("energy_crystal_missing")
 
