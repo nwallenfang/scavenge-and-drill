@@ -43,3 +43,4 @@ material/1 = ExtResource( 1 )
 
 [node name="DrillTarget" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0 )
+visible = false
