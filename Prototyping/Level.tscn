@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Prototyping/Level.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Drill.tscn" type="PackedScene" id=2]
@@ -25,6 +25,8 @@
 [ext_resource path="res://Objects/Cliff/Wall.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Objects/Decoration/AlgaeB.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Objects/Decoration/Anemone.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Objects/Cliff/StonePillarA.tscn" type="PackedScene" id=26]
+[ext_resource path="res://Objects/Cliff/StonePillarB.tscn" type="PackedScene" id=27]
 
 [sub_resource type="Curve3D" id=10]
 _data = {
@@ -542,6 +544,21 @@ transform = Transform( 1.10083, 0, -0.471588, 0, 1.50164, 0, 0.471588, 0, 1.1008
 
 [node name="Cliff9" parent="Cliffs" instance=ExtResource( 22 )]
 transform = Transform( -0.184243, 0, 0.982881, 0, 1, 0, -0.982881, 0, -0.184243, 13.4074, -3.8147e-06, 14.3803 )
+
+[node name="StonePillarA" parent="Cliffs" instance=ExtResource( 26 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22.4215, 0, 33.7774 )
+
+[node name="StonePillarA2" parent="Cliffs" instance=ExtResource( 26 )]
+transform = Transform( 0.771769, 0, 0.635903, 0, 1, 0, -0.635903, 0, 0.771769, 15.3125, 0, 26.7303 )
+
+[node name="StonePillarB" parent="Cliffs" instance=ExtResource( 27 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.9895, 0, 23.6489 )
+
+[node name="StonePillarB2" parent="Cliffs" instance=ExtResource( 27 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.5263, 0, 10.4714 )
+
+[node name="StonePillarB3" parent="Cliffs" instance=ExtResource( 27 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.03645, 0, -31.6564 )
 
 [node name="GroundCollision" type="StaticBody" parent="."]
 
