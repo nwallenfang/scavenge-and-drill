@@ -227,7 +227,15 @@ func create_all_dialogs():
 		DialogLine.new(SPEAKERS.DRILL, "Hey, these treasures have to be drilled with utmost care!"),
 	]))
 	all_dialogs.append(d)
-
+	
+	d = DialogTrigger.new("getting_hit")
+	d.trigger_mode = TRIGGER_MODES.COUNT_EXACT_EQ
+	d.condition_value = 4
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.ROLLER, "Those eels always steal our power."),
+		DialogLine.new(SPEAKERS.DRILL, "I hope your battery doesn't get damaged."),
+	]))
+	all_dialogs.append(d)
 	
 	d = DialogTrigger.new("treasure_found")
 	d.trigger_mode = TRIGGER_MODES.COUNT_EXACT
@@ -238,33 +246,32 @@ func create_all_dialogs():
 	]))
 	all_dialogs.append(d)
 	
-	d = DialogTrigger.new("gold_earned")
-	d.trigger_mode = TRIGGER_MODES.VALUE_GREATER_EQ
-	d.condition_value = 100
-	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.ROLLER, "Amazing, now we can afford the Bomb!"),
-		DialogLine.new(SPEAKERS.DRILL, "I would love to use it."),
-	]))
-	all_dialogs.append(d)
+#	d = DialogTrigger.new("gold_earned")
+#	d.trigger_mode = TRIGGER_MODES.VALUE_GREATER_EQ
+#	d.condition_value = 100
+#	d.sequences.append(DialogSequence.new([
+#		DialogLine.new(SPEAKERS.ROLLER, "Amazing, now we can afford the Bomb!"),
+#		DialogLine.new(SPEAKERS.DRILL, "I would love to use it."),
+#	]))
+#	all_dialogs.append(d)
 	
 	
-	d = DialogTrigger.new("see_a_fish")
-	d.trigger_mode = TRIGGER_MODES.CHANCE
-	d.condition_value = .5
-	d.selection_mode = SELECTION_MODES.RANDOM
-	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.ROLLER, "There is a fish!"),
-	]))
-	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.DRILL, "Another fish over there."),
-	]))
-	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.ROLLER, "I like fishes."),
-	]))
-	all_dialogs.append(d)
+#	d = DialogTrigger.new("see_a_fish")
+#	d.trigger_mode = TRIGGER_MODES.CHANCE
+#	d.condition_value = .5
+#	d.selection_mode = SELECTION_MODES.RANDOM
+#	d.sequences.append(DialogSequence.new([
+#		DialogLine.new(SPEAKERS.ROLLER, "There is a fish!"),
+#	]))
+#	d.sequences.append(DialogSequence.new([
+#		DialogLine.new(SPEAKERS.DRILL, "Another fish over there."),
+#	]))
+#	d.sequences.append(DialogSequence.new([
+#		DialogLine.new(SPEAKERS.ROLLER, "I like fishes."),
+#	]))
+#	all_dialogs.append(d)
 
-	d = DialogTrigger.new("close_to_middle_eel")
-
+	d = DialogTrigger.new("close_to_eel_middle")
 	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.ROLLER, "This eels look really icky..", 2.0),
 		DialogLine.new(SPEAKERS.DRILL, "It wants to drain our power levels!"),
@@ -272,7 +279,6 @@ func create_all_dialogs():
 	]))
 	
 	d = DialogTrigger.new("close_to_eel")
-
 	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.ROLLER, "These eels look really icky..", 2.0),
 		DialogLine.new(SPEAKERS.DRILL, "I've seen them before. They drain our power levels!"),
@@ -290,7 +296,7 @@ func create_all_dialogs():
 	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.DRILL, "Damn!", 1.2),
 		DialogLine.new(SPEAKERS.DRILL, "My Drill power is too low.", 2.4),
-		DialogLine.new(SPEAKERS.ROLLER, "I'm sure we can upgrade your drill.", 2.4),
+		DialogLine.new(SPEAKERS.ROLLER, "You're really useless without your upgrades.", 2.4),
 	]))
 	all_dialogs.append(d)
 	

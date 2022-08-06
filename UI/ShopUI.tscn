@@ -190,6 +190,7 @@ margin_bottom = 134.0
 upgrade_attribute = "more_bullet_damage"
 description = "Improved bullet damage"
 cost_gears = 2
+cost_gold = 1
 upgrade_icon = ExtResource( 9 )
 
 [node name="ShopEntry2" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
@@ -213,7 +214,7 @@ margin_bottom = 272.0
 upgrade_attribute = "more_move_speed"
 description = "Higher movement speed"
 cost_gears = 2
-cost_gold = 0
+cost_gold = 1
 upgrade_icon = ExtResource( 11 )
 
 [node name="ShopEntry4" parent="VBoxContainer/GridContainer" instance=ExtResource( 5 )]
@@ -225,7 +226,7 @@ margin_right = 1024.0
 margin_bottom = 272.0
 upgrade_attribute = "super_mode"
 description = "Unlock a speed-boost skill"
-cost_gears = 3
+cost_gears = 2
 cost_gold = 3
 upgrade_icon = ExtResource( 13 )
 
@@ -251,7 +252,7 @@ margin_bottom = 410.0
 upgrade_attribute = "drill_power"
 description = "Make the drill stronger"
 cost_gears = 3
-cost_gold = 3
+cost_gold = 5
 upgrade_icon = ExtResource( 16 )
 
 [node name="DoneShoppingButton" type="Button" parent="VBoxContainer"]

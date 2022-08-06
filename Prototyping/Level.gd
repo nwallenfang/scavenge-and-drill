@@ -138,3 +138,7 @@ func _on_CloseToEelDialog_body_entered(body: Node) -> void:
 		count += 1
 		yield(get_tree().create_timer(cooldown_time), "timeout")
 		$CloseToEelDialog.set_deferred("monitoring", true)
+
+
+func _on_CloseToEelMiddle_body_entered(body):
+	Dialog.trigger("close_to_eel_middle")
