@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
+[ext_resource path="res://Assets/Models/Gear.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Objects/Pickup/TreasureGold.tscn" type="PackedScene" id=3]
 [ext_resource path="res://LevelEnvironment.tres" type="Environment" id=9]
 [ext_resource path="res://Objects/Pickup/TreasureGears.tscn" type="PackedScene" id=11]
@@ -83,6 +84,15 @@ script = null
 [node name="TreasureGears2" parent="Collectibles" instance=ExtResource( 11 )]
 transform = Transform( 0.416135, -0.481203, 0.771541, 0.00447803, 0.849571, 0.527454, -0.909292, -0.216037, 0.355691, -6.35486, 0.00797606, -6.1628 )
 script = null
+
+[node name="gear" parent="Collectibles" instance=ExtResource( 1 )]
+transform = Transform( 0.24317, 0.175671, 0.118322, 0, 0.18015, -0.267466, -0.211802, 0.201688, 0.135845, -5.11181, 0.700343, -8.40764 )
+
+[node name="gear3" parent="Collectibles" instance=ExtResource( 1 )]
+transform = Transform( 0.322478, 0, 0, 0, 0.322478, 0, 0, 0, 0.322478, -3.13359, -0.0299163, -7.42868 )
+
+[node name="gear2" parent="Collectibles" instance=ExtResource( 1 )]
+transform = Transform( 0.314498, -0.0659569, 0.0270748, 0.0515337, 0.125664, -0.292481, 0.049271, 0.289569, 0.133094, 1.40892, 0.700343, -10.2562 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 9 )

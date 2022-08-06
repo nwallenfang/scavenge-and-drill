@@ -15,6 +15,8 @@ var other_player: Player
 var roller: Player
 var drill: Player
 
+var cable
+
 var game_started := false
 
 var viewport_sprite: Sprite
@@ -53,7 +55,7 @@ class Upgrades:
 	var more_move_speed := false
 	var more_bullet_damage := false
 	var position_swap := false
-	var super_mode := false
+	var super_mode := true
 	var drill_power := false
 	var level_2 := false
 	
@@ -203,6 +205,11 @@ func execute_contract(static_mode_after = false):
 	yield(get_tree().create_timer(2.5),"timeout")
 	roller.static_mode = static_mode_after
 	drill.static_mode = static_mode_after
+	roller.get_node("Puff").emitting = true
+	yield(get_tree().create_timer(.3),"timeout")
+	roller.drill_model.visible = true
+	drill.visible = false
+	cable.visible = false
 
 var super_mode := false
 var super_speed := 55.0
@@ -224,6 +231,11 @@ func execute_super_mode():
 	roller.ACC = old_speed
 	roller.cable_factor = 1.0
 	super_mode = false
+	roller.get_node("Puff").emitting = true
+	yield(get_tree().create_timer(.3),"timeout")
+	roller.drill_model.visible = false
+	drill.visible = true
+	cable.visible = true
 
 var player_1_wants_to_super := false
 var player_2_wants_to_super := false

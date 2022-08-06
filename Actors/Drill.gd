@@ -44,7 +44,7 @@ func _ready():
 	$Model/CrystalParticles.draw_pass_1.surface_get_material(0).set("albedo_color", crystal_color)
 	$Model/GoldParticles.draw_pass_1.surface_get_material(0).set("albedo_color", gold_color)
 	$Model/ScrapParticles.draw_pass_1.surface_get_material(0).set("albedo_color", scrap_color)
-	var color = $Model/DrillModel/DrillShader.get("material/0").get("shader_param/albedo")
+	var color = Color.red if Game.upgrades.drill_power else $Model/DrillModel/DrillShader.get("material/0").get("shader_param/albedo")
 	color.a = 0.0
 	$Model/DrillModel/DrillShader.get("material/0").set("shader_param/albedo", color)
 	

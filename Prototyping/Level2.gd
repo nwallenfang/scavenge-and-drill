@@ -33,6 +33,7 @@ remotesync func power_depleted():
 	$Player2.visible = false
 	$Cable.visible = false
 	$Player1/EndCutscene.rotation.y = $Player1/Model/RollerModel.rotation.y
+	$TreasureChest.close()
 	$Player1/EndCutscene.start()
 	yield($Player1/EndCutscene,"cutscene_done")
 	Game.main.game_to_shop_transition()

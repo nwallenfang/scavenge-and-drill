@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Actors/Roller.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Models/RollerModel.tscn" type="PackedScene" id=2]
@@ -7,6 +7,10 @@
 [ext_resource path="res://Effects/MagicForceField.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Effects/DustTrack.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/Sprites/Stars/star_01.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/voronoi.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Shader/DustNew.gdshader" type="Shader" id=9]
+[ext_resource path="res://Assets/Shader/Dissolve.gdshader" type="Shader" id=10]
+[ext_resource path="res://Assets/Models/DrillModel.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CapsuleShape" id=10]
 radius = 0.905299
@@ -19,10 +23,87 @@ radius = 4.10198
 [sub_resource type="CapsuleShape" id=14]
 radius = 0.880596
 
+[sub_resource type="Gradient" id=37]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=12]
+gradient = SubResource( 37 )
+
+[sub_resource type="Curve" id=21]
+_data = [ Vector2( 0, 0.167045 ), 0.0, 0.0, 0, 0, Vector2( 0.494506, 0.488636 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.797727 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=38]
+curve = SubResource( 21 )
+
+[sub_resource type="ShaderMaterial" id=39]
+shader = ExtResource( 9 )
+shader_param/direction = Vector3( 0, -0.5, 1 )
+shader_param/spread = 50.0
+shader_param/flatness = 0.0
+shader_param/initial_linear_velocity = 0.0
+shader_param/initial_angle = 0.0
+shader_param/angular_velocity = 0.0
+shader_param/orbit_velocity = 0.0
+shader_param/linear_accel = 0.0
+shader_param/radial_accel = 4.0
+shader_param/tangent_accel = 0.0
+shader_param/damping = 0.3
+shader_param/scale = 2.5
+shader_param/hue_variation = 0.0
+shader_param/anim_speed = 0.0
+shader_param/anim_offset = 0.0
+shader_param/initial_linear_velocity_random = 0.0
+shader_param/initial_angle_random = 0.0
+shader_param/angular_velocity_random = 0.0
+shader_param/orbit_velocity_random = 0.0
+shader_param/linear_accel_random = 0.0
+shader_param/radial_accel_random = 0.0
+shader_param/tangent_accel_random = 0.0
+shader_param/damping_random = 0.0
+shader_param/scale_random = 1.0
+shader_param/hue_variation_random = 0.0
+shader_param/anim_speed_random = 0.0
+shader_param/anim_offset_random = 0.0
+shader_param/lifetime_randomness = 0.2
+shader_param/emission_sphere_radius = 0.5
+shader_param/color_value = Color( 1, 1, 1, 1 )
+shader_param/trail_divisor = 1
+shader_param/gravity = Vector3( 0, -1e-06, 0 )
+shader_param/color_ramp = SubResource( 12 )
+shader_param/scale_texture = SubResource( 38 )
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0.0136364 ), 0.0, -0.0417355, 0, 1, Vector2( 0.326733, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 1.48529, 0.0, 1, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="ShaderMaterial" id=40]
+shader = ExtResource( 10 )
+shader_param/albedo = Color( 0, 0, 0, 1 )
+shader_param/specular = 0.0
+shader_param/metallic = 0.265
+shader_param/roughness = 1.0
+shader_param/point_size = null
+shader_param/uv1_scale = null
+shader_param/uv1_offset = null
+shader_param/uv2_scale = null
+shader_param/uv2_offset = null
+shader_param/dissolve_texture = ExtResource( 8 )
+shader_param/dissolve_ramp = SubResource( 2 )
+
+[sub_resource type="SphereMesh" id=41]
+material = SubResource( 40 )
+radius = 0.5
+height = 1.0
+radial_segments = 16
+rings = 16
+
 [sub_resource type="Curve" id=34]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.449438, 0.981818 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=2]
+[sub_resource type="CurveTexture" id=42]
 curve = SubResource( 34 )
 
 [sub_resource type="ParticlesMaterial" id=35]
@@ -34,7 +115,7 @@ emission_ring_axis = Vector3( 0, 1, 0 )
 gravity = Vector3( 0, 0, 0 )
 radial_accel = -1.0
 tangential_accel = 0.5
-scale_curve = SubResource( 2 )
+scale_curve = SubResource( 42 )
 
 [sub_resource type="SpatialMaterial" id=33]
 flags_transparent = true
@@ -73,6 +154,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.195769, 0.412361 )
 [node name="Handle" type="Spatial" parent="Model/RollerModel"]
 transform = Transform( 0.752294, 0, 0, 0, 0.752294, 0, 0, 0, 0.752294, 0, 0.330323, -0.479799 )
 
+[node name="DrillModel" parent="Model/RollerModel" instance=ExtResource( 11 )]
+transform = Transform( 1.15752, 0, 0, 0, -5.05968e-08, -1.15752, 0, 1.15752, -5.05968e-08, -0.00498232, 0.330764, -0.66589 )
+visible = false
+
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 0.841622, 0, 0, 0, -2.82107e-08, 0.645386, 0, -0.841622, -3.67884e-08, 0, 1.23442, 0 )
 shape = SubResource( 10 )
@@ -108,6 +193,14 @@ visible = false
 [node name="DustTrack" parent="." instance=ExtResource( 6 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0230429, -0.0807253, -0.762481 )
 emitting = false
+
+[node name="Puff" parent="." instance=ExtResource( 6 )]
+transform = Transform( -1.37279, 0, -1.20013e-07, -1.20013e-07, -6.00064e-08, 1.37279, -5.24593e-15, 1.37279, 6.00064e-08, 0.0230429, 0.170656, -0.860537 )
+emitting = false
+one_shot = true
+explosiveness = 0.69
+process_material = SubResource( 39 )
+draw_pass_1 = SubResource( 41 )
 
 [node name="TryParticles" type="Particles" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.288404, 0 )

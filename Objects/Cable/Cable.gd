@@ -56,6 +56,7 @@ func test_cable_stretch():
 	
 
 func create_cable(piece_a: Spatial, piece_b: Spatial):
+	Game.cable = self
 	$CableEndA.set_target(piece_a)
 	$CableEndB.set_target(piece_b)
 	var dist = piece_a.global_translation.distance_to(piece_b.global_translation)
