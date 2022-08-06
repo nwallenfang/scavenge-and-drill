@@ -628,10 +628,7 @@ anims/energy_crystal_missing = SubResource( 17 )
 [node name="SpaceToSkip" type="Label" parent="."]
 visible = false
 anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 1.0
-margin_right = 1.0
-margin_bottom = -528.0
+anchor_bottom = 0.121
 custom_fonts/font = ExtResource( 2 )
 text = "[space] to skip"
 align = 1
@@ -639,3 +636,6 @@ valign = 1
 
 [node name="CrystalsEmpty" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
+
+[connection signal="value_changed" from="PausePanel/InnerPanel/VBoxContainer/HBoxContainer/GridContainer/MusicSlider" to="." method="_on_MusicSlider_value_changed"]
+[connection signal="value_changed" from="PausePanel/InnerPanel/VBoxContainer/HBoxContainer/GridContainer/SoundSlider" to="." method="_on_SoundSlider_value_changed"]

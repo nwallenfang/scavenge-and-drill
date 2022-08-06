@@ -166,3 +166,12 @@ func show_energy_crystals_missing():
 	$CrystalsEmpty.play()
 	$EnergyCrystalPlayer.play("energy_crystal_missing")
 
+
+
+func _on_MusicSlider_value_changed(value: float) -> void:
+#	var db: float = 
+	pass
+
+
+func _on_SoundSlider_value_changed(value: float) -> void:
+	pass # Replace with function body.
