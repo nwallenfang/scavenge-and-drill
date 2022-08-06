@@ -25,7 +25,19 @@ func _ready() -> void:
 	box.get_node("AspectRatioContainer2/ColorRect").material = box.get_node("AspectRatioContainer1/ColorRect").material.duplicate(true)
 	box.get_node("AspectRatioContainer3/ColorRect").material = box.get_node("AspectRatioContainer1/ColorRect").material.duplicate(true)
 	set_energy_charges(Game.energy_charges)
-	
+
+func init_tutorial_msg():
+	$"%TutorialPanel".visible = true
+	if Game.drill.controlled:
+		$"%TutorialMsg".text = "Explore and find treasures!\nLeft Mouse Button to drill"
+	else:
+		$"%TutorialMsg".text = "Explore and find treasures!\nLeft Mouse Button to shoot"
+	if Game.upgrades.super_mode:
+		$"%TutorialMsg".text += "\n Press [F] for invincibility"
+	if Game.upgrades.position_swap:
+		$"%TutorialMsg".text += "\n Press [T] to swap positions"
+		
+
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("dev_toggle"):
 		toggle_dev_panel()

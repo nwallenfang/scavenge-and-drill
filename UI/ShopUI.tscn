@@ -17,7 +17,7 @@
 
 [sub_resource type="ShaderMaterial" id=5]
 shader = ExtResource( 1 )
-shader_param/fill_color = null
+shader_param/fill_color = Color( 0.482353, 0.45098, 0.45098, 1 )
 shader_param/empty_color = Color( 1, 1, 1, 1 )
 shader_param/enabled = null
 shader_param/texture_resource = ExtResource( 8 )
@@ -73,7 +73,7 @@ margin_bottom = 51.0
 
 [node name="Label" type="RichTextLabel" parent="VBoxContainer/TreasureCountRow"]
 margin_left = 4.0
-margin_right = 780.0
+margin_right = 784.0
 margin_bottom = 51.0
 size_flags_horizontal = 3
 custom_fonts/normal_font = ExtResource( 7 )
@@ -84,54 +84,53 @@ scroll_active = false
 
 [node name="TreasureUI" type="HBoxContainer" parent="VBoxContainer/TreasureCountRow"]
 unique_name_in_owner = true
-margin_left = 784.0
+margin_left = 788.0
 margin_right = 1024.0
 margin_bottom = 51.0
 size_flags_vertical = 0
 alignment = 2
 
 [node name="GearIcon" type="ColorRect" parent="VBoxContainer/TreasureCountRow/TreasureUI"]
-modulate = Color( 0.172549, 0.133333, 0.133333, 1 )
 material = SubResource( 5 )
-margin_right = 48.0
+margin_right = 44.0
 margin_bottom = 51.0
-rect_min_size = Vector2( 48, 48 )
+rect_min_size = Vector2( 44, 44 )
 
 [node name="GearAmount" type="Label" parent="VBoxContainer/TreasureCountRow/TreasureUI"]
 unique_name_in_owner = true
-margin_left = 52.0
-margin_right = 98.0
+margin_left = 48.0
+margin_right = 94.0
 margin_bottom = 51.0
 custom_fonts/font = ExtResource( 3 )
 text = "00"
 
 [node name="Gap" type="Control" parent="VBoxContainer/TreasureCountRow/TreasureUI"]
 unique_name_in_owner = true
-margin_left = 102.0
-margin_right = 118.0
+margin_left = 98.0
+margin_right = 114.0
 margin_bottom = 51.0
 rect_min_size = Vector2( 16, 0 )
 
 [node name="GoldIcon" type="ColorRect" parent="VBoxContainer/TreasureCountRow/TreasureUI"]
 modulate = Color( 0.729412, 0.635294, 0.196078, 1 )
 material = SubResource( 2 )
-margin_left = 122.0
-margin_right = 170.0
+margin_left = 118.0
+margin_right = 166.0
 margin_bottom = 51.0
 rect_min_size = Vector2( 48, 48 )
 
 [node name="GoldAmount" type="Label" parent="VBoxContainer/TreasureCountRow/TreasureUI"]
 unique_name_in_owner = true
-margin_left = 174.0
-margin_right = 220.0
+margin_left = 170.0
+margin_right = 216.0
 margin_bottom = 51.0
 custom_fonts/font = ExtResource( 3 )
 text = "00"
 
 [node name="Gap2" type="Control" parent="VBoxContainer/TreasureCountRow/TreasureUI"]
 unique_name_in_owner = true
-margin_left = 224.0
-margin_right = 240.0
+margin_left = 220.0
+margin_right = 236.0
 margin_bottom = 51.0
 rect_min_size = Vector2( 16, 0 )
 

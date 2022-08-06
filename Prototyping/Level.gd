@@ -107,6 +107,7 @@ func do_game_setup(players: Dictionary):
 	$Cable.visible = true
 	camera.current = true
 	Game.power_draining = true
+	Game.ui.init_tutorial_msg()
 	Game.ui.fade_in(0.25)
 	
 	
