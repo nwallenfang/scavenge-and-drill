@@ -39,8 +39,8 @@ emission_on_uv2 = false
 [sub_resource type="CylinderMesh" id=5]
 material = SubResource( 4 )
 top_radius = 0.0
-bottom_radius = 0.3
-height = 0.5
+bottom_radius = 0.2
+height = 0.4
 radial_segments = 4
 rings = 0
 

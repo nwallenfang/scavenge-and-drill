@@ -10,7 +10,7 @@ onready var head := $Model/RollerModel/Head
 onready var bullet_spawn := $Model/RollerModel/Head/BulletSpawn
 
 onready var handle := $Model/RollerModel/Handle
-onready var drill_model := $EndCutscene/RollerModel/DrillModel
+onready var drill_model := $Model/RollerModel/DrillModel
 
 var shoot_cooldown := false
 
