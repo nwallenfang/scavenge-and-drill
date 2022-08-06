@@ -139,3 +139,7 @@ func cooldown():
 	drill_cooldown = true
 	yield(get_tree().create_timer(drill_animation_length + 1.5),"timeout")
 	drill_cooldown = false
+
+func try_particles_red():
+	$TryParticles.restart()
+	$TryParticles.emitting = true

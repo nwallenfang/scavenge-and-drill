@@ -77,3 +77,7 @@ remote func set_puppet_rotation(rot):
 remote func set_puppet_aim(aim_direction_set):
 	self.aim_direction = aim_direction_set
 	head.rotation.y = -aim_direction.angle() + PI/2.0 - facing_angle
+
+func try_particles_red():
+	$TryParticles.restart()
+	$TryParticles.emitting = true
