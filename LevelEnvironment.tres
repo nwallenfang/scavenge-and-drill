@@ -16,7 +16,6 @@ fog_depth_end = 50.0
 fog_depth_curve = 0.406127
 tonemap_mode = 2
 tonemap_exposure = 0.7
-dof_blur_far_enabled = true
 dof_blur_far_distance = 17.0
 dof_blur_far_transition = 4.0
 dof_blur_far_amount = 0.05

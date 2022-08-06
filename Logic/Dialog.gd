@@ -337,11 +337,11 @@ func create_all_dialogs():
 	
 	d = DialogTrigger.new("intro_sequence")
 	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.ROLLER, "Finally, our first treasure hunt on our own!", 2.5),
+		DialogLine.new(SPEAKERS.ROLLER, "Finally, the first treasure hunt on our own!", 2.5),
 		DialogLine.new(SPEAKERS.DRILL, "So exciting, which treasure will I drill first?", 3.0),
-		DialogLine.new(SPEAKERS.ROLLER, "It feels so different from the scavenging academy grounds..", 3.0),
-		DialogLine.new(SPEAKERS.DRILL, "This is what we've been training for!", 2.0),
-		DialogLine.new(SPEAKERS.DRILL, "Scrap metal, crystals, explosions, crazy heists...", 2.5),
-		DialogLine.new(SPEAKERS.ROLLER, "Well... let's just touch seaweed first.", 2.5),
+		DialogLine.new(SPEAKERS.ROLLER, "The ocean feels so different from the academy pool..", 3.0),
+		DialogLine.new(SPEAKERS.DRILL, "This is what we've been training for!", 2.3),
+		DialogLine.new(SPEAKERS.DRILL, "Scrap metal, crystals, explosions, crazy heists..", 2.5),
+		DialogLine.new(SPEAKERS.ROLLER, "Well... let's touch some seaweed first.", 2.5),
 	]))
 	all_dialogs.append(d)

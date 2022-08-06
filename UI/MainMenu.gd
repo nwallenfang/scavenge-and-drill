@@ -140,4 +140,4 @@ func _on_Cancel_pressed() -> void:
 
 
 func _on_CreditsButton_clicked() -> void:
-	print("SHOW CREDITS")
+	get_parent().get_node("Credits").play_credits()

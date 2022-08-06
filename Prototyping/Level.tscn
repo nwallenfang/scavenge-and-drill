@@ -935,6 +935,9 @@ shape = SubResource( 9 )
 [node name="Diamond" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.1261, 0, -18.5226 )
 
+[node name="Diamond2" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.08064, -1.90735e-06, 39.5795 )
+
 [connection signal="body_entered" from="CloseToEelDialog" to="." method="_on_CloseToEelDialog_body_entered"]
 [connection signal="body_entered" from="SeeWallDialog" to="." method="_on_SeeWallDialog_body_entered"]
 [connection signal="body_entered" from="OtherSideDialog" to="." method="_on_OtherSideDialog_body_entered"]

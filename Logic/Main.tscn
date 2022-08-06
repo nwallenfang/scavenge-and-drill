@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Logic/Main.gd" type="Script" id=1]
 [ext_resource path="res://UI/ShopUI.tscn" type="PackedScene" id=2]
@@ -6,19 +6,8 @@
 [ext_resource path="res://UI/MainMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/DialogUI.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Assets/Sprites/Dither/blue_noise.png" type="Texture" id=7]
 [ext_resource path="res://UI/ReadyScreen.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Assets/Sprites/Dither/palette_moonlight.png" type="Texture" id=9]
-[ext_resource path="res://Assets/Shader/Dither.gdshader" type="Shader" id=10]
-
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 10 )
-shader_param/u_bit_depth = 32
-shader_param/u_contrast = null
-shader_param/u_offset = null
-shader_param/u_dither_size = 2
-shader_param/u_dither_tex = ExtResource( 7 )
-shader_param/u_color_tex = ExtResource( 9 )
+[ext_resource path="res://UI/Credits.tscn" type="PackedScene" id=11]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -35,7 +24,6 @@ mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 3 )
-dither = SubResource( 1 )
 
 [node name="Viewport" type="Viewport" parent="ViewportContainer"]
 size = Vector2( 1024, 600 )
@@ -55,6 +43,9 @@ visible = false
 [node name="DialogUI" parent="." instance=ExtResource( 5 )]
 
 [node name="UI" parent="." instance=ExtResource( 6 )]
+
+[node name="Credits" parent="." instance=ExtResource( 11 )]
+visible = false
 
 [connection signal="match_made" from="MainMenu" to="." method="_on_MainMenu_match_made"]
 [connection signal="ready_pressed" from="ReadyScreen" to="." method="_on_ReadyScreen_ready_pressed"]

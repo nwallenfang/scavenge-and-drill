@@ -8,6 +8,8 @@ func _ready() -> void:
 		entry = entry as ShopEntry
 		if entry != null:
 			entry.connect("upgrade_clicked", self, "upgrade_clicked")
+	
+	$"%ShopEntrySecret".connect("upgrade_clicked", self, "upgrade_clicked")
 	initialize()
 	
 	# reinitialize to see what's affordable, update treasure count interface
@@ -24,6 +26,7 @@ func initialize():
 		diamonds_were_visible_once = true
 		$"%DiamondIcon".visible = true
 		$"%DiamondAmount".visible = true
+		$"%ShopEntrySecret".secret_unlocked = true
 	
 	for entry in $VBoxContainer/GridContainer.get_children():
 		entry = entry as ShopEntry
@@ -49,12 +52,15 @@ func update_treasure():
 		$"%DiamondIcon".visible = true
 		$"%DiamondAmount".visible = true
 
-
+var phrases = ["That's a good one!", "Good choice!", "Come again!"]
 func upgrade_clicked(upgrade_attribute: String, cost_gold: int, cost_gears:int):
 	# check that it's buyable even though not buyable upgrades entries should be 
 	# disabled
 	print("CLICKED " + upgrade_attribute)
 	
+	if upgrade_attribute == "level_2":
+		Game.rpc("set_level2_unlocked")
+		return
 	
 	if not upgrade_attribute in Game.upgrades:
 		Game.log("Error: unknown attribute " + upgrade_attribute)
@@ -67,3 +73,5 @@ func _on_Button_pressed() -> void:
 
 func _on_DoneShopping_clicked() -> void:
 	emit_signal("done_shopping")
+	
+

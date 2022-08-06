@@ -16,7 +16,7 @@ var style_box_default: StyleBoxFlat
 var style_box_hovered: StyleBoxFlat = preload("res://UI/Styles/panel_hovered.tres")
 var style_box_not_affordable: StyleBoxFlat = preload("res://UI/Styles/panel_not_affordable.tres")
 var style_box_bought: StyleBoxFlat = preload("res://UI/Styles/panel_bought.tres")
-var affordable = false setget set_affordable
+var affordable = true setget set_affordable
 var bought = false setget set_bought
 
 

@@ -45,7 +45,7 @@ const TYPE_3 = 3
 
 var treasure_gold = 0
 var treasure_gears = 0
-var treasure_diamond = 0 
+var treasure_diamond = 1
 
 var collectibles_node: Node
 
@@ -65,17 +65,11 @@ class Progress:
 var upgrades: Upgrades = Upgrades.new()
 var progress: Progress = Progress.new()
 
-func _process(delta: float) -> void:
-#	if is_instance_valid(viewport_sprite) and is_instance_valid(main_cam):
-#		if viewport_sprite != null:
-#			#print(viewport_sprite.material.get("shader_param/ViewportTexture2"))
-#			viewport_sprite.material.set_shader_param("sideview_active", main_cam.shader_active)
-#			viewport_sprite.material.set_shader_param("sideview_visible", main_cam.shader_visible)
-#			viewport_sprite.material.set_shader_param("sideview_direction", main_cam.shader_direction)
+func _unhandled_key_input(event: InputEventKey) -> void:
 	if Input.is_action_just_pressed("pause"):
 		if ui != null:
 			ui.toggle_pause()
-		
+
 	if Input.is_action_just_pressed("skip_dialog"):
 		dialog_ui.rpc("skip_dialog")
 	if Input.is_action_just_pressed("disable_power"):
@@ -88,6 +82,31 @@ func _process(delta: float) -> void:
 		rpc("sync_energy_charges", (energy_charges - 1))
 	if Input.is_action_just_pressed("go_to_shop"):
 		level.rpc("power_depleted")
+	
+
+func _process(delta: float) -> void:
+#	if is_instance_valid(viewport_sprite) and is_instance_valid(main_cam):
+#		if viewport_sprite != null:
+#			#print(viewport_sprite.material.get("shader_param/ViewportTexture2"))
+#			viewport_sprite.material.set_shader_param("sideview_active", main_cam.shader_active)
+#			viewport_sprite.material.set_shader_param("sideview_visible", main_cam.shader_visible)
+#			viewport_sprite.material.set_shader_param("sideview_direction", main_cam.shader_direction)
+#	if Input.is_action_just_pressed("pause"):
+#		if ui != null:
+#			ui.toggle_pause()
+#
+#	if Input.is_action_just_pressed("skip_dialog"):
+#		dialog_ui.rpc("skip_dialog")
+#	if Input.is_action_just_pressed("disable_power"):
+#		rpc("disable_power")
+#	if Input.is_action_just_pressed("add_energy"):
+#		rpc("sync_energy_charges", (energy_charges + 1))
+#		rpc("sync_treasures", 100, 1)
+#		rpc("sync_treasures", 100, 2)
+#	if Input.is_action_just_pressed("remove_energy"):
+#		rpc("sync_energy_charges", (energy_charges - 1))
+#	if Input.is_action_just_pressed("go_to_shop"):
+#		level.rpc("power_depleted")
 	if power_draining and game_started:  # state machine maybe? menu/in_game/merchant
 		# this doesn't get synced at the moment since the calc should be the
 		# same for both players
@@ -145,6 +164,11 @@ remotesync func set_upgrade(name, cost_gold, cost_gears):
 	
 	emit_signal("treasure_count_changed")
 
+remotesync func set_level2_unlocked():
+	treasure_diamond -= 1
+	Game.log("setting level 2 unlocked " + name)	
+	upgrades.set("level_2", true)
+	emit_signal("treasure_count_changed")
 
 func log(msg: String):
 	print(msg)

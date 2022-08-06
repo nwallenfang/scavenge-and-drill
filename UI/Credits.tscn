@@ -1,0 +1,286 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Prototyping/MainMenu3DScene.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Fonts/credits_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://UI/Credits.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Fonts/iosevka-extended-regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://LevelEnvironment.tres" type="Environment" id=5]
+
+[sub_resource type="World" id=2]
+environment = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 36
+font_data = ExtResource( 4 )
+
+[node name="Credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 1024, 600 )
+world = SubResource( 2 )
+handle_input_locally = false
+hdr = false
+render_target_update_mode = 3
+gui_disable_input = true
+
+[node name="MainMenuScene" parent="ViewportContainer/Viewport" instance=ExtResource( 1 )]
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+anchor_left = 0.2
+anchor_top = 0.1
+anchor_right = 0.8
+anchor_bottom = 0.9
+mouse_filter = 2
+alignment = 2
+
+[node name="Page1" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Page1"]
+anchor_left = 0.2
+anchor_top = 0.25
+anchor_right = 0.8
+anchor_bottom = 0.75
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Page1/VBoxContainer"]
+margin_right = 662.0
+margin_bottom = 56.0
+rect_pivot_offset = Vector2( -125.8, -122 )
+mouse_filter = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Page1/VBoxContainer/HBoxContainer"]
+margin_top = 12.0
+margin_right = 140.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Nitai Heeb"
+
+[node name="Label2" type="Label" parent="Page1/VBoxContainer/HBoxContainer"]
+margin_left = 144.0
+margin_top = 12.0
+margin_right = 662.0
+margin_bottom = 43.0
+custom_fonts/font = ExtResource( 2 )
+text = "        Design, Programming, Modeling"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Page1/VBoxContainer"]
+margin_top = 60.0
+margin_right = 662.0
+margin_bottom = 117.0
+rect_pivot_offset = Vector2( -125.8, -122 )
+mouse_filter = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Page1/VBoxContainer/HBoxContainer2"]
+margin_top = 13.0
+margin_right = 392.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Nils Wallenfang  "
+
+[node name="Label2" type="Label" parent="Page1/VBoxContainer/HBoxContainer2"]
+margin_left = 396.0
+margin_top = 13.0
+margin_right = 662.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 2 )
+text = "Design, Programming"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Page1/VBoxContainer"]
+margin_top = 121.0
+margin_right = 662.0
+margin_bottom = 178.0
+rect_pivot_offset = Vector2( -125.8, -122 )
+mouse_filter = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Page1/VBoxContainer/HBoxContainer3"]
+margin_top = 13.0
+margin_right = 434.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Niels Asselborn"
+
+[node name="Label2" type="Label" parent="Page1/VBoxContainer/HBoxContainer3"]
+margin_left = 438.0
+margin_top = 13.0
+margin_right = 662.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 2 )
+text = "Modeling, 2D Art"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Page1/VBoxContainer"]
+margin_top = 182.0
+margin_right = 662.0
+margin_bottom = 239.0
+rect_pivot_offset = Vector2( -125.8, -122 )
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Page1/VBoxContainer/HBoxContainer4"]
+margin_top = 13.0
+margin_right = 476.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Paul Shelley"
+
+[node name="Label2" type="Label" parent="Page1/VBoxContainer/HBoxContainer4"]
+margin_left = 480.0
+margin_top = 13.0
+margin_right = 662.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 2 )
+text = "Sound Effects"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Page1/VBoxContainer"]
+margin_top = 243.0
+margin_right = 662.0
+margin_bottom = 300.0
+rect_pivot_offset = Vector2( -125.8, -122 )
+mouse_filter = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Page1/VBoxContainer/HBoxContainer5"]
+margin_top = 13.0
+margin_right = 532.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Lightspeed6"
+
+[node name="Label2" type="Label" parent="Page1/VBoxContainer/HBoxContainer5"]
+margin_left = 536.0
+margin_top = 13.0
+margin_right = 662.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 2 )
+text = "Composing"
+
+[node name="Page2" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Page2"]
+anchor_left = 0.2
+anchor_top = 0.25
+anchor_right = 0.8
+anchor_bottom = 0.75
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Page2"]
+margin_left = 204.8
+margin_top = 150.0
+margin_right = 820.8
+margin_bottom = 181.0
+rect_pivot_offset = Vector2( -125.8, -122 )
+mouse_filter = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Page2/HBoxContainer"]
+margin_right = 616.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "UI icons from thenounproject.com users"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Page2"]
+anchor_left = 0.0441406
+anchor_top = 0.0883333
+anchor_right = 0.0441406
+anchor_bottom = 0.0883333
+margin_left = 204.8
+margin_top = 150.0
+margin_right = 820.8
+margin_bottom = 283.0
+rect_pivot_offset = Vector2( -125.8, -122 )
+mouse_filter = 2
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="Page2/HBoxContainer2"]
+margin_right = 616.0
+margin_bottom = 133.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "James Smith, Nur Faizah, Mas Dhimas, Xeno00,
+TAQRIB ICON, Kmg Design, Ayub Irawan, 
+Kokota, Singlar, Kayla Valencia,
+Nico Ilk, Dima Lagunov"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Page2"]
+margin_left = 204.8
+margin_top = 364.0
+margin_right = 818.8
+margin_bottom = 449.0
+rect_pivot_offset = Vector2( -125.8, -122 )
+mouse_filter = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Page2"]
+margin_left = 204.8
+margin_top = 150.0
+margin_right = 818.8
+margin_bottom = 280.0
+rect_pivot_offset = Vector2( -125.8, -122 )
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Page2"]
+margin_left = 204.8
+margin_top = 377.0
+margin_right = 818.8
+margin_bottom = 408.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Sand and rock texture from ambientcg.com"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Page2"]
+margin_left = 204.8
+margin_top = 150.0
+margin_right = 818.8
+margin_bottom = 450.0
+rect_pivot_offset = Vector2( -125.8, -122 )
+mouse_filter = 2
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="Page2"]
+anchor_left = 0.395
+anchor_top = 0.8
+anchor_right = 0.5
+anchor_bottom = 0.8
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+text = "Thank you!"
+align = 1
+valign = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="gui_input" from="." to="." method="_on_Credits_gui_input"]
+[connection signal="timeout" from="Timer" to="." method="timer_or_interrupt"]

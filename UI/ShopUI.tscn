@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Assets/Shader/energy_crystal_ui.gdshader" type="Shader" id=1]
 [ext_resource path="res://Assets/Sprites/gold.png" type="Texture" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://Assets/Fonts/iosevka-extended-regular.ttf" type="DynamicFontData" id=18]
 [ext_resource path="res://UI/ShopEntryGap.tscn" type="PackedScene" id=19]
 [ext_resource path="res://UI/ShopEntrySecret.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Assets/Sprites/levels/level2_placeholder.png" type="Texture" id=21]
 
 [sub_resource type="ShaderMaterial" id=7]
 shader = ExtResource( 1 )
@@ -168,16 +169,18 @@ margin_right = 158.0
 margin_bottom = 374.0
 
 [node name="ShopEntrySecret" parent="VBoxContainer/GridContainer" instance=ExtResource( 20 )]
+unique_name_in_owner = true
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 162.0
 margin_top = 252.0
 margin_right = 320.0
 margin_bottom = 374.0
-upgrade_attribute = "level2_unlock"
+upgrade_attribute = "level_2"
 description = "?"
 cost_gears = 9999
 cost_gold = 9999
+upgrade_icon = ExtResource( 21 )
 
 [node name="Gap2" parent="VBoxContainer/GridContainer" instance=ExtResource( 19 )]
 anchor_right = 0.0
@@ -267,9 +270,9 @@ unique_name_in_owner = true
 visible = false
 modulate = Color( 0.176471, 0.854902, 0.854902, 1 )
 material = SubResource( 6 )
-margin_left = 244.0
-margin_right = 292.0
-margin_bottom = 51.0
+margin_left = 220.0
+margin_right = 268.0
+margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
 
 [node name="DiamondAmount" type="Label" parent="TreasureCountRow/TreasureUI"]

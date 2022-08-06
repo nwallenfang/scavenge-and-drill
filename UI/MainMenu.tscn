@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Assets/Fonts/GameTitle.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Assets/Fonts/GameSubtitle.tres" type="DynamicFont" id=2]
@@ -17,6 +17,8 @@
 [ext_resource path="res://Assets/Sprites/gear - Copy.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Sprites/arrow_left.png" type="Texture" id=16]
 [ext_resource path="res://Assets/Fonts/DialogFont.tres" type="DynamicFont" id=17]
+
+[sub_resource type="World" id=10]
 
 [sub_resource type="ShaderMaterial" id=9]
 shader = ExtResource( 14 )
@@ -93,6 +95,7 @@ stretch = true
 
 [node name="Viewport" type="Viewport" parent="ViewportContainer"]
 size = Vector2( 1024, 600 )
+world = SubResource( 10 )
 handle_input_locally = false
 hdr = false
 render_target_update_mode = 3
@@ -412,8 +415,8 @@ mouse_filter = 1
 
 [node name="ColorRect" type="ColorRect" parent="JoinLobbyScreen/BackLobby/Panel/AspectRatioContainer"]
 material = SubResource( 9 )
-margin_left = 19.3701
-margin_right = 80.702
+margin_left = 19.3699
+margin_right = 80.7019
 margin_bottom = 61.332
 mouse_filter = 1
 
@@ -542,8 +545,8 @@ mouse_filter = 1
 
 [node name="ColorRect" type="ColorRect" parent="CreateLobbyScreen/BackCreatedLobby/Panel/AspectRatioContainer"]
 material = SubResource( 9 )
-margin_left = 19.3701
-margin_right = 80.702
+margin_left = 19.3699
+margin_right = 80.7019
 margin_bottom = 61.332
 mouse_filter = 1
 

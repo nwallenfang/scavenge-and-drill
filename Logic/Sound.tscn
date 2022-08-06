@@ -94,6 +94,7 @@ bus = "SFX"
 
 [node name="BackToOceanSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
+volume_db = -8.0
 
 [node name="Themes" type="Node" parent="."]
 

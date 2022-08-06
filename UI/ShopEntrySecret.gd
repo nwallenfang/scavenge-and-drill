@@ -1,11 +1,12 @@
 extends Control
-
+class_name ShopEntrySecret
 signal upgrade_clicked
 export var upgrade_attribute: String
 export var description: String
 export var cost_gears: int = 1
 export var cost_gold: int = 2
 export var upgrade_icon: StreamTexture
+
 
 const unaffordable_color: Color = Color("c24040")
 const unaffordable_modulate: Color = Color("2bffffff")
@@ -17,12 +18,10 @@ var style_box_not_affordable: StyleBoxFlat = preload("res://UI/Styles/panel_not_
 var style_box_bought: StyleBoxFlat = preload("res://UI/Styles/panel_bought.tres")
 var affordable = false setget set_affordable
 var bought = false setget set_bought
-
+var secret_unlocked = false setget set_secret_unlocked
 
 func _ready() -> void:
 	style_box_default = $Panel.get("custom_styles/panel")
-	$"%GearAmount".text = str(cost_gears)
-	$"%GoldAmount".text = str(cost_gold)
 	$"%DescriptionLabel".text = description
 	$"%Image".material = $"%Image".material.duplicate(true)
 	if upgrade_icon != null:
@@ -31,19 +30,24 @@ func _ready() -> void:
 func set_affordable(val: bool):
 	if not val and affordable and not bought:  # switch away
 		$Panel.set("custom_styles/panel", style_box_not_affordable)
-		if cost_gears > Game.treasure_gears:
-			$"%GearAmount".add_color_override("font_color", unaffordable_color)
-		if cost_gold > Game.treasure_gold:
-			$"%GoldAmount".add_color_override("font_color", unaffordable_color)
 		$"%Image".modulate = unaffordable_modulate
 	if val and not affordable and not bought:  # switch back
-		$"%GearAmount".add_color_override("font_color", affordable_color)
-		$"%GoldAmount".add_color_override("font_color", affordable_color)
 		$Panel.set("custom_styles/panel", style_box_default)
 		$"%Image".modulate = Color.white
 		
 	affordable = val
 
+const entry_font = preload("res://Assets/Fonts/ShopEntryFont.tres")
+func set_secret_unlocked(value: bool):
+	if value and not secret_unlocked:
+		$"%DescriptionLabel".text = "Unlock another World"
+		$"%DescriptionLabel".set("custom_fonts/font", entry_font)
+		$"%Cost".visible = true
+		$"%Image".visible = true
+		$"%DiamondAmount".text = "1"
+		set_affordable(true)
+		
+	secret_unlocked = value
 
 func _on_Panel_mouse_entered() -> void:
 	if affordable and not bought:
@@ -58,11 +62,8 @@ func _on_Panel_mouse_exited() -> void:
 remotesync func set_bought(val: bool):
 	if val:
 		$Panel.set("custom_styles/panel", style_box_bought)
-		$"%GearAmount".add_color_override("font_color", affordable_color)
-		$"%GoldAmount".add_color_override("font_color", affordable_color)
-		$"%GoldAmount".text = "-"
-		$"%GearAmount".text = "-"
 		$"%Image".modulate = unaffordable_modulate
+		$"%DiamondAmount".text = '-'
 	if bought and not val:
 		Game.log("unbuy shouldn't happen")
 		printerr("unbuy shouldn't happen")
