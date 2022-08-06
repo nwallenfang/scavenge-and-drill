@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=26 format=2]
 
-[ext_resource path="res://Assets/Fonts/TitleFont.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Assets/Fonts/PausedFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Assets/Fonts/GameTitle.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Fonts/GameSubtitle.tres" type="DynamicFont" id=2]
 [ext_resource path="res://UI/MainMenu.gd" type="Script" id=3]
 [ext_resource path="res://Prototyping/MainMenu3DScene.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/PlayWithFriend.tscn" type="PackedScene" id=5]
@@ -13,6 +13,17 @@
 [ext_resource path="res://Assets/Sprites/copy.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Fonts/iosevka-extended-regular.ttf" type="DynamicFontData" id=12]
 [ext_resource path="res://UI/Styles/enter_lobby_panel.tres" type="StyleBox" id=13]
+[ext_resource path="res://Assets/Shader/energy_crystal_ui.gdshader" type="Shader" id=14]
+[ext_resource path="res://Assets/Sprites/gear - Copy.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Sprites/arrow_left.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Fonts/DialogFont.tres" type="DynamicFont" id=17]
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = ExtResource( 14 )
+shader_param/fill_color = null
+shader_param/empty_color = null
+shader_param/enabled = null
+shader_param/texture_resource = ExtResource( 16 )
 
 [sub_resource type="Theme" id=4]
 
@@ -33,6 +44,18 @@ void fragment(){
 shader = SubResource( 1 )
 shader_param/texture_resource = ExtResource( 11 )
 
+[sub_resource type="Theme" id=7]
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.12549, 0.215686, 0.235294, 0.388235 )
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = ExtResource( 14 )
+shader_param/fill_color = Color( 0.192157, 0.192157, 0.192157, 1 )
+shader_param/empty_color = null
+shader_param/enabled = null
+shader_param/texture_resource = ExtResource( 15 )
+
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -45,18 +68,18 @@ anchor_bottom = 1.0
 
 [node name="Title" type="Label" parent="VBoxContainer"]
 margin_right = 1024.0
-margin_bottom = 91.0
+margin_bottom = 135.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 1 )
-text = "Underwater"
+text = "Scavenge & Drill"
 align = 1
 valign = 1
 
 [node name="Subtitle" type="Label" parent="VBoxContainer"]
-margin_top = 95.0
+margin_top = 139.0
 margin_right = 1024.0
-margin_bottom = 136.0
+margin_bottom = 196.0
 mouse_filter = 1
 custom_fonts/font = ExtResource( 2 )
 text = "a two-player co-op game"
@@ -78,15 +101,14 @@ gui_disable_input = true
 [node name="MainMenuScene" parent="ViewportContainer/Viewport" instance=ExtResource( 4 )]
 
 [node name="Buttons" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="PlayWithFriendButton" parent="Buttons" instance=ExtResource( 5 )]
 anchor_left = 0.121094
-anchor_top = 0.346333
+anchor_top = 0.371667
 anchor_right = 0.521094
-anchor_bottom = 0.880333
+anchor_bottom = 0.914
 rect_scale = Vector2( 0.717371, 0.743225 )
 __meta__ = {
 "_edit_use_anchors_": true
@@ -94,9 +116,9 @@ __meta__ = {
 
 [node name="PlayWithRandomButton" parent="Buttons" instance=ExtResource( 6 )]
 anchor_left = 0.576172
-anchor_top = 0.338333
+anchor_top = 0.372
 anchor_right = 0.976172
-anchor_bottom = 0.880333
+anchor_bottom = 0.914
 margin_left = 0.0
 margin_top = 0.0
 margin_right = 0.0
@@ -185,6 +207,56 @@ margin_bottom = 59.0
 mouse_filter = 1
 text = "Create Lobby"
 
+[node name="Back" type="Control" parent="LobbyScreen"]
+anchor_left = 0.45
+anchor_top = 0.738627
+anchor_right = 0.55
+anchor_bottom = 0.928627
+mouse_filter = 1
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Panel" type="Panel" parent="LobbyScreen/Back"]
+anchor_left = -0.197545
+anchor_top = -0.435332
+anchor_right = 0.802455
+anchor_bottom = 0.564668
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="LobbyScreen/Back/Panel"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="LobbyScreen/Back/Panel/AspectRatioContainer"]
+material = SubResource( 9 )
+margin_left = 12.869
+margin_right = 58.811
+margin_bottom = 45.942
+mouse_filter = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="LobbyScreen/Back/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="LobbyScreen/Back/Panel/CenterContainer"]
+margin_left = 17.0
+margin_top = 12.0
+margin_right = 53.0
+margin_bottom = 33.0
+mouse_filter = 1
+text = "Back"
+
 [node name="JoinLobby" type="Control" parent="LobbyScreen"]
 anchor_left = 0.542
 anchor_top = 0.17
@@ -253,7 +325,7 @@ text = "132465"
 margin_top = 64.0
 margin_right = 819.0
 margin_bottom = 85.0
-text = "Ctrl+V works :)"
+text = "Ctrl+V doesn't work in the Browser :("
 align = 1
 
 [node name="En" type="Panel" parent="JoinLobbyScreen/Panel/VBoxContainer"]
@@ -307,6 +379,56 @@ anchor_bottom = 1.0
 margin_top = -21.0
 text = "Joined the lobby successfully!"
 align = 1
+
+[node name="BackLobby" type="Control" parent="JoinLobbyScreen"]
+anchor_left = 0.44
+anchor_top = 0.771995
+anchor_right = 0.562158
+anchor_bottom = 0.961995
+mouse_filter = 1
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Panel" type="Panel" parent="JoinLobbyScreen/BackLobby"]
+anchor_left = -0.0884158
+anchor_top = -0.423923
+anchor_right = 0.911584
+anchor_bottom = 0.576077
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="JoinLobbyScreen/BackLobby/Panel"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="JoinLobbyScreen/BackLobby/Panel/AspectRatioContainer"]
+material = SubResource( 9 )
+margin_left = 19.3701
+margin_right = 80.702
+margin_bottom = 61.332
+mouse_filter = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="JoinLobbyScreen/BackLobby/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="JoinLobbyScreen/BackLobby/Panel/CenterContainer"]
+margin_left = 18.0
+margin_top = 20.0
+margin_right = 81.0
+margin_bottom = 41.0
+mouse_filter = 1
+text = "Go Back"
 
 [node name="CreateLobbyScreen" type="Control" parent="."]
 visible = false
@@ -369,7 +491,10 @@ margin_top = 61.0
 margin_right = 819.0
 margin_bottom = 106.0
 text = "Note: copying to clipboard doesn't work on the web :(
-Please join random matchmaking at the same time or type the code by hand."
+You could:
+- join random matchmaking at the same time
+- type the code by hand
+- or play on a downloaded version"
 align = 1
 
 [node name="Gap" type="Control" parent="CreateLobbyScreen/Panel/VBoxContainer"]
@@ -385,12 +510,155 @@ margin_bottom = 185.0
 text = "Waiting for a player to join.."
 align = 1
 
+[node name="BackCreatedLobby" type="Control" parent="CreateLobbyScreen"]
+anchor_left = 0.44
+anchor_top = 0.771995
+anchor_right = 0.562158
+anchor_bottom = 0.961995
+mouse_filter = 1
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Panel" type="Panel" parent="CreateLobbyScreen/BackCreatedLobby"]
+anchor_left = -0.078423
+anchor_top = -0.114133
+anchor_right = 0.921577
+anchor_bottom = 0.885867
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="CreateLobbyScreen/BackCreatedLobby/Panel"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="CreateLobbyScreen/BackCreatedLobby/Panel/AspectRatioContainer"]
+material = SubResource( 9 )
+margin_left = 19.3701
+margin_right = 80.702
+margin_bottom = 61.332
+mouse_filter = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="CreateLobbyScreen/BackCreatedLobby/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="CreateLobbyScreen/BackCreatedLobby/Panel/CenterContainer"]
+margin_left = 18.0
+margin_top = 20.0
+margin_right = 81.0
+margin_bottom = 41.0
+mouse_filter = 1
+text = "Go Back"
+
+[node name="SettingsButton" type="Control" parent="."]
+anchor_left = 0.893555
+anchor_top = 0.853333
+anchor_right = 1.0
+anchor_bottom = 1.03233
+rect_scale = Vector2( 0.717371, 0.743225 )
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource( 7 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Panel" type="Panel" parent="SettingsButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="SettingsButton/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsButton/Panel/CenterContainer"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 91.0
+margin_bottom = 91.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="SettingsButton/Panel/CenterContainer/VBoxContainer"]
+margin_right = 75.0
+margin_bottom = 75.0
+mouse_filter = 2
+stretch_mode = 1
+
+[node name="Image" type="ColorRect" parent="SettingsButton/Panel/CenterContainer/VBoxContainer/AspectRatioContainer"]
+material = SubResource( 8 )
+margin_right = 75.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 75, 75 )
+mouse_filter = 2
+
+[node name="CreditsButton" type="Control" parent="."]
+anchor_left = 0.772
+anchor_top = 0.853333
+anchor_right = 0.90039
+anchor_bottom = 1.03233
+rect_scale = Vector2( 0.717371, 0.743225 )
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource( 7 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Panel" type="Panel" parent="CreditsButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 5 )
+
+[node name="CenterContainer2" type="CenterContainer" parent="CreditsButton/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="CreditsButton/Panel/CenterContainer2"]
+margin_left = 9.0
+margin_top = 35.0
+margin_right = 121.0
+margin_bottom = 71.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 17 )
+text = "Credits"
+align = 1
+valign = 1
+
 [connection signal="clicked" from="Buttons/PlayWithFriendButton" to="." method="_on_PlayWithFriendButton_clicked"]
 [connection signal="clicked" from="Buttons/PlayWithRandomButton" to="." method="_on_PlayWithRandomButton_clicked"]
+[connection signal="pressed" from="MatchmakingScreen/Panel/CenterContainer/VBoxContainer/Cancel" to="." method="_on_Cancel_pressed"]
 [connection signal="clicked" from="LobbyScreen/CreateLobby" to="." method="_on_CreateLobby_clicked"]
 [connection signal="gui_input" from="LobbyScreen/CreateLobby/Panel" to="LobbyScreen/CreateLobby" method="_on_Panel_gui_input"]
 [connection signal="mouse_entered" from="LobbyScreen/CreateLobby/Panel" to="LobbyScreen/CreateLobby" method="_on_Panel_mouse_entered"]
 [connection signal="mouse_exited" from="LobbyScreen/CreateLobby/Panel" to="LobbyScreen/CreateLobby" method="_on_Panel_mouse_exited"]
+[connection signal="clicked" from="LobbyScreen/Back" to="." method="_on_Back_clicked"]
+[connection signal="gui_input" from="LobbyScreen/Back/Panel" to="LobbyScreen/Back" method="_on_Panel_gui_input"]
+[connection signal="mouse_entered" from="LobbyScreen/Back/Panel" to="LobbyScreen/Back" method="_on_Panel_mouse_entered"]
+[connection signal="mouse_exited" from="LobbyScreen/Back/Panel" to="LobbyScreen/Back" method="_on_Panel_mouse_exited"]
 [connection signal="clicked" from="LobbyScreen/JoinLobby" to="." method="_on_JoinLobby_clicked"]
 [connection signal="gui_input" from="LobbyScreen/JoinLobby/Panel" to="LobbyScreen/JoinLobby" method="_on_Panel_gui_input"]
 [connection signal="mouse_entered" from="LobbyScreen/JoinLobby/Panel" to="LobbyScreen/JoinLobby" method="_on_Panel_mouse_entered"]
@@ -400,4 +668,20 @@ align = 1
 [connection signal="gui_input" from="JoinLobbyScreen/Panel/EnterLobbyButton/Panel" to="JoinLobbyScreen/Panel/EnterLobbyButton" method="_on_Panel_gui_input"]
 [connection signal="mouse_entered" from="JoinLobbyScreen/Panel/EnterLobbyButton/Panel" to="JoinLobbyScreen/Panel/EnterLobbyButton" method="_on_Panel_mouse_entered"]
 [connection signal="mouse_exited" from="JoinLobbyScreen/Panel/EnterLobbyButton/Panel" to="JoinLobbyScreen/Panel/EnterLobbyButton" method="_on_Panel_mouse_exited"]
+[connection signal="clicked" from="JoinLobbyScreen/BackLobby" to="." method="_on_BackLobby_clicked"]
+[connection signal="gui_input" from="JoinLobbyScreen/BackLobby/Panel" to="JoinLobbyScreen/BackLobby" method="_on_Panel_gui_input"]
+[connection signal="mouse_entered" from="JoinLobbyScreen/BackLobby/Panel" to="JoinLobbyScreen/BackLobby" method="_on_Panel_mouse_entered"]
+[connection signal="mouse_exited" from="JoinLobbyScreen/BackLobby/Panel" to="JoinLobbyScreen/BackLobby" method="_on_Panel_mouse_exited"]
 [connection signal="gui_input" from="CreateLobbyScreen/Panel/VBoxContainer/HBoxContainer/AspectRatioContainer/CopyButton" to="." method="_on_CopyButton_gui_input"]
+[connection signal="clicked" from="CreateLobbyScreen/BackCreatedLobby" to="." method="_on_BackCreatedLobby_clicked"]
+[connection signal="gui_input" from="CreateLobbyScreen/BackCreatedLobby/Panel" to="CreateLobbyScreen/BackCreatedLobby" method="_on_Panel_gui_input"]
+[connection signal="mouse_entered" from="CreateLobbyScreen/BackCreatedLobby/Panel" to="CreateLobbyScreen/BackCreatedLobby" method="_on_Panel_mouse_entered"]
+[connection signal="mouse_exited" from="CreateLobbyScreen/BackCreatedLobby/Panel" to="CreateLobbyScreen/BackCreatedLobby" method="_on_Panel_mouse_exited"]
+[connection signal="clicked" from="SettingsButton" to="." method="_on_SettingsButton_clicked"]
+[connection signal="gui_input" from="SettingsButton/Panel" to="SettingsButton" method="_on_Panel_gui_input"]
+[connection signal="mouse_entered" from="SettingsButton/Panel" to="SettingsButton" method="_on_Panel_mouse_entered"]
+[connection signal="mouse_exited" from="SettingsButton/Panel" to="SettingsButton" method="_on_Panel_mouse_exited"]
+[connection signal="clicked" from="CreditsButton" to="." method="_on_CreditsButton_clicked"]
+[connection signal="gui_input" from="CreditsButton/Panel" to="CreditsButton" method="_on_Panel_gui_input"]
+[connection signal="mouse_entered" from="CreditsButton/Panel" to="CreditsButton" method="_on_Panel_mouse_entered"]
+[connection signal="mouse_exited" from="CreditsButton/Panel" to="CreditsButton" method="_on_Panel_mouse_exited"]

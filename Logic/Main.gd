@@ -171,6 +171,7 @@ func _on_ReadyScreen_ready_pressed() -> void:
 	
 func game_to_shop_transition():
 	Sound.stop_game_sounds()
+	Sound.start_shop_theme()
 	Game.ui.fade_out(0.3)
 	yield(Game.ui, "fade_done")
 	$ShopUI.visible = true
@@ -184,7 +185,7 @@ func game_to_shop_transition():
 	rpc("shop_to_game_transition")
 	
 remotesync func shop_to_game_transition():
-	Game.get_node("BackToOceanSound").play()
+	Sound.get_node("BackToOceanSound").play()
 	Game.ui.init_tutorial_msg()
 	Game.ui.fade_out(0.3)
 	Game.game_started = false
@@ -213,7 +214,9 @@ remotesync func shop_to_game_transition():
 	Game.try_count += 1   
 	Game.rpc("sync_energy_charges", 0)
 	Game.game_started = true
+	Sound.stop_shop_theme()
 	Sound.start_game_sounds()
+	
 	
 func _on_MainMenu_match_made():
 #	rpc("start_playing")

@@ -6,9 +6,11 @@ onready var debug_log := $DevContainer/DeveloperInfo/DebugLog
 
 func toggle_dev_panel():
 	$DevContainer.visible = not $DevContainer.visible 
-	
+
+var paused := false
 func toggle_pause():
-	$PausePanel.visible = not $PausePanel.visible 
+	$"%PausePanel".visible = not $"%PausePanel".visible
+	paused = $"%PausePanel".visible
 
 func _ready() -> void:
 	var args = Array(OS.get_cmdline_args())
@@ -27,6 +29,9 @@ func _ready() -> void:
 	box.get_node("AspectRatioContainer4/ColorRect").material = box.get_node("AspectRatioContainer1/ColorRect").material.duplicate(true)
 	box.get_node("AspectRatioContainer5/ColorRect").material = box.get_node("AspectRatioContainer1/ColorRect").material.duplicate(true)
 	set_energy_charges(Game.energy_charges)
+	
+	$"%SoundSlider".value = db2linear(AudioServer.get_bus_volume_db(1))
+	$"%MusicSlider".value = db2linear(AudioServer.get_bus_volume_db(2))
 
 func init_tutorial_msg():
 	$"%TutorialPanel".visible = true
@@ -166,12 +171,10 @@ func show_energy_crystals_missing():
 	$CrystalsEmpty.play()
 	$EnergyCrystalPlayer.play("energy_crystal_missing")
 
-
-
 func _on_MusicSlider_value_changed(value: float) -> void:
 #	var db: float = 
-	pass
+	AudioServer.set_bus_volume_db(2, linear2db(value))
 
 
 func _on_SoundSlider_value_changed(value: float) -> void:
-	pass # Replace with function body.
+	AudioServer.set_bus_volume_db(1, linear2db(value))

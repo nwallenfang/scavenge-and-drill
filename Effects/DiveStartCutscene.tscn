@@ -141,9 +141,12 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 23.9 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 6.3, 23.9 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "stop_intro_music"
+}, {
 "args": [  ],
 "method": "host_sync_end_cutscene"
 } ]
