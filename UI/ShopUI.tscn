@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Assets/Shader/energy_crystal_ui.gdshader" type="Shader" id=1]
 [ext_resource path="res://Assets/Sprites/gold.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Assets/Sprites/upgrade_icons/super_mode.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Sprites/treasure_diamond.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Sound/UI_MULTIJAM_Menu_01_01.ogg" type="AudioStream" id=15]
+[ext_resource path="res://Assets/Sprites/upgrade_icons/drill_power.png" type="Texture" id=16]
 
 [sub_resource type="ShaderMaterial" id=5]
 shader = ExtResource( 1 )
@@ -248,10 +249,11 @@ margin_left = 514.0
 margin_top = 276.0
 margin_right = 1024.0
 margin_bottom = 410.0
-upgrade_attribute = "chain_longer"
-description = "DUMMY"
-cost_gears = 99
-cost_gold = 99
+upgrade_attribute = "drill_power"
+description = "Make the drill stronger"
+cost_gears = 3
+cost_gold = 3
+upgrade_icon = ExtResource( 16 )
 
 [node name="DoneShoppingButton" type="Button" parent="VBoxContainer"]
 margin_top = 573.0

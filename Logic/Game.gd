@@ -55,7 +55,7 @@ class Upgrades:
 	var more_move_speed := false
 	var more_bullet_damage := false
 	var position_swap := false
-	var super_mode := true
+	var super_mode := false
 	var drill_power := false
 	var level_2 := false
 	

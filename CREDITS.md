@@ -43,4 +43,6 @@
 - Diamond Treasure Icon
   - https://thenounproject.com/icon/diamond-5049998/
   - Singlar
-
+- Drill Icon
+  - https://thenounproject.com/icon/drill-2303298/
+  - Kokota
