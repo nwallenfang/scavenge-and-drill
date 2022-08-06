@@ -92,7 +92,7 @@ func _process(delta: float) -> void:
 		self.power -= power_loss_per_s * delta
 
 signal power_depleted
-var power_critical_threshold = 0.4 * max_power
+var power_critical_threshold = 0.5 * max_power
 signal power_low  # maybe some screen effect or sound? maybe not
 signal power_filled
 func set_power(value: float):
@@ -134,6 +134,7 @@ signal treasure_count_changed
 remotesync func set_upgrade(name, cost_gold, cost_gears):
 	# only set Upgrades with this method so that it's nice and synced
 	Game.log("setting upgrade " + name)
+	Sound.get_node("UpgradeBoughtSound").play()
 	treasure_gears -= cost_gears
 	treasure_gold -= cost_gold
 	

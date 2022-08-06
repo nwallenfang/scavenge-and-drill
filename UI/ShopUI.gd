@@ -61,4 +61,5 @@ func upgrade_clicked(upgrade_attribute: String, cost_gold: int, cost_gears:int):
 
 
 func _on_Button_pressed() -> void:
+	$BackToOceanSound.play()
 	emit_signal("done_shopping")

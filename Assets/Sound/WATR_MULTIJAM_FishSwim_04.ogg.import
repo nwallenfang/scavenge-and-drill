@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/WATR_MULTIJAM_FishSwim_04.ogg-733b04ef8416ff62773d10e5ab36c7d5.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/WATR_MULTIJAM_FishSwim_04.ogg"
+dest_files=[ "res://.import/WATR_MULTIJAM_FishSwim_04.ogg-733b04ef8416ff62773d10e5ab36c7d5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

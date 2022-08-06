@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/UI_MULTIJAM_Menu_Hover_01_03.ogg-5b02f44c0ad6614f4f8509fa75935d09.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/UI_MULTIJAM_Menu_Hover_01_03.ogg"
+dest_files=[ "res://.import/UI_MULTIJAM_Menu_Hover_01_03.ogg-5b02f44c0ad6614f4f8509fa75935d09.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

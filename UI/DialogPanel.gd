@@ -1,4 +1,4 @@
-extends Panel
+extends PanelContainer
 
 func on_interrupt():
 	# connected from outside

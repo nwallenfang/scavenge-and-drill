@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://UI/UI.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/PausedFont.tres" type="DynamicFont" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Assets/Sprites/upgrade_icons/power_bar_icon.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Shader/energy_crystal_ui.gdshader" type="Shader" id=12]
 [ext_resource path="res://UI/Styles/tut_box.tres" type="StyleBox" id=13]
+[ext_resource path="res://Assets/Sound/crystals_empty.ogg" type="AudioStream" id=14]
 
 [sub_resource type="ShaderMaterial" id=13]
 shader = ExtResource( 3 )
@@ -386,10 +387,6 @@ margin_bottom = 46.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.3
 
-[node name="Message" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 21.0
-
 [node name="Game" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
@@ -632,11 +629,15 @@ anims/energy_crystal_missing = SubResource( 17 )
 
 [node name="SpaceToSkip" type="Label" parent="."]
 visible = false
-anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -71.0
+margin_left = 1.0
+margin_right = 1.0
+margin_bottom = -528.0
 custom_fonts/font = ExtResource( 2 )
 text = "[space] to skip"
 align = 1
 valign = 1
+
+[node name="CrystalsEmpty" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )

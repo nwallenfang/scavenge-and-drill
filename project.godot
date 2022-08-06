@@ -145,6 +145,7 @@ OnlineMatch="*res://addons/nakama-webrtc/OnlineMatch.gd"
 Game="*res://Logic/Game.tscn"
 Network="*res://Networking/Network.tscn"
 Dialog="*res://Logic/Dialog.tscn"
+Sound="*res://Logic/Sound.tscn"
 
 [debug]
 
@@ -174,6 +175,13 @@ singletons=[ "res://Networking/webrtc/webrtc.gdnlib", "res://Networking/webrtc_d
 
 common/drop_mouse_on_gui_input_disabled=true
 theme/custom="res://UI/Styles/theme.tres"
+
+[importer_defaults]
+
+ogg_vorbis={
+"loop": false,
+"loop_offset": 0
+}
 
 [input]
 

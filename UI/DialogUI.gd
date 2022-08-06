@@ -26,18 +26,25 @@ func emit_line_done():
 
 remotesync func play_dialog(dialog_sequence):
 	$DialogPanel.visible = true
+	$"%Icon".visible = true
 	for line in dialog_sequence:
 		# check which dialogpanel to use
 #		panel_invalidated = false
 		$DialogPanel.show_dialog_line(line)
+		if line.speaker_id == Dialog.SPEAKERS.ROLLER:
+			Sound.roller_talk()
+		if line.speaker_id == Dialog.SPEAKERS.DRILL:
+			Sound.drill_talk()
 		yield(self, "line_done_or_interrupt")
 	Dialog.on_dialog_ended()
 	
 	$DialogPanel.visible = false	
+	$"%Icon".visible = false
 
 remotesync func hide_all_dialog():
 	# interrupt
 	$DialogPanel.visible = false
+	$"%Icon".visible = false
 
 
 signal line_done_or_interrupt

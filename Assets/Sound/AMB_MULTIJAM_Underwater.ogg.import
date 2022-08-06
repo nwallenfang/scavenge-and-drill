@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/AMB_MULTIJAM_Underwater.ogg-29826af15ec7ccfe688f1a75320a74d4.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/AMB_MULTIJAM_Underwater.ogg"
+dest_files=[ "res://.import/AMB_MULTIJAM_Underwater.ogg-29826af15ec7ccfe688f1a75320a74d4.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

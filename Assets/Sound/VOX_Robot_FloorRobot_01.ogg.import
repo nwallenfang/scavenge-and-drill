@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/VOX_Robot_FloorRobot_01.ogg-5eb9bf81f35850bf39fda8fdcfcd6661.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/VOX_Robot_FloorRobot_01.ogg"
+dest_files=[ "res://.import/VOX_Robot_FloorRobot_01.ogg-5eb9bf81f35850bf39fda8fdcfcd6661.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -262,15 +262,17 @@ func create_all_dialogs():
 		DialogLine.new(SPEAKERS.ROLLER, "I like fishes."),
 	]))
 	all_dialogs.append(d)
-	
+
+	d = DialogTrigger.new("close_to_middle_eel")
+
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.ROLLER, "This eels look really icky..", 2.0),
+		DialogLine.new(SPEAKERS.DRILL, "It wants to drain our power levels!"),
+		DialogLine.new(SPEAKERS.ROLLER, "I'd like to shoot it.", 2.0),
+	]))
 	
 	d = DialogTrigger.new("close_to_eel")
-	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.ROLLER, "There are eels, eww!", 2.0),
-		DialogLine.new(SPEAKERS.DRILL, "Disgusting!", .8),
-		DialogLine.new(SPEAKERS.ROLLER, "Disgusting!", .8),
-		DialogLine.new(SPEAKERS.DRILL, "Attack!", 1.8),
-	]))
+
 	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.ROLLER, "These eels look really icky..", 2.0),
 		DialogLine.new(SPEAKERS.DRILL, "I've seen them before. They drain our power levels!"),
@@ -278,7 +280,7 @@ func create_all_dialogs():
 	]))
 	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.DRILL, "There has to be a way to fend the eels off!"),
-		DialogLine.new(SPEAKERS.ROLLER, "You know that's what I'm built for, right? I just need energy crystals."),
+		DialogLine.new(SPEAKERS.ROLLER, "You know that's what I'm built for, right? I just need crystals."),
 		DialogLine.new(SPEAKERS.DRILL, "Those shiny purple ones, right.."),
 	]))
 	all_dialogs.append(d)
@@ -289,5 +291,16 @@ func create_all_dialogs():
 		DialogLine.new(SPEAKERS.DRILL, "My Drill power is too low.", 1.8),
 		DialogLine.new(SPEAKERS.ROLLER, "You're f*cking useless!", 1.5),
 		DialogLine.new(SPEAKERS.ROLLER, "Piece of junk!", 1.5),
+	]))
+	all_dialogs.append(d)
+	
+	d = DialogTrigger.new("intro_sequence")
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.ROLLER, "Finally, our first treasure hunt on our own!", 2.5),
+		DialogLine.new(SPEAKERS.DRILL, "So exciting, which treasure will I drill first?", 3.0),
+		DialogLine.new(SPEAKERS.ROLLER, "It feels so different from the scavenging academy grounds..", 3.0),
+		DialogLine.new(SPEAKERS.DRILL, "This is what we've been training for!", 2.0),
+		DialogLine.new(SPEAKERS.DRILL, "Scrap metal, crystals, explosions, crazy heists...", 2.5),
+		DialogLine.new(SPEAKERS.ROLLER, "Well... let's just touch seaweed first.", 2.5),
 	]))
 	all_dialogs.append(d)

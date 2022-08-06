@@ -67,6 +67,10 @@ func host_sync_end_cutscene():
 	if Game.host and cutscene_active:
 		rpc("end_cutscene")
 
+
+func trigger_dialog():
+	Dialog.trigger("intro_sequence")
+
 remotesync func end_cutscene():
 	cutscene_active = false
 	self.visible = false

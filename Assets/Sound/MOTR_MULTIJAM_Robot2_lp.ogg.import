@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MOTR_MULTIJAM_Robot2_lp.ogg-db93f30502b2744014ed63b462fe24a6.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/MOTR_MULTIJAM_Robot2_lp.ogg"
+dest_files=[ "res://.import/MOTR_MULTIJAM_Robot2_lp.ogg-db93f30502b2744014ed63b462fe24a6.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

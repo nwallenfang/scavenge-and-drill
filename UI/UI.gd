@@ -161,5 +161,6 @@ func set_missing_value(value: float):
 
 	
 func show_energy_crystals_missing():
+	$CrystalsEmpty.play()
 	$EnergyCrystalPlayer.play("energy_crystal_missing")
 
