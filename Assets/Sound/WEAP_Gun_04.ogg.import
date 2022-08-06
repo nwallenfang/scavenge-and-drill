@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/WEAP_Gun_04.ogg-eb27f58c7a1f4e0f8e52e054a285e59c.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/WEAP_Gun_04.ogg"
+dest_files=[ "res://.import/WEAP_Gun_04.ogg-eb27f58c7a1f4e0f8e52e054a285e59c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

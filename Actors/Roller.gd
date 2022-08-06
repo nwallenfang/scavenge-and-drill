@@ -44,6 +44,7 @@ func _physics_process(delta):
 				if Game.energy_charges >= 1:
 					Game.rpc("sync_energy_charges", Game.energy_charges-1)
 					Network.rpc("spawn_object", "bullet", bullet_spawn.global_translation, {"direction": aim_direction})
+					rpc("play_bullet_sound")
 					do_cooldown()
 				else:
 					Game.not_enough_crystals()
@@ -58,6 +59,9 @@ func _physics_process(delta):
 				Game.rpc("try_super",name)
 			else:
 				Game.not_enough_crystals()
+
+remotesync func play_bullet_sound():
+	$BulletSound.play()
 
 func do_cooldown():
 	shoot_cooldown = true

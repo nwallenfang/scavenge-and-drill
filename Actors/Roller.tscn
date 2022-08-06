@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Actors/Roller.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Models/RollerModel.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Assets/Shader/DustNew.gdshader" type="Shader" id=9]
 [ext_resource path="res://Assets/Shader/Dissolve.gdshader" type="Shader" id=10]
 [ext_resource path="res://Assets/Models/DrillModel.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assets/Sound/WEAP_Gun_04.ogg" type="AudioStream" id=12]
 
 [sub_resource type="CapsuleShape" id=10]
 radius = 0.905299
@@ -212,5 +213,10 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource( 35 )
 draw_pass_1 = SubResource( 36 )
+
+[node name="BulletSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -4.0
+bus = "SFX"
 
 [editable path="Model/RollerModel"]
