@@ -850,6 +850,7 @@ transform = Transform( -0.85512, 0, 0.51843, 0, 1, 0, -0.51843, 0, -0.85512, 29.
 transform = Transform( -0.918515, 0.0181013, 0.394971, 0, 0.998951, -0.0457814, -0.395385, -0.0420509, -0.917552, 9.95713, 8.45775, -22.8645 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
+visible = false
 collision_layer = 64
 collision_mask = 64
 
