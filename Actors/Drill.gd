@@ -10,6 +10,8 @@ export var move_acc_default := 8.0
 export var move_acc_upgraded := 12.0
 export var move_acc_drilling := 4.0
 export var move_acc_drilling_target := 0.0
+export var friction_normal := 0.99
+export var friction_drilling := 0.997
 
 onready var handle := $Model/DrillModel/Handle
 
@@ -77,9 +79,18 @@ func _physics_process(delta):
 		has_drill_target = not $TargetDetection.get_overlapping_areas().empty()
 		if has_drill_target:
 			drill_target = $TargetDetection.get_overlapping_areas()[0].get_parent()
+			if len($TargetDetection.get_overlapping_areas() > 1):
+				var dist := global_translation.distance_squared_to(drill_target.global_translation)
+				for i in range(1, len($TargetDetection.get_overlapping_areas())):
+					var other = $TargetDetection.get_overlapping_areas()[i].get_parent()
+					var dist_other := global_translation.distance_squared_to(other.global_translation)
+					if dist_other < dist:
+						drill_target = other
+						dist = dist_other
 			ACC = move_acc_drilling_target
 	if has_drill_target and not wants_to_drill:
 		ACC = move_acc_default if not Game.upgrades.more_move_speed else move_acc_upgraded
+		FRICTION = friction_normal
 	drill_animation_offset += (delta if wants_to_drill else -delta) / drill_animation_length
 	drill_animation_offset = clamp(drill_animation_offset, 0.0, 1.0)
 	is_drilling = drill_animation_offset > drill_offset_trigger
@@ -93,6 +104,7 @@ func _physics_process(delta):
 				cooldown()
 		if is_drilling:
 			ACC = move_acc_drilling
+			FRICTION = friction_drilling
 			drill_the_crystals(delta)
 			$Model/GroundParticles.emitting = $DrillArea.get_overlapping_areas().empty()
 			$Model/CrystalParticles.emitting = false
@@ -107,6 +119,7 @@ func _physics_process(delta):
 					$Model/ScrapParticles.emitting = true
 		else:
 			ACC = move_acc_default if not Game.upgrades.more_move_speed else move_acc_upgraded
+			FRICTION = friction_normal
 			$Model/GroundParticles.emitting = false
 			$Model/CrystalParticles.emitting = false
 			$Model/GoldParticles.emitting = false
