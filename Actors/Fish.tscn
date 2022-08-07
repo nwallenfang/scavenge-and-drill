@@ -196,6 +196,6 @@ anims/idle = SubResource( 3 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0 )
 
 [node name="FishV3" type="MeshInstance" parent="Pivot"]
-transform = Transform( 1.61055, 0, 0, 0, 1.61055, 0, 0, 0, 1.61055, 0, 0, 0 )
+transform = Transform( 4.61205, 0, 0, 0, 4.61205, 0, 0, 0, 4.61205, 0, 0, 0 )
 mesh = SubResource( 1 )
 skeleton = NodePath("../..")

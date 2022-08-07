@@ -158,12 +158,17 @@ func update_drill_animation():
 func drill_the_crystals(delta):
 	if has_drill_target:
 		drill_target.get_parent().get_drilled(delta * .37 * (1.2 if Game.upgrades.drill_power else .8))
-	for area in $DrillArea.get_overlapping_areas():
-		area.get_parent().get_drilled(delta * .3)
+	else:
+		for area in $DrillArea.get_overlapping_areas():
+			if "NoDrilling" in area.name:
+				cooldown(4.0)
+				FishQuest.forbidden_drill()
+				break
+			area.get_parent().get_drilled(delta * .3)
 
-func cooldown():
+func cooldown(x := 1.5):
 	drill_cooldown = true
-	yield(get_tree().create_timer(drill_animation_length + 1.5),"timeout")
+	yield(get_tree().create_timer(drill_animation_length + x),"timeout")
 	drill_cooldown = false
 
 func try_particles_red():

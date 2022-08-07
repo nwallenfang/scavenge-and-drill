@@ -3,13 +3,14 @@ extends Node
 func _ready():
 	create_all_dialogs()
 
-enum SPEAKERS {DRILL, ROLLER, MERCHANT, FISH, HOOK}
+enum SPEAKERS {DRILL, ROLLER, MERCHANT, FISH, FISH_BUDDY, HOOK}
 
 var names = {
 	SPEAKERS.DRILL: "Robot",
 	SPEAKERS.ROLLER: "Human",
 	SPEAKERS.MERCHANT: "Merchant",
 	SPEAKERS.FISH: "Fish",
+	SPEAKERS.FISH_BUDDY: "Fish",
 	SPEAKERS.HOOK: "Hook",
 }
 
@@ -18,6 +19,7 @@ var colors = {
 	SPEAKERS.ROLLER: Color.orange,
 	SPEAKERS.MERCHANT: Color.coral,
 	SPEAKERS.FISH: Color.white,
+	SPEAKERS.FISH_BUDDY: Color.white,
 	SPEAKERS.HOOK: Color.gray,
 }
 
@@ -26,6 +28,7 @@ var icons = {
 	SPEAKERS.ROLLER: preload("res://Assets/Sprites/characters/roller_transparent.png"),
 	SPEAKERS.MERCHANT: preload("res://Assets/Sprites/characters/human_PLACEHOLDER.png"),
 	SPEAKERS.FISH: preload("res://Assets/Sprites/characters/fish.png"),
+	SPEAKERS.FISH_BUDDY: preload("res://Assets/Sprites/characters/fish.png"),
 	SPEAKERS.HOOK: preload("res://Assets/Sprites/characters/hook.png"),
 }
 
@@ -353,7 +356,7 @@ func create_all_dialogs():
 	d.trigger_mode = TRIGGER_MODES.COUNT_GREATER_EQ
 	d.condition_value = 3
 	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.ROLLER, "Oh all mighty hook, get out of here!"),
+		DialogLine.new(SPEAKERS.ROLLER, "Oh all mighty hook, get us out of here!"),
 		DialogLine.new(SPEAKERS.HOOK, "I got you.", 2.0),
 	]))
 	all_dialogs.append(d)
@@ -385,5 +388,69 @@ func create_all_dialogs():
 		DialogLine.new(SPEAKERS.ROLLER, "That will get us a special reward. I'm sure."),
 		DialogLine.new(SPEAKERS.ROLLER, "At least I hope...", 2.0),
 		DialogLine.new(SPEAKERS.ROLLER, "Would be nice.", 1.5),
+	]))
+	all_dialogs.append(d)
+
+	d = DialogTrigger.new("fish_quest_intro")
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.FISH, "Yo! Stupid robot, mine my anemones!"),
+	]))
+	all_dialogs.append(d)
+
+	d = DialogTrigger.new("fish_quest_find_nemo")
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.FISH, "Now find my friend!"),
+	]))
+	all_dialogs.append(d)
+
+	d = DialogTrigger.new("fish_quest_finished")
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.FISH, "You did it!"),
+	]))
+	all_dialogs.append(d)
+	
+	d = DialogTrigger.new("quest_anemone")
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.ROLLER, "We got one of his anemones"),
+	]))
+	all_dialogs.append(d)
+	
+	d = DialogTrigger.new("we_mined_the_anemones")
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.DRILL, "That should be all!"),
+		DialogLine.new(SPEAKERS.DRILL, "Now imma drill his crystals!"),
+	]))
+	all_dialogs.append(d)
+	
+	d = DialogTrigger.new("forbidden_drill")
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.FISH, "Hey stop it!"),
+	]))
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.FISH, "No drilling allowed!"),
+	]))
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.FISH, "How dare you?"),
+	]))
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.FISH, "You're kinda fishy as well, aye?"),
+	]))
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.FISH, "Could you please stop already?!"),
+	]))
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.FISH, "I bet your mother was a vacuum cleaner..."),
+	]))
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.FISH, "..."),
+	]))
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.FISH, "..."),
+	]))
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.FISH, "..."),
+	]))
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.FISH, "Lorem ipsum dolor sit amet, consetetur sadipscing elitr....."),
 	]))
 	all_dialogs.append(d)

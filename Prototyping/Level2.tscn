@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Prototyping/Level2.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Cliff/Wall.tscn" type="PackedScene" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://Actors/FishPath.tscn" type="PackedScene" id=25]
 [ext_resource path="res://Objects/Cliff/StonePillarA.tscn" type="PackedScene" id=26]
 [ext_resource path="res://Objects/Cliff/StonePillarB.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Actors/Fish.tscn" type="PackedScene" id=28]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 99.1882, 0.0222201, 107.505 )
@@ -54,6 +55,12 @@ _data = {
 "points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 18.3729, 0, -6.98824, 0, 0, 0, 0, 0, 0, 9.96238, 0, -15.6425, 0, 0, 0, 0, 0, 0, 5.51334, 0, -24.7234, 0, 0, 0, 0, 0, 0, 14.9599, 0, -37.1564, 0, 0, 0, 0, 0, 0, 26.1739, 0, -46.2373, 0, 0, 0, 0, 0, 0, 38.1802, 0, -50.5035, 0, 0, 0, 0, 0, 0, 47.2002, 0, -50.0159 ),
 "tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0 )
 }
+
+[sub_resource type="SphereShape" id=6]
+radius = 10.5988
+
+[sub_resource type="CylinderShape" id=7]
+radius = 4.40345
 
 [node name="Level2" type="Spatial"]
 script = ExtResource( 1 )
@@ -93,13 +100,28 @@ transform = Transform( -0.540579, 0, 0.841294, 0, 1, 0, -0.841294, 0, -0.540579,
 transform = Transform( -0.994665, 0, -0.103157, 0, 1, 0, 0.103157, 0, -0.994665, 24.9134, 5.72205e-06, -32.083 )
 
 [node name="EnergyCrystal" parent="Objects" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.9376, -2.86102e-06, -52.8202 )
+transform = Transform( 0.954047, 0, 0.299657, 0, 1, 0, -0.299657, 0, 0.954047, -29.9302, -2.86102e-06, -52.3957 )
+
+[node name="EnergyCrystal4" parent="Objects" instance=ExtResource( 13 )]
+transform = Transform( 0.979554, 0, -0.201181, 0, 1, 0, 0.201181, 0, 0.979554, -30.9261, -2.86102e-06, -54.1186 )
+
+[node name="EnergyCrystal5" parent="Objects" instance=ExtResource( 13 )]
+transform = Transform( 0.793905, 0, -0.608041, 0, 1, 0, 0.608041, 0, 0.793905, -28.7233, -2.86102e-06, -54.1081 )
 
 [node name="EnergyCrystal2" parent="Objects" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -41.9774, -2.86102e-06, 26.1533 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.2105, -2.86102e-06, -52.0355 )
+
+[node name="EnergyCrystal6" parent="Objects" instance=ExtResource( 13 )]
+transform = Transform( 0.97413, 0, -0.225988, 0, 1, 0, 0.225988, 0, 0.97413, -32.2969, -2.86102e-06, -52.2953 )
+
+[node name="EnergyCrystal7" parent="Objects" instance=ExtResource( 13 )]
+transform = Transform( 0.904879, 0, 0.425669, 0, 1, 0, -0.425669, 0, 0.904879, -29.1306, -2.86102e-06, -50.2109 )
+
+[node name="EnergyCrystal8" parent="Objects" instance=ExtResource( 13 )]
+transform = Transform( 0.858137, 0, 0.513421, 0, 1, 0, -0.513421, 0, 0.858137, -31.1337, -2.86102e-06, -50.2731 )
 
 [node name="EnergyCrystal3" parent="Objects" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.1274, -6.67572e-06, 5.35925 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.6214, -6.67572e-06, 7.60477 )
 
 [node name="BubbleSpawner" parent="Objects" instance=ExtResource( 9 )]
 transform = Transform( 0.2366, 0, 0, 0, 0.2366, 0, 0, 0, 0.2366, 4.81804, 0, -9.14525 )
@@ -147,11 +169,11 @@ zoom_min = 1.1
 script = ExtResource( 17 )
 
 [node name="TreasureGold" parent="Collectibles" instance=ExtResource( 15 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -41.6204, 0, -48.7346 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26.0116, 0, -73.5072 )
 version = 3
 
 [node name="TreasureGears" parent="Collectibles" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -46.4083, -4.76837e-07, -47.1981 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.7676, 0.18181, -75.5889 )
 
 [node name="MouseDetectionLayer" parent="." instance=ExtResource( 16 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99728, 1.10036, 0 )
@@ -264,3 +286,40 @@ polygon = PoolVector2Array( 80.0854, 18.89, 78.0903, 5.99842, 72.5653, -4.89805,
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
 depth = 5.0
 polygon = PoolVector2Array( 10.1406, -48.9231, -3.01707, -48.9231, -17.2274, -43.7916, -33.6745, -32.7391, -46.8322, -26.1602, -61.0425, -11.5552, -69.7266, 1.73408, -72.7529, 16.8654, -82.358, 15.4181, -69.0687, -21.1603, -36.1745, -45.1073, 8.82486, -56.2914 )
+
+[node name="Quest" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.1088, 1.81681, -56.1775 )
+
+[node name="Fish" parent="Quest" instance=ExtResource( 28 )]
+transform = Transform( 0.851104, 0, -0.524996, 0, 1, 0, 0.524996, 0, 0.851104, 0, 0.24506, 0 )
+
+[node name="FishArea" type="Area" parent="Quest"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape" type="CollisionShape" parent="Quest/FishArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.028511, 1.90735e-06, 1.94814 )
+shape = SubResource( 6 )
+
+[node name="NoDrillingZone" type="Area" parent="Quest"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.59363, 0, 4.49047 )
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape" type="CollisionShape" parent="Quest/NoDrillingZone"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.18128, 0 )
+shape = SubResource( 7 )
+
+[node name="Anemone" parent="Quest" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.3328, -1.76852, -26.8688 )
+quest = true
+
+[node name="Anemone2" parent="Quest" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35968, -1.76852, -26.7837 )
+quest = true
+
+[node name="Anemone3" parent="Quest" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9371, -1.76852, -17.4645 )
+quest = true
+
+[connection signal="body_entered" from="Quest/FishArea" to="." method="_on_FishArea_body_entered"]

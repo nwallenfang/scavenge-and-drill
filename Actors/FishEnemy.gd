@@ -9,7 +9,7 @@ var path_speed := 1.5
 var current_path_offset := 0.0
 var hp := 2
 var can_attack := false
-var attack_speed := 2.5
+var attack_speed := 2.85
 var target: Spatial
 var damage : float
 
@@ -52,7 +52,7 @@ remotesync func set_state(s, target_name = ""):
 		else:
 			target = Game.drill
 	if s == STATES.ATTACK:
-		yield(get_tree().create_timer(8), "timeout")
+		yield(get_tree().create_timer(10), "timeout")
 		if not is_attacking:
 			death_animation()
 

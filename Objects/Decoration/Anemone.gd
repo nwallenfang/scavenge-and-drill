@@ -1,7 +1,13 @@
 extends Spatial
 
+export var quest := false
+
 var s
 func _ready():
+	if quest:
+		if FishQuest.stage >= 2:
+			queue_free()
+		$AnemoneBase.scale *= 1.5
 	s = $AnemoneBase.scale
 
 var dialog := false
@@ -10,7 +16,7 @@ var drilled_out := false
 func get_drilled(delta):
 	if drilled_out:
 		return
-	if not dialog:
+	if not dialog and not quest:
 		dialog = true
 		Dialog.trigger("anemone_drill")
 	hp -= delta
@@ -22,3 +28,5 @@ func get_drilled(delta):
 		$AnemoneBase.visible = false
 		$DrillTarget/Area.set_deferred("monitorable", false)
 		$DrillTarget/Area.set_deferred("monitoring", false)
+		if quest:
+			FishQuest.mined_anemone()

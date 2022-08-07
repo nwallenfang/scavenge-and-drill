@@ -152,6 +152,7 @@ Game="*res://Logic/Game.tscn"
 Network="*res://Networking/Network.tscn"
 Dialog="*res://Logic/Dialog.tscn"
 Sound="*res://Logic/Sound.tscn"
+FishQuest="*res://Logic/FishQuest.tscn"
 
 [debug]
 

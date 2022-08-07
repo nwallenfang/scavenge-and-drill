@@ -48,6 +48,9 @@ func do_game_setup(players: Dictionary):
 
 	Game.main_cam = camera   
 	
+	FishQuest.current_anemones = 0
+	if FishQuest.stage >= 5:
+		delete_no_drill()
 
 	# STAT UPGRADES
 	Game.power_loss_per_s = Game.power_loss_per_s_upgraded if Game.upgrades.less_power_drain else Game.power_loss_per_s_default
@@ -137,3 +140,9 @@ func replace_collectibles(collectibles_node: Node):
 #		count += 1
 #		yield(get_tree().create_timer(cooldown_time), "timeout")
 #		$CloseToEelDialog.set_deferred("monitoring", true)
+
+func _on_FishArea_body_entered(body):
+	FishQuest.enter_the_fish_zone()
+
+func delete_no_drill():
+	$Quest/NoDrillingZone.queue_free()
