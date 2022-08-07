@@ -121,6 +121,7 @@ func restart_game() -> void:
 
 # Initializes the game so that it is ready to really start.
 const LEVEL_SCENE = preload("res://Prototyping/Level.tscn")
+const LEVEL2_SCENE = preload("res://Prototyping/Level2.tscn")
 remotesync func _do_game_setup(playerss: Dictionary) -> void:
 	$UI.visible = true
 	$UI.fade_out(0.6)
@@ -195,7 +196,11 @@ remotesync func shop_to_game_transition():
 	if $ShopUI.diamonds_were_visible_once:
 		Game.ui.update_treasures(3)
 	Game.power_draining = false
-	var new_level = LEVEL_SCENE.instance()
+	var new_level
+	if Game.level2_selected:
+		new_level = LEVEL2_SCENE.instance()
+	else:
+		new_level = LEVEL_SCENE.instance()
 	# if there is a lag/loading here we can put most of this in method just above this one
 #	level.name = "Old Level"
 	var collectibles = level.get_node("Collectibles").duplicate()

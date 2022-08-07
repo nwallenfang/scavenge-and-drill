@@ -276,6 +276,7 @@ process_material = SubResource( 25 )
 
 [node name="AttackSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
+volume_db = -4.0
 bus = "SFX"
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]

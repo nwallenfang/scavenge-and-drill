@@ -14,6 +14,7 @@ func start_game_sounds():
 func stop_game_sounds():
 	$UnderwaterAmbienceTimer.stop()
 	$FishAmbienceTimer.stop()
+	$UnderwaterAmbience.stop()
 	stop_main_theme()
 
 
