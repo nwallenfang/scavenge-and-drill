@@ -131,7 +131,7 @@ func set_power(value: float):
 	if value <= 0.0 and power > 0.0:
 		emit_signal("power_depleted")
 	if not power_low_for_hook_dialog:
-		if value <= 4:
+		if value <= 3.2:
 			power_low_for_hook_dialog = true
 			Dialog.trigger("hook")
 	power = value

@@ -329,9 +329,8 @@ func create_all_dialogs():
 	
 	d = DialogTrigger.new("see_wall")
 	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.DRILL, "DRILL! DRILL! DRILL!", 1.2),
 		DialogLine.new(SPEAKERS.DRILL, "Drive next to that wall!", 2.4),
-		DialogLine.new(SPEAKERS.DRILL, "I will drill it to dust.", 2.4),
+		DialogLine.new(SPEAKERS.DRILL, "I will drill it to dust.", 1.5),
 	]))
 	all_dialogs.append(d)
 	

@@ -441,7 +441,7 @@ transform = Transform( 0.150105, 0, -0.98867, 0, 1, 0, 0.98867, 0, 0.150105, 40.
 transform = Transform( -0.398205, 0, 0.917297, 0, 1, 0, -0.917297, 0, -0.398205, -33.2717, 0.0223536, 4.26022 )
 
 [node name="Cliff6" parent="Cliffs" instance=ExtResource( 21 )]
-transform = Transform( -0.671411, 0, 0.741086, 0, 1, 0, -0.741086, 0, -0.671411, 21.3625, 0.0223536, -19.4569 )
+transform = Transform( -0.545137, 0, 0.838348, 0, 1, 0, -0.838348, 0, -0.545137, 21.3625, 0.0223536, -19.4569 )
 
 [node name="Cliff18" parent="Cliffs" instance=ExtResource( 21 )]
 transform = Transform( -0.544771, 0, 0.838585, 0, 1, 0, -0.838585, 0, -0.544771, 43.3275, -0.0578104, 8.41401 )
@@ -519,7 +519,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.7157, 0.0222492, 11.2671 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.91155, 0.0222492, 18.6552 )
 
 [node name="StonePillarA6" parent="Cliffs" instance=ExtResource( 26 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.8957, 0.0222492, -5.70191 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.3102, 0.0222492, -5.90383 )
 
 [node name="StonePillarA7" parent="Cliffs" instance=ExtResource( 26 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -58.6403, 0.0222492, -21.2624 )
