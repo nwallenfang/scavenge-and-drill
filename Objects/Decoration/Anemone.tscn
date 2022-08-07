@@ -34,6 +34,7 @@ surfaces/1 = {
 }
 
 [sub_resource type="SpatialMaterial" id=2]
+resource_local_to_scene = true
 albedo_color = Color( 0.905882, 0.388235, 0.388235, 1 )
 
 [node name="Anemone" type="Spatial"]
