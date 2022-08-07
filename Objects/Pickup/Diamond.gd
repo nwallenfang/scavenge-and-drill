@@ -1,5 +1,14 @@
 extends Spatial
 
+func _ready():
+	if Game.progress.mined_diamonds == 1:
+		$OOD.visible = true
+		$Pivot.visible = false
+		$DrillTarget.queue_free()
+		$TreasureArea.queue_free()
+		$DrillParticles.queue_free()
+		$Pivot.queue_free()
+
 var currently_drilled := false
 var hp := 1.0
 var drilled_out := false
@@ -14,6 +23,7 @@ func get_drilled(delta):
 		$DrillParticles.emitting = true
 	if hp <= 0.0:
 		Dialog.trigger("diamond_drilled")
+		Game.progress.mined_diamonds = 1
 		drilled_out = true
 		Game.drill.cooldown()
 		$Pivot.visible = false

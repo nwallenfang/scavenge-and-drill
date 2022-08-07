@@ -697,7 +697,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -42.6223, -9.53674e-07, 9.0752
 version = 4
 
 [node name="Diamond" parent="Collectibles" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.1261, 0, -18.5226 )
+transform = Transform( 0.600155, 0, -0.799884, 0, 1, 0, 0.799884, 0, 0.600155, 38.1261, 0, -18.5226 )
 
 [node name="MouseDetectionLayer" parent="." instance=ExtResource( 16 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99728, 1.10036, 0 )

@@ -61,6 +61,7 @@ class Upgrades:
 	
 class Progress:
 	var mined_energy_charges = 0  # doesn't have to equal number of crystals, atm they give 2 charges
+	var mined_diamonds = 0
 
 var upgrades: Upgrades = Upgrades.new()
 var progress: Progress = Progress.new()

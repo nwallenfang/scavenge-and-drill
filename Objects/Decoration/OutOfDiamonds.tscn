@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.721569, 0.717647, 0.52549, 1 )
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.47451, 0.470588, 0.466667, 1 )
+
+[sub_resource type="CylinderMesh" id=4]
+top_radius = 0.5
+bottom_radius = 0.5
+height = 10.0
+radial_segments = 6
+rings = 0
+
+[node name="OOD" type="Spatial"]
+
+[node name="Spatial" type="Spatial" parent="."]
+transform = Transform( 0.996913, 0.0784512, -0.00312953, -0.0777967, 0.9924, 0.0953427, 0.0105855, -0.0948049, 0.99544, 0, 0, 0 )
+
+[node name="Label3D" type="Label3D" parent="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13241, 0 )
+text = "OUT OF DIAMONDS"
+
+[node name="MeshInstance" type="MeshInstance" parent="Spatial"]
+transform = Transform( 0.896541, 0, 0, 0, 0.291287, 0, 0, 0, 0.038439, 0, 1.13825, -0.0614064 )
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+skeleton = NodePath("../..")
+
+[node name="MeshInstance2" type="MeshInstance" parent="Spatial"]
+transform = Transform( 0.144372, 0, 0, 0, 0.144372, 0, 0, 0, 0.144372, 0, 0.419177, -0.119703 )
+material_override = SubResource( 3 )
+mesh = SubResource( 4 )
+skeleton = NodePath("../..")
