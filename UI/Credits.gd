@@ -1,6 +1,6 @@
 extends Control
 
-export var credit1_time := 9.5
+export var credit1_time := 10.0
 export var credit2_time := 6.5
 
 func _ready() -> void:
@@ -36,7 +36,7 @@ func play_credits():
 	
 	self.visible = false
 	
-var end_time = 6.0
+var end_time = 6.8
 func play_credits_with_end():
 	visible = true
 	$TheEnd.visible = true
@@ -55,7 +55,7 @@ func play_credits_with_end():
 	$Timer.start(credit2_time)
 	yield(self, "done")
 	
-	self.visible = false	
+	self.visible = false
 
 
 func _on_Credits_gui_input(event: InputEvent) -> void:

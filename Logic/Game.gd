@@ -73,6 +73,8 @@ func _unhandled_key_input(event: InputEventKey) -> void:
 	if Input.is_action_just_pressed("pause"):
 		if ui != null:
 			ui.toggle_pause()
+	if Input.is_action_just_pressed("play_end"):
+		rpc("play_end")
 
 	if Input.is_action_just_pressed("skip_dialog"):
 		dialog_ui.rpc("skip_dialog")
@@ -180,9 +182,9 @@ remotesync func set_level2_unlocked():
 	emit_signal("treasure_count_changed")
 
 func log(msg: String):
-	print(msg)
-	if ui != null:
-		ui.add_to_log(msg)
+	pass
+#	if ui != null:
+#		ui.add_to_log(msg)
 
 var player_1_wants_to_swap := false
 var player_2_wants_to_swap := false
@@ -301,5 +303,9 @@ func not_enough_crystals():
 remotesync func set_level2_selected(val):
 	level2_selected = val
 
-func play_end():
-	ui.get_node("Credits").play_credits_with_end()
+remotesync func play_end():
+	ui.fade_out(1.4)
+	yield(ui, "fade_done")
+	ui.fade_in(0.7)
+	main.get_node("Credits").play_credits_with_end()
+

@@ -274,6 +274,7 @@ text = "HostOrClients"
 align = 2
 
 [node name="DebugLog" type="TextEdit" parent="DevContainer/DeveloperInfo"]
+visible = false
 margin_top = 50.0
 margin_right = 200.0
 margin_bottom = 200.0

@@ -28,7 +28,7 @@ func get_drilled(delta):
 		open()
 		Dialog.trigger("game_won")
 		yield(get_tree().create_timer(5),"timeout")
-		Game.play_end()
+		Game.rpc("play_end")
 
 #func _physics_process(delta):
 #	if currently_drilled:
