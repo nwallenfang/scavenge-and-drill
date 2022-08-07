@@ -142,7 +142,7 @@ func _on_CloseToEelDialog_body_entered(body: Node) -> void:
 
 
 func _on_CloseToEelMiddle_body_entered(body):
-	Dialog.trigger("close_to_eel_middle")
+	Dialog.trigger("eel_middle")
 
 
 func _on_SeeWallDialog_body_entered(body):

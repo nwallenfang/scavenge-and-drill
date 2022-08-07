@@ -84,6 +84,7 @@ var is_attacking := false
 remotesync func hit_player():
 	if not is_attacking:
 		is_attacking = true
+		attack_speed *= .3
 		if Game.super_mode:
 			$Model/EelModel/AnimationPlayer.play("Attack")
 			yield(get_tree().create_timer(1.0),"timeout")
@@ -95,3 +96,6 @@ remotesync func hit_player():
 			$Model/AttackParticles.emitting = true
 			yield(get_tree().create_timer(1.0),"timeout")
 			queue_free()
+
+func death_animation():
+	pass

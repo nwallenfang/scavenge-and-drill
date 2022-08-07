@@ -3,13 +3,14 @@ extends Node
 func _ready():
 	create_all_dialogs()
 
-enum SPEAKERS {DRILL, ROLLER, MERCHANT, FISH}
+enum SPEAKERS {DRILL, ROLLER, MERCHANT, FISH, HOOK}
 
 var names = {
 	SPEAKERS.DRILL: "Robot",
 	SPEAKERS.ROLLER: "Human",
 	SPEAKERS.MERCHANT: "Merchant",
 	SPEAKERS.FISH: "Fish",
+	SPEAKERS.HOOK: "Hook",
 }
 
 var colors = {
@@ -17,6 +18,7 @@ var colors = {
 	SPEAKERS.ROLLER: Color.orange,
 	SPEAKERS.MERCHANT: Color.coral,
 	SPEAKERS.FISH: Color.white,
+	SPEAKERS.HOOK: Color.gray,
 }
 
 var icons = {
@@ -24,6 +26,7 @@ var icons = {
 	SPEAKERS.ROLLER: preload("res://Assets/Sprites/characters/roller_transparent.png"),
 	SPEAKERS.MERCHANT: preload("res://Assets/Sprites/characters/human_PLACEHOLDER.png"),
 	SPEAKERS.FISH: preload("res://Assets/Sprites/characters/human_PLACEHOLDER.png"),
+	SPEAKERS.HOOK: preload("res://Assets/Sprites/characters/hook.png"),
 }
 
 class DialogLine:
@@ -271,12 +274,13 @@ func create_all_dialogs():
 #	]))
 #	all_dialogs.append(d)
 
-	d = DialogTrigger.new("close_to_eel_middle")
+	d = DialogTrigger.new("eel_middle")
 	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.ROLLER, "This eels look really icky..", 2.0),
 		DialogLine.new(SPEAKERS.DRILL, "It wants to drain our power levels!"),
 		DialogLine.new(SPEAKERS.ROLLER, "I'd like to shoot it.", 2.0),
 	]))
+	all_dialogs.append(d)
 	
 	d = DialogTrigger.new("close_to_eel")
 	d.sequences.append(DialogSequence.new([
@@ -342,6 +346,15 @@ func create_all_dialogs():
 	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.ROLLER, "Could you stop drilling those useless anemones?"),
 		DialogLine.new(SPEAKERS.DRILL, "I could but I won't."),
+	]))
+	all_dialogs.append(d)
+	
+	d = DialogTrigger.new("hook")
+	d.trigger_mode = TRIGGER_MODES.COUNT_GREATER_EQ
+	d.condition_value = 3
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.ROLLER, "Oh all mighty hook, get out of here!"),
+		DialogLine.new(SPEAKERS.HOOK, "I got you.", 2.0),
 	]))
 	all_dialogs.append(d)
 	

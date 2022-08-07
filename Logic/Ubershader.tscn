@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Effects/TeleportEffect.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Effects/MagicForceField.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Effects/DrillParticles.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Effects/CrystalPop.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Actors/Bullet.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Actors/FishEnemy.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ParticlesMaterial" id=15]
 resource_local_to_scene = true
@@ -83,6 +84,7 @@ shader_param/uv2_offset = Vector3( 0, 0, 0 )
 transform = Transform( 0.15154, 0, 0, 0, 0.15154, 0, 0, 0, 0.15154, 0, 0, 0 )
 
 [node name="CrystalPop" parent="Pivot" instance=ExtResource( 5 )]
+script = null
 
 [node name="Particles" parent="Pivot/CrystalPop" index="0"]
 emitting = true
@@ -97,6 +99,7 @@ draw_pass_1 = SubResource( 17 )
 [node name="MagicForceField" parent="Pivot" instance=ExtResource( 2 )]
 
 [node name="TeleportEffect" parent="Pivot" instance=ExtResource( 1 )]
+script = null
 
 [node name="TryParticles" parent="Pivot/TeleportEffect" index="0"]
 emitting = true
@@ -109,6 +112,18 @@ emitting = true
 material_override = SubResource( 18 )
 
 [node name="Bullet" parent="Pivot" instance=ExtResource( 6 )]
+script = null
+
+[node name="FishEnemy" parent="Pivot" instance=ExtResource( 7 )]
+script = null
+
+[node name="AttackParticles" parent="Pivot/FishEnemy/Model" index="1"]
+emitting = true
+
+[node name="Dust" parent="Pivot/FishEnemy" index="4"]
+emitting = true
+one_shot = false
 
 [editable path="Pivot/CrystalPop"]
 [editable path="Pivot/TeleportEffect"]
+[editable path="Pivot/FishEnemy"]
