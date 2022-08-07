@@ -197,18 +197,27 @@ remotesync func shop_to_game_transition():
 		Game.ui.update_treasures(3)
 	Game.power_draining = false
 	var new_level
+	var collectibles
+	
+	if level.is_level2:
+		Game.collectibles_level2 = level.get_node("Collectibles").duplicate()
+	else:  # level 1
+		Game.collectibles_node = level.get_node("Collectibles").duplicate()
+
 	if Game.level2_selected:
 		new_level = LEVEL2_SCENE.instance()
+		collectibles = Game.collectibles_level2
 	else:
 		new_level = LEVEL_SCENE.instance()
+		collectibles = Game.collectibles_node
+		
 	# if there is a lag/loading here we can put most of this in method just above this one
-#	level.name = "Old Level"
-	var collectibles = level.get_node("Collectibles").duplicate()
 	$ViewportContainer/Viewport.remove_child(level)
 	$ViewportContainer/Viewport.add_child(new_level)
 	new_level.name = "Level"
 	new_level.do_game_setup({})
-	new_level.replace_collectibles(collectibles)
+	if collectibles != null:
+		new_level.replace_collectibles(collectibles)
 	level.queue_free()
 	$ShopUI.visible = false
 	$ViewportContainer.visible = true

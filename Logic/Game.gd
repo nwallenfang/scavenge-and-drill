@@ -47,7 +47,8 @@ var treasure_gold = 0
 var treasure_gears = 0
 var treasure_diamond = 0
 
-var collectibles_node: Node
+var collectibles_node: Node = null
+var collectibles_level2: Node = null
 
 var level2_selected: bool = false
 

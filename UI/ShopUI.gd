@@ -73,6 +73,9 @@ func _on_Button_pressed() -> void:
 
 remotesync func show_level_select():
 	$LevelSelect.visible = true
+	
+remotesync func hide_level_select():
+	$LevelSelect.visible = false
 
 
 func _on_DoneShopping_clicked() -> void:
@@ -82,7 +85,10 @@ func _on_DoneShopping_clicked() -> void:
 	emit_signal("done_shopping")
 
 func _on_LevelSelect_selected_level(number) -> void:
+	rpc("hide_level_select")
 	if number == 2:
 		Game.rpc("set_level2_selected", true)
 #		Game.level2_selected = true
+	else:
+		Game.rpc("set_level2_selected", false)
 	emit_signal("done_shopping")

@@ -26,6 +26,8 @@ func get_interpolated_transform(x: float):
 
 export var camera_offset : float setget set_camera_offset
 func set_camera_offset(x):
+	if not is_instance_valid(point_1):
+		return
 	if Game.game_started:
 		camera_offset = x
 		$TreasureCam.global_transform = get_interpolated_transform(x)
@@ -36,7 +38,7 @@ export var hook_low : float = 0.8
 
 export var hook_offset : float setget set_hook_offset
 func set_hook_offset(x):
-	if Game.game_started:
+	if Game.game_started and is_instance_valid($HookModel):
 		hook_offset = x
 		if Game.try_count == 1:
 			$HookModel.global_translation.y = lerp(hook_low, 40.0, x)

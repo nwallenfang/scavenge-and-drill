@@ -6,6 +6,8 @@ onready var camera = $Pivot/TopdownCamera
 export var player1_color: Color
 export var player2_color: Color
 
+const is_level2 := true
+
 func _ready():
 	Game.level = self
 #	$Player1.set_color(player1_color)
