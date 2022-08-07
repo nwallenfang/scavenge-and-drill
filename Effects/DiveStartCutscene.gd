@@ -69,7 +69,7 @@ func host_sync_end_cutscene():
 		rpc("end_cutscene")
 
 func stop_intro_music():
-	Sound.stop_shop_theme()
+	Sound.stop_main_menu_theme()
 
 func trigger_dialog():
 	Dialog.trigger("intro_sequence")

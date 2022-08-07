@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MECH_HookAndChain_Outro_loopable.ogg-98411d35d9ae7f122f196767f34fdbb9.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/MECH_HookAndChain_Outro_loopable.ogg"
+dest_files=[ "res://.import/MECH_HookAndChain_Outro_loopable.ogg-98411d35d9ae7f122f196767f34fdbb9.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

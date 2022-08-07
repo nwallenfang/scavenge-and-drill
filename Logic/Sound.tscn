@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Logic/Sound.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sound/VOX_Robot_DrillRobot_02.ogg" type="AudioStream" id=2]
@@ -12,14 +12,16 @@
 [ext_resource path="res://Assets/Sound/WATR_MULTIJAM_FishSwim_03.ogg" type="AudioStream" id=10]
 [ext_resource path="res://Assets/Sound/WATR_MULTIJAM_FishSwim_04.ogg" type="AudioStream" id=11]
 [ext_resource path="res://Assets/Sound/WATR_MULTIJAM_FishSwim_05.ogg" type="AudioStream" id=12]
-[ext_resource path="res://Assets/Sound/UI_MULTIJAM_Menu_Upgrades_01_01.ogg" type="AudioStream" id=13]
+[ext_resource path="res://Assets/Sound/UI_MULTIJAM_Menu_Upgrades_02_02.ogg" type="AudioStream" id=13]
 [ext_resource path="res://Assets/Sound/AMB_MULTIJAM_Underwater.ogg" type="AudioStream" id=14]
 [ext_resource path="res://Assets/Sound/MOTR_MULTIJAM_Drill_lp.ogg" type="AudioStream" id=15]
-[ext_resource path="res://Assets/Sound/UI_MULTIJAM_Menu_01_01.ogg" type="AudioStream" id=16]
+[ext_resource path="res://Assets/Sound/UI_MULTIJAM_Crystal_PickUp_02.ogg" type="AudioStream" id=16]
 [ext_resource path="res://Assets/Sound/music/Finland_Full.ogg" type="AudioStream" id=17]
 [ext_resource path="res://Assets/Sound/music/Humuhumunukunukuapua_Full.ogg" type="AudioStream" id=18]
 [ext_resource path="res://Assets/Sound/music/Schubler Corals.ogg" type="AudioStream" id=19]
 [ext_resource path="res://Assets/Sound/music/7_Former_Colors_of_the_Rainbow_Full.ogg" type="AudioStream" id=20]
+[ext_resource path="res://Assets/Sound/UI_MULTIJAM_Menu_Hover_01_03.ogg" type="AudioStream" id=21]
+[ext_resource path="res://Assets/Sound/UI_MULTIJAM_Menu_01_02.ogg" type="AudioStream" id=22]
 
 [node name="Sound" type="Node"]
 script = ExtResource( 1 )
@@ -93,7 +95,7 @@ stream = ExtResource( 15 )
 bus = "SFX"
 
 [node name="BackToOceanSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 16 )
+stream = ExtResource( 22 )
 volume_db = -8.0
 
 [node name="Themes" type="Node" parent="."]
@@ -118,5 +120,24 @@ stream = ExtResource( 17 )
 volume_db = -12.0
 bus = "Music"
 
+[node name="HoverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
+volume_db = -8.0
+bus = "SFX"
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 22 )
+volume_db = -4.0
+bus = "SFX"
+
+[node name="HoverTimer" type="Timer" parent="."]
+wait_time = 1.8
+
+[node name="CrystalMined" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+volume_db = -6.0
+bus = "SFX"
+
 [connection signal="timeout" from="FishAmbienceTimer" to="." method="_on_FishAmbienceTimer_timeout"]
 [connection signal="timeout" from="UnderwaterAmbienceTimer" to="." method="_on_UnderwaterAmbienceTimer_timeout"]
+[connection signal="timeout" from="HoverTimer" to="." method="_on_HoverTimer_timeout"]

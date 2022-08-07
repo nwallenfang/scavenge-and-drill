@@ -16,6 +16,7 @@ func _on_Panel_gui_input(event: InputEvent) -> void:
 			emit_signal("clicked")
 
 func _on_Panel_mouse_entered() -> void:
+	Sound.play_hover_sound()
 	$Panel.set("custom_styles/panel", style_box_hovered)
 
 

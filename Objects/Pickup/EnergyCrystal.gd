@@ -16,6 +16,7 @@ func get_drilled(amount):
 const CRYSTAL_POP = preload("res://Effects/CrystalPop.tscn")
 
 remotesync func drilled_out():
+	Sound.get_node("CrystalMined").play()
 	var pop = CRYSTAL_POP.instance()
 	Game.level.add_child(pop)
 	pop.global_translation = self.global_translation

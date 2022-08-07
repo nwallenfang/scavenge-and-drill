@@ -276,7 +276,7 @@ func create_all_dialogs():
 
 	d = DialogTrigger.new("eel_middle")
 	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.ROLLER, "This eels look really icky..", 2.0),
+		DialogLine.new(SPEAKERS.ROLLER, "This eel looks really icky..", 2.0),
 		DialogLine.new(SPEAKERS.DRILL, "It wants to drain our power levels!"),
 		DialogLine.new(SPEAKERS.ROLLER, "I'd like to shoot it.", 2.0),
 	]))
