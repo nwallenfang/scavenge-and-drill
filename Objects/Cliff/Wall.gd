@@ -24,6 +24,7 @@ func get_drilled(delta):
 		$DrillParticles.emitting = true
 	if hp <= 0.0:
 		drilled_out = true
+		Dialog.trigger("wall_destroyed")
 		Game.drill.cooldown()
 		$DustTrack.emitting = true
 		yield(get_tree().create_timer(.6),"timeout")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Prototyping/Level.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Drill.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Logic/TopdownCamera.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Actors/FishPath.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prototyping/Collectibles.gd" type="Script" id=6]
+[ext_resource path="res://Logic/Ubershader.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Objects/Pickup/Diamond.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Objects/Cliff/Cliff4.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Objects/Cable/Cable.tscn" type="PackedScene" id=10]
@@ -29,7 +30,7 @@
 
 [sub_resource type="Curve3D" id=10]
 _data = {
-"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -2.7894, 0, -29.8951, 0, 0, 0, 0, 0, 0, -1.45434, 0, -13.8209, 0, 0, 0, 0, 0, 0, -7.06161, 0, -5.06284, 0, 0, 0, 0, 0, 0, -4.28954, 0, 0.652113 ),
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 3.19795, 0, -15.5929, 0, 0, 0, 0, 0, 0, -5.83582, 0, -18.085, 0, 0, 0, 0, 0, 0, -9.94774, 0, -12.5401, 0, 0, 0, 0, 0, 0, -2.16001, 0, -6.30994 ),
 "tilts": PoolRealArray( 0, 0, 0, 0 )
 }
 
@@ -576,7 +577,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.54007, -9.53674e-07, -14.450
 version = 3
 
 [node name="TreasureGold11" parent="Collectibles" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.5038, -9.53674e-07, -3.27955 )
+transform = Transform( -0.0195116, 0, -0.99981, 0, 1, 0, 0.99981, 0, -0.0195116, 29.9494, -9.53674e-07, -4.21408 )
 
 [node name="TreasureGold3" parent="Collectibles" instance=ExtResource( 3 )]
 transform = Transform( 0.998375, 0, 0, 0, 0.998375, 0, 0, 0, 0.998375, -21.081, -1.43051e-06, -16.2626 )
@@ -920,6 +921,14 @@ collision_mask = 4
 [node name="CollisionShape" type="CollisionShape" parent="SeeWallDialog"]
 shape = SubResource( 9 )
 
+[node name="SeeWallDialog2" type="Area" parent="."]
+transform = Transform( 0.796477, -0.0947065, -0.730859, 0.0541933, 0.99525, -0.0834706, 0.95395, 0.0225334, 0.614955, -11.7192, 0.200059, -32.2938 )
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape" type="CollisionShape" parent="SeeWallDialog2"]
+shape = SubResource( 9 )
+
 [node name="OtherSideDialog" type="Area" parent="."]
 transform = Transform( 1.1193, -0.0947065, -0.408315, 0.0944115, 0.99525, -0.0584512, 0.534403, 0.0225334, 0.865537, 18.4038, 2.57431, -10.5536 )
 collision_layer = 0
@@ -929,14 +938,18 @@ collision_mask = 4
 shape = SubResource( 9 )
 
 [node name="CloseToEelMiddle" type="Area" parent="."]
-transform = Transform( 2.07757, -0.159866, 0.177611, 0.202836, 1.67999, -0.0195181, -0.226936, 0.0380366, 1.60856, -1.17924, 0.521982, -2.21304 )
+transform = Transform( 2.07757, -0.159866, 0.177611, 0.202836, 1.67999, -0.0195181, -0.226936, 0.0380366, 1.60856, -1.93426, 0.213731, 8.22843 )
 collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape" type="CollisionShape" parent="CloseToEelMiddle"]
 shape = SubResource( 9 )
 
+[node name="Ubershader" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41.6768, -1.17112, -20.4298 )
+
 [connection signal="body_entered" from="CloseToEelDialog" to="." method="_on_CloseToEelDialog_body_entered"]
 [connection signal="body_entered" from="SeeWallDialog" to="." method="_on_SeeWallDialog_body_entered"]
+[connection signal="body_entered" from="SeeWallDialog2" to="." method="_on_SeeWallDialog_body_entered"]
 [connection signal="body_entered" from="OtherSideDialog" to="." method="_on_OtherSideDialog_body_entered"]
 [connection signal="body_entered" from="CloseToEelMiddle" to="." method="_on_CloseToEelMiddle_body_entered"]

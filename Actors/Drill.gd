@@ -89,7 +89,8 @@ func _physics_process(delta):
 		last_frame_offset = drill_animation_offset
 	if not has_drill_target:
 		if not $TargetDetection.get_overlapping_areas().empty():
-			cooldown()
+			if "Diamond" in $TargetDetection.get_overlapping_areas()[0].get_parent().get_parent().name:
+				cooldown()
 		if is_drilling:
 			ACC = move_acc_drilling
 			drill_the_crystals(delta)
@@ -122,7 +123,7 @@ remotesync func set_drill_want(b):
 
 var sound := false
 func update_drill_sound():
-	if drill_animation_offset > .3:
+	if drill_animation_offset > .5:
 		if not sound:
 			sound = true
 			Sound.start_drilling()

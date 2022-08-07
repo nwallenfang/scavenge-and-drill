@@ -38,6 +38,7 @@ remotesync func power_depleted():
 	Game.main.game_to_shop_transition()
 
 func do_game_setup(players: Dictionary):
+	Game.log("Game Setup")
 	Game.dialog_ui.visible = true
 	if Game.debug:
 		Game.ui.toggle_dev_panel()

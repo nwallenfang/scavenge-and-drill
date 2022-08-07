@@ -13,6 +13,7 @@ func get_drilled(delta):
 	if not $DrillParticles.emitting:
 		$DrillParticles.emitting = true
 	if hp <= 0.0:
+		Dialog.trigger("diamond_drilled")
 		drilled_out = true
 		Game.drill.cooldown()
 		$Pivot.visible = false

@@ -34,7 +34,7 @@ class DialogLine:
 	func _init(sid, t, d := 3.0):
 		speaker_id = sid
 		text = t
-		duration = d
+		duration = d * 1.15
 	
 	func to_dict() -> Dictionary:
 		return {
@@ -293,6 +293,7 @@ func create_all_dialogs():
 	all_dialogs.append(d)
 
 	d = DialogTrigger.new("drill_too_weak")
+	d.queue = true
 	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.DRILL, "Damn!", 1.2),
 		DialogLine.new(SPEAKERS.DRILL, "My Drill power is too low.", 2.4),
@@ -314,6 +315,15 @@ func create_all_dialogs():
 		DialogLine.new(SPEAKERS.DRILL, "Get me over there!", 2.2),
 		DialogLine.new(SPEAKERS.DRILL, "I can't.", 1.4),
 		DialogLine.new(SPEAKERS.DRILL, "We'd both sink to the ground.", 1.4),
+	]))
+	all_dialogs.append(d)
+	
+	d = DialogTrigger.new("wall_destroyed")
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.DRILL, "Yes!", 1.4),
+		DialogLine.new(SPEAKERS.DRILL, "I told you, I would drill that wall."),
+		DialogLine.new(SPEAKERS.DRILL, "All hail the drill!", 2.2),
+		DialogLine.new(SPEAKERS.DRILL, "-.-", 1.4),
 	]))
 	all_dialogs.append(d)
 	
@@ -343,5 +353,14 @@ func create_all_dialogs():
 		DialogLine.new(SPEAKERS.DRILL, "This is what we've been training for!", 2.3),
 		DialogLine.new(SPEAKERS.DRILL, "Scrap metal, crystals, explosions, crazy heists..", 2.5),
 		DialogLine.new(SPEAKERS.ROLLER, "Well... let's touch some seaweed first.", 2.5),
+	]))
+	all_dialogs.append(d)
+
+	d = DialogTrigger.new("diamond_drilled")
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.ROLLER, "We finally got that shiny diamond!"),
+		DialogLine.new(SPEAKERS.ROLLER, "That will get us a special reward. I'm sure."),
+		DialogLine.new(SPEAKERS.ROLLER, "At least I hope...", 2.0),
+		DialogLine.new(SPEAKERS.ROLLER, "Would be nice.", 1.5),
 	]))
 	all_dialogs.append(d)
