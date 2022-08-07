@@ -368,6 +368,16 @@ func create_all_dialogs():
 		DialogLine.new(SPEAKERS.ROLLER, "Well... let's touch some seaweed first.", 2.5),
 	]))
 	all_dialogs.append(d)
+	
+	d = DialogTrigger.new("intro_sequence")
+	d.trigger_mode = TRIGGER_MODES.COUNT_GREATER_EQ
+	d.condition_value = 3
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.ROLLER, "Did you know, we're sold labled as T.R.U.S.D. unit?", 2.8),
+		DialogLine.new(SPEAKERS.DRILL, "I did not, what does it mean?", 2.0),
+		DialogLine.new(SPEAKERS.ROLLER, "Treasure Receiving Unit: Scavenge & Drill", 3.0),
+	]))
+	all_dialogs.append(d)
 
 	d = DialogTrigger.new("diamond_drilled")
 	d.sequences.append(DialogSequence.new([
