@@ -7,6 +7,7 @@ func _ready() -> void:
 
 func start_game_sounds():
 	$UnderwaterAmbienceTimer.start(ambience_time)
+	yield(get_tree().create_timer(5.0), "timeout")
 	start_a_main_theme()
 	
 
@@ -69,9 +70,13 @@ func start_a_main_theme():
 	index += 1
 	index = index % 3
 	
+
 	playing = $Themes.get_child(index)
-	playing.volume_db = -16.5
+	playing.volume_db = -80.0
 	playing.play()
+	
+	var tween = create_tween().set_trans(Tween.TRANS_SINE)
+	tween.tween_property(playing, "volume_db", -16.5, 1.2).set_ease(Tween.EASE_IN)
 	
 func stop_main_theme():
 	var tween = create_tween().set_trans(Tween.TRANS_QUAD)

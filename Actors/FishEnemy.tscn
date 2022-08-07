@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Actors/FishEnemy.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Models/EelModel.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Assets/Sprites/Sparks/spark_01.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Shader/DustNew.gdshader" type="Shader" id=6]
 [ext_resource path="res://Effects/DustTrack.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Sound/ANML_ElectricEel_01.ogg" type="AudioStream" id=8]
 
 [sub_resource type="Gradient" id=6]
 offsets = PoolRealArray( 0, 0.00645161, 0.0322581, 0.0516129 )
@@ -272,6 +273,10 @@ emitting = false
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource( 25 )
+
+[node name="AttackSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+bus = "SFX"
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="area_entered" from="PlayerDetection" to="." method="_on_PlayerDetection_area_entered"]
