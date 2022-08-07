@@ -18,6 +18,8 @@ func get_drilled(delta):
 	if not Game.upgrades.drill_power and not dialog:
 		dialog = true
 		Dialog.trigger("drill_too_weak")
+		yield(get_tree().create_timer(6),"timeout")
+		dialog = false
 	#$DrillTarget.translation.y = lerp(1.5, 2.1, hp)
 	$Wall.scale.y = old_scale_y * lerp(.82, 1.0, hp)
 	if not $DrillParticles.emitting:

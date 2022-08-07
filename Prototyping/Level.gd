@@ -175,10 +175,10 @@ func _on_FishBuddyDialog_body_entered(body):
 				if FishQuest.stage == 0:
 					Dialog.trigger("buddy_pre_quest")
 				else:
+					FishQuest.stage = 4
 					Dialog.trigger("buddy_quest")
 					yield(get_tree().create_timer(12),"timeout")
 					buddy_away_animation()
-					FishQuest.state = 4
 
 func buddy_away_animation():
 	Game.log("TODO buddy swims away")

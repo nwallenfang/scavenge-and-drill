@@ -28,7 +28,7 @@ var icons = {
 	SPEAKERS.ROLLER: preload("res://Assets/Sprites/characters/roller_transparent.png"),
 	SPEAKERS.MERCHANT: preload("res://Assets/Sprites/characters/human_PLACEHOLDER.png"),
 	SPEAKERS.FISH: preload("res://Assets/Sprites/characters/fish.png"),
-	SPEAKERS.FISH_BUDDY: preload("res://Assets/Sprites/characters/fish.png"),
+	SPEAKERS.FISH_BUDDY: preload("res://Assets/Sprites/characters/fish_buddy.png"),
 	SPEAKERS.HOOK: preload("res://Assets/Sprites/characters/hook.png"),
 }
 
@@ -423,19 +423,19 @@ func create_all_dialogs():
 	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.FISH, "Yo, robot!", 1.5),
 		DialogLine.new(SPEAKERS.ROLLER, "Yo, fish!", 1.5),
-		DialogLine.new(SPEAKERS.FISH, "Don't get your pointy thing near my crystals!", 2.7),
-		DialogLine.new(SPEAKERS.FISH, "There are not many crystals around here", 2.1),
-		DialogLine.new(SPEAKERS.FISH, "If you want them, you have to do me a favor:", 2.5),
-		DialogLine.new(SPEAKERS.FISH, "Destroy those ugly anemones behind me!", 2.5),
+		DialogLine.new(SPEAKERS.FISH, "Don't get your pointy thing near my crystals!", 2.9),
+		DialogLine.new(SPEAKERS.FISH, "There are not many crystals around here", 2.9),
+		DialogLine.new(SPEAKERS.FISH, "If you want them, you have to do me a favor:", 2.9),
+		DialogLine.new(SPEAKERS.FISH, "Destroy those ugly blue anemones behind me!", 2.9),
 	]))
 	all_dialogs.append(d)
 
 	d = DialogTrigger.new("fish_quest_find_nemo")
 	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.FISH, "Good job but no drilling yet!", 2.5),
-		DialogLine.new(SPEAKERS.DRILL, "D:", 1.0),
-		DialogLine.new(SPEAKERS.FISH, "Now I'd like you to find my friend!", 2.5),
-		DialogLine.new(SPEAKERS.FISH, "We lost each other a while ago...", 2.0),
+		DialogLine.new(SPEAKERS.FISH, "Good job but no drilling yet!", 2.6),
+		DialogLine.new(SPEAKERS.DRILL, "D:", 2.0),
+		DialogLine.new(SPEAKERS.FISH, "Now I'd like you to find my friend!", 2.6),
+		DialogLine.new(SPEAKERS.FISH, "We lost each other a while ago...", 2.3),
 		DialogLine.new(SPEAKERS.FISH, "Tell him where I am!", 2.1),
 	]))
 	all_dialogs.append(d)
