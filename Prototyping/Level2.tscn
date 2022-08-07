@@ -17,7 +17,7 @@
 [ext_resource path="res://Objects/Pickup/TreasureGold.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Logic/MouseDetectionLayer.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Prototyping/Collectibles.gd" type="Script" id=17]
-[ext_resource path="res://LevelEditing.tres" type="Environment" id=18]
+[ext_resource path="res://LevelEnvironment2.tres" type="Environment" id=18]
 [ext_resource path="res://Assets/Models/Level2Base.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Objects/Cliff/Cliff2.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Objects/Cliff/Cliff1.tscn" type="PackedScene" id=21]
@@ -77,6 +77,48 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.42383, -9.53674e-07, 40.577
 
 [node name="Algae" parent="Objects" instance=ExtResource( 4 )]
 transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, -18.1523, 1.90735e-06, 38.2327 )
+
+[node name="Algae9" parent="Objects" instance=ExtResource( 4 )]
+transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, -27.7592, 1.90735e-06, -9.87103 )
+
+[node name="Algae10" parent="Objects" instance=ExtResource( 4 )]
+transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, -10.6918, 5.72205e-06, -7.53136 )
+
+[node name="Algae11" parent="Objects" instance=ExtResource( 4 )]
+transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, 16.1, 5.72205e-06, 15.0021 )
+
+[node name="Algae12" parent="Objects" instance=ExtResource( 4 )]
+transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, -62.1176, 5.72205e-06, 5.66437 )
+
+[node name="Algae13" parent="Objects" instance=ExtResource( 4 )]
+transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, -61.3181, 5.72205e-06, -14.2841 )
+
+[node name="Algae14" parent="Objects" instance=ExtResource( 4 )]
+transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, -67.8468, 5.72205e-06, -35.9945 )
+
+[node name="Algae15" parent="Objects" instance=ExtResource( 4 )]
+transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, -51.2267, 5.72205e-06, -55.1623 )
+
+[node name="Algae16" parent="Objects" instance=ExtResource( 4 )]
+transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, -31.0096, 5.72205e-06, -38.1375 )
+
+[node name="Algae17" parent="Objects" instance=ExtResource( 4 )]
+transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, -54.8721, 5.72205e-06, -70.6272 )
+
+[node name="Algae18" parent="Objects" instance=ExtResource( 4 )]
+transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, 3.76348, 5.72205e-06, -25.8736 )
+
+[node name="Algae19" parent="Objects" instance=ExtResource( 4 )]
+transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, 13.4717, 5.72205e-06, -61.9743 )
+
+[node name="Algae20" parent="Objects" instance=ExtResource( 4 )]
+transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, 30.4461, 5.72205e-06, -72.2709 )
+
+[node name="Algae21" parent="Objects" instance=ExtResource( 4 )]
+transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, 49.6497, 5.72205e-06, -62.4124 )
+
+[node name="Algae22" parent="Objects" instance=ExtResource( 4 )]
+transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, 62.4674, 5.72205e-06, -50.911 )
 
 [node name="Algae8" parent="Objects" instance=ExtResource( 4 )]
 transform = Transform( 0.993471, 0, 0.114088, 0, 1, 0, -0.114088, 0, 0.993471, -37.4691, 1.90735e-06, 20.9274 )
@@ -174,6 +216,20 @@ version = 3
 
 [node name="TreasureGears" parent="Collectibles" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.7676, 0.18181, -75.5889 )
+
+[node name="TreasureGold2" parent="Collectibles" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 50.5121, 0, -73.1484 )
+version = 3
+
+[node name="TreasureGears2" parent="Collectibles" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 52.7561, 0.18181, -75.2301 )
+
+[node name="TreasureGold3" parent="Collectibles" instance=ExtResource( 15 )]
+transform = Transform( 0.202548, 0, 0.979272, 0, 1, 0, -0.979272, 0, 0.202548, -33.0414, 3.8147e-06, -15.648 )
+version = 3
+
+[node name="TreasureGears3" parent="Collectibles" instance=ExtResource( 10 )]
+transform = Transform( 0.202548, 0, 0.979272, 0, 1, 0, -0.979272, 0, 0.202548, -30.7974, 0.181814, -17.7297 )
 
 [node name="MouseDetectionLayer" parent="." instance=ExtResource( 16 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99728, 1.10036, 0 )
