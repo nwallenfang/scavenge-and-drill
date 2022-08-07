@@ -105,7 +105,8 @@ func do_game_setup(players: Dictionary):
 	
 
 	yield($DiveStartCutscene,"cutscene_ended")
-
+	Game.ui.back_to_ocean()
+	Sound.start_game_sounds()
 	Game.ui.fade_out(0.45)
 	yield(Game.ui, "fade_done")
 	yield(get_tree().create_timer(0.8), "timeout")
@@ -118,6 +119,7 @@ func do_game_setup(players: Dictionary):
 	camera.current = true
 	Game.power_draining = true
 	Game.ui.fade_in(0.25)
+	Game.rpc("sync_energy_charges", 2)
 	
 	
 

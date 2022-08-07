@@ -76,6 +76,9 @@ func stop_intro_music():
 func trigger_dialog():
 	Dialog.trigger("intro_sequence")
 
+func make_space_to_skip_invis():
+	Game.ui.get_node("SpaceToSkip").visible = false
+
 remotesync func end_cutscene():
 	Game.ui.get_node("SpaceToSkip").visible = false
 	emit_signal("cutscene_ended")

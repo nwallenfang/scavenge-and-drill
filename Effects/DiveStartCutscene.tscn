@@ -205,9 +205,12 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 8.6, 27.9 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 4, 8.6, 27.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "make_space_to_skip_invis"
+}, {
 "args": [  ],
 "method": "play_chain_sound"
 }, {
