@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Prototyping/Level2.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Cliff/Wall.tscn" type="PackedScene" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://Objects/Cliff/StonePillarA.tscn" type="PackedScene" id=26]
 [ext_resource path="res://Objects/Cliff/StonePillarB.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Actors/Fish.tscn" type="PackedScene" id=28]
+[ext_resource path="res://Actors/FishBuddy.tscn" type="PackedScene" id=29]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 99.1882, 0.0222201, 107.505 )
@@ -419,5 +420,8 @@ quest = true
 [node name="Anemone3" parent="Quest" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9371, -1.76852, -17.4645 )
 quest = true
+
+[node name="FishBuddy" parent="Quest" instance=ExtResource( 29 )]
+transform = Transform( 0.9994, 0, -0.0346379, 0, 1, 0, 0.0346379, 0, 0.9994, -1.93204, 0.342589, -0.612774 )
 
 [connection signal="body_entered" from="Quest/FishArea" to="." method="_on_FishArea_body_entered"]
