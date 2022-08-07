@@ -248,8 +248,8 @@ func execute_contract(static_mode_after = false):
 	cable.visible = false
 
 var super_mode := false
-var super_speed := 55.0
-var super_duration := 8.0
+var super_speed := 65.0
+var super_duration := 10.0
 func execute_super_mode():
 	Game.log("Super mode!")
 	rpc("sync_energy_charges", Game.energy_charges-2)
