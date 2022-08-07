@@ -455,7 +455,7 @@ func create_all_dialogs():
 	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.FISH_BUDDY, "Hello, nice Robots!", 1.8),
 		DialogLine.new(SPEAKERS.ROLLER, "Hello, Mister Fish!", 1.8),
-		DialogLine.new(SPEAKERS.FISH_BUDDY, "I saw you getting fished a while ago."),
+		DialogLine.new(SPEAKERS.FISH_BUDDY, "I saw you getting fished by a hook a while ago."),
 		DialogLine.new(SPEAKERS.FISH_BUDDY, "You must've been lucky to escape."),
 	]))
 	d.sequences.append(DialogSequence.new([
