@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Prototyping/MainMenu3DScene.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Fonts/credits_font.tres" type="DynamicFont" id=2]
@@ -6,6 +6,14 @@
 [ext_resource path="res://Assets/Fonts/iosevka-extended-regular.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="World" id=2]
+
+[sub_resource type="DynamicFont" id=3]
+size = 72
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 36
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 36
@@ -39,6 +47,28 @@ anchor_right = 0.8
 anchor_bottom = 0.9
 mouse_filter = 2
 alignment = 2
+
+[node name="TheEnd" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="TheEnd"]
+margin_top = 132.0
+margin_right = 1024.0
+margin_bottom = 223.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 3 )
+text = "THE END"
+align = 1
+
+[node name="Label2" type="Label" parent="TheEnd"]
+margin_top = 284.0
+margin_right = 1024.0
+margin_bottom = 330.0
+custom_fonts/font = SubResource( 4 )
+text = "Thank you for playing!"
+align = 1
 
 [node name="Page1" type="Control" parent="."]
 visible = false
@@ -159,14 +189,14 @@ size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="Page1/VBoxContainer/HBoxContainer5"]
 margin_top = 13.0
-margin_right = 532.0
+margin_right = 588.0
 margin_bottom = 44.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
 text = "Lightspeed6"
 
 [node name="Label2" type="Label" parent="Page1/VBoxContainer/HBoxContainer5"]
-margin_left = 536.0
+margin_left = 592.0
 margin_top = 13.0
 margin_right = 662.0
 margin_bottom = 44.0

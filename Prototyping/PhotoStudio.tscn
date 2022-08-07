@@ -123,6 +123,9 @@ shape = SubResource( 2 )
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 0.995373, 0, -0.096089, 0, 1, 0, 0.096089, 0, 0.995373, 16.3096, 1.33198, -5.6331 )
 
+[node name="Camera2" type="Camera" parent="."]
+transform = Transform( 0.995373, 0, -0.096089, 0, 1, 0, 0.096089, 0, 0.995373, 16.2884, 1.17118, -6.99684 )
+
 [node name="Walls" type="Spatial" parent="."]
 transform = Transform( 3.4395, 0, 0, 0, -3.33861e-07, -7.63785, 0, 1, -4.37114e-08, 16.7475, 0.793753, -9.62957 )
 
@@ -161,8 +164,7 @@ transform = Transform( 1.37729, 0, -0.510924, 0, 1.469, 0, 0.510924, 0, 1.37729,
 transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0, 0.56377, 0 )
 
 [node name="DrillModel" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1.25743, -0.364828, -1.26856, -0.0499811, 1.73761, -0.549266, 1.31903, 0.413633, 1.18851, 16.5767, 1.22078, -7.96063 )
-visible = false
+transform = Transform( 1.68405, -0.364828, -0.595277, 0.193923, 1.73761, -0.51632, 0.670705, 0.413633, 1.64394, 16.4497, 1.22078, -7.96063 )
 
 [node name="HookModel" parent="." instance=ExtResource( 4 )]
 transform = Transform( 2.39401, 0, -1.51636, 0, 2.83383, 0, 1.51636, 0, 2.39401, 16.5975, -0.00934887, -8.93944 )
@@ -170,6 +172,7 @@ visible = false
 
 [node name="FishBuddy" parent="." instance=ExtResource( 6 )]
 transform = Transform( 0.730916, 0.0911434, 0.430362, 0.0060729, 0.832405, -0.186604, -0.439866, 0.162944, 0.712548, 15.908, 1.061, -7.893 )
+visible = false
 
 [node name="Fish" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1.82953, 0.421233, 1.19088, -0.170127, 2.15906, -0.50233, -1.25168, 0.322244, 1.80895, 16.3501, 0.818719, -8.49648 )

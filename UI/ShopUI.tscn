@@ -451,11 +451,10 @@ mouse_filter = 1
 text = "Deep Sea"
 
 [node name="Label" type="Label" parent="LevelSelect/Control"]
-anchor_top = -0.183333
-anchor_bottom = -0.183333
-margin_top = 287.0
-margin_right = 1024.0
-margin_bottom = 313.0
+anchor_left = 0.412109
+anchor_top = 0.32
+anchor_right = 0.587891
+anchor_bottom = 0.363333
 custom_fonts/font = SubResource( 9 )
 text = "Choose a level:"
 align = 1

@@ -302,5 +302,4 @@ remotesync func set_level2_selected(val):
 	level2_selected = val
 
 func play_end():
-	#TODO Ending Scene & Credits
-	pass
+	ui.get_node("Credits").play_credits_with_end()
