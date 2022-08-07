@@ -51,6 +51,10 @@ remotesync func set_state(s, target_name = ""):
 			target = Game.roller
 		else:
 			target = Game.drill
+	if s == STATES.ATTACK:
+		yield(get_tree().create_timer(8), "timeout")
+		if not is_attacking:
+			death_animation()
 
 var sync_dist := .1
 remote func safe_sync_position(pos):
@@ -68,7 +72,7 @@ remotesync func on_getting_hit():
 	hp -= 2 if Game.upgrades.more_bullet_damage else 1
 	$Model/EelModel.hurt_animation()
 	if hp <= 0:
-		queue_free()
+		death_animation()
 
 func _on_PlayerDetection_area_entered(area):
 	var target_name = area.get_parent().name
@@ -88,14 +92,21 @@ remotesync func hit_player():
 		if Game.super_mode:
 			$Model/EelModel/AnimationPlayer.play("Attack")
 			yield(get_tree().create_timer(1.0),"timeout")
-			queue_free()
+			death_animation()
 		else:
 			Game.power -= damage
 			Game.ui.vignette_hit_effect()
 			$Model/EelModel/AnimationPlayer.play("Attack")
 			$Model/AttackParticles.emitting = true
 			yield(get_tree().create_timer(1.0),"timeout")
-			queue_free()
+			death_animation()
 
 func death_animation():
-	pass
+	$Hitbox.queue_free()
+	$Hurtbox.queue_free()
+	$PlayerDetection.queue_free()
+	$Dust.emitting = true
+	yield(get_tree().create_timer(.4), "timeout")
+	$Model.visible = false
+	yield(get_tree().create_timer(1.4), "timeout")
+	queue_free()
