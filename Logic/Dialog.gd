@@ -380,9 +380,7 @@ func create_all_dialogs():
 	]))
 	all_dialogs.append(d)
 	
-	d = DialogTrigger.new("intro_sequence")
-	d.trigger_mode = TRIGGER_MODES.COUNT_GREATER_EQ
-	d.condition_value = 5
+	d = DialogTrigger.new("intro_sequence_later")
 	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.ROLLER, "Did you know, we're sold labled as T.R.U.S.D. unit?", 2.8),
 		DialogLine.new(SPEAKERS.DRILL, "I did not, what does it mean?", 2.0),
@@ -401,15 +399,22 @@ func create_all_dialogs():
 
 	d = DialogTrigger.new("fish_quest_intro")
 	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.FISH, "Yo! Stupid robot, mine my anemones!"),
+		DialogLine.new(SPEAKERS.FISH, "Yo, robot!", 1.5),
+		DialogLine.new(SPEAKERS.ROLLER, "Yo, fish!", 1.5),
+		DialogLine.new(SPEAKERS.FISH, "Don't get your pointy thing near my crystals!", 2.7),
+		DialogLine.new(SPEAKERS.FISH, "There are not many crystals around here", 2.1),
+		DialogLine.new(SPEAKERS.FISH, "If you want them, you have to do me a favor:", 2.5),
+		DialogLine.new(SPEAKERS.FISH, "Destroy those ugly anemones behind me!", 2.5),
 	]))
 	all_dialogs.append(d)
 
 	d = DialogTrigger.new("fish_quest_find_nemo")
 	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.FISH, "No drilling yet!"),
+		DialogLine.new(SPEAKERS.FISH, "Good job but no drilling yet!", 2.5),
 		DialogLine.new(SPEAKERS.DRILL, "D:", 1.0),
-		DialogLine.new(SPEAKERS.FISH, "Now you gotta find my friend!"),
+		DialogLine.new(SPEAKERS.FISH, "Now I'd like you to find my friend!", 2.5),
+		DialogLine.new(SPEAKERS.FISH, "We lost each other a while ago...", 2.0),
+		DialogLine.new(SPEAKERS.FISH, "Tell him where I am!", 2.1),
 	]))
 	all_dialogs.append(d)
 
@@ -492,5 +497,11 @@ func create_all_dialogs():
 	]))
 	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.FISH, "Lorem ipsum dolor sit amet, consetetur sadipscing elitr....."),
+	]))
+	all_dialogs.append(d)
+
+	d = DialogTrigger.new("game_won")
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.ROLLER, "Yes. Nice. We beat the game..."),
 	]))
 	all_dialogs.append(d)

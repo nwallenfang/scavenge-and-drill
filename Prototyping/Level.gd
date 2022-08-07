@@ -168,7 +168,7 @@ func _on_OtherSideDialog_body_entered(body):
 
 func _on_FishBuddyDialog_body_entered(body):
 	if dialog_trigger_possible:
-		if "Roller" in body.name:
+		if "1" in body.name or "olle" in body.name:
 			if FishQuest.stage <= 3:
 				if FishQuest.stage == 0:
 					Dialog.trigger("buddy_pre_quest")

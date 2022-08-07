@@ -157,7 +157,7 @@ func update_drill_animation():
 
 func drill_the_crystals(delta):
 	if has_drill_target:
-		drill_target.get_parent().get_drilled(delta * .37 * (1.2 if Game.upgrades.drill_power else .8))
+		drill_target.get_parent().get_drilled(delta * .37 * (1.3 if Game.upgrades.drill_power else .8))
 	else:
 		for area in $DrillArea.get_overlapping_areas():
 			if "NoDrilling" in area.name:

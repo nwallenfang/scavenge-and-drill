@@ -8,6 +8,7 @@ func _ready():
 		if FishQuest.stage >= 2:
 			queue_free()
 		$AnemoneBase.scale *= 1.5
+		$AnemoneBase.get_surface_material(0).albedo_color = Color.blueviolet
 	s = $AnemoneBase.scale
 
 var dialog := false

@@ -26,6 +26,9 @@ func get_drilled(delta):
 		$DrillTarget/Area.set_deferred("monitorable", false)
 		$DrillTarget/Area.set_deferred("monitoring", false)
 		open()
+		Dialog.trigger("game_won")
+		yield(get_tree().create_timer(5),"timeout")
+		Game.play_end()
 
 #func _physics_process(delta):
 #	if currently_drilled:

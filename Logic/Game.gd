@@ -296,3 +296,7 @@ func not_enough_crystals():
 	
 remotesync func set_level2_selected(val):
 	level2_selected = val
+
+func play_end():
+	#TODO Ending Scene & Credits
+	pass
