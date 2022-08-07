@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Models/RollerModel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Models/HookModel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Models/DrillModel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Effects/EndCutscene.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Sound/MECH_HookAndChain_Outro_loopable.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Sound/MECH_HookAndChain_01.ogg" type="AudioStream" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Cutscene"
@@ -76,24 +77,29 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 3, 4.8, 6.4, 7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 6.4, 7 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [  ],
-"method": "play_chain_sound"
-}, {
-"args": [  ],
-"method": "stop_chain_sound"
-}, {
-"args": [  ],
-"method": "play_chain_sound"
-}, {
 "args": [  ],
 "method": "cut_scene_done_emit"
 }, {
 "args": [  ],
 "method": "stop_chain_sound"
 } ]
+}
+tracks/6/type = "audio"
+tracks/6/path = NodePath("ChainAndHookSound")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+} ],
+"times": PoolRealArray( 1.6 )
 }
 
 [sub_resource type="Animation" id=2]
@@ -179,6 +185,10 @@ transform = Transform( 1.14999, 0, 0, 0, -5.02679e-08, -1.14999, 0, 1.14999, -5.
 [node name="ChainSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 volume_db = 4.0
+bus = "SFX"
+
+[node name="ChainAndHookSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
 bus = "SFX"
 
 [editable path="RollerModel"]

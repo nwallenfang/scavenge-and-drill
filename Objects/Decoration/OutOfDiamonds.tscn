@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Fonts/OOD.tres" type="DynamicFont" id=1]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.721569, 0.717647, 0.52549, 1 )
@@ -21,8 +23,10 @@ rings = 0
 transform = Transform( 0.996913, 0.0784512, -0.00312953, -0.0777967, 0.9924, 0.0953427, 0.0105855, -0.0948049, 0.99544, 0, 0, 0 )
 
 [node name="Label3D" type="Label3D" parent="Spatial"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13241, 0 )
+transform = Transform( 1, 6.28643e-09, 9.31323e-09, -2.32831e-08, 1, 3.72529e-08, -2.79397e-09, -7.45058e-09, 1, -0.573464, 1.13241, 1.49012e-08 )
+pixel_size = 0.0027
 text = "OUT OF DIAMONDS"
+font = ExtResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Spatial"]
 transform = Transform( 0.896541, 0, 0, 0, 0.291287, 0, 0, 0, 0.038439, 0, 1.13825, -0.0614064 )

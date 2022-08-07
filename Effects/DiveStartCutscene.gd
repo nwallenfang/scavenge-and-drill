@@ -26,6 +26,8 @@ func get_interpolated_transform(x: float):
 
 export var camera_offset : float setget set_camera_offset
 func set_camera_offset(x):
+	if not is_instance_valid(point_1):
+		return
 	if Game.game_started:
 		camera_offset = x
 		$TreasureCam.global_transform = get_interpolated_transform(x)
@@ -36,7 +38,7 @@ export var hook_low : float = 0.8
 
 export var hook_offset : float setget set_hook_offset
 func set_hook_offset(x):
-	if Game.game_started:
+	if Game.game_started and is_instance_valid($HookModel):
 		hook_offset = x
 		if Game.try_count == 1:
 			$HookModel.global_translation.y = lerp(hook_low, 40.0, x)
@@ -69,7 +71,7 @@ func host_sync_end_cutscene():
 		rpc("end_cutscene")
 
 func stop_intro_music():
-	Sound.stop_main_menu_theme()
+	pass
 
 func trigger_dialog():
 	Dialog.trigger("intro_sequence")
@@ -84,3 +86,15 @@ func _input(event):
 	if cutscene_active and event is InputEventKey:
 		if event.is_action_pressed("skip_dialog"):
 			rpc("skip_cutscene")
+
+var volume := 4.0
+func play_chain_sound():
+	var tween = create_tween().set_trans(Tween.TRANS_SINE)
+	tween.tween_property($ChainSound, "volume_db", volume, 0.2).set_ease(Tween.EASE_IN)
+	$ChainSound.play()
+
+
+func stop_chain_sound():
+	var tween = create_tween().set_trans(Tween.TRANS_SINE)
+	tween.tween_property($ChainSound, "volume_db", -80.0, 0.8).set_ease(Tween.EASE_OUT)
+	tween.tween_callback($ChainSound, "stop")

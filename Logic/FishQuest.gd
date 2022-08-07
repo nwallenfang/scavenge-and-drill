@@ -32,4 +32,4 @@ func mined_anemone():
 	current_anemones += 1
 	if current_anemones >= max_anemones and stage == 1:
 		Dialog.trigger("we_mined_the_anemones")
-		stage = 2
+		stage = 4

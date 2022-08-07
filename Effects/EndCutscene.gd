@@ -22,5 +22,5 @@ func play_chain_sound():
 
 func stop_chain_sound():
 	var tween = create_tween().set_trans(Tween.TRANS_SINE)
-	tween.tween_property($ChainSound, "volume_db", -80.0, 0.3).set_ease(Tween.EASE_OUT)
+	tween.tween_property($ChainSound, "volume_db", -80.0, 0.8).set_ease(Tween.EASE_OUT)
 	tween.tween_callback($ChainSound, "stop")

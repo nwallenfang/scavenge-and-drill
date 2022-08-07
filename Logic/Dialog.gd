@@ -215,7 +215,7 @@ func create_all_dialogs():
 	
 	d = DialogTrigger.new("power_low")
 	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.ROLLER, "We'll go home once the our power is out.."),
+		DialogLine.new(SPEAKERS.ROLLER, "We'll go home once our power is out.."),
 		DialogLine.new(SPEAKERS.DRILL, "So soon.. but at least going home means shopping time!"),
 		DialogLine.new(SPEAKERS.ROLLER, "Right! Let's find some treasures then."),
 	]))

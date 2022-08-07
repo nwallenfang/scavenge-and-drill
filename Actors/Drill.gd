@@ -79,7 +79,7 @@ func _physics_process(delta):
 		has_drill_target = not $TargetDetection.get_overlapping_areas().empty()
 		if has_drill_target:
 			drill_target = $TargetDetection.get_overlapping_areas()[0].get_parent()
-			if len($TargetDetection.get_overlapping_areas() > 1):
+			if len($TargetDetection.get_overlapping_areas()) > 1:
 				var dist := global_translation.distance_squared_to(drill_target.global_translation)
 				for i in range(1, len($TargetDetection.get_overlapping_areas())):
 					var other = $TargetDetection.get_overlapping_areas()[i].get_parent()
