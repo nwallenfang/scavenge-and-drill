@@ -53,6 +53,7 @@ func do_game_setup(players: Dictionary):
 
 	Game.main_cam = camera   
 	
+	Game.power_low_for_hook_dialog = false
 
 	# STAT UPGRADES
 	Game.power_loss_per_s = Game.power_loss_per_s_upgraded if Game.upgrades.less_power_drain else Game.power_loss_per_s_default

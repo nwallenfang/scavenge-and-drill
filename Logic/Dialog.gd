@@ -378,6 +378,9 @@ func create_all_dialogs():
 		DialogLine.new(SPEAKERS.DRILL, "Scrap metal, crystals, explosions, crazy heists..", 2.5),
 		DialogLine.new(SPEAKERS.ROLLER, "Well... let's touch some seaweed first.", 2.5),
 	]))
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.ROLLER, "Here we go again!", 2.5),
+	]))
 	all_dialogs.append(d)
 	
 	d = DialogTrigger.new("intro_sequence_later")

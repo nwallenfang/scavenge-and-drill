@@ -74,7 +74,10 @@ func stop_intro_music():
 	pass
 
 func trigger_dialog():
-	Dialog.trigger("intro_sequence")
+	if Game.try_count >= 5:
+		Dialog.trigger("intro_sequence_later")
+	else:
+		Dialog.trigger("intro_sequence")
 
 func make_space_to_skip_invis():
 	Game.ui.get_node("SpaceToSkip").visible = false

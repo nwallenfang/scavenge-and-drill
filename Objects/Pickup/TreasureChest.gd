@@ -15,7 +15,7 @@ func get_drilled(delta):
 		return
 	currently_drilled = true
 	hp -= delta
-	$DrillTarget.translation.y = lerp(.68, 1.2, hp)
+	$DrillTarget.translation.z = lerp(.68, 1.2, hp)
 #	if not $DrillParticles.emitting:
 #		$DrillParticles.emitting = true
 	if hp <= 0.0:

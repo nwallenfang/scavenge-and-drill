@@ -121,13 +121,17 @@ signal power_depleted
 var power_critical_threshold = 0.5 * max_power
 signal power_low  # maybe some screen effect or sound? maybe not
 signal power_filled
+var power_low_for_hook_dialog := false
 func set_power(value: float):
 	if power >= power_critical_threshold and value < power_critical_threshold:
 		emit_signal("power_low")
 		Dialog.trigger("power_low")
 	if value <= 0.0 and power > 0.0:
 		emit_signal("power_depleted")
-	
+	if not power_low_for_hook_dialog:
+		if value <= .03:
+			power_low_for_hook_dialog = true
+			Dialog.trigger("hook")
 	power = value
 	if ui != null:
 		ui.set_power(value)
