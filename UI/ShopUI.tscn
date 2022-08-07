@@ -396,11 +396,14 @@ mouse_filter = 1
 
 [node name="Label" type="Label" parent="LevelSelect/Control/Level1Button/Panel/CenterContainer"]
 margin_left = 76.0
-margin_top = 31.0
+margin_top = 19.0
 margin_right = 184.0
-margin_bottom = 52.0
+margin_bottom = 64.0
 mouse_filter = 1
-text = "Tepid Waters"
+text = "Level 1:
+Tepid Waters"
+align = 1
+valign = 1
 
 [node name="Level2Button" type="Control" parent="LevelSelect/Control"]
 anchor_left = 0.540039
@@ -443,11 +446,14 @@ mouse_filter = 1
 
 [node name="Label" type="Label" parent="LevelSelect/Control/Level2Button/Panel/CenterContainer"]
 margin_left = 94.0
-margin_top = 31.0
+margin_top = 19.0
 margin_right = 166.0
-margin_bottom = 52.0
+margin_bottom = 64.0
 mouse_filter = 1
-text = "Deep Sea"
+text = "Level 2:
+Deep Sea"
+align = 1
+valign = 1
 
 [node name="Label" type="Label" parent="LevelSelect/Control"]
 anchor_left = 0.412109
