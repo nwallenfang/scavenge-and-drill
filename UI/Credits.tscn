@@ -51,6 +51,7 @@ mouse_filter = 2
 alignment = 2
 
 [node name="TheEnd" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
