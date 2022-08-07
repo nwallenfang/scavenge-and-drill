@@ -124,7 +124,8 @@ const LEVEL_SCENE = preload("res://Prototyping/Level.tscn")
 const LEVEL2_SCENE = preload("res://Prototyping/Level2.tscn")
 remotesync func _do_game_setup(playerss: Dictionary) -> void:
 	$UI.visible = true
-	$UI.fade_out(0.6)
+	Sound.stop_main_menu_theme()
+	$UI.fade_out(1.0)
 	yield($UI, "fade_done")
 	$MainMenu.queue_free()
 	yield(get_tree(), "idle_frame")

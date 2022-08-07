@@ -106,7 +106,7 @@ func start_main_menu_theme():
 func stop_main_menu_theme():
 	var theme = $Themes.get_node("SchublerCorals")
 	var tween = create_tween().set_trans(Tween.TRANS_SINE)
-	tween.tween_property(theme, "volume_db", -80.0, 1.4).set_ease(Tween.EASE_OUT)
+	tween.tween_property(theme, "volume_db", -80.0, 1.4).set_ease(Tween.EASE_IN)
 	tween.tween_callback(theme, "stop")
 
 var cooldown = false
