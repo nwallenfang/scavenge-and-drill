@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Effects/TeleportEffect.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Effects/MagicForceField.tscn" type="PackedScene" id=2]
@@ -78,6 +78,65 @@ shader_param/uv1_offset = Vector3( 0, 0, 0 )
 shader_param/uv2_scale = Vector3( 1, 1, 1 )
 shader_param/uv2_offset = Vector3( 0, 0, 0 )
 
+[sub_resource type="Shader" id=4]
+code = "// NOTE: Shader automatically converted from Godot Engine 3.5.rc8's SpatialMaterial.
+
+shader_type spatial;
+render_mode async_visible,blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : hint_color;
+uniform sampler2D texture_albedo : hint_albedo;
+uniform float specular;
+uniform float metallic;
+uniform float roughness : hint_range(0,1);
+uniform float point_size : hint_range(0,128);
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+uniform float active;
+
+float fresnel(float amount, vec3 normal, vec3 view)
+{
+	return pow((1.0 - clamp(dot(normalize(normal), normalize(view)), 0.0, 1.0 )), amount);
+}
+
+float clamp_and_map(float value, float istart, float istop, float ostart, float ostop) {
+    value = clamp(value, istart, istop);
+    return ostart + (ostop - ostart) * ((value - istart) / (istop - istart));
+}
+
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+//	vec2 world_position = (inverse(WORLD_MATRIX) * vec4(vec3(0.0), 1.0)).xz;
+//	VERTEX += NORMAL * .1* sin(world_position.x * 4.0 + world_position.y * 4.0);
+	VERTEX += NORMAL * .06* (pow(sin(VERTEX.z * 14.0 - 36.0* TIME) + .5, 1.0) - .4) * clamp_and_map(VERTEX.z, -1.3, -.5, 0.0, 1.0);
+//	float height = bubble_strength * texture(bubble_noise, bubble_noise_scale * VERTEX.xy + bubble_time_scale * vec2(0.0,TIME)).r;
+//	VERTEX += NORMAL * height;
+}
+
+void fragment() {
+	ALBEDO = albedo.rgb;
+	ROUGHNESS = .05;
+	ALPHA = min(1.0, .08 + fresnel(2.0, NORMAL, VIEW)) * albedo.a * pow(clamp_and_map(UV.y, 0.0, 0.4, 0.0, 1.0), 3.0);
+	ALPHA = ALPHA * pow(clamp_and_map(UV.y + active, .9, 1.0, 0.0, 1.0), 2.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=19]
+resource_local_to_scene = true
+shader = SubResource( 4 )
+shader_param/albedo = Color( 1, 1, 1, 1 )
+shader_param/specular = 0.5
+shader_param/metallic = 0.0
+shader_param/roughness = 1.0
+shader_param/point_size = 1.0
+shader_param/uv1_scale = Vector3( 1, 1, 1 )
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv2_scale = Vector3( 1, 1, 1 )
+shader_param/uv2_offset = Vector3( 0, 0, 0 )
+shader_param/active = 0.36
+
 [node name="Ubershader" type="Spatial"]
 
 [node name="Pivot" type="Spatial" parent="."]
@@ -114,6 +173,12 @@ material_override = SubResource( 18 )
 [node name="Bullet" parent="Pivot" instance=ExtResource( 6 )]
 script = null
 
+[node name="MeshInstance" parent="Pivot/Bullet" index="2"]
+material/0 = SubResource( 19 )
+
+[node name="BulletEffect" parent="Pivot/Bullet" index="3"]
+material_override = SubResource( 19 )
+
 [node name="FishEnemy" parent="Pivot" instance=ExtResource( 7 )]
 script = null
 
@@ -126,4 +191,5 @@ one_shot = false
 
 [editable path="Pivot/CrystalPop"]
 [editable path="Pivot/TeleportEffect"]
+[editable path="Pivot/Bullet"]
 [editable path="Pivot/FishEnemy"]

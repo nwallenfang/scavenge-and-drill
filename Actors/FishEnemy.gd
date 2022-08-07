@@ -88,6 +88,7 @@ var is_attacking := false
 remotesync func hit_player():
 	if not is_attacking:
 		is_attacking = true
+		$AttackSound.play()
 		attack_speed *= .3
 		if Game.super_mode:
 			$Model/EelModel/AnimationPlayer.play("Attack")
