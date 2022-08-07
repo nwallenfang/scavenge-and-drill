@@ -7,13 +7,12 @@ ground_bottom_color = Color( 0.270588, 0.352941, 0.439216, 1 )
 [resource]
 background_mode = 3
 background_sky = SubResource( 1 )
-background_color = Color( 0.52549, 0.364706, 0.835294, 1 )
+background_color = Color( 0.247059, 0.298039, 0.639216, 1 )
 ambient_light_color = Color( 1, 1, 1, 1 )
 fog_enabled = true
-fog_color = Color( 0.52549, 0.364706, 0.835294, 1 )
-fog_depth_begin = 12.0
-fog_depth_end = 50.0
-fog_depth_curve = 0.406127
+fog_color = Color( 0.247059, 0.298039, 0.639216, 1 )
+fog_depth_end = 60.0
+fog_depth_curve = 0.901253
 tonemap_mode = 2
 tonemap_exposure = 0.7
 dof_blur_far_distance = 17.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Effects/TeleportEffect.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Effects/MagicForceField.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Effects/CrystalPop.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Actors/Bullet.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Actors/FishEnemy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Models/DrillModel.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ParticlesMaterial" id=15]
 resource_local_to_scene = true
@@ -189,7 +190,13 @@ emitting = true
 emitting = true
 one_shot = false
 
+[node name="DrillModel" parent="Pivot" instance=ExtResource( 8 )]
+
+[node name="DrillShader" parent="Pivot/DrillModel" index="6"]
+transform = Transform( -0.242472, 0, -2.11976e-08, 0, 0.216102, 0, 2.11976e-08, 0, -0.242472, 4.79619e-09, -0.276474, 0.0981616 )
+
 [editable path="Pivot/CrystalPop"]
 [editable path="Pivot/TeleportEffect"]
 [editable path="Pivot/Bullet"]
 [editable path="Pivot/FishEnemy"]
+[editable path="Pivot/DrillModel"]

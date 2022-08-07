@@ -320,8 +320,8 @@ func create_all_dialogs():
 	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.DRILL, "I see that shiny diamond.", 2.4),
 		DialogLine.new(SPEAKERS.DRILL, "Get me over there!", 2.2),
-		DialogLine.new(SPEAKERS.DRILL, "I can't.", 1.4),
-		DialogLine.new(SPEAKERS.DRILL, "We'd both sink to the ground.", 1.4),
+		DialogLine.new(SPEAKERS.ROLLER, "I can't.", 1.4),
+		DialogLine.new(SPEAKERS.ROLLER, "We'd both sink to the ground.", 1.4),
 	]))
 	all_dialogs.append(d)
 	
@@ -330,7 +330,7 @@ func create_all_dialogs():
 		DialogLine.new(SPEAKERS.DRILL, "Yes!", 1.4),
 		DialogLine.new(SPEAKERS.DRILL, "I told you, I would drill that wall."),
 		DialogLine.new(SPEAKERS.DRILL, "All hail the drill!", 2.2),
-		DialogLine.new(SPEAKERS.DRILL, "-.-", 1.4),
+		DialogLine.new(SPEAKERS.ROLLER, "-.-", 1.4),
 	]))
 	all_dialogs.append(d)
 	
@@ -340,6 +340,14 @@ func create_all_dialogs():
 		DialogLine.new(SPEAKERS.ROLLER, "Why are you drilling that sea anemone?", 3.0),
 		DialogLine.new(SPEAKERS.DRILL, "I'm a drill", 1.9),
 		DialogLine.new(SPEAKERS.DRILL, "That's what I do...", 2.4),
+	]))
+	all_dialogs.append(d)
+	
+	
+	d = DialogTrigger.new("we_could_teleport")
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.DRILL, "I see that shiny diamond.", 2.4),
+		DialogLine.new(SPEAKERS.ROLLER, "We could use that teleport ability", 3.0),
 	]))
 	all_dialogs.append(d)
 	

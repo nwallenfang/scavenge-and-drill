@@ -37,6 +37,9 @@ remotesync func power_depleted():
 	yield($Player1/EndCutscene,"cutscene_done")
 	Game.main.game_to_shop_transition()
 
+
+var dialog_trigger_possible := false
+
 func do_game_setup(players: Dictionary):
 	Game.log("Game Setup")
 	Game.dialog_ui.visible = true
@@ -112,6 +115,8 @@ func do_game_setup(players: Dictionary):
 	Game.ui.fade_in(0.25)
 	Game.rpc("sync_energy_charges", 2)
 	
+	dialog_trigger_possible = true
+	
 	
 
 func replace_collectibles(collectibles_node: Node):
@@ -142,14 +147,18 @@ func _on_CloseToEelDialog_body_entered(body: Node) -> void:
 
 
 func _on_CloseToEelMiddle_body_entered(body):
-	if $Player1.visible:
+	if $Player1.visible and dialog_trigger_possible:
 		Dialog.trigger("eel_middle")
 
 
 func _on_SeeWallDialog_body_entered(body):
-	Dialog.trigger("see_wall")
+	if dialog_trigger_possible:
+		Dialog.trigger("see_wall")
 
 
 func _on_OtherSideDialog_body_entered(body):
-	if not Game.upgrades.position_swap:
-		Dialog.trigger("other_side")
+	if dialog_trigger_possible:
+		if not Game.upgrades.position_swap:
+			Dialog.trigger("other_side")
+		else:
+			Dialog.trigger("we_could_teleport")
