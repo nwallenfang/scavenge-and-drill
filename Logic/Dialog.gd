@@ -407,19 +407,51 @@ func create_all_dialogs():
 
 	d = DialogTrigger.new("fish_quest_find_nemo")
 	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.FISH, "Now find my friend!"),
+		DialogLine.new(SPEAKERS.FISH, "No drilling yet!"),
+		DialogLine.new(SPEAKERS.DRILL, "D:", 1.0),
+		DialogLine.new(SPEAKERS.FISH, "Now you gotta find my friend!"),
 	]))
 	all_dialogs.append(d)
 
 	d = DialogTrigger.new("fish_quest_finished")
 	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.FISH, "You did it!"),
+		DialogLine.new(SPEAKERS.FISH, "You did it! You found him!", 2.0),
+		DialogLine.new(SPEAKERS.FISH_BUDDY, "Yes they are very nice robots.", 2.3),
+		DialogLine.new(SPEAKERS.FISH, "I always thought it's just one robot.", 2.3),
+		DialogLine.new(SPEAKERS.FISH_BUDDY, "Yeah, I'm not quite sure...", 2.3),
+		DialogLine.new(SPEAKERS.FISH, "You can have those crystals now.", 2.3),
+		DialogLine.new(SPEAKERS.DRILL, "Finally..."),
 	]))
 	all_dialogs.append(d)
 	
+	d = DialogTrigger.new("buddy_pre_quest")
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.FISH_BUDDY, "Hello, nice Robots!", 1.8),
+		DialogLine.new(SPEAKERS.ROLLER, "Hello, Mister Fish!", 1.8),
+		DialogLine.new(SPEAKERS.FISH_BUDDY, "I saw you getting fished a while ago."),
+		DialogLine.new(SPEAKERS.FISH_BUDDY, "You must've been lucky to escape."),
+	]))
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.FISH_BUDDY, "I gathered a few crystals!", 1.8),
+		DialogLine.new(SPEAKERS.FISH_BUDDY, "You can mine them if you want to."),
+	]))
+	all_dialogs.append(d)
+	
+	d = DialogTrigger.new("buddy_quest")
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.DRILL, "Hey, we know where your friend is.", 2.3),
+		DialogLine.new(SPEAKERS.FISH_BUDDY, "That's great. I lost him days ago.", 2.0),
+		DialogLine.new(SPEAKERS.FISH_BUDDY, "I bet he's in the deep sea.", 1.7),
+		DialogLine.new(SPEAKERS.DRILL, "That's right.", 1.2),
+		DialogLine.new(SPEAKERS.DRILL, "Why did we even come here, if you know it already?"),
+		DialogLine.new(SPEAKERS.FISH_BUDDY, "Thank you very much!"),
+	]))
+	all_dialogs.append(d)
+	
+	
 	d = DialogTrigger.new("quest_anemone")
 	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.ROLLER, "We got one of his anemones"),
+		DialogLine.new(SPEAKERS.ROLLER, "We got one of his anemones."),
 	]))
 	all_dialogs.append(d)
 	

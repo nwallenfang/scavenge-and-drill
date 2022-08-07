@@ -51,6 +51,10 @@ func do_game_setup(players: Dictionary):
 	FishQuest.current_anemones = 0
 	if FishQuest.stage >= 5:
 		delete_no_drill()
+	if FishQuest.stage >= 4:
+		$Quest/FishBuddy.visible = true
+	else:
+		$Quest/FishBuddy.visible = false
 
 	# STAT UPGRADES
 	Game.power_loss_per_s = Game.power_loss_per_s_upgraded if Game.upgrades.less_power_drain else Game.power_loss_per_s_default

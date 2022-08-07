@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Effects/TeleportEffect.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Effects/MagicForceField.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Actors/Bullet.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Actors/FishEnemy.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/Models/DrillModel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Actors/Drill.tscn" type="PackedScene" id=9]
 
 [sub_resource type="ParticlesMaterial" id=15]
 resource_local_to_scene = true
@@ -138,6 +139,80 @@ shader_param/uv2_scale = Vector3( 1, 1, 1 )
 shader_param/uv2_offset = Vector3( 0, 0, 0 )
 shader_param/active = 0.36
 
+[sub_resource type="ParticlesMaterial" id=20]
+resource_local_to_scene = true
+emission_shape = 1
+emission_sphere_radius = 0.3
+direction = Vector3( 1, 1.5, 0 )
+spread = 30.0
+gravity = Vector3( 0, -5, 0 )
+initial_velocity = 6.0
+scale = 3.0
+scale_random = 1.0
+
+[sub_resource type="SpatialMaterial" id=21]
+resource_local_to_scene = true
+flags_unshaded = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id=22]
+resource_local_to_scene = true
+material = SubResource( 21 )
+size = Vector2( 0.04, 0.04 )
+
+[sub_resource type="ParticlesMaterial" id=23]
+resource_local_to_scene = true
+emission_shape = 1
+emission_sphere_radius = 0.3
+direction = Vector3( 1, 1.5, 0 )
+spread = 30.0
+gravity = Vector3( 0, -5, 0 )
+initial_velocity = 6.0
+scale = 3.0
+scale_random = 1.0
+
+[sub_resource type="SpatialMaterial" id=24]
+resource_local_to_scene = true
+flags_unshaded = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id=25]
+resource_local_to_scene = true
+material = SubResource( 24 )
+size = Vector2( 0.08, 0.08 )
+
+[sub_resource type="SpatialMaterial" id=26]
+resource_local_to_scene = true
+flags_unshaded = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id=27]
+resource_local_to_scene = true
+material = SubResource( 26 )
+size = Vector2( 0.06, 0.06 )
+
+[sub_resource type="SpatialMaterial" id=28]
+resource_local_to_scene = true
+flags_unshaded = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id=29]
+resource_local_to_scene = true
+material = SubResource( 28 )
+size = Vector2( 0.07, 0.07 )
+
 [node name="Ubershader" type="Spatial"]
 
 [node name="Pivot" type="Spatial" parent="."]
@@ -195,8 +270,43 @@ one_shot = false
 [node name="DrillShader" parent="Pivot/DrillModel" index="6"]
 transform = Transform( -0.242472, 0, -2.11976e-08, 0, 0.216102, 0, 2.11976e-08, 0, -0.242472, 4.79619e-09, -0.276474, 0.0981616 )
 
+[node name="Drill" parent="Pivot" instance=ExtResource( 9 )]
+transform = Transform( 1.39564, 0, 0, 0, 1.39564, 0, 0, 0, 1.39564, 0, 0, 0 )
+script = null
+
+[node name="Default" parent="Pivot/Drill/Model" index="1"]
+visible = true
+
+[node name="DrillPos" parent="Pivot/Drill/Model" index="2"]
+visible = true
+
+[node name="GroundParticles" parent="Pivot/Drill/Model" index="3"]
+emitting = true
+process_material = SubResource( 20 )
+draw_pass_1 = SubResource( 22 )
+
+[node name="CrystalParticles" parent="Pivot/Drill/Model" index="4"]
+emitting = true
+process_material = SubResource( 23 )
+draw_pass_1 = SubResource( 25 )
+
+[node name="GoldParticles" parent="Pivot/Drill/Model" index="5"]
+emitting = true
+process_material = SubResource( 23 )
+draw_pass_1 = SubResource( 27 )
+
+[node name="ScrapParticles" parent="Pivot/Drill/Model" index="6"]
+emitting = true
+process_material = SubResource( 23 )
+draw_pass_1 = SubResource( 29 )
+
+[node name="TryParticles" parent="Pivot/Drill" index="7"]
+emitting = true
+one_shot = false
+
 [editable path="Pivot/CrystalPop"]
 [editable path="Pivot/TeleportEffect"]
 [editable path="Pivot/Bullet"]
 [editable path="Pivot/FishEnemy"]
 [editable path="Pivot/DrillModel"]
+[editable path="Pivot/Drill"]

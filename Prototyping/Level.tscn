@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Prototyping/Level.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Drill.tscn" type="PackedScene" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://Objects/Decoration/Anemone.tscn" type="PackedScene" id=25]
 [ext_resource path="res://Objects/Cliff/StonePillarA.tscn" type="PackedScene" id=26]
 [ext_resource path="res://Objects/Cliff/StonePillarB.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Actors/FishBuddy.tscn" type="PackedScene" id=28]
 
 [sub_resource type="Curve3D" id=10]
 _data = {
@@ -292,16 +293,25 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.45117, -2.86102e-06, 2.4444 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.05589, -2.86102e-06, -8.48977 )
 
 [node name="EnergyCrystal7" parent="Objects" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.2601, -2.86102e-06, -32.3453 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29.2371, -2.86102e-06, -27.634 )
 
 [node name="EnergyCrystal8" parent="Objects" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.4059, -2.86102e-06, -34.5646 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8702, -2.86102e-06, -35.9484 )
 
 [node name="EnergyCrystal9" parent="Objects" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -41.8638, -2.86102e-06, -34.3822 )
 
 [node name="EnergyCrystal10" parent="Objects" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.4001, -2.86102e-06, -50.8318 )
+transform = Transform( -0.824393, 0, -0.566018, 0, 1, 0, 0.566018, 0, -0.824393, -17.8696, -2.86102e-06, -50.5515 )
+
+[node name="EnergyCrystal16" parent="Objects" instance=ExtResource( 13 )]
+transform = Transform( -0.0748395, 0, -0.997196, 0, 1, 0, 0.997196, 0, -0.0748395, -18.5073, -2.86102e-06, -51.9767 )
+
+[node name="EnergyCrystal17" parent="Objects" instance=ExtResource( 13 )]
+transform = Transform( -0.471274, 0, -0.881987, 0, 1, 0, 0.881987, 0, -0.471274, -17.1637, -2.86102e-06, -52.0188 )
+
+[node name="EnergyCrystal18" parent="Objects" instance=ExtResource( 13 )]
+transform = Transform( 0.999874, 0, 0.0158992, 0, 1, 0, -0.0158992, 0, 0.999874, -14.127, -2.86102e-06, -53.9971 )
 
 [node name="EnergyCrystal11" parent="Objects" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -50.4007, -2.86102e-06, 10.7421 )
@@ -657,7 +667,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33.2769, -4.76837e-07, -3.379
 version = 3
 
 [node name="TreasureGears8" parent="Collectibles" instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.7731, -4.76837e-07, -45.9699 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1362, -4.76837e-07, -45.5107 )
 
 [node name="TreasureGears4" parent="Collectibles" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.8053, 0.0324998, 9.83208 )
@@ -941,6 +951,14 @@ collision_mask = 4
 [node name="CollisionShape" type="CollisionShape" parent="OtherSideDialog"]
 shape = SubResource( 9 )
 
+[node name="FishBuddyDialog" type="Area" parent="."]
+transform = Transform( 1.46572, -0.0135183, -0.531787, -0.02794, 1.29978, -0.0761264, 0.689565, 0.0813989, 1.12727, -14.1687, 0.378899, -49.3983 )
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape" type="CollisionShape" parent="FishBuddyDialog"]
+shape = SubResource( 9 )
+
 [node name="CloseToEelMiddle" type="Area" parent="."]
 transform = Transform( 2.07757, -0.159866, 0.177611, 0.202836, 1.67999, -0.0195181, -0.226936, 0.0380366, 1.60856, -1.93426, 0.213731, 8.22843 )
 collision_layer = 0
@@ -952,8 +970,12 @@ shape = SubResource( 9 )
 [node name="Ubershader" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41.6768, -1.17112, -20.4298 )
 
+[node name="FishBuddy" parent="." instance=ExtResource( 28 )]
+transform = Transform( 0.912585, 0, 0.408888, 0, 1, 0, -0.408888, 0, 0.912585, -16.5621, 2.60913, -54.7389 )
+
 [connection signal="body_entered" from="CloseToEelDialog" to="." method="_on_CloseToEelDialog_body_entered"]
 [connection signal="body_entered" from="SeeWallDialog" to="." method="_on_SeeWallDialog_body_entered"]
 [connection signal="body_entered" from="SeeWallDialog2" to="." method="_on_SeeWallDialog_body_entered"]
 [connection signal="body_entered" from="OtherSideDialog" to="." method="_on_OtherSideDialog_body_entered"]
+[connection signal="body_entered" from="FishBuddyDialog" to="." method="_on_FishBuddyDialog_body_entered"]
 [connection signal="body_entered" from="CloseToEelMiddle" to="." method="_on_CloseToEelMiddle_body_entered"]

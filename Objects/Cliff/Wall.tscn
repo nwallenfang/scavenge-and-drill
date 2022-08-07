@@ -411,6 +411,7 @@ mesh = SubResource( 1 )
 
 [node name="DrillTarget" parent="." instance=ExtResource( 5 )]
 transform = Transform( 0.40471, -0.893957, -0.192487, 0.863561, 0.442865, -0.241107, 0.300785, -0.0686459, 0.951218, -0.639657, 0.741552, 0.664529 )
+visible = false
 
 [node name="DrillParticles" parent="." instance=ExtResource( 7 )]
 transform = Transform( -3.25976e-08, -0.450183, 0.745747, -1.96781e-08, 0.745747, 0.450183, -0.871093, 0, -3.80767e-08, -0.653901, 0.560455, 0.735089 )

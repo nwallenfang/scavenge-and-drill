@@ -116,7 +116,7 @@ func do_game_setup(players: Dictionary):
 	Game.rpc("sync_energy_charges", 2)
 	
 	dialog_trigger_possible = true
-	
+	$FishBuddy.visible = FishQuest.stage <= 3
 	
 
 func replace_collectibles(collectibles_node: Node):
@@ -162,3 +162,20 @@ func _on_OtherSideDialog_body_entered(body):
 			Dialog.trigger("other_side")
 		else:
 			Dialog.trigger("we_could_teleport")
+
+
+func _on_FishBuddyDialog_body_entered(body):
+	if dialog_trigger_possible:
+		if "Roller" in body.name:
+			if FishQuest.stage <= 3:
+				if FishQuest.stage == 0:
+					Dialog.trigger("buddy_pre_quest")
+				else:
+					Dialog.trigger("buddy_quest")
+					yield(get_tree().create_timer(12),"timeout")
+					buddy_away_animation()
+					FishQuest.state = 4
+
+func buddy_away_animation():
+	Game.log("TODO buddy swims away")
+	create_tween().tween_property($FishBuddy, "global_translation", $FishBuddy.global_translation + Vector3(1.0, 10.0, 5.0), 3.0)
