@@ -106,7 +106,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id=2]
 resource_name = "CutsceneLong"
-length = 26.0
+length = 29.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:camera_offset")
 tracks/0/interp = 1
@@ -126,7 +126,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 5.1, 25.9 ),
+"times": PoolRealArray( 5.1, 28.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 1.0, 0.0 ]
@@ -162,7 +162,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 6.3, 23.9 ),
+"times": PoolRealArray( 6.3, 26.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -205,9 +205,12 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 8.6, 25.8 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 4, 8.6, 27.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "make_space_to_skip_invis"
+}, {
 "args": [  ],
 "method": "play_chain_sound"
 }, {

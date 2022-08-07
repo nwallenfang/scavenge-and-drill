@@ -23,7 +23,7 @@ rings = 0
 transform = Transform( 0.996913, 0.0784512, -0.00312953, -0.0777967, 0.9924, 0.0953427, 0.0105855, -0.0948049, 0.99544, 0, 0, 0 )
 
 [node name="Label3D" type="Label3D" parent="Spatial"]
-transform = Transform( 1, 6.28643e-09, 9.31323e-09, -2.32831e-08, 1, 3.72529e-08, -2.79397e-09, -7.45058e-09, 1, -0.573464, 1.13241, 1.49012e-08 )
+transform = Transform( 1, 1.3737e-08, 1.49012e-08, -2.28174e-08, 1, 8.19564e-08, -8.3819e-09, -1.49012e-08, 1, -0.0107615, 1.13241, 0 )
 pixel_size = 0.0027
 text = "OUT OF DIAMONDS"
 font = ExtResource( 1 )

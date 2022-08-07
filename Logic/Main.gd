@@ -222,7 +222,7 @@ remotesync func shop_to_game_transition():
 	level.queue_free()
 	$ShopUI.visible = false
 	$ViewportContainer.visible = true
-	$UI.back_to_ocean()
+#	$UI.back_to_ocean()
 	Game.ui.fade_in(0.3)
 	Game.power = Game.max_power
 	level = new_level

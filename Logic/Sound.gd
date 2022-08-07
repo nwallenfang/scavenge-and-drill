@@ -76,8 +76,11 @@ func start_a_main_theme():
 	playing.volume_db = -80.0
 	playing.play()
 	
+	var target_volume = -16.5
+	if playing.name == "SchublerCorals":
+		target_volume = -13.5
 	var tween = create_tween().set_trans(Tween.TRANS_SINE)
-	tween.tween_property(playing, "volume_db", -16.5, 1.2).set_ease(Tween.EASE_IN)
+	tween.tween_property(playing, "volume_db", target_volume, 1.2).set_ease(Tween.EASE_IN)
 	
 func stop_main_theme():
 	var tween = create_tween().set_trans(Tween.TRANS_QUAD)

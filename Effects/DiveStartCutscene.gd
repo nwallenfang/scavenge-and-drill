@@ -76,11 +76,15 @@ func stop_intro_music():
 func trigger_dialog():
 	Dialog.trigger("intro_sequence")
 
+func make_space_to_skip_invis():
+	Game.ui.get_node("SpaceToSkip").visible = false
+
 remotesync func end_cutscene():
-	cutscene_active = false
-	self.visible = false
 	Game.ui.get_node("SpaceToSkip").visible = false
 	emit_signal("cutscene_ended")
+	cutscene_active = false
+	yield(get_tree().create_timer(0.5), "timeout")
+	self.visible = false
 
 func _input(event):
 	if cutscene_active and event is InputEventKey:

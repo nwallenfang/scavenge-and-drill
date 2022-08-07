@@ -227,7 +227,7 @@ func create_all_dialogs():
 
 	d = DialogTrigger.new("treasure_drill")
 	d.trigger_mode = TRIGGER_MODES.COUNT_EXACT
-	d.condition_value = 4
+	d.condition_value = 6
 	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.ROLLER, "Can't you hurry up with your drilling? You're taking your time."),
 		DialogLine.new(SPEAKERS.DRILL, "Hey, these treasures have to be drilled with utmost care!"),
@@ -382,7 +382,7 @@ func create_all_dialogs():
 	
 	d = DialogTrigger.new("intro_sequence_later")
 	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.ROLLER, "Did you know, we're sold labled as T.R.U.S.D. unit?", 2.8),
+		DialogLine.new(SPEAKERS.ROLLER, "Did you know, we're sold labeled as T.R.U.S.D. unit?", 2.8),
 		DialogLine.new(SPEAKERS.DRILL, "I did not, what does it mean?", 2.0),
 		DialogLine.new(SPEAKERS.ROLLER, "Treasure Receiving Unit: Scavenge & Drill", 3.0),
 	]))
