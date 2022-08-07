@@ -35,6 +35,8 @@ remotesync func play_dialog(dialog_sequence):
 			Sound.roller_talk()
 		if line.speaker_id == Dialog.SPEAKERS.DRILL:
 			Sound.drill_talk()
+		if line.speaker_id == Dialog.SPEAKERS.FISH or line.speaker_id == Dialog.SPEAKERS.FISH_BUDDY:
+			Sound.fish_talk()
 		yield(self, "line_done_or_interrupt")
 	Dialog.on_dialog_ended()
 	
