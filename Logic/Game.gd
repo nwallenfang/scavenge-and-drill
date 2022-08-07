@@ -131,7 +131,7 @@ func set_power(value: float):
 	if value <= 0.0 and power > 0.0:
 		emit_signal("power_depleted")
 	if not power_low_for_hook_dialog:
-		if value <= 4:
+		if value <= 3.2:
 			power_low_for_hook_dialog = true
 			Dialog.trigger("hook")
 	power = value
@@ -248,8 +248,8 @@ func execute_contract(static_mode_after = false):
 	cable.visible = false
 
 var super_mode := false
-var super_speed := 55.0
-var super_duration := 8.0
+var super_speed := 65.0
+var super_duration := 10.0
 func execute_super_mode():
 	Game.log("Super mode!")
 	rpc("sync_energy_charges", Game.energy_charges-2)
