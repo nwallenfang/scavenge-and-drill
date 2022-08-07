@@ -11,7 +11,7 @@ export var move_acc_upgraded := 12.0
 export var move_acc_drilling := 4.0
 export var move_acc_drilling_target := 0.0
 export var friction_normal := 0.99
-export var friction_drilling := 0.997
+export var friction_drilling := 0.97
 
 onready var handle := $Model/DrillModel/Handle
 

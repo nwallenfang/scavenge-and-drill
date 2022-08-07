@@ -100,9 +100,8 @@ func do_game_setup(players: Dictionary):
 	$Cable.visible = false
 	Game.ui.fade_in(0.50)
 	yield(get_tree().create_timer(0.10), "timeout")
-	$DiveStartCutscene.start_cutscene()
 	$TreasureChest.close()
-
+	$DiveStartCutscene.start_cutscene()
 	yield($DiveStartCutscene,"cutscene_ended")
 	Game.ui.back_to_ocean()
 	Sound.start_game_sounds()

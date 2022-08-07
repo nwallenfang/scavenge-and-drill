@@ -221,7 +221,7 @@ func create_all_dialogs():
 	]))
 	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.DRILL, "The power levels are halfway down again..."),
-		DialogLine.new(SPEAKERS.ROLLER, "It always happens so fast"),
+		DialogLine.new(SPEAKERS.ROLLER, "Too bad we can't charge the battery down here"),
 	]))
 	all_dialogs.append(d)
 
@@ -300,7 +300,26 @@ func create_all_dialogs():
 	all_dialogs.append(d)
 
 	d = DialogTrigger.new("drill_too_weak")
-	d.queue = true
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.DRILL, "Damn!", 1.2),
+		DialogLine.new(SPEAKERS.DRILL, "My Drill power is too low.", 2.4),
+		DialogLine.new(SPEAKERS.ROLLER, "You're really useless without your upgrades.", 2.4),
+	]))
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.DRILL, "Damn!", 1.2),
+		DialogLine.new(SPEAKERS.DRILL, "My Drill power is too low.", 2.4),
+		DialogLine.new(SPEAKERS.ROLLER, "You're really useless without your upgrades.", 2.4),
+	]))
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.DRILL, "Damn!", 1.2),
+		DialogLine.new(SPEAKERS.DRILL, "My Drill power is too low.", 2.4),
+		DialogLine.new(SPEAKERS.ROLLER, "You're really useless without your upgrades.", 2.4),
+	]))
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.DRILL, "Damn!", 1.2),
+		DialogLine.new(SPEAKERS.DRILL, "My Drill power is too low.", 2.4),
+		DialogLine.new(SPEAKERS.ROLLER, "You're really useless without your upgrades.", 2.4),
+	]))
 	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.DRILL, "Damn!", 1.2),
 		DialogLine.new(SPEAKERS.DRILL, "My Drill power is too low.", 2.4),
@@ -375,7 +394,7 @@ func create_all_dialogs():
 		DialogLine.new(SPEAKERS.DRILL, "So exciting, which treasure will I drill first?", 3.0),
 		DialogLine.new(SPEAKERS.ROLLER, "The ocean feels so different from the academy pool..", 3.0),
 		DialogLine.new(SPEAKERS.DRILL, "This is what we've been training for!", 2.3),
-		DialogLine.new(SPEAKERS.DRILL, "Scrap metal, crystals, explosions, crazy heists..", 2.5),
+		DialogLine.new(SPEAKERS.DRILL, "Drilling Scrap metal, rocks and gold...", 2.6),
 		DialogLine.new(SPEAKERS.ROLLER, "Well... let's touch some seaweed first.", 2.5),
 	]))
 	d.sequences.append(DialogSequence.new([
@@ -471,6 +490,7 @@ func create_all_dialogs():
 	all_dialogs.append(d)
 	
 	d = DialogTrigger.new("forbidden_drill")
+	d.importance = 0
 	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.FISH, "Hey stop it!"),
 	]))
