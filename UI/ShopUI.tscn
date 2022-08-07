@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Assets/Shader/energy_crystal_ui.gdshader" type="Shader" id=1]
 [ext_resource path="res://Assets/Sprites/gold.png" type="Texture" id=2]
@@ -20,8 +20,9 @@
 [ext_resource path="res://Assets/Fonts/iosevka-extended-regular.ttf" type="DynamicFontData" id=18]
 [ext_resource path="res://UI/ShopEntryGap.tscn" type="PackedScene" id=19]
 [ext_resource path="res://UI/ShopEntrySecret.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Assets/Sprites/levels/level2_placeholder.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Sprites/upgrade_icons/level2.png" type="Texture" id=21]
 [ext_resource path="res://UI/LevelSelect.gd" type="Script" id=22]
+[ext_resource path="res://UI/LevelSelectButton.gd" type="Script" id=23]
 
 [sub_resource type="ShaderMaterial" id=7]
 shader = ExtResource( 1 )
@@ -363,7 +364,7 @@ anchor_bottom = 0.557
 mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
-script = ExtResource( 6 )
+script = ExtResource( 23 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -410,7 +411,7 @@ anchor_bottom = 0.557
 mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
-script = ExtResource( 6 )
+script = ExtResource( 23 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
