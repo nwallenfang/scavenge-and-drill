@@ -206,20 +206,19 @@ anchor_bottom = 1.0
 mouse_filter = 2
 
 [node name="TreasureCountRow" type="HBoxContainer" parent="."]
-margin_left = 542.72
-margin_right = 1023.72
-margin_bottom = 51.0
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -220.0
+margin_bottom = 48.0
 alignment = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="TreasureCountRow"]
-margin_left = 261.0
-margin_right = 261.0
-margin_bottom = 51.0
+margin_bottom = 48.0
 
 [node name="TreasureUI" type="HBoxContainer" parent="TreasureCountRow"]
 unique_name_in_owner = true
-margin_left = 265.0
-margin_right = 481.0
+margin_left = 4.0
+margin_right = 220.0
 margin_bottom = 48.0
 size_flags_vertical = 0
 alignment = 2
