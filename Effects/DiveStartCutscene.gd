@@ -84,6 +84,8 @@ func make_space_to_skip_invis():
 
 remotesync func end_cutscene():
 	Game.ui.get_node("SpaceToSkip").visible = false
+	if $ChainSound.playing:
+		$ChainSound.stop()
 	emit_signal("cutscene_ended")
 	cutscene_active = false
 	yield(get_tree().create_timer(0.5), "timeout")
