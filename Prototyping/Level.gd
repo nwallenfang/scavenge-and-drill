@@ -101,6 +101,7 @@ func do_game_setup(players: Dictionary):
 	
 
 	yield($DiveStartCutscene,"cutscene_ended")
+	Game.ui.back_to_ocean()
 	Sound.start_game_sounds()
 	Game.ui.fade_out(0.45)
 	yield(Game.ui, "fade_done")
