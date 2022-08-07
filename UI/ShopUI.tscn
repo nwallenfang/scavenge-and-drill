@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Assets/Shader/energy_crystal_ui.gdshader" type="Shader" id=1]
 [ext_resource path="res://Assets/Sprites/gold.png" type="Texture" id=2]
@@ -20,7 +20,9 @@
 [ext_resource path="res://Assets/Fonts/iosevka-extended-regular.ttf" type="DynamicFontData" id=18]
 [ext_resource path="res://UI/ShopEntryGap.tscn" type="PackedScene" id=19]
 [ext_resource path="res://UI/ShopEntrySecret.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Assets/Sprites/levels/level2_placeholder.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Sprites/upgrade_icons/level2.png" type="Texture" id=21]
+[ext_resource path="res://UI/LevelSelect.gd" type="Script" id=22]
+[ext_resource path="res://UI/LevelSelectButton.gd" type="Script" id=23]
 
 [sub_resource type="ShaderMaterial" id=7]
 shader = ExtResource( 1 )
@@ -64,6 +66,9 @@ shader_param/fill_color = null
 shader_param/empty_color = null
 shader_param/enabled = null
 shader_param/texture_resource = ExtResource( 7 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.172549, 0.164706, 0.164706, 0.92549 )
 
 [node name="ShopUI" type="Control"]
 anchor_right = 1.0
@@ -340,7 +345,134 @@ margin_bottom = 49.0
 mouse_filter = 1
 text = "Done Shopping"
 
+[node name="LevelSelect" type="PanelContainer" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 10 )
+script = ExtResource( 22 )
+
+[node name="Control" type="Control" parent="LevelSelect"]
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="Level1Button" type="Control" parent="LevelSelect/Control"]
+anchor_left = 0.21875
+anchor_top = 0.416
+anchor_right = 0.472727
+anchor_bottom = 0.557
+mouse_filter = 1
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Panel" type="Panel" parent="LevelSelect/Control/Level1Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 17 )
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="LevelSelect/Control/Level1Button/Panel"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="LevelSelect/Control/Level1Button/Panel/AspectRatioContainer"]
+material = SubResource( 8 )
+margin_left = 87.736
+margin_right = 172.336
+margin_bottom = 84.6
+mouse_filter = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="LevelSelect/Control/Level1Button/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="LevelSelect/Control/Level1Button/Panel/CenterContainer"]
+margin_left = 98.0
+margin_top = 31.0
+margin_right = 161.0
+margin_bottom = 52.0
+mouse_filter = 1
+text = "Level 1"
+
+[node name="Level2Button" type="Control" parent="LevelSelect/Control"]
+anchor_left = 0.540039
+anchor_top = 0.416
+anchor_right = 0.794016
+anchor_bottom = 0.557
+mouse_filter = 1
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Panel" type="Panel" parent="LevelSelect/Control/Level2Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 17 )
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="LevelSelect/Control/Level2Button/Panel"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="LevelSelect/Control/Level2Button/Panel/AspectRatioContainer"]
+material = SubResource( 8 )
+margin_left = 87.736
+margin_right = 172.336
+margin_bottom = 84.6
+mouse_filter = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="LevelSelect/Control/Level2Button/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="LevelSelect/Control/Level2Button/Panel/CenterContainer"]
+margin_left = 98.0
+margin_top = 31.0
+margin_right = 161.0
+margin_bottom = 52.0
+mouse_filter = 1
+text = "Level 2"
+
+[node name="Label" type="Label" parent="LevelSelect/Control"]
+anchor_top = -0.183333
+anchor_bottom = -0.183333
+margin_top = 287.0
+margin_right = 1024.0
+margin_bottom = 313.0
+custom_fonts/font = SubResource( 9 )
+text = "Choose a level:"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
 [connection signal="clicked" from="DoneShopping" to="." method="_on_DoneShopping_clicked"]
 [connection signal="gui_input" from="DoneShopping/Panel" to="DoneShopping" method="_on_Panel_gui_input"]
 [connection signal="mouse_entered" from="DoneShopping/Panel" to="DoneShopping" method="_on_Panel_mouse_entered"]
 [connection signal="mouse_exited" from="DoneShopping/Panel" to="DoneShopping" method="_on_Panel_mouse_exited"]
+[connection signal="selected_level" from="LevelSelect" to="." method="_on_LevelSelect_selected_level"]
+[connection signal="clicked" from="LevelSelect/Control/Level1Button" to="LevelSelect" method="_on_Level1Button_clicked"]
+[connection signal="gui_input" from="LevelSelect/Control/Level1Button/Panel" to="LevelSelect/Control/Level1Button" method="_on_Panel_gui_input"]
+[connection signal="mouse_entered" from="LevelSelect/Control/Level1Button/Panel" to="LevelSelect/Control/Level1Button" method="_on_Panel_mouse_entered"]
+[connection signal="mouse_exited" from="LevelSelect/Control/Level1Button/Panel" to="LevelSelect/Control/Level1Button" method="_on_Panel_mouse_exited"]
+[connection signal="clicked" from="LevelSelect/Control/Level2Button" to="LevelSelect" method="_on_Level2Button_clicked"]
+[connection signal="gui_input" from="LevelSelect/Control/Level2Button/Panel" to="LevelSelect/Control/Level2Button" method="_on_Panel_gui_input"]
+[connection signal="mouse_entered" from="LevelSelect/Control/Level2Button/Panel" to="LevelSelect/Control/Level2Button" method="_on_Panel_mouse_entered"]
+[connection signal="mouse_exited" from="LevelSelect/Control/Level2Button/Panel" to="LevelSelect/Control/Level2Button" method="_on_Panel_mouse_exited"]

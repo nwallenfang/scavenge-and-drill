@@ -11,7 +11,7 @@ func _ready() -> void:
 	OnlineMatch.connect("player_joined", self, "_on_OnlineMatch_player_joined")
 	OnlineMatch.connect("match_ready", self, "_on_OnlineMatch_match_ready")
 	Game.ui = get_parent().get_node("UI")
-	Sound.start_shop_theme()
+	Sound.start_main_menu_theme()
 
 func _on_EnterRandomMatchmaking_pressed() -> void:
 	Network.connect_to_matchmaking()
@@ -45,6 +45,7 @@ func _on_PlayWithFriendButton_clicked() -> void:
 
 
 func _on_PlayWithRandomButton_clicked() -> void:
+	Sound.get_node("ClickSound").play()
 	Network.connect_to_matchmaking()
 	# wait until match is found to make menu invisible.. maybe even once the game is setup
 	$Buttons.visible = false
@@ -68,11 +69,13 @@ func _on_ProgressAnimator_timeout() -> void:
 
 
 func _on_JoinLobby_clicked() -> void:
+	Sound.get_node("ClickSound").play()
 	$LobbyScreen.visible = false
 	$JoinLobbyScreen.visible = true
 
 
 func _on_CreateLobby_clicked() -> void:
+	Sound.get_node("ClickSound").play()
 	Network.connect_to_nakama()
 	yield(Network, "socket_connected")	
 	OnlineMatch.create_match(Network.nakama_socket)

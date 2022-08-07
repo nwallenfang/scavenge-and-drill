@@ -72,6 +72,13 @@ func _on_Button_pressed() -> void:
 
 
 func _on_DoneShopping_clicked() -> void:
+	if Game.upgrades.level_2:
+		$LevelSelect.visible = true
+		return
 	emit_signal("done_shopping")
-	
 
+func _on_LevelSelect_selected_level(number) -> void:
+	if number == 2:
+		Game.rpc("set_level2_selected", true)
+#		Game.level2_selected = true
+	emit_signal("done_shopping")

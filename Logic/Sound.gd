@@ -14,6 +14,7 @@ func start_game_sounds():
 func stop_game_sounds():
 	$UnderwaterAmbienceTimer.stop()
 	$FishAmbienceTimer.stop()
+	$UnderwaterAmbience.stop()
 	stop_main_theme()
 
 
@@ -94,3 +95,28 @@ func stop_shop_theme():
 	var tween = create_tween()
 	tween.tween_property($FinlandShopTheme, "volume_db", -80.0, shop_dur).set_ease(Tween.EASE_IN)
 	tween.tween_callback($FinlandShopTheme, "stop")
+	
+func start_main_menu_theme():
+	var theme = $Themes.get_node("SchublerCorals")
+	theme.play()
+	var tween = create_tween().set_trans(Tween.TRANS_SINE)
+	tween.tween_property(theme, "volume_db", -4.5, 1.2).set_ease(Tween.EASE_IN)
+
+
+func stop_main_menu_theme():
+	var theme = $Themes.get_node("SchublerCorals")
+	var tween = create_tween().set_trans(Tween.TRANS_SINE)
+	tween.tween_property(theme, "volume_db", -80.0, 1.4).set_ease(Tween.EASE_OUT)
+	tween.tween_callback(theme, "stop")
+
+var cooldown = false
+func play_hover_sound():
+	if cooldown:
+		return
+	$HoverSound.play()
+	$HoverTimer.start(1.0)
+	cooldown = true
+
+
+func _on_HoverTimer_timeout() -> void:
+	cooldown = false

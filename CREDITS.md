@@ -46,3 +46,6 @@
 - Drill Icon
   - https://thenounproject.com/icon/drill-2303298/
   - Kokota
+- Algae Icon
+  - https://thenounproject.com/icon/algae-3925402/
+  - Lars Meiertoberens

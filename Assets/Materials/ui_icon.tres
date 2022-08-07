@@ -1,11 +1,24 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=2]
 
-[ext_resource path="res://Assets/Sprites/player_coop.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Shader/energy_crystal_ui.gdshader" type="Shader" id=2]
+[ext_resource path="res://Assets/Sprites/upgrade_icons/level2.png" type="Texture" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform sampler2D texture_resource;
+uniform vec4 fill_color: hint_color;
+uniform vec4 empty_color: hint_color;
+uniform bool enabled;
+
+void fragment(){
+	vec4 tex = texture(texture_resource, UV);
+	COLOR = tex * fill_color;
+}"
 
 [resource]
-shader = ExtResource( 2 )
-shader_param/fill_color = null
+shader = SubResource( 1 )
+shader_param/fill_color = Color( 1, 1, 1, 1 )
 shader_param/empty_color = null
 shader_param/enabled = null
 shader_param/texture_resource = ExtResource( 1 )

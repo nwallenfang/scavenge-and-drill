@@ -49,6 +49,8 @@ var treasure_diamond = 1
 
 var collectibles_node: Node
 
+var level2_selected: bool = false
+
 class Upgrades:
 	var chain_longer := false
 	var less_power_drain := false
@@ -166,6 +168,7 @@ remotesync func set_upgrade(name, cost_gold, cost_gears):
 	emit_signal("treasure_count_changed")
 
 remotesync func set_level2_unlocked():
+	Sound.get_node("UpgradeBoughtSound").play()
 	treasure_diamond -= 1
 	Game.log("setting level 2 unlocked " + name)	
 	upgrades.set("level_2", true)
@@ -289,3 +292,6 @@ remotesync func try_super(player_name):
 
 func not_enough_crystals():
 	ui.show_energy_crystals_missing()
+	
+remotesync func set_level2_selected(val):
+	level2_selected = val
