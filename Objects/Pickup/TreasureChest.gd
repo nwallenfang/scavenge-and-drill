@@ -7,10 +7,15 @@ func close():
 	yield(get_tree().create_timer(.5),"timeout")
 	$AnimationPlayer.play("close")
 
+var dialog := false
+
 var currently_drilled := false
 var hp := 1.0
 var drilled_out := false
 func get_drilled(delta):
+	if not dialog:
+		dialog = true
+		Dialog.trigger("ofcourse_chest")
 	if drilled_out:
 		return
 	currently_drilled = true

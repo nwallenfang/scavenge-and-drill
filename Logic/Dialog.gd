@@ -347,7 +347,7 @@ func create_all_dialogs():
 	d = DialogTrigger.new("wall_destroyed")
 	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.DRILL, "Yes!", 1.4),
-		DialogLine.new(SPEAKERS.DRILL, "I told you, I would drill that wall."),
+		DialogLine.new(SPEAKERS.DRILL, "I told you, I would drill that wall.", 2.0),
 		DialogLine.new(SPEAKERS.DRILL, "All hail the drill!", 2.2),
 		DialogLine.new(SPEAKERS.ROLLER, "-.-", 1.4),
 	]))
@@ -526,5 +526,11 @@ func create_all_dialogs():
 	d = DialogTrigger.new("game_won")
 	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.ROLLER, "Yes. Nice. We beat the game..."),
+	]))
+	all_dialogs.append(d)
+	
+	d = DialogTrigger.new("ofcourse_chest")
+	d.sequences.append(DialogSequence.new([
+		DialogLine.new(SPEAKERS.ROLLER, "Ofcourse you would drill that chest..."),
 	]))
 	all_dialogs.append(d)
