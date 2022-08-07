@@ -40,9 +40,9 @@ func init_tutorial_msg():
 	else:
 		$"%TutorialMsg".text = "Explore and find treasures!\nLeft Mouse Button to shoot"
 	if Game.upgrades.super_mode:
-		$"%TutorialMsg".text += "\n Press [F] for invincibility"
+		$"%TutorialMsg".text += "\nPress both [F] for invincibility"
 	if Game.upgrades.position_swap:
-		$"%TutorialMsg".text += "\n Press [T] to swap positions"
+		$"%TutorialMsg".text += "\nPress both [T] to swap positions"
 		
 
 func _process(delta: float) -> void:

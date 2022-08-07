@@ -392,7 +392,7 @@ func create_all_dialogs():
 	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.ROLLER, "Finally, the first treasure hunt on our own!", 2.5),
 		DialogLine.new(SPEAKERS.DRILL, "So exciting, which treasure will I drill first?", 3.0),
-		DialogLine.new(SPEAKERS.ROLLER, "The ocean feels so different from the academy pool..", 3.0),
+		DialogLine.new(SPEAKERS.ROLLER, "The ocean is so different compared to the academy pool..", 3.4),
 		DialogLine.new(SPEAKERS.DRILL, "This is what we've been training for!", 2.3),
 		DialogLine.new(SPEAKERS.DRILL, "Drilling Scrap metal, rocks and gold...", 2.6),
 		DialogLine.new(SPEAKERS.ROLLER, "Well... let's touch some seaweed first.", 2.5),
@@ -455,7 +455,7 @@ func create_all_dialogs():
 	d.sequences.append(DialogSequence.new([
 		DialogLine.new(SPEAKERS.FISH_BUDDY, "Hello, nice Robots!", 1.8),
 		DialogLine.new(SPEAKERS.ROLLER, "Hello, Mister Fish!", 1.8),
-		DialogLine.new(SPEAKERS.FISH_BUDDY, "I saw you getting fished a while ago."),
+		DialogLine.new(SPEAKERS.FISH_BUDDY, "I saw you getting fished by a hook a while ago."),
 		DialogLine.new(SPEAKERS.FISH_BUDDY, "You must've been lucky to escape."),
 	]))
 	d.sequences.append(DialogSequence.new([
