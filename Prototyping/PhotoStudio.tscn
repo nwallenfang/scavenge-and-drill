@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Assets/Models/RollerModel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Models/DrillModel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/Pickup/TreasureGold.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Models/HookModel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Actors/Fish.tscn" type="PackedScene" id=5]
 [ext_resource path="res://LevelEnvironment.tres" type="Environment" id=9]
 [ext_resource path="res://Objects/Pickup/TreasureGears.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Objects/Decoration/Algae.tscn" type="PackedScene" id=12]
@@ -164,5 +165,9 @@ visible = false
 
 [node name="HookModel" parent="." instance=ExtResource( 4 )]
 transform = Transform( 2.39401, 0, -1.51636, 0, 2.83383, 0, 1.51636, 0, 2.39401, 16.5975, -0.00934887, -8.93944 )
+visible = false
+
+[node name="Fish" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1.82953, 0.421233, 1.19088, -0.170127, 2.15906, -0.50233, -1.25168, 0.322244, 1.80895, 16.3501, 0.818719, -8.49648 )
 
 [editable path="RollerModel"]
