@@ -45,7 +45,7 @@ const TYPE_3 = 3
 
 var treasure_gold = 0
 var treasure_gears = 0
-var treasure_diamond = 1
+var treasure_diamond = 0
 
 var collectibles_node: Node
 

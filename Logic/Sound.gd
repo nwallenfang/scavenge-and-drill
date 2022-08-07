@@ -89,7 +89,7 @@ var shop_dur = 1.0
 func start_shop_theme():
 	var tween = create_tween()
 	$FinlandShopTheme.play()
-	tween.tween_property($FinlandShopTheme, "volume_db", -16.0, shop_dur).set_ease(Tween.EASE_OUT)
+	tween.tween_property($FinlandShopTheme, "volume_db", -12.0, shop_dur).set_ease(Tween.EASE_OUT)
 	
 func stop_shop_theme():
 	var tween = create_tween()

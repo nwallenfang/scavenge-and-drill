@@ -84,3 +84,15 @@ func _input(event):
 	if cutscene_active and event is InputEventKey:
 		if event.is_action_pressed("skip_dialog"):
 			rpc("skip_cutscene")
+
+var volume := 4.0
+func play_chain_sound():
+	var tween = create_tween().set_trans(Tween.TRANS_SINE)
+	tween.tween_property($ChainSound, "volume_db", volume, 0.2).set_ease(Tween.EASE_IN)
+	$ChainSound.play()
+
+
+func stop_chain_sound():
+	var tween = create_tween().set_trans(Tween.TRANS_SINE)
+	tween.tween_property($ChainSound, "volume_db", -80.0, 0.8).set_ease(Tween.EASE_OUT)
+	tween.tween_callback($ChainSound, "stop")

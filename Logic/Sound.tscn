@@ -92,6 +92,7 @@ bus = "SFX"
 
 [node name="Drilling" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 15 )
+volume_db = -5.0
 bus = "SFX"
 
 [node name="BackToOceanSound" type="AudioStreamPlayer" parent="."]

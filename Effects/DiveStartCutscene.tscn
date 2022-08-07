@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Effects/DiveStartCutscene.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Models/HookModel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Models/RollerModel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Models/DrillModel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Sound/MECH_HookAndChain_Outro_loopable.ogg" type="AudioStream" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Cutscene"
@@ -84,6 +85,23 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 70.0, 40.0 ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 6.5, 12 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_chain_sound"
+}, {
+"args": [  ],
+"method": "stop_chain_sound"
+} ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -180,11 +198,28 @@ tracks/6/keys = {
 "method": "trigger_dialog"
 } ]
 }
+tracks/7/type = "method"
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 8.6, 25.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_chain_sound"
+}, {
+"args": [  ],
+"method": "stop_chain_sound"
+} ]
+}
 
 [node name="DiveStartCutscene" type="Spatial"]
 script = ExtResource( 1 )
 camera_offset = 1.0
-hook_offset = 1.0
+hook_offset = 0.961538
 
 [node name="HookModel" parent="." instance=ExtResource( 2 )]
 transform = Transform( 2.82705, 0, 0, 0, 2.82705, 0, 0, 0, 2.82705, 0, 0, 0 )
@@ -209,3 +244,8 @@ anims/CutsceneLong = SubResource( 2 )
 [node name="TreasureCam" type="Camera" parent="."]
 current = true
 fov = 67.2727
+
+[node name="ChainSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = 4.0
+bus = "SFX"

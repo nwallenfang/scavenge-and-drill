@@ -385,7 +385,7 @@ mouse_filter = 1
 
 [node name="ColorRect" type="ColorRect" parent="LevelSelect/Control/Level1Button/Panel/AspectRatioContainer"]
 material = SubResource( 8 )
-margin_left = 87.736
+margin_left = 87.7362
 margin_right = 172.336
 margin_bottom = 84.6
 mouse_filter = 1
@@ -432,7 +432,7 @@ mouse_filter = 1
 
 [node name="ColorRect" type="ColorRect" parent="LevelSelect/Control/Level2Button/Panel/AspectRatioContainer"]
 material = SubResource( 8 )
-margin_left = 87.736
+margin_left = 87.7362
 margin_right = 172.336
 margin_bottom = 84.6
 mouse_filter = 1

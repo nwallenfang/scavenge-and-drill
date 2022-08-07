@@ -71,9 +71,13 @@ func _on_Button_pressed() -> void:
 	emit_signal("done_shopping")
 
 
+remotesync func show_level_select():
+	$LevelSelect.visible = true
+
+
 func _on_DoneShopping_clicked() -> void:
 	if Game.upgrades.level_2:
-		$LevelSelect.visible = true
+		rpc("show_level_select")
 		return
 	emit_signal("done_shopping")
 

@@ -220,7 +220,7 @@ remotesync func shop_to_game_transition():
 	Game.rpc("sync_energy_charges", 0)
 	Game.game_started = true
 	Sound.stop_shop_theme()
-	Sound.start_game_sounds()
+#	Sound.start_game_sounds()
 	
 	
 func _on_MainMenu_match_made():
