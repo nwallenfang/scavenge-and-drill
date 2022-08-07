@@ -50,7 +50,7 @@ func do_game_setup(players: Dictionary):
 	Game.main_cam = camera   
 	
 	FishQuest.current_anemones = 0
-	if FishQuest.stage >= 5:
+	if FishQuest.stage >= 4:
 		delete_no_drill()
 	if FishQuest.stage >= 4:
 		$Quest/FishBuddy.visible = true
