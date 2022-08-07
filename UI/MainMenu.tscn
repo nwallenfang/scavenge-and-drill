@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Assets/Fonts/GameTitle.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Assets/Fonts/GameSubtitle.tres" type="DynamicFont" id=2]
@@ -17,8 +17,10 @@
 [ext_resource path="res://Assets/Sprites/gear - Copy.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Sprites/arrow_left.png" type="Texture" id=16]
 [ext_resource path="res://Assets/Fonts/DialogFont.tres" type="DynamicFont" id=17]
+[ext_resource path="res://LevelEnvironment.tres" type="Environment" id=18]
 
 [sub_resource type="World" id=10]
+environment = ExtResource( 18 )
 
 [sub_resource type="ShaderMaterial" id=9]
 shader = ExtResource( 14 )
@@ -150,9 +152,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MatchmakingScreen/Panel/CenterContainer"]
-margin_left = 101.0
+margin_left = 105.0
 margin_top = 21.0
-margin_right = 308.0
+margin_right = 303.0
 margin_bottom = 98.0
 
 [node name="Looking" type="Label" parent="MatchmakingScreen/Panel/CenterContainer/VBoxContainer"]
@@ -165,7 +167,6 @@ text = "Looking for a player.."
 margin_top = 25.0
 margin_right = 207.0
 margin_bottom = 46.0
-text = "(it could take a while)"
 align = 1
 
 [node name="Cancel" type="Button" parent="MatchmakingScreen/Panel/CenterContainer/VBoxContainer"]
@@ -497,7 +498,9 @@ text = "Note: copying to clipboard doesn't work on the web :(
 You could:
 - join random matchmaking at the same time
 - type the code by hand
-- or play on a downloaded version"
+- or play on a downloaded version
+
+PLEASE RELOAD THE PAGE IF YOU WANT TO JOIN MATCHMAKING"
 align = 1
 
 [node name="Gap" type="Control" parent="CreateLobbyScreen/Panel/VBoxContainer"]

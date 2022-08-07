@@ -139,6 +139,11 @@ stream = ExtResource( 16 )
 volume_db = -6.0
 bus = "SFX"
 
+[node name="FishTalk" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -3.0
+bus = "SFX"
+
 [connection signal="timeout" from="FishAmbienceTimer" to="." method="_on_FishAmbienceTimer_timeout"]
 [connection signal="timeout" from="UnderwaterAmbienceTimer" to="." method="_on_UnderwaterAmbienceTimer_timeout"]
 [connection signal="timeout" from="HoverTimer" to="." method="_on_HoverTimer_timeout"]

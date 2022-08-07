@@ -530,6 +530,6 @@ func create_all_dialogs():
 	
 	d = DialogTrigger.new("ofcourse_chest")
 	d.sequences.append(DialogSequence.new([
-		DialogLine.new(SPEAKERS.ROLLER, "Ofcourse you would drill that chest..."),
+		DialogLine.new(SPEAKERS.ROLLER, "Of course you would drill that chest..."),
 	]))
 	all_dialogs.append(d)

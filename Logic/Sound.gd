@@ -25,6 +25,9 @@ func drill_talk():
 func roller_talk():
 	var rand: int  = (randi() % 3) + 1
 	$RollerVoices.get_node("Voice%d" % rand).play()
+	
+func fish_talk():
+	$FishTalk.play()
 
 
 func play_fish_ambience():
